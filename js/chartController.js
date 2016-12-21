@@ -61,6 +61,7 @@ $(document).ready(function () {
                 console.log("failed to complete request");
                 return;
             }
+            SGS.currentTimeDivs = TimePeriod.YEAR;
             //bind information to SGS
             compileData(xhr, TimePeriod.YEAR);
 
@@ -159,7 +160,7 @@ $(document).ready(function () {
                 return MonthName[ts.substr(3, 2) - 1] + " " + ts.substr(6, 4);
             }
             if (timePeriod === TimePeriod.DAY) {
-                return ts.substr(0, 2) + " " + MonthName[ts.substr(3, 2) - 1];
+                return ts.substr(0, 2) + " " + MonthName[ts.substr(3, 2) - 1] + " " + ts.substr(6, 4);
             }
             if (timePeriod === TimePeriod.HOUR) {
                 return ts.substr(11, 5) + " " + ts.substr(0, 2) + " " + MonthName[ts.substr(3, 2) - 1];
@@ -178,6 +179,7 @@ $(document).ready(function () {
             SGS.kwhGen.pop();
             SGS[SGS.currentTimeDivs].pop();
             SGS.co2Saved.pop();
+            SGS.dateString.pop();
         }
     }
 
@@ -273,8 +275,68 @@ $(document).ready(function () {
             }
         }
         bars.on("mouseover", createTooltipOnFunction(energyChartObjectContainer(div)))
-            .on("mousemove", null)
-            .on("mouseout", createTooltipOffFunction(div));
+          .on("mousemove", null)
+          .on("mouseout", createTooltipOffFunction(div))
+          .on("click", function(datum, index){
+            //kill the tooltip first
+            var killTooltip = createTooltipOffFunction(div);
+            killTooltip();
+            // get the old time div
+            var oldTimeDiv = SGS.currentTimeDivs;
+            // debug statements
+            console.log(SGS.dateString[index]);
+            console.log(index);
+            var newTimeDiv = decrementTimePeriod(oldTimeDiv);
+            // cancel zoom in if at hourly level already
+            if (newTimeDiv === null ){
+                return;
+            }
+            // get current date to zoom in to
+            var zoomInDate = SGS.dateString[index];
+
+            var year, month, day, period, finalFunction;
+
+            if (newTimeDiv === TimePeriod.MONTH){
+                // get the year, then call chartYear
+                year = parseInt(SGS.dateString[index]);
+                month, day, period = 0;
+                finalFunction = chartYear.bind(this, year);
+            }
+            else if (newTimeDiv === TimePeriod.DAY){
+                // get year and month. zoom into that month and display days.
+                console.log("B");
+                var ds = SGS.dateString[index];
+                year = window.parseInt(ds.substr(4, 4));
+                month = MonthName.indexOf(ds.substr(0,3));
+                day, period = 0;
+                finalFunction = chartMonth.bind(this, year, month);
+            }
+            else if (newTimeDiv === TimePeriod.HOUR){
+                // get the day, as well as year and month: zoom into that day.
+                console.log("C");
+                var ds = SGS.dateString[index];
+                year = window.parseInt(ds.substr(7,4));
+                month = MonthName.indexOf(ds.substr(3,3));
+                day = window.parseInt(ds.substr(0,2));
+                finalFunction = chartDay.bind(this, year, month, day);
+            }
+            // finally...
+            if (finalFunction === undefined){
+                console.log("no final function?")
+                return;
+            }
+            reinitChart();
+            SGS.currentTimeDivs = newTimeDiv;
+            finalFunction();
+
+            /*utility functions */
+            function decrementTimePeriod(old){
+                if (old === TimePeriod.YEAR){ return TimePeriod.MONTH; }
+                if (old === TimePeriod.MONTH){ return TimePeriod.DAY; }
+                if (old === TimePeriod.DAY){ return TimePeriod.HOUR; }
+                return null;
+            }
+        });
 
     }
 
