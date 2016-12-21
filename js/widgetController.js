@@ -293,4 +293,4 @@ jQuery(document).ready(function ($) {
     initializeSlider();
 
 
-}); //end document.ready
+});
