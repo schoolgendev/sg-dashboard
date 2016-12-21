@@ -5,8 +5,9 @@
 
     /* GLOBAL VARIABLES*/
 
-
-    var SgNames = {}; // holds names for classes for page
+    // holds names for classes for page
+    var SgNames = {};
+    // holds time divisions. Used in the chart.
     var TimePeriod = {
         HOUR: "hour",
         DAY: "day",
@@ -14,11 +15,14 @@
         MONTH: "month",
         YEAR: "year",
         LIFETIME: "lifetime"
-    }; // holds time divisions. Used in the chart.
-    var MonthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    };
     // holds month names in an array. Used in the chart.
-    var DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // holds the number of days in each month. Used in the chart.
+    var MonthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    // holds the number of days in each month. Used in the chart.
+    var DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    // holds the current date object
     var date = new Date();
+    // holds objects to compare schoolgen stats to for the widgets
     var SgCompare = {
         // POWER : taken from http://energyusecalculator.com/ or rob's slides
         // one laptop running continuously for a year
@@ -67,13 +71,12 @@
         "http://api.schoolgen.co.nz/ProgramCharts/schoolgen/{year}/{month}/{day}/{period}", //variable period
         "http://api.schoolgen.co.nz/ProgramCharts/" // gets schoolgen specific statistics
     ];
-    // pc is the page controller for the widgets and charts and stuff.
-    // register with the pc to gain notification access.
+    /* pc is the page controller for the widgets and charts and stuff.
+     register with the pc to gain notification access. */
     var pc = new PageController();
 
     /* PageController constructor function*/
     function PageController(){
-
         /* SUBJECT/OBSERVER-RELATED LOGIC */
 
         /* sgStats is the subject for the observers */
@@ -94,8 +97,18 @@
             // removal failed - couldn't find the observing object in the list.
             console.log("observer removal failed");
         }
-        /* notify() triggers the update and preupdate mechanism for all registered observers. */
+        /* notify() triggers the update mechanism for all registered observers. */
         this.notify = function(){
+            // cycle through observers, call update()
+            let i, obsCount = this.obsList.count();
+            for (i = 0; i < obsCount; i++){
+                if (typeof obsList[i].update === 'function'){
+                    obsList[i].update();
+                }
+            }
+        }
+        /*preNotify() triggers preupdate mechanism for all registered observers*/
+        this.preNotify = function(){
             let i, obsCount = this.obsList.count();
             // cycle through observers, call preUpdate()
             for (i = 0; i < obsCount; i++){
@@ -103,23 +116,27 @@
                     obsList[i].preUpdate();
                 }
             }
-            // cycle through observers, call update()
-            for (i = 0; i < obsCount; i++){
-                if (typeof obsList[i].update === 'function'){
-                    obsList[i].update();
-                }
-            }
         }
 
         /* PAGE CONTROLLER INTERFACE */
 
-        /* chartPeriod(year, month, day, period) */
+        /* chartPeriod(year, month, day, period) - gets the data using an API call
+         for a given period, before calling notify on everything.
+         */
         this.chartPeriod (year, month, day, period){
             //TODO: finish chartPeriod
+            // general workflow
+            // 1. call observer.preNotify() - this will e.g. kill the graph and launch the loader
+            this.preNotify();
+            // 2. make API call. will need to make two API calls.
+            // 3. on success - throw data into sgStats
+            // 4. use callback to trigger observer.notify() - this will e.g. kill the loader,
+            //      redraw the graph, and replace the slider spans.
         }
 
         /* chartYear(year, month) - charts an entire year starting from month/year
-            Note: month range is 0 - 11. */
+            Note: month range is 0 - 11.
+        */
         this.chartYear = function (year, month) {
             // no arg call: returns current year from start
             if (arguments.length === 0) {
@@ -132,7 +149,6 @@
             }
             chartPeriod(year, month, 1, 365);
         }
-
         /* chartMonth(year, month, day) either charts a whole month,
          or charts 28 days back from a specific day.
          Note: month range is 0 - 11 */
@@ -158,31 +174,37 @@
             }
             this.chartPeriod(year, month, day, period);
         }
-
-    // range of month: 0 - 11 where 0 = jan
-    function chartWeek(year, month, day) {
-        // only valid calls are all 3 params filled or none filled.
-        // calling with less than three params filled is equivalent with none filled.
-        if (arguments.length < 3) {
-            // set backdate
-            var backdate = new Date();
-            backdate.setDate(date.getDate() - 7);
-            // pass backdate data into the chart period
-            year = backdate.getFullYear();
-            month = backdate.getMonth();
-            day = backdate.getDate();
+        /* chartWeek(year, month, day) is a convenience method for charting a week (7 days) from
+            the day specified. If no day is specified, it looks at the current week (i.e. it charts
+            from seven days before the current date.
+            Note: range of month = 0 - 11
+        */
+        this.chartWeek = function (year, month, day) {
+            // only valid calls are all 3 params filled or none filled.
+            // calling with less than three params filled is equivalent with none filled.
+            if (arguments.length < 3) {
+                // set backdate
+                var backdate = new Date();
+                backdate.setDate(date.getDate() - 7);
+                // pass backdate data into the chart period
+                year = backdate.getFullYear();
+                month = backdate.getMonth();
+                day = backdate.getDate();
+            }
+            chartPeriod(year, month, day, 7);
         }
-        chartPeriod(year, month, day, 7);
-    }
-
-    function chartDay(year, month, day) {
-        if (arguments.length < 3) {
-            year = date.getFullYear();
-            month = date.getMonth();
-            day = date.getDate();
+        /* chartDay(year,month,day) charts an entire day in half hour columns.
+        If called with less than three parameters, it charts the current date.
+        */
+        this.chartDay = function (year, month, day) {
+            if (arguments.length < 3) {
+                year = date.getFullYear();
+                month = date.getMonth();
+                day = date.getDate();
+            }
+            chartPeriod(year, month, day, 1)
         }
-        chartPeriod(year, month, day, 1)
-    }
+
     }
 
     /* ObserverList is the base class for lists of observers.*/
@@ -238,7 +260,7 @@
     var dayBtn = document.getElementById("btn-day");
 
     function bindButtons() {
-        lifetimeBtn.onclick =
+        //TODO: bind button actions
     }
 
 })();
