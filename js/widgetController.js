@@ -225,6 +225,14 @@ jQuery(document).ready(function ($) {
                 slider1.data('unslider').next();
             }
         }
+        slider1[0].onmouseover = function(){
+            console.log("slider 1 stop");
+            slider1.data('unslider').stop();
+        }
+        slider1[0].onmouseout = function(){
+            console.log("slider 1 start");
+            slider1.data('unslider').start();
+        }
 
         var slider2 = $('#slider2');
         slider2.unslider({
@@ -243,6 +251,14 @@ jQuery(document).ready(function ($) {
             rightArr[i].onclick = function () {
                 slider2.data('unslider').next();
             }
+        }
+        slider2[0].onmouseover = function(){
+            console.log("slider 2 stop");
+            slider2.data('unslider').stop();
+        }
+        slider2[0].onmouseout = function(){
+            console.log("slider 2 start");
+            slider2.data('unslider').start();
         }
 
         var slider3 = $('#slider3');
@@ -263,15 +279,18 @@ jQuery(document).ready(function ($) {
                 slider3.data('unslider').next();
             }
         }
+        slider3[0].onmouseover = function(){
+            console.log("slider 3 stop");
+            slider3.data('unslider').stop();
+        }
+        slider3[0].onmouseout = function(){
+            console.log("slider 3 start");
+            slider3.data('unslider').start();
+        }
     }
 
     compileData();
     initializeSlider();
 
-    // add stop function to stop button
-    $("#stopbtn").on('click', function () {
-        console.log('clicked')
-        slider.data('unslider').stop()
-    });
 
 }); //end document.ready
