@@ -1,0 +1,52 @@
+The structure of the SgStats object is as follows:
+
+SgStats
+ |--currentTimeDivs
+ |--currentVisual
+ |--general
+ |      |---bestSch
+ |      |       |----hour
+ |      |       |----week
+ |      |       `----year
+ |      |----egco2
+ |      |       |----today
+ |      |        `---total
+ |       `---records
+ |              |----total
+ |               `---year
+ `--spec
+       |----domain
+       |----co2Saved
+       |----dateString
+        `---kwhGen
+
+
+currentTimeDivs - this holds the current time divisions between the data points.
+ The values are taken from the TimePeriod enum.
+
+currentVisual - this holds the current TimePeriod type being displayed.
+
+general - holds all the general information about the schoolgen programme. This includes the following
+
+- bestSch - these are the best solar producing schools for different periods.
+ SgStats.general.bestSch.hour holds the best school for the last hour.
+ SgStats.general.bestSch.week holds the best school for the last week.
+ SgStats.general.bestSch.year holds the best school for the last year.
+ The schools are represented by the ID('id'), the name('name'), and the value ('val')
+
+- egco2 - holds the amount of CO2 we've offset and the amount of energy we've produced.
+ The time periods available are the following:
+    - today - has today.co2 and today.energy as properties.
+    co2 is measured in kg, while energy is measured here as watt-hours.
+    - total - this is the total energy and co2 over the lifetime of the programme.
+
+- records - holds the record day for the schoolgen programme. Note that this is contingent on
+ all of the solar node devices at each school being powered and operational.
+    - records.total holds the record day for the whole programme. It has two properties.
+        - timestamp - a string representing the date of the programme
+        - val - the amount of kilo-watt hours we generated that day
+    - records.year holds data for the record day for the last twelve months.
+        It has the same two properties that records.total has.
+
+spec - holds all specific information about schoolgen programme, i.e. information
+ pertainining to the currentVisual field

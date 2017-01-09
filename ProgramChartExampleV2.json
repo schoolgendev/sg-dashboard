@@ -1,0 +1,45 @@
+{
+    // SCHOOLS
+    // best solar generator over the past 12 months
+    "BiggestTotalGenerationSchoolID": 1693,
+    "BiggestTotalGenerationSchool": "Milford School",
+    "BiggestTotalGenerationSchoolValue": 25681,
+    // best solar generator over the past 7 days
+    "Highest7DaySchoolID": 1704,
+    "Highest7DaySchoolName": "Otonga Primary - 30 kW",
+    "Highest7DaySchoolEnergy": 1197,
+    // top solar generator for last hour
+    "TopHourSchoolID": 1492,
+    "TopHourSchoolName": "Milford School",
+    "TopHourOutput": 9913.8125,
+
+
+    // ENERGY AND CO2
+    // records for today
+    "EnergyGeneratedToday": 1300350.59509888,
+    "CO2SavedToday": 253568.366044281,
+
+    // total energy generated and other whole program stats
+    "TotalEnergyGenerated": 1350998.852,
+    "TotalCO2Saved": 263232.43,
+
+    // RECORDS
+    // record breaking day
+    "HighestDayGeneration": "2016-12-20T00:00:00",
+    "HighestDayGenerationValue": 2837,
+    // best day this year
+    "HighestGenerationDayThisYear": "2016-12-20T00:00:00",
+    "HighestGenerationDayThisYearValue": 2837,
+
+    // ????????
+    "TopSchoolID": 1693,
+    "TopSchoolName": "Milford School",
+    "TopOutput": 9913.8125,
+    // ??? is this the school that most contributed to that day?
+    "HighestGenerationDaySchoolID": 1704,
+    "HighestGenerationDaySchoolName": "Otonga Primary - 30 kW",
+    "HighestGenerationDaySchoolDate": "2016-12-16T00:00:00",
+    "HighestGenerationDaySchoolEnergy": 224,
+    //?????
+    "CurrentGeneration": 181.795221616164,
+}
