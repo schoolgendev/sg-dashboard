@@ -2,6 +2,7 @@
 <html>
     <head>
     <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
         html,
         body {
             font-family: Calibri, sans-serif;
@@ -10,6 +11,50 @@
         }
         h1 {
             margin-bottom: 100px;
+        }
+        #masthead {
+            width: 100%;
+            margin: 10px 0px 0px 0px;
+            height: 120px;
+            display: block;
+        }
+        #mastLogo {
+            width: 50%;
+            margin: 10px 0px 0px 0px;
+            height: 120px;
+            float: left;
+            display: block;
+        }
+        #page {
+            width: 1000px;
+        }
+        #mastNavBar {
+            width: auto;
+            height: 45px;
+            background-color: #F47F23;
+            margin: 50px 0px 0px 0px;
+            padding: 0px 10px 0px 10px;
+            border-radius: 22px;
+            float: right;
+        }
+        #mastNavBar li {
+            color: #fff;
+            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 22px;
+            height: 35px;
+            line-height: 33px;
+            margin: 5px 0px 0px 0px;
+            padding: 0px 17px 0px 17px;
+            border-left: 1px solid #FFA35E;
+            float: right;
+            display: inline;
+        }
+        #mastNavBar li a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .mastNavBarLast {
+            border-left: none                       !important;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="styles/flex-helper.css" />
@@ -24,18 +69,40 @@
 </head>
 
 <body class="vbox main-center cross-center wrap" style="height: 100%; width: 100%;">
+    <div id="page">
+        <div id="masthead">
+            <div id="mastLogo">
+                <a href="http://www.schoolgen.co.nz/">
+                    <img alt="Schoolgen" src="http://www.schoolgen.co.nz/img/logo-schoolgen.png" width="330" height="120" title="Schoolgen">
+                </a>
+            </div>
+            <div id="mastNavBar">
+                <li><a href="http://www.schoolgen.co.nz/about-schoolgen">About</a></li>
+                <li><a href="http://www.schoolgen.co.nz/community">Community</a></li>
+                <li><a href="http://www.schoolgen.co.nz/students">Students</a></li>
+                <li><a href="http://www.schoolgen.co.nz/teachers">Teachers</a></li>
+                <li class="mastNavBarLast"><a href="http://www.schoolgen.co.nz/community/schoolgen-schools">Schools</a></li>
+            </div>
+        </div>
+    </div>
     <div style="margin: 0px auto;">
         <h1>schoolgen: at a glance</h1>
     </div>
     <div class="flex hbox main-center cross-center wrap" style="margin: 20px;">
         <div>
-            <button id="btn-lifetime">Lifetime</button>
-            <button id="btn-year">Last 12 months</button>
-            <button id="btn-month">Last month</button>
-            <button id="btn-week">Last 7 days</button>
-            <button id="btn-day">Today</button>
-            <p> Energy generated: <span id="energyGen"></span></p>
-            <svg id="kwhGenChart" class="chart"></svg>
+            <div class="buttons">
+                <button id="btn-lifetime">Lifetime</button>
+                <button id="btn-year">Last 12 months</button>
+                <button id="btn-month">Last month</button>
+                <button id="btn-week">Last 7 days</button>
+                <button id="btn-day">Today</button>
+            </div>
+            <div>
+                <p> Energy generated: <span id="energyGen"></span></p>
+            </div>
+            <div class="chart">
+                <svg id="kwhGenChart" class="chart"></svg>
+            </div>
             <div id="spinLoader" class="sk-fading-circle" style="display:none">
                 <div class="sk-circle1 sk-circle"></div>
                 <div class="sk-circle2 sk-circle"></div>

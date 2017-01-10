@@ -654,8 +654,8 @@ $(document).ready(function () {
             bottom: 40,
             left: 60
         };
-        var width = 700 - margin.left - margin.right;
-        var height = 500 - margin.top - margin.bottom;
+        var width = 600 - margin.left - margin.right;
+        var height = 350 - margin.top - margin.bottom;
         var scales = this.scales = createScalesNoDomain(height, width);
         var axes = this.axes = createAxes(scales.x, scales.y);
         var chart;
