@@ -15,7 +15,7 @@ SgStats
  |              |----total
  |               `---year
  `--spec
-       |----domain
+       |----xdomain
        |----co2Saved
        |----dateString
         `---kwhGen
