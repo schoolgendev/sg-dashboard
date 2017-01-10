@@ -187,6 +187,7 @@ $(document).ready(function () {
     var wc = new WidgetController();
     // TODO: link cc and wc with the pc
     pc.register(cc);
+    pc.register(wc);
     pc.chartPeriod(date.getFullYear(), date.getMonth(), date.getDate(), 1);
 
 
@@ -233,9 +234,11 @@ $(document).ready(function () {
             // cycle through observers, call update()
             let i, obsCount = obsList.count();
             for (i = 0; i < obsCount; i++) {
+                console.log("notifying observer " + i)
                 if (typeof obsList.list[i].update === 'function') {
                     obsList.list[i].update();
                 }
+                console.log("finished notifying observer " + i)
             }
         };
         /*preNotify() triggers preupdate mechanism for all registered observers*/
@@ -893,12 +896,12 @@ $(document).ready(function () {
 
         /* Widget Controller Interface */
         //update gets all the data from SGS and re-inserts it into the sliders
-        function update(){
+        this.update = function update(){
             //TODO: get update to insert all the stats into the widgets
             // create string, replace span element with new span element
             var stat = pc.statObj.general;
-            replace(stat.egco2.total.energy/1000, "kwh", sgNames.lt.kwhGen.name);
-            replace(stat.egco2.total.co2, "kg", sgNames.lt.CO2Saved.name);
+            replace(stat.egco2.total.energy/1000000, "GWh", sgNames.lt.kwhGen.name);
+            replace(stat.egco2.total.co2/1000, "t", sgNames.lt.CO2Saved.name);
 
             /* utility methods */
             // Replaces a given span (identified by class name) with a new span,
@@ -933,7 +936,6 @@ $(document).ready(function () {
                 var sliderLeft = [].slice.call( sliderElem[0].getElementsByClassName("wg-left") );
                 var sliderRight = [].slice.call( sliderElem[0].getElementsByClassName("wg-right") );
                 // attaching event listeners
-                console.log(sliderElem);
                 // stop slider on mouse over
                 sliderElem[0].addEventListener( "mouseover", createStopSlider(sliderElem) );
                 // restart slider on mouse out
