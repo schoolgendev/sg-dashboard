@@ -187,7 +187,7 @@ $(document).ready(function () {
     var wc = new WidgetController();
     // TODO: link cc and wc with the pc
     pc.register(cc);
-    pc.chartPeriod(2016, 01, 1, 01);
+    pc.chartPeriod(date.getFullYear(), date.getMonth(), date.getDate(), 1);
 
 
     /* FUNCTIONS AND FUNCTION CONSTRUCTORS*/
@@ -868,44 +868,61 @@ $(document).ready(function () {
         }
 
     }
+
     //TODO: finish the widget controller
     /* WidgetController makes and updates the widget*/
     function WidgetController() {
+        //A configuration object used for all sliders.
+        var sliderConfig = this.sliderConfig = {
+            autoplay: true,
+            delay: 5000,
+            infinite: true,
+            nav: false,
+            arrows: false
+        };
+        //An array of all hooked up sliders
         var sliderList = this.sliderList = initializeSliders();
 
+        /* Widget Controller Interface */
+        //update gets all the data from SGS and re-inserts it into the sliders
+        function update(){
+            //TODO: get update to insert all the stats into the widgets
+
+        }
+
+        /* UTILITY METHODS*/
+        // sets up sliders and returns the array of sliders
         function initializeSliders(){
             var slider1 = $('#slider1');
             var slider2 = $('#slider2');
             var slider3 = $('#slider3');
-            // set up configuration information
             var sliders = [slider1, slider2, slider3];
+            // set up each silder
             sliders.forEach(function (sliderElem){
                 // configuration for slider
-                sliderElem.unslider({
-                    autoplay: true,
-                    delay: 5000,
-                    infinite: true,
-                    nav: false,
-                    arrows: false
-                });
+                sliderElem.unslider(sliderConfig);
                 // gets children of the slider (i.e. left and right children)
                 //  and changes HTMLCollection objects to arrays
                 var sliderLeft = [].slice.call( sliderElem[0].getElementsByClassName("wg-left") );
                 var sliderRight = [].slice.call( sliderElem[0].getElementsByClassName("wg-right") );
                 // attaching event listeners
                 console.log(sliderElem);
+                // stop slider on mouse over
                 sliderElem[0].addEventListener( "mouseover", createStopSlider(sliderElem) );
+                // restart slider on mouse out
                 sliderElem[0].addEventListener( "mouseout", createStartSlider(sliderElem) );
-                sliderLeft.forEach(function handlersToSliderLeft (wgLeft){
+                // clicking the left of a slider slides to prev panel
+                sliderLeft.forEach(function (wgLeft){
                     wgLeft.addEventListener("click", createPrevPanel(sliderElem));
                 });
-                sliderRight.forEach(function handlersToSliderRight (wgRight){
+                // clicking the right of a slider slides to the next panel
+                sliderRight.forEach(function (wgRight){
                     wgRight.addEventListener("click", createNextPanel(sliderElem));
                 });
             });
+            return sliders;
 
             /* CALLBACK FUNCTION FACTORIES */
-
             function createStopSlider(sliderElem){
                 return function() {
                     sliderElem.data('unslider').stop();
@@ -928,9 +945,7 @@ $(document).ready(function () {
             }
         }
 
-        function update(){
-            //TODO: get update to insert all the stats into the widgets
-        }
+
     }
 
 
