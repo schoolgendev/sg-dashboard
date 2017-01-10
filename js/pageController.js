@@ -627,12 +627,91 @@ $(document).ready(function () {
             // exit selection
             bars.exit().remove();
 
-            createTooltips(bars);
+            createTooltips(bars, ttDiv);
         }
 
-        /* utility method to get tooltips onto each bar*/
-        function createTooltips(bars){
+        /* utility method to get tooltips onto each bar.
+         bars is the d3 selection and ttDiv is the tooltip div.
+        */
+        function createTooltips(bars, ttDiv){
             //TODO: fill in the tool tip methods
+            bars.on("mouseover", createTTOnFunc(createTTContainer(ttDiv)))
+                .on("mousemove", null)
+                .on("mouseout", createTTOffFunc(createTTContainer(ttDiv)))
+                .on("click", changePeriod)
+
+            function createTTContainer(tooltipDiv){
+                return {
+                    tt: tooltipDiv,
+                    func: function (param, i) {
+                        param.html(pc.statObj.spec.dateString[i] + "<br> KWH Generated: " +
+                                  pc.statObj.spec.kwhGen[i])
+                            .style("left", d3.event.pageX + "px")
+                            .style("top", d3.event.pageY + "px");
+                    }
+                }
+            }
+            function createTTOnFunc(container){
+                return (function (d, i) {
+                    container.tt.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    container.func(container.tt, i);
+                })
+            }
+            function createTTOffFunc(container){
+                return (function () {
+                    container.tt.transition()
+                        .duration(200)
+                        .style("opacity", 0);
+                })
+            }
+            function changePeriod(d, i){
+                // get old time div, if already at hour, cancel zoom operation
+                var oldTimeDiv = pc.statObj.currentTimeDivs;
+                var newTimeDiv = decrementTimePeriod(oldTimeDiv);
+                if (newTimeDiv === null){
+                    return;
+                }
+                // destroy tooltip
+                var killTooltip = createTTOffFunc(createTTContainer(ttDiv));
+                killTooltip();
+                // get the new date
+                var zoomInDate = pc.statObj.spec.dateString[i];
+                var year, month, day, finalFunc;
+                switch(newTimeDiv){
+                    // zooming into a single month from a year
+                    case TimePeriod.MONTH:
+                        year = parseInt(zoomInDate);
+                        month, day = 0;
+                        finalFunc = pc.chartYear.bind(pc, year);
+                        break;
+                    case TimePeriod.DAY:
+                        year = parseInt(zoomInDate.substr(4,4));
+                        month = MonthName.indexOf(zoomInDate.substr(0,3));
+                        day = 0;
+                        finalFunc = pc.chartMonth.bind(pc, year, month);
+                        break;
+                    case TimePeriod.HOUR:
+                        year = parseInt(zoomInDate.substr(7,4));
+                        month = MonthName.indexOf(zoomInDate.substr(3,3));
+                        day = parseInt(zoomInDate.substr(0,2));
+                        finalFunc = pc.chartDay.bind(pc, year, month, day);
+                        break;
+                }
+                if (finalFunc === undefined){
+                    console.log("no final func");
+                    return;
+                }
+                finalFunc();
+
+                function decrementTimePeriod(old){
+                    if (old === TimePeriod.YEAR){ return TimePeriod.MONTH; }
+                    if (old === TimePeriod.MONTH){ return TimePeriod.DAY; }
+                    if (old === TimePeriod.DAY){ return TimePeriod.HOUR; }
+                    return null;
+                }
+            }
         }
 
         function getScaleDomains(){
