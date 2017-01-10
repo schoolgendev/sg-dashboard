@@ -6,8 +6,108 @@ $(document).ready(function () {
 
     /* GLOBAL VARIABLES*/
 
-    // holds names for classes for page
-    var SgNames = {};
+    var UnitType = {
+        ENERGY: ["kWh", "MWh", "GWh"],
+        MASS: ["kg", "tonnes"]
+    };
+    // SgNames holds names for classes for page, as well as a few stats.
+    var sgNames = {
+        lt: {
+            kwhGen: {
+                name: ".lt-kwhGen",
+                unitType: UnitType.ENERGY
+            },
+            CO2Saved: {
+                name: ".lt-CO2Saved",
+                unitType: UnitType.MASS
+            },
+            bestSchool: {
+                name: ".lt-school",
+                unitType: UnitType.ENERGY
+            }
+        },
+        year: {
+            kwhGen: {
+                name: ".year-kwhGen",
+                unitType: UnitType.ENERGY
+            },
+            CO2Saved: {
+                name: ".year-CO2Saved",
+                unitType: UnitType.MASS
+            },
+            bestSchool: {
+                name: ".year-school",
+                unitType: UnitType.ENERGY
+            }
+        },
+        week: {
+            kwhGen: {
+                name: ".week-kwhGen",
+                unitType: UnitType.ENERGY
+            },
+            CO2Saved: {
+                name: ".week-CO2Saved",
+                unitType: UnitType.MASS
+            },
+            bestSchool: {
+                name: ".week-school",
+                unitType: UnitType.ENERGY
+            }
+        },
+        special: {
+            // total number of schools involved
+            noOfSchools: {
+                name: ".sp-noOfSchools",
+                val: 92
+            },
+            // money saved for schools
+            moneySaved: {
+                name: ".sp-moneySaved",
+                val: 125000 //dollars per year
+            }
+        }
+    };
+    // sgObjects has all the objects you want to compare to
+    var sgObjects = {
+        laptops: {
+            name: "laptop",
+            val: 0.36 //i.e one laptop uses around 0.36 kwh/day
+        },
+        ps4: {
+            name: "PS4",
+            val: 3.6 //ps4 running at max uses ~3.6 kwh/day
+        },
+        batteryTon: {
+            name: "tonnes of batteries",
+            val: 108 //108 kwh in a single tonne of batteries
+        },
+        TNT: {
+            name: "tonnes of TNT",
+            val: 1167 //one tonne of TNT releases 1166 kwh of energy
+        },
+        // WEIGHT : taken from http://www.bluebulbprojects.com/measureofthings/
+        /* weight of a cow in kg*/
+        cow: {
+            name: "cow",
+            val: 680 //one cow ~680 kg
+        },
+        car: {
+            name: "car",
+            val: 1650 //a 2009 Ford Taurus = ~1650 kg
+        },
+        elephant: {
+            name: "African Elephant",
+            val: 7500 //one elephant = ~7.5 t
+        },
+        bluewhale: {
+            name: "Blue Whale",
+            val: 104500 //one blue whale = ~104.5 t
+        },
+        house: {
+            name: "house",
+            val: 156000 //single level, unfurnished, 149 sq m = ~156 t
+        }
+    };
     // holds time divisions. Used in the chart.
     var TimePeriod = {
         HOUR: "hour",
@@ -86,7 +186,6 @@ $(document).ready(function () {
     console.log(cc);
     var wc = new WidgetController();
     // TODO: link cc and wc with the pc
-    // TODO: figure out why chart isn't being drawn
     pc.register(cc);
     pc.chartPeriod(2016, 01, 1, 01);
 
@@ -538,8 +637,6 @@ $(document).ready(function () {
     */
     function ChartController() {
         console.log("making chart");
-
-        //TODO: finish chart controller
         var margin = {
             top: 20,
             right: 40,
@@ -594,7 +691,7 @@ $(document).ready(function () {
                 .call(axes.y)
                 .append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 12) // TODO: figure out what "for the axis label" means
+                .attr("y", 12)
                 .attr("dy", "0.71 em")
                 .style("text-anchor", "end")
                 .text("kWh Generated");
@@ -634,7 +731,6 @@ $(document).ready(function () {
          bars is the d3 selection and ttDiv is the tooltip div.
         */
         function createTooltips(bars, ttDiv){
-            //TODO: fill in the tool tip methods
             bars.on("mouseover", createTTOnFunc(createTTContainer(ttDiv)))
                 .on("mousemove", null)
                 .on("mouseout", createTTOffFunc(createTTContainer(ttDiv)))
@@ -772,10 +868,65 @@ $(document).ready(function () {
         }
 
     }
-
+    //TODO: finish the widget controller
     /* WidgetController makes and updates the widget*/
     function WidgetController() {
-        //TODO: start widget controller
+        var sliderList = this.sliderList = initializeSliders();
+
+        function initializeSliders(){
+            var slider1 = $('#slider1');
+            var slider2 = $('#slider2');
+            var slider3 = $('#slider3');
+            // set up configuration information
+            var sliders = [slider1, slider2, slider3];
+            sliders.forEach(function (sliderElem){
+                // configuration for slider
+                sliderElem.unslider({
+                    autoplay: true,
+                    delay: 5000,
+                    infinite: true,
+                    nav: false,
+                    arrows: false
+                });
+                // gets children of the slider (i.e. left and right children)
+                //  and changes HTMLCollection objects to arrays
+                var sliderLeft = [].slice.call( sliderElem[0].getElementsByClassName("wg-left") );
+                var sliderRight = [].slice.call( sliderElem[0].getElementsByClassName("wg-right") );
+                // attaching event listeners
+                console.log(sliderElem);
+                sliderElem[0].addEventListener( "mouseover", createStopSlider(sliderElem) );
+                sliderElem[0].addEventListener( "mouseout", createStartSlider(sliderElem) );
+                sliderLeft.forEach(function handlersToSliderLeft (wgLeft){
+                    wgLeft.addEventListener("click", createPrevPanel(sliderElem));
+                });
+                sliderRight.forEach(function handlersToSliderRight (wgRight){
+                    wgRight.addEventListener("click", createNextPanel(sliderElem));
+                });
+            });
+
+            /* CALLBACK FUNCTION FACTORIES */
+
+            function createStopSlider(sliderElem){
+                return function() {
+                    sliderElem.data('unslider').stop();
+                }
+            }
+            function createStartSlider(sliderElem){
+                return function(){
+                    sliderElem.data('unslider').start();
+                }
+            }
+            function createPrevPanel(sliderElem){
+                return function(){
+                    sliderElem.data('unslider').prev();
+                }
+            }
+            function createNextPanel(sliderElem){
+                return function(){
+                    sliderElem.data('unslider').next();
+                }
+            }
+        }
     }
 
 
