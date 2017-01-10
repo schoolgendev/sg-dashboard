@@ -355,10 +355,10 @@ $(document).ready(function () {
             // no arg call: returns 12 months from current month
             if (arguments.length === 0 || typeof arguments[0] === 'object') {
                 year = date.getFullYear() - 1;
-                month = date.getMonth();
+                month = date.getMonth() + 1;
             }
             // call with year: returns that year from start of year
-            if (arguments.length === 1) {
+            else if (arguments.length === 1) {
                 month = 0;
             }
             this.chartPeriod(year, month, 1, 365);
@@ -572,6 +572,14 @@ $(document).ready(function () {
             funcArray.forEach(function (funcInArr) {
                 statObj.spec[funcInArr.mapName] = mapToArray(xhr, funcInArr);
             });
+
+            /* 2028 ERROR FIX*/
+            if (pc.statObj.currentVisual === TimePeriod.LIFETIME){
+                pc.statObj.spec.xdomain.pop();
+                pc.statObj.spec.co2Saved.pop();
+                pc.statObj.spec.dateString.pop();
+                pc.statObj.spec.kwhGen.pop();
+            }
 
             console.log("compile specific data complete");
             console.log(pc.statObj);
