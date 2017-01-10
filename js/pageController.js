@@ -895,7 +895,26 @@ $(document).ready(function () {
         //update gets all the data from SGS and re-inserts it into the sliders
         function update(){
             //TODO: get update to insert all the stats into the widgets
+            // create string, replace span element with new span element
+            var stat = pc.statObj.general;
+            replace(stat.egco2.total.energy/1000, "kwh", sgNames.lt.kwhGen.name);
+            replace(stat.egco2.total.co2, "kg", sgNames.lt.CO2Saved.name);
 
+            /* utility methods */
+            // Replaces a given span (identified by class name) with a new span,
+            //  where the inner html is the value followed by a unit.
+            function replace(value, unit, spanClassName){
+                // create replacer string
+                var replacer = '<span class="' + undot(spanClassName) + '">';
+                replacer += value.toPrecision(3) + ' ' + unit;
+                replacer += '</span>'
+                console.log(replacer) //finished creating replacer string
+                // replace HTML element with replacer string
+                $(replacer).replaceAll(spanClassName)
+            }
+            function undot(spanClassName){
+                return spanClassName.substr(1);
+            }
         }
 
         /* UTILITY METHODS*/
