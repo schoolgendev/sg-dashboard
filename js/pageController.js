@@ -927,6 +927,10 @@ $(document).ready(function () {
                 }
             }
         }
+
+        function update(){
+            //TODO: get update to insert all the stats into the widgets
+        }
     }
 
 

@@ -16,6 +16,11 @@
     <link rel="stylesheet" type="text/css" href="styles/chartstyle.css" />
     <link rel=stylesheet type="text/css" href="styles/widgetstyle.css" />
     <link rel=stylesheet type="text/css" href="styles/unslider.css" />
+    <style>
+        body {
+            background: #FFB100 url('/img/bg-body-yellow.jpg') top center no-repeat;
+        }
+    </style>
 </head>
 
 <body class="vbox main-center cross-center wrap" style="height: 100%; width: 100%;">
@@ -24,11 +29,11 @@
     </div>
     <div class="flex hbox main-center cross-center wrap" style="margin: 20px;">
         <div>
-            <button id="chart-lifetime">Lifetime</button>
-            <button id="chart-year">Last 12 months</button>
-            <button id="chart-month">Last month</button>
-            <button id="chart-week">Last 7 days</button>
-            <button id="chart-day">Today</button>
+            <button id="btn-lifetime">Lifetime</button>
+            <button id="btn-year">Last 12 months</button>
+            <button id="btn-month">Last month</button>
+            <button id="btn-week">Last 7 days</button>
+            <button id="btn-day">Today</button>
             <p> Energy generated: <span id="energyGen"></span></p>
             <svg id="kwhGenChart" class="chart"></svg>
             <div id="spinLoader" class="sk-fading-circle" style="display:none">
@@ -168,15 +173,6 @@
                 </ul>
             </div>
         </div>
-
-    </div>
-    <div>
-        <p style="margin-bottom:2px;">This is a demo. Usage notes:</p>
-        <ul>
-            <li>Click on a column in the chart to zoom into that day/month/year</li>
-            <li>Click on the left/right parts of the widget to slide to the next item.</li>
-            <li>Mouse over a widget to pause the widget.</li>
-        </ul>
     </div>
 
     <!-- LIBRARIES -->
@@ -184,7 +180,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="js/unslider.js"></script>
-    <script src="js/chartController.js"></script>
-    <script src="js/widgetController.js"></script>
+    <script src="js/pageController.js"></script>
 </body>
 </html>
