@@ -897,13 +897,14 @@ $(document).ready(function () {
         /* Widget Controller Interface */
         //update gets all the data from SGS and re-inserts it into the sliders
         this.update = function update(){
-            //TODO: get update to insert all the stats into the widgets
             // create string, replace span element with new span element
             var stat = pc.statObj.general;
             replace(stat.egco2.total.energy/1000000, "GWh", sgNames.lt.kwhGen.name);
             replace(stat.egco2.total.co2/1000, "t", sgNames.lt.CO2Saved.name);
+            //TODO: get update to insert all the object stats into the widgets
 
             /* utility methods */
+
             // Replaces a given span (identified by class name) with a new span,
             //  where the inner html is the value followed by a unit.
             function replace(value, unit, spanClassName){
@@ -915,8 +916,12 @@ $(document).ready(function () {
                 // replace HTML element with replacer string
                 $(replacer).replaceAll(spanClassName)
             }
+            // removes the first character from a string if that character is a period.
             function undot(spanClassName){
-                return spanClassName.substr(1);
+                if ( spanClassName.charAt(0) === '.' ){
+                    return spanClassName.substr(1);
+                }
+                return spanClassName;
             }
         }
 
