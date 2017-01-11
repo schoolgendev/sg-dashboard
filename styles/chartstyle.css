@@ -223,13 +223,14 @@ div.tooltip {
 
 .header {
     padding-top: 10px;
-    width: 350px;
-    margin-left: auto;
-    margin-right: auto;
     color: #F47F23;
+    display: inline-block;
+    margin-left: 40%;
 }
 
 .white-bg {
     width: 1000px;
     background-color: white;
 }
+
+
