@@ -693,7 +693,7 @@ $(document).ready(function () {
             }
             // draws the axis label for x
             selection.append("text")
-                .attr("y", 24).attr("x", width + 30).attr("dy", "0.71 em")
+                .attr("y", 24).attr("x", width + 15).attr("dy", "-0.71 em")
                 .style("text-anchor", "end")
                 .text(pc.statObj.currentTimeDivs);
             // set up y axis and call axis.y, draw axis label
