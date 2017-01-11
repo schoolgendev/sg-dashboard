@@ -1,0 +1,16 @@
+
+.header {
+    padding-top: 10px;
+    color: #F47F23;
+    display: inline-block;
+    margin-left: 35%;
+}
+
+.white-bg {
+    width: 1000px;
+    background-color: white;
+}
+
+.container {
+    padding: 20px;
+}
