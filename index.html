@@ -9,9 +9,7 @@
             margin: 0;
             height: 100%;
         }
-        h1 {
-            margin-bottom: 0px;
-        }
+
         #masthead {
             width: 100%;
             margin: 10px 0px 0px 0px;
@@ -27,6 +25,8 @@
         }
         #page {
             width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
         #mastNavBar {
             width: auto;
@@ -68,7 +68,7 @@
     </style>
 </head>
 
-<body class="vbox main-center cross-center wrap" style="height: 100%; width: 100%;">
+<body>
     <div id="page">
         <div id="masthead">
             <div id="mastLogo">
@@ -84,164 +84,166 @@
                 <li class="mastNavBarLast"><a href="http://www.schoolgen.co.nz/community/schoolgen-schools">Schools</a></li>
             </div>
         </div>
-    </div>
-    <div style="margin: 0px auto;">
-        <h1>schoolgen: at a glance</h1>
-    </div>
-    <div class="flex hbox main-center cross-center wrap" style="margin: 20px;">
-        <div>
-            <div class="buttons">
-                <button id="btn-lifetime">Lifetime</button>
-                <button id="btn-year">Last 12 months</button>
-                <button id="btn-month">Last month</button>
-                <button id="btn-week">Last 7 days</button>
-                <button id="btn-day">Today</button>
+        <div class="white-bg">
+            <div class="header">
+                <h1>Schoolgen: At A Glance</h1>
             </div>
+        </div>
+        <div class="flex hbox main-center cross-center wrap" style="margin: 20px;">
             <div>
-                <p> Energy generated: <span id="energyGen"></span></p>
+                <div class="buttons">
+                    <button id="btn-lifetime">Lifetime</button>
+                    <button id="btn-year">Last 12 months</button>
+                    <button id="btn-month">Last month</button>
+                    <button id="btn-week">Last 7 days</button>
+                    <button id="btn-day">Today</button>
+                </div>
+                <div>
+                    <p> Energy generated: <span id="energyGen"></span></p>
+                </div>
+                <div class="chart">
+                    <svg id="kwhGenChart" class="chart"></svg>
+                    <div id="spinLoader" class="sk-fading-circle" style="display:none">
+                        <div class="sk-circle1 sk-circle"></div>
+                        <div class="sk-circle2 sk-circle"></div>
+                        <div class="sk-circle3 sk-circle"></div>
+                        <div class="sk-circle4 sk-circle"></div>
+                        <div class="sk-circle5 sk-circle"></div>
+                        <div class="sk-circle6 sk-circle"></div>
+                        <div class="sk-circle7 sk-circle"></div>
+                        <div class="sk-circle8 sk-circle"></div>
+                        <div class="sk-circle9 sk-circle"></div>
+                        <div class="sk-circle10 sk-circle"></div>
+                        <div class="sk-circle11 sk-circle"></div>
+                        <div class="sk-circle12 sk-circle"></div>
+                    </div>
+                </div>
             </div>
-            <div class="chart">
-                <svg id="kwhGenChart" class="chart"></svg>
-                <div id="spinLoader" class="sk-fading-circle" style="display:none">
-                <div class="sk-circle1 sk-circle"></div>
-                <div class="sk-circle2 sk-circle"></div>
-                <div class="sk-circle3 sk-circle"></div>
-                <div class="sk-circle4 sk-circle"></div>
-                <div class="sk-circle5 sk-circle"></div>
-                <div class="sk-circle6 sk-circle"></div>
-                <div class="sk-circle7 sk-circle"></div>
-                <div class="sk-circle8 sk-circle"></div>
-                <div class="sk-circle9 sk-circle"></div>
-                <div class="sk-circle10 sk-circle"></div>
-                <div class="sk-circle11 sk-circle"></div>
-                <div class="sk-circle12 sk-circle"></div>
-            </div>
-
-            </div>
-        </div>
-        <div class="flex vbox main-center cross-center wrap">
-            <!-- BOX ONE -->
-            <div id="slider1" class="wg-slider">
-                <ul>
-                    <!-- lifetime kwh gen + laptops -->
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left">
-                                <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
+            <div class="flex vbox main-center cross-center wrap">
+                <!-- BOX ONE -->
+                <div id="slider1" class="wg-slider">
+                    <ul>
+                        <!-- lifetime kwh gen + laptops -->
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left">
+                                    <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
+                                    <!-- TODO: replace w/ image -->
+                                    <p style="font-size:60%">&lt;laptop img here&gt;</p>
+                                    <p class="small">*running continuously for a single year</p>
+                                </div>
                             </div>
-                            <div class="wg-right">
-                                <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
-                                <!-- TODO: replace w/ image -->
-                                <p style="font-size:60%">&lt;laptop img here&gt;</p>
-                                <p class="small">*running continuously for a single year</p>
+                        </li>
+                        <!-- CO2 saved over lifetime  -->
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left">
+                                    <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <!-- CO2 saved over lifetime  -->
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left">
-                                <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
+                        </li>
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left" style="min-width:45%;">
+                                    <p>Providing 92 schools with solar panels</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>Saving schools an average of $120,000 per year</p>
+                                </div>
                             </div>
-                            <div class="wg-right">
-                                <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- BOX TWO -->
+                <div id="slider2" class="wg-slider">
+                    <ul>
+                        <!-- lifetime kwh gen + laptops -->
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left">
+                                    <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
+                                    <!-- TODO: replace w/ image -->
+                                    <p style="font-size:60%">&lt;laptop img here&gt;</p>
+                                    <p class="small">*running continuously for a single year</p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left" style="min-width:45%;">
-                                <p>Providing 92 schools with solar panels</p>
+                        </li>
+                        <!-- CO2 saved over lifetime  -->
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left">
+                                    <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
+                                </div>
                             </div>
-                            <div class="wg-right">
-                                <p>Saving schools an average of $120,000 per year</p>
+                        </li>
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left" style="min-width:45%;">
+                                    <p>Providing 92 schools with solar panels</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>Saving schools an average of $120,000 per year</p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- BOX TWO -->
-            <div id="slider2" class="wg-slider">
-                <ul>
-                    <!-- lifetime kwh gen + laptops -->
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left">
-                                <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- BOX THREE -->
+                <div id="slider3" class="wg-slider">
+                    <ul>
+                        <!-- lifetime kwh gen + laptops -->
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left">
+                                    <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
+                                    <!-- TODO: replace w/ image -->
+                                    <p style="font-size:60%">&lt;laptop img here&gt;</p>
+                                    <p class="small">*running continuously for a single year</p>
+                                </div>
                             </div>
-                            <div class="wg-right">
-                                <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
-                                <!-- TODO: replace w/ image -->
-                                <p style="font-size:60%">&lt;laptop img here&gt;</p>
-                                <p class="small">*running continuously for a single year</p>
+                        </li>
+                        <!-- CO2 saved over lifetime  -->
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left">
+                                    <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <!-- CO2 saved over lifetime  -->
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left">
-                                <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
+                        </li>
+                        <li>
+                            <div class="hbox main-center cross-center cross-stretch">
+                                <div class="wg-left" style="min-width:45%;">
+                                    <p>Providing 92 schools with solar panels</p>
+                                </div>
+                                <div class="wg-right">
+                                    <p>Saving schools an average of $120,000 per year</p>
+                                </div>
                             </div>
-                            <div class="wg-right">
-                                <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left" style="min-width:45%;">
-                                <p>Providing 92 schools with solar panels</p>
-                            </div>
-                            <div class="wg-right">
-                                <p>Saving schools an average of $120,000 per year</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- BOX THREE -->
-            <div id="slider3" class="wg-slider">
-                <ul>
-                    <!-- lifetime kwh gen + laptops -->
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left">
-                                <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
-                            </div>
-                            <div class="wg-right">
-                                <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
-                                <!-- TODO: replace w/ image -->
-                                <p style="font-size:60%">&lt;laptop img here&gt;</p>
-                                <p class="small">*running continuously for a single year</p>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- CO2 saved over lifetime  -->
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left">
-                                <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
-                            </div>
-                            <div class="wg-right">
-                                <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="hbox main-center cross-center cross-stretch">
-                            <div class="wg-left" style="min-width:45%;">
-                                <p>Providing 92 schools with solar panels</p>
-                            </div>
-                            <div class="wg-right">
-                                <p>Saving schools an average of $120,000 per year</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+
 
     <!-- LIBRARIES -->
     <!-- jquery 1.10.2-->

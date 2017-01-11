@@ -45,7 +45,9 @@ div.tooltip {
 
 #spinLoader {
     /* throw your positional stuff here*/
-
+    position: absolute;
+    top:50%;
+    left: 30%;
     z-index: 10;
 }
 
@@ -217,4 +219,17 @@ div.tooltip {
     40% {
         opacity: 1;
     }
+}
+
+.header {
+    padding-top: 10px;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #F47F23;
+}
+
+.white-bg {
+    width: 1000px;
+    background-color: white;
 }
