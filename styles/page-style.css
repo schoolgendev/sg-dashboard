@@ -1,9 +1,12 @@
 
 .header {
-    margin-top: 10px;
     color: #F47F23;
     display: inline-block;
-    margin-left: 35%;
+    text-align: center;
+}
+
+.row-element {
+    width: 100%
 }
 
 .container {
