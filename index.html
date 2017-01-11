@@ -1,7 +1,12 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-    <style type="text/css">
+    <link rel="stylesheet" type="text/css" href="styles/flex-helper.css" />
+    <link rel="stylesheet" type="text/css" href="styles/chartstyle.css" />
+    <link rel="stylesheet" type="text/css" href="styles/widgetstyle.css" />
+    <link rel=stylesheet type="text/css" href="styles/unslider.css" />
+    <link rel="stylesheet" type="text/css" href="styles/page-style.css" />
+    <style>
         @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
         html,
         body {
@@ -9,84 +14,9 @@
             margin: 0;
             height: 100%;
         }
-
-        #masthead {
-            width: 100%;
-            margin: 10px 0px 0px 0px;
-            height: 120px;
-            display: block;
-        }
-        #mastLogo {
-            width: 50%;
-            margin: 0px 0px 0px 0px;
-            height: 120px;
-            float: left;
-            display: block;
-        }
-        #page {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #mastNavBar {
-            width: auto;
-            height: 45px;
-            background-color: #F47F23;
-            margin: 50px 0px 0px 0px;
-            padding: 0px 10px 0px 10px;
-            border-radius: 22px;
-            float: right;
-        }
-        #mastNavBar li {
-            color: #fff;
-            font-family: 'Open Sans Condensed', sans-serif;
-            font-size: 22px;
-            height: 35px;
-            line-height: 33px;
-            margin: 5px 0px 0px 0px;
-            padding: 0px 17px 0px 17px;
-            border-left: 1px solid #FFA35E;
-            float: right;
-            display: inline;
-        }
-        #mastNavBar li a {
-            text-decoration: none;
-            color: #fff;
-        }
-        .mastNavBarLast {
-            border-left: none                       !important;
-        }
-        .buttons button {
-            -webkit-border-radius: 28;
-            -moz-border-radius: 28;
-            border-radius: 28px;
-            font-family: Arial;
-            color: #ffffff;
-            background: #F47F23;
-            padding: 5px 10px 5px 10px;
-            text-decoration: none;
-            border: 0px;
-        }
-
-        .buttons button:hover {
-          background: #ffa45e;
-          background-image: -webkit-linear-gradient(top, #ffa45e, #ffbf5e);
-          background-image: -moz-linear-gradient(top, #ffa45e, #ffbf5e);
-          background-image: -ms-linear-gradient(top, #ffa45e, #ffbf5e);
-          background-image: -o-linear-gradient(top, #ffa45e, #ffbf5e);
-          background-image: linear-gradient(to bottom, #ffa45e, #ffbf5e);
-          text-decoration: none;
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="styles/page-style.css" />
-    <link rel="stylesheet" type="text/css" href="styles/flex-helper.css" />
-    <link rel="stylesheet" type="text/css" href="styles/chartstyle.css" />
-    <link rel=stylesheet type="text/css" href="styles/widgetstyle.css" />
-    <link rel=stylesheet type="text/css" href="styles/unslider.css" />
-    <style>
         body {
-            background: #FFB100 url('http://www.schoolgen.co.nz/img/bg-body-yellow.jpg') top center no-repeat;
-        }
+        background: #FFB100 url('http://www.schoolgen.co.nz/img/bg-body-yellow.jpg') top center no-repeat;
+    }
     </style>
 </head>
 
@@ -106,13 +36,11 @@
                 <li class="mastNavBarLast"><a href="http://www.schoolgen.co.nz/community/schoolgen-schools">Schools</a></li>
             </div>
         </div>
-        <div class="white-bg">
+        <div id="con" class="container">
             <div class="header">
                 <h1>Schoolgen: At A Glance</h1>
             </div>
-        </div>
-        <div class="content white-bg">
-            <div>
+            <div class="element">
                 <div class="buttons">
                     <button id="btn-lifetime">Lifetime</button>
                     <button id="btn-year">Last 12 months</button>
@@ -141,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex vbox main-center cross-center wrap">
+            <div class="element">
                 <!-- BOX ONE -->
                 <div id="slider1" class="wg-slider">
                     <ul>
@@ -261,6 +189,25 @@
                             </div>
                         </li>
                     </ul>
+                </div>
+            </div>
+            <div class="element">
+                <div style="width:300px; height:100px;">
+                    <p>hi hello how are you. <br>
+                        feel free to put in extra things.<br>
+                        this page should expand to fit more in.
+                    </p>
+                </div>
+            </div>
+            <div class="element">
+                <div style="width:200px">
+                    <p> more content!</p>
+                </div>
+            </div>
+            <div class="element">
+                <div style="width:300px">
+                    <p> even more content!</p>
+                    <p> Goes to a maximum of 1000px width (I think).</p>
                 </div>
             </div>
         </div>

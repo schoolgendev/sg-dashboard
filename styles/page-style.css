@@ -1,16 +1,87 @@
 
 .header {
-    padding-top: 10px;
+    margin-top: 10px;
     color: #F47F23;
     display: inline-block;
     margin-left: 35%;
 }
 
-.white-bg {
-    width: 1000px;
+.container {
     background-color: white;
+    width: 980px;
+    padding: 10px;
 }
 
-.container {
-    padding: 20px;
+.element {
+    margin: 10px;
+    display: inline-block;
+}
+
+#masthead {
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+    height: 120px;
+    display: block;
+}
+#mastLogo {
+    width: 50%;
+    margin: 0px 0px 0px 0px;
+    height: 120px;
+    float: left;
+    display: block;
+}
+#page {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#mastNavBar {
+    width: auto;
+    height: 45px;
+    background-color: #F47F23;
+    margin: 50px 0px 0px 0px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 22px;
+    float: right;
+}
+#mastNavBar li {
+    color: #fff;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 22px;
+    height: 35px;
+    line-height: 33px;
+    margin: 5px 0px 0px 0px;
+    padding: 0px 17px 0px 17px;
+    border-left: 1px solid #FFA35E;
+    float: right;
+    display: inline;
+}
+#mastNavBar li a {
+    text-decoration: none;
+    color: #fff;
+}
+.mastNavBarLast {
+    border-left: none                       !important;
+}
+
+.buttons button {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    background: #F47F23;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    border: 0px;
+}
+
+.buttons button:hover {
+  background: #ffa45e;
+  background-image: -webkit-linear-gradient(top, #ffa45e, #ffbf5e);
+  background-image: -moz-linear-gradient(top, #ffa45e, #ffbf5e);
+  background-image: -ms-linear-gradient(top, #ffa45e, #ffbf5e);
+  background-image: -o-linear-gradient(top, #ffa45e, #ffbf5e);
+  background-image: linear-gradient(to bottom, #ffa45e, #ffbf5e);
+  text-decoration: none;
 }
