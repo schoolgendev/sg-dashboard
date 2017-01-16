@@ -69,43 +69,40 @@ $(document).ready(function () {
     };
     // sgObjects has all the objects you want to compare to
     var sgObjects = {
-        laptops: {
-            name: "laptop",
-            val: 0.36 //i.e one laptop uses around 0.36 kwh/day
-        },
-        ps4: {
-            name: "PS4",
-            val: 3.6 //ps4 running at max uses ~3.6 kwh/day
-        },
-        batteryTon: {
-            name: "tonnes of batteries",
-            val: 108 //108 kwh in a single tonne of batteries
-        },
-        TNT: {
-            name: "tonnes of TNT",
-            val: 1167 //one tonne of TNT releases 1166 kwh of energy
+        // ENERGY: taken from rob's spreadsheet
+        e: {
+            /* cut-off levels for energy levels*/
+            thresholds : [50,250,1500,3000,6000,10000,500000],
+            /* the objects that we are comparing the energy levels to */
+            objects: {},
+            /* the function that gets what objects will be in the slider*/
+            threshValue: function threshValue(x){
+
+            }
         },
         // WEIGHT : taken from http://www.bluebulbprojects.com/measureofthings/
-        /* weight of a cow in kg*/
-        cow: {
-            name: "cow",
-            val: 680 //one cow ~680 kg
-        },
-        car: {
-            name: "car",
-            val: 1650 //a 2009 Ford Taurus = ~1650 kg
-        },
-        elephant: {
-            name: "African Elephant",
-            val: 7500 //one elephant = ~7.5 t
-        },
-        bluewhale: {
-            name: "Blue Whale",
-            val: 104500 //one blue whale = ~104.5 t
-        },
-        house: {
-            name: "house",
-            val: 156000 //single level, unfurnished, 149 sq m = ~156 t
+        w : {
+            /* weight of a cow in kg*/
+            cow: {
+                name: "cow",
+                val: 680 //one cow ~680 kg
+            },
+            car: {
+                name: "car",
+                val: 1650 //a 2009 Ford Taurus = ~1650 kg
+            },
+            elephant: {
+                name: "African Elephant",
+                val: 7500 //one elephant = ~7.5 t
+            },
+            bluewhale: {
+                name: "Blue Whale",
+                val: 104500 //one blue whale = ~104.5 t
+            },
+            house: {
+                name: "house",
+                val: 156000 //single level, unfurnished, 149 sq m = ~156 t
+            }
         }
     };
     // holds time divisions. Used in the chart.
@@ -175,17 +172,17 @@ $(document).ready(function () {
     /* pc is the page controller for the widgets and charts and stuff.
      register with the pc to gain notification access. */
     var pc = new PageController();
-    var dc = new DataCompiler(pc.statObj);
+    var dc = new DataCompiler(pc.stat);
     var lifetimeBtn = document.getElementById("btn-lifetime");
     var yearBtn = document.getElementById("btn-year");
     var monthBtn = document.getElementById("btn-month");
     var weekBtn = document.getElementById("btn-week");
     var dayBtn = document.getElementById("btn-day");
+    var backBtn = document.getElementById("btn-back");
     bindButtons();
     var cc = new ChartController();
     console.log(cc);
     var wc = new WidgetController();
-    // TODO: link cc and wc with the pc
     pc.register(cc);
     pc.register(wc);
     pc.chartPeriod(date.getFullYear(), date.getMonth(), date.getDate(), 1);
@@ -211,7 +208,7 @@ $(document).ready(function () {
         /* SUBJECT/OBSERVER-RELATED LOGIC */
 
         /* sgStats is the subject for the observers */
-        var statObj = this.statObj = new SgStats();
+        var stat = this.stat = new SgStats();
         /* obsList is the list of observers for the subject. */
         var obsList = this.obsList = new ObserverList();
         /* register (observer) pushes a new observer object to the observation list. */
@@ -257,7 +254,7 @@ $(document).ready(function () {
         /* chartPeriod(year, month, day, period) - gets the data using an API call
          for a given period, before calling notify on everything.
          If called with no parameters, the data period is the entire lifetime of schoolgen.
-         Makes use of the top-level dc (data compiler) and the statObj.
+         Makes use of the top-level dc (data compiler) and the stat.
          */
         this.chartPeriod = function chartPeriod(year, month, day, period) {
             // a signal variable for the AJAX request with callString1
@@ -312,7 +309,7 @@ $(document).ready(function () {
                     return;
                 }
                 // compile stats
-                dc.compileSpecificData(xhr, pc.statObj.currentTimeDivs, pc.statObj.currentVisual);
+                dc.compileSpecificData(xhr, pc.stat.currentTimeDivs, pc.stat.currentVisual);
                 // run notify when both calls finish
                 periodStatCallFinished = true;
                 if (programStatCallFinished && periodStatCallFinished) {
@@ -344,8 +341,8 @@ $(document).ready(function () {
         in one year intervals.
          */
         this.chartLifetime = function chartLifetime() {
-            this.statObj.currentVisual = TimePeriod.LIFETIME;
-            this.statObj.currentTimeDivs = TimePeriod.YEAR;
+            this.stat.currentVisual = TimePeriod.LIFETIME;
+            this.stat.currentTimeDivs = TimePeriod.YEAR;
             this.chartPeriod();
         };
 
@@ -353,8 +350,8 @@ $(document).ready(function () {
             Note: month range is 0 - 11. If no args given, returns last twelve months.
         */
         this.chartYear = function chartYear(year, month) {
-            this.statObj.currentVisual = TimePeriod.YEAR;
-            this.statObj.currentTimeDivs = TimePeriod.MONTH;
+            this.stat.currentVisual = TimePeriod.YEAR;
+            this.stat.currentTimeDivs = TimePeriod.MONTH;
             // no arg call: returns 12 months from current month
             if (arguments.length === 0 || typeof arguments[0] === 'object') {
                 year = date.getFullYear() - 1;
@@ -371,8 +368,8 @@ $(document).ready(function () {
              or charts 28 days back from a specific day.
              Note: month range is 0 - 11 */
         this.chartMonth = function chartMonth(year, month, day) {
-            this.statObj.currentVisual = TimePeriod.MONTH;
-            this.statObj.currentTimeDivs = TimePeriod.DAY;
+            this.stat.currentVisual = TimePeriod.MONTH;
+            this.stat.currentTimeDivs = TimePeriod.DAY;
             var period;
             // no arg call: looks at last 28 days
             if (arguments.length === 0 || typeof arguments[0] === 'object') {
@@ -401,8 +398,8 @@ $(document).ready(function () {
             Note: range of month = 0 - 11
         */
         this.chartWeek = function chartWeek(year, month, day) {
-            this.statObj.currentVisual = TimePeriod.WEEK;
-            this.statObj.currentTimeDivs = TimePeriod.DAY;
+            this.stat.currentVisual = TimePeriod.WEEK;
+            this.stat.currentTimeDivs = TimePeriod.DAY;
             // only valid calls are all 3 params filled or none filled.
             // calling with less than three params filled is equivalent with none filled.
             if (arguments.length < 3) {
@@ -421,8 +418,8 @@ $(document).ready(function () {
             If called with less than three parameters, it charts the current date.
         */
         this.chartDay = function chartDay(year, month, day) {
-            this.statObj.currentVisual = TimePeriod.DAY;
-            this.statObj.currentTimeDivs = TimePeriod.HOUR;
+            this.stat.currentVisual = TimePeriod.DAY;
+            this.stat.currentTimeDivs = TimePeriod.HOUR;
             if (arguments.length < 3) {
                 year = date.getFullYear();
                 month = date.getMonth();
@@ -431,23 +428,32 @@ $(document).ready(function () {
             this.chartPeriod(year, month, day, 1)
         };
 
+        /* chartBack is supposed to zoom back out of a time period and take
+         you one level up. Supposedly it should remember where you were.
+         */
+        this.chartBack = function chartBack(){
+            // -----------------------------
+            //TODO: finish the back button!!
+            // -----------------------------
+        }
+
     }
 
     /* DataCompiler function constructor.
-    An object that compiles the xhr data into the given statObj.
+    An object that compiles the xhr data into the given stat.
     This data compiler object is specifically for the schoolgen programme.
     */
-    function DataCompiler(statObj) {
-        this.statObj = statObj;
+    function DataCompiler(stat) {
+        this.stat = stat;
 
         /* compileGeneralData(xhr) takes a data object and extracts the
         data required for widgets and other future things.
         */
         this.compileGeneralData = function compileGeneralData(xhr) {
-            // statObj.bestSch will hold the record holding schools.
+            // stat.bestSch will hold the record holding schools.
             // All values are in kwh.
-            statObj.general = {};
-            statObj.general.bestSch = {
+            stat.general = {};
+            stat.general.bestSch = {
                 year: {
                     name: xhr.BiggestTotalGenerationSchool,
                     id: xhr.BiggestTotalGenerationSchoolID,
@@ -466,7 +472,7 @@ $(document).ready(function () {
                 }
             };
             // records will hold info about the record breaking day
-            statObj.general.records = {
+            stat.general.records = {
                 year: {
                     timestamp: xhr.HighestGenerationDayThisYear,
                     val: xhr.HighestGenerationDayThisYearValue
@@ -478,7 +484,7 @@ $(document).ready(function () {
             };
             // egco2 will hold info about energy generated and
             // co2 offset today and for the whole programme.
-            statObj.general.egco2 = {
+            stat.general.egco2 = {
                 today: {
                     energy: xhr.EnergyGeneratedToday,
                     co2: xhr.CO2SavedToday
@@ -489,17 +495,17 @@ $(document).ready(function () {
                 }
             };
             console.log("compile general data complete");
-            console.log(pc.statObj);
+            console.log(pc.stat);
         }
 
         /* compileSpecificData(xhr, timeDiv) - takes a data object and uses a
          timeDiv to extract data and assign appropriate date strings.
          */
         this.compileSpecificData = function compileSpecificData(xhr, timeDiv, currentVis) {
-            /* statObj.spec will hold the period stats for the data*/
-            statObj.spec = {};
+            /* stat.spec will hold the period stats for the data*/
+            stat.spec = {};
             if (timeDiv === undefined || timeDiv === null) {
-                statObj.currentTimeDivs = TimePeriod.HOUR;
+                stat.currentTimeDivs = TimePeriod.HOUR;
             }
 
             // create the functions to be run on each top-level member
@@ -563,7 +569,7 @@ $(document).ready(function () {
                 }
             }
 
-            //mapName tells us what the name will be on the statObj.
+            //mapName tells us what the name will be on the stat.
             kwhGenFunc.mapName = "kwhGen";
             co2SavedFunc.mapName = "co2Saved";
             dateFunc.mapName = "dateString";
@@ -573,19 +579,22 @@ $(document).ready(function () {
             /* this piece of code actually puts the data onto the stats object*/
             var funcArray = [kwhGenFunc, co2SavedFunc, dateFunc, xdomainFunc];
             funcArray.forEach(function (funcInArr) {
-                statObj.spec[funcInArr.mapName] = mapToArray(xhr, funcInArr);
+                stat.spec[funcInArr.mapName] = mapToArray(xhr, funcInArr);
             });
 
             /* 2028 ERROR FIX*/
-            if (pc.statObj.currentVisual === TimePeriod.LIFETIME){
-                pc.statObj.spec.xdomain.pop();
-                pc.statObj.spec.co2Saved.pop();
-                pc.statObj.spec.dateString.pop();
-                pc.statObj.spec.kwhGen.pop();
+            if (pc.stat.currentVisual === TimePeriod.LIFETIME){
+                pc.stat.spec.xdomain.pop();
+                pc.stat.spec.co2Saved.pop();
+                pc.stat.spec.dateString.pop();
+                pc.stat.spec.kwhGen.pop();
             }
 
+            // additional field: the sum of the kwh
+            pc.stat.spec.kwhSum = d3.sum(pc.stat.spec.kwhGen).toPrecision(4);
+
             console.log("compile specific data complete");
-            console.log(pc.statObj);
+            console.log(pc.stat);
 
             /* utility methods*/
             // mapToArray takes a function and runs it on every top level object on
@@ -666,7 +675,7 @@ $(document).ready(function () {
         }
 
         /* notify kills the loading animation, sets the scale for the chart, and then
-            draws in the chart using pc.statObj.
+            draws in the chart using pc.stat.
         */
         this.update = function update() {
             killLoader();
@@ -692,7 +701,7 @@ $(document).ready(function () {
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")")
                 .call(axes.x);
-            if (pc.statObj.currentTimeDivs === TimePeriod.HOUR){
+            if (pc.stat.currentTimeDivs === TimePeriod.HOUR){
                 selection.selectAll("text")
                     .attr("transform", "rotate(-90)")
                     .attr("x", -22)
@@ -702,7 +711,7 @@ $(document).ready(function () {
             selection.append("text")
                 .attr("y", 24).attr("x", width + 15).attr("dy", "-0.71 em")
                 .style("text-anchor", "end")
-                .text(pc.statObj.currentTimeDivs);
+                .text(pc.stat.currentTimeDivs);
             // set up y axis and call axis.y, draw axis label
             chart.append("g")
                 .attr("class", "y axis")
@@ -715,7 +724,14 @@ $(document).ready(function () {
                 .text("kWh Generated");
 
             // sets the kwh generated label at the top
-            document.getElementById("energyGen").innerHTML = d3.sum(pc.statObj.spec.kwhGen) + " KWh";
+            var sumString = pc.stat.spec.kwhSum + " KWh";
+            if (pc.stat.spec.kwhSum > 1000000) {
+                sumString = (pc.stat.spec.kwhSum/1000000) + " GWh";
+            } else
+            if (pc.stat.spec.kwhSum > 1000){
+                sumString = (pc.stat.spec.kwhSum/1000) + " MWh";
+            }
+            document.getElementById("energyGen").innerHTML = sumString;
 
             // sets up the div for the tooltip. Initially starts at opacity = 0.
             var ttDiv = d3.select("body").append("div")
@@ -725,12 +741,12 @@ $(document).ready(function () {
             // sets up the columns for the column graph
             // data join + update selection
             var bars = chart.selectAll(".bar")
-                .data(pc.statObj.spec.kwhGen);
+                .data(pc.stat.spec.kwhGen);
             //enter selection
             bars.enter().append("rect")
                 .attr("class", "bar")
                 .attr("x", function (d, i){
-                    return scales.x( pc.statObj.spec.xdomain[i] );
+                    return scales.x( pc.stat.spec.xdomain[i] );
                 })
                 .attr("y", function (d) {
                     return scales.y(d);
@@ -758,8 +774,8 @@ $(document).ready(function () {
                 return {
                     tt: tooltipDiv,
                     func: function (param, i) {
-                        param.html(pc.statObj.spec.dateString[i] + "<br> KWH Generated: " +
-                                  pc.statObj.spec.kwhGen[i])
+                        param.html(pc.stat.spec.dateString[i] + "<br> KWH Generated: " +
+                                  pc.stat.spec.kwhGen[i])
                             .style("left", d3.event.pageX + "px")
                             .style("top", d3.event.pageY + "px");
                     }
@@ -782,7 +798,7 @@ $(document).ready(function () {
             }
             function changePeriod(d, i){
                 // get old time div, if already at hour, cancel zoom operation
-                var oldTimeDiv = pc.statObj.currentTimeDivs;
+                var oldTimeDiv = pc.stat.currentTimeDivs;
                 var newTimeDiv = decrementTimePeriod(oldTimeDiv);
                 if (newTimeDiv === null){
                     return;
@@ -791,7 +807,7 @@ $(document).ready(function () {
                 var killTooltip = createTTOffFunc(createTTContainer(ttDiv));
                 killTooltip();
                 // get the new date
-                var zoomInDate = pc.statObj.spec.dateString[i];
+                var zoomInDate = pc.stat.spec.dateString[i];
                 var year, month, day, finalFunc;
                 switch(newTimeDiv){
                     // zooming into a single month from a year
@@ -829,8 +845,8 @@ $(document).ready(function () {
         }
 
         function getScaleDomains(){
-            scales.x.domain(pc.statObj.spec.xdomain);
-            scales.y.domain([0, d3.max(pc.statObj.spec.kwhGen)]);
+            scales.x.domain(pc.stat.spec.xdomain);
+            scales.y.domain([0, d3.max(pc.stat.spec.kwhGen)]);
         }
 
         /* gets rid of all child nodes of the document object known as 'kwhGenChart'*/
@@ -896,7 +912,7 @@ $(document).ready(function () {
         //update gets all the data from SGS and re-inserts it into the sliders
         this.update = function update(){
             // create string, replace span element with new span element
-            var stat = pc.statObj.general;
+            var stat = pc.stat.general;
             replace(stat.egco2.total.energy/1000000, "GWh", sgNames.lt.kwhGen.name);
             replace(stat.egco2.total.co2/1000, "t", sgNames.lt.CO2Saved.name);
             //TODO: get update to insert all the object stats into the widgets
@@ -910,7 +926,6 @@ $(document).ready(function () {
                 var replacer = '<span class="' + undot(spanClassName) + '">';
                 replacer += value.toPrecision(3) + ' ' + unit;
                 replacer += '</span>'
-                console.log(replacer) //finished creating replacer string
                 // replace HTML element with replacer string
                 $(replacer).replaceAll(spanClassName)
             }
@@ -924,7 +939,7 @@ $(document).ready(function () {
         }
 
         /* UTILITY METHODS*/
-        // sets up sliders and returns the array of sliders
+        // sets up sliders and returns the array of sliders.
         function initializeSliders(){
             var slider1 = $('#slider1');
             var slider2 = $('#slider2');
@@ -976,8 +991,6 @@ $(document).ready(function () {
                 }
             }
         }
-
-
     }
 
 
@@ -991,22 +1004,21 @@ $(document).ready(function () {
         var height = 300 - margin.top - margin.bottom;
         var cellSize = 16;
         // make sure to set the domain for color as well
-        var color = d3.scale.threshold.range(['#987200', '#9b7500', '#9f7800', '#a37a00', '#a67d00', '#aa8000', '#ae8301', '#b28601', '#b58801', '#b98b01', '#bd8e02', '#c09002', '#c49403', '#c79704', '#cb9a04', '#cf9c05', '#d39f06', '#d6a207', '#daa508', '#dea80a', '#e1ab0b', '#e5ae0d', '#e9b10e', '#ecb510', '#f0b711', '#f3bb13', '#f7bd15', '#fbc117', '#fec419', '#ffc82d', '#ffcd3e', '#ffd04e', '#ffd55d', '#ffd96c', '#ffdc7a', '#ffe089', '#ffe498', '#ffe8a5']);
+        var color = d3.scale.quantize().range(['#987200', '#9b7500', '#9f7800', '#a37a00', '#a67d00', '#aa8000', '#ae8301', '#b28601', '#b58801', '#b98b01', '#bd8e02', '#c09002', '#c49403', '#c79704', '#cb9a04', '#cf9c05', '#d39f06', '#d6a207', '#daa508', '#dea80a', '#e1ab0b', '#e5ae0d', '#e9b10e', '#ecb510', '#f0b711', '#f3bb13', '#f7bd15', '#fbc117', '#fec419', '#ffc82d', '#ffcd3e', '#ffd04e', '#ffd55d', '#ffd96c', '#ffdc7a', '#ffe089', '#ffe498', '#ffe8a5']);
 
         this.update = function update(){
             initializeMatrix();
         }
 
         function initializeMatrix(){
-            var svg = d3.select('#matrix')
-                .attr("width", width)
-                .attr("height", height)
-              .append("g");
+            var svg = d3.select('#matrix').select("svg");
+            svg.attr("width", width)
+                .attr("height", height);
 
-            color.domain(d3.min(pc.statObj.spec.kwhGen), d3.max(pc.statObj.spec.kwhGen))
+            color.domain([ d3.min(pc.stat.spec.kwhGen), d3.max(pc.stat.spec.kwhGen) ]);
 
             var boxes = svg.selectAll(".cell")
-                .data(pc.statObj.spec.kwhGen)
+                .data(pc.stat.spec.kwhGen)
               .enter().append("rect")
                 .attr("width", cellSize).attr("height", cellSize)
         }
@@ -1022,6 +1034,8 @@ $(document).ready(function () {
         monthBtn.addEventListener("click", pc.chartMonth.bind(pc));
         weekBtn.addEventListener("click", pc.chartWeek.bind(pc));
         dayBtn.addEventListener("click", pc.chartDay.bind(pc));
+        // TODO: finish the back button, part 2
+    //    backBtn.addEventListener("click", pc.chartBack.bind(pc));
     }
 
 });

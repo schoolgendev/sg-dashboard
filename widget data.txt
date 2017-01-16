@@ -1,0 +1,43 @@
+0 - smartphone battery charges
+1 - tablet battery charges
+2 - chromebook battery charges
+3 - energy produced by x amt of tour de france cyclists
+	(riding at 40 km/hr for 1 hour)
+4 - enphase home battery charges
+5 - energy released by x kg of TNT
+6 - energy released by x kg of coal
+7 - panasonic home battery charges
+ 8 - x km completed by a tour de france cyclist
+9 - x tour de france cyclists (over whole course)
+ 10 - x km driven by a Tesla S
+11 - Tesla S car battery charges
+ 12 - x km driven by electric train (in Auckland)
+13 - energy released by x tonnes of TNT
+14 - x NZ homes powered for a month
+15 - energy released by burning x barrels of oil
+16 - x seconds of NZ entire energy generation
+17 - x NZ homes powered for a year
+18 - x minutes of entire NZ energy generation
+19 - x days of genesis energy wind turbine operating
+20 - x months of genesis energy wind turbine operating
+
+Thresholds:
+y < 50: 		10 or less
+51 < y < 250: 		11 to 4
+251 < y < 1500:		14 to 4
+1501 < y < 3000:	15 to 4, minus 8,
+3001 < y < 6000:	16 to 4, minus 8, plus 19
+6k < y < 10k:		17 to 10, plus 19
+10k < y < 100k:		19 to 11
+100k < y < 500k:	19 to 11
+500k onwards:		19 to 13
+
+
+Factoids:
+Earth circumference is 40,075 km
+Distance to moon is 384,000 km
+Cyclists in tour de france: vary from 180 - 198
+Hau Nui total capacity: 7.3 MW (7300 kWh in 1 hour)
+Tongariro power scheme capacity: 361.8 MW total (361,800 KW)
+ Tokaanu power station: 240 MW (240,000 KW)
+

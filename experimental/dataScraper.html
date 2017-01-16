@@ -1,0 +1,115 @@
+<html>
+
+<head>
+    <style>
+        body * {
+            font-family: Calibri, sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>last API call: <span id="update-me">...</span> </p>
+    </div>
+    <div>
+        <p>timestamp - kwh - co2</p>
+    </div>
+    <div id="replace-me">
+        <p>here is your data</p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        var baseAPICall = "http://api.schoolgen.co.nz/ProgramCharts/schoolgen/{year}/{month}/{day}/{period}";
+        // holds month names in an array. Used in the chart.
+        var MonthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        // holds the number of days in each month. Used in the chart.
+        var DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        // holds the current date object
+
+        scrappedData = [];
+        scrappedData.toString = function() {
+            var str = ""
+            scrappedData.forEach(function(e){
+                str += e.TimeStamp + ": ";
+                str += e.kWhGen + "kWh & ";
+                str += e.CO2Saved + "tonnes; "
+            })
+            return str;
+        }
+        console.log("starting");
+        var date = new Date(2007, 01, 20);
+        var period = 60;
+
+        var counter = 0;
+        while (date.getFullYear() < 2017){
+            // window.setInterval(pushNewData, 1000);
+            pushNewData();
+            incrementDate();
+            counter ++;
+            console.log("counter is at: " + counter);
+        }
+
+        console.log(scrappedData);
+
+        /* functional API URL generator */
+        function generateCallString(y, m, d, p) {
+            mLabel = MonthName[m];
+            var callString = baseAPICall;
+            callString = callString.replace(new RegExp("{year}"), y)
+                .replace(new RegExp("{month}"), mLabel)
+                .replace(new RegExp("{day}"), d)
+                .replace(new RegExp("{period}"), p);
+            return callString;
+        }
+        function incrementDate(){
+            date.setDate( date.getDate() + period);
+            console.log("new date: " + date.toDateString())
+        }
+
+        function pushNewData() {
+            // call api using async
+            var callString = generateCallString(date.getFullYear(), date.getMonth(), date.getDate(), period)
+            console.log("callString is :" + callString);
+            replaceTimeStamp(callString, "update-me");
+            d3.json(callString, dataCompiler);
+        }
+
+        function dataCompiler(err, xhr) {
+            if (err !== null) {
+                console.log("call failed")
+                console.log(err);
+                throw err;
+            }
+            for (var i = 0; i < xhr.length; i++) {
+                var datapt = {};
+                datapt.kWhGen = xhr[i].kWhGen;
+                datapt.CO2Saved = xhr[i].CO2Saved;
+                datapt.TimeStamp = xhr[i].TimeStamp;
+                console.log("datapt " + i + ": ");
+                console.log(datapt);
+                scrappedData.push(datapt);
+                appendToDocument(datapt, "replace-me");
+            }
+            //data compilation done
+        }
+
+        function appendToDocument(data, nodeId){
+            var node = document.createElement("P");
+            var textNode = document.createTextNode(data.TimeStamp + ", " + data.kWhGen + ", " + data.CO2Saved);
+            node.appendChild(textNode);
+            document.getElementById(nodeId).appendChild(node);
+        }
+        function replaceTimeStamp(str, nodeId){
+            document.getElementById(nodeId).innerHTML = str;
+        }
+
+    </script>
+
+</body>
+
+</html>

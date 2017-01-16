@@ -18,7 +18,8 @@ SgStats
        |----xdomain
        |----co2Saved
        |----dateString
-        `---kwhGen
+       |----kwhGen
+       `----kwhSum
 
 
 currentTimeDivs - this holds the current time divisions between the data points.
