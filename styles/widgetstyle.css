@@ -3,8 +3,8 @@
 */
 
 .wg-slider {
-    width: 320px;
-    height: 120px;
+    width: 360px;
+    height: 160px;
     background-color: #F59A06;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -29,7 +29,7 @@
 */
 
 .wg-left, .wg-right {
-    background-color: rgba(245, 89, 6, 0.5);
+    background-color: rgba(245, 89, 6, 0.0);
     margin: 2px;
     min-width: 45%;
     padding: 2px;

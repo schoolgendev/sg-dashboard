@@ -88,3 +88,17 @@
   background-image: linear-gradient(to bottom, #ffa45e, #ffbf5e);
   text-decoration: none;
 }
+
+#power1 {
+    background-image: url("/img/laptop-wg-bg.png");
+    min-height: 160px;
+}
+
+#power2 {
+    background-image: url("/img/house-wg-bg.png");
+    min-height: 160px;
+}
+
+#power1 p {
+    color: #DDDDDD;
+}
