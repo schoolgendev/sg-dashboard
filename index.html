@@ -16,7 +16,7 @@
                 height: 100%;
             }
             body {
-            background: #FFB100 url('http://www.schoolgen.co.nz/img/bg-body-yellow.jpg') top center no-repeat;
+                background: #FFB100 url('http://www.schoolgen.co.nz/img/bg-body-yellow.jpg') top center no-repeat;
         }
         </style>
     </head>
@@ -53,7 +53,9 @@
                         <p> Energy generated: <span id="energyGen"></span></p>
                     </div>
                     <div class="chart">
-                        <svg id="kwhGenChart" class="chart"></svg>
+                        <div>
+                            <svg id="kwhGenChart" width="550" height="425"></svg>
+                        </div>
                         <div id="spinLoader" class="sk-fading-circle" style="display:none">
                             <div class="sk-circle1 sk-circle"></div>
                             <div class="sk-circle2 sk-circle"></div>
@@ -76,31 +78,32 @@
                         <ul>
                             <!-- lifetime kwh gen + laptops -->
                             <li>
-                                <div class="kwhgen-wg">
+                                <div id="power1" class="hbox main-center cross-center cross-stretch">
                                     <div class="wg-left">
-                                        <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
+                                        <p style="margin-top:30px;">Generated <br />
+                                        <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!
+                                        </p>
+                                        <p class="small" style="position: static"><br />*running continuously for one hour</p>
                                     </div>
                                     <div class="wg-right">
-                                        <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
-                                        <!-- TODO: replace w/ image -->
-                                        <p style="font-size:60%">&lt;laptop img here&gt;</p>
-                                        <p class="small">*running continuously for a single year</p>
+                                        <p style="margin-left:50px; margin-top:30px ;">Equivalent to<br />
+                                        <span class="big"><span class="lt-laptops">50</span></span> laptops!*</p>
                                     </div>
                                 </div>
                             </li>
-                            <!-- CO2 saved over lifetime  -->
+                            <!-- lifetime kwh gen + houses  -->
                             <li>
-                                <div class="hbox main-center cross-center cross-stretch">
+                                <div id="power2" class="hbox main-center cross-center cross-stretch">
                                     <div class="wg-left">
-                                        <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
+                                        <p>Generated <span class="big"><span class="lt-kwhGen">xyz kwh</span></span> of energy!</p>
                                     </div>
                                     <div class="wg-right">
-                                        <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
+                                        <p style="margin-left:40px;">enough power for <span class="big"><span id="wgc-house-min">20 houses</span></span> for one year! </p>
                                     </div>
                                 </div>
                             </li>
                             <li>
-                                <div class="hbox main-center cross-center cross-stretch">
+                                <div id="power3" class="hbox main-center cross-center cross-stretch">
                                     <div class="wg-left" style="min-width:45%;">
                                         <p>Providing 92 schools with solar panels</p>
                                     </div>
