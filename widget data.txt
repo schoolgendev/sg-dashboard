@@ -39,5 +39,5 @@ Distance to moon is 384,000 km
 Cyclists in tour de france: vary from 180 - 198
 Hau Nui total capacity: 7.3 MW (7300 kWh in 1 hour)
 Tongariro power scheme capacity: 361.8 MW total (361,800 KW)
- Tokaanu power station: 240 MW (240,000 KW)
+Tokaanu power station: 240 MW (240,000 KW)
 

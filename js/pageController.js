@@ -68,20 +68,163 @@ $(document).ready(function () {
         }
     };
     // sgObjects has all the objects you want to compare to
-    var sgObjects = {
+    var sgComp = {
         // ENERGY: taken from rob's spreadsheet
         e: {
             /* cut-off levels for energy levels*/
-            thresholds : [50,250,1500,3000,6000,10000,500000],
+            thresholds: [50, 250, 1500, 3000, 6000, 10000, 500000],
             /* the objects that we are comparing the energy levels to */
-            objects: {},
-            /* the function that gets what objects will be in the slider*/
-            threshValue: function threshValue(x){
+            objects: {
+                //object 20
+                0: {
+                    obj: "ge-wind-turbine-month",
+                    kwh: 125000,
+                    bg: "url('/img/laptop-wg-bg.png')"
+                },
+                1: {
+                    obj: "ge-wind-turbine-days",
+                    kwh: 4110,
+                    bg: "url('/img/laptop-wg-bg.png')"
+                },
+                2: {
+                    obj: "nz-generation-minutes",
+                    kwh: 102986,
+                    bg: "url('/img/nz-wg-bg.png')"
+                },
+                3: {
+                    obj: "nz-houses-year",
+                    kwh: 7000,
+                    bg: "url('house-wg-bg.png')"
+                },
+                4: {
+                    obj: "nz-generation-seconds",
+                    kwh: 1716,
+                    bg: "url('/img/nz-wg-bg.png')"
+                },
+                5: {
+                    obj: "oil-barrels",
+                    kwh: 1700,
+                    bg: "url('/img/oil-wg-bg.png')"
+                },
+                6: {
+                    obj: "nz-houses-month",
+                    kwh: 583,
+                    bg: "url('/img/house-wg-bg.png')"
+                },
+                7: {
+                    obj: "TNT-tonne",
+                    kwh: 1200,
+                    bg: "url('/img/tnt-wg-bg.png')"
+                },
+                8: {
+                    obj: "km-driven-train",
+                    kwh: 10,
+                    bg: "url('/img/train-wg-bg.png')"
+                },
+                9: {
+                    obj: "tesla-battery",
+                    kwh: 90,
+                    bg: "url('/img/tesla-wg-bg.png')"
+                },
+                // object 10
+                10: {
+                    obj: "km-driven-tesla",
+                    kwh: 6.25,
+                    bg: "url('/img/tesla-wg-bg.png')"
+                },
+                11: {
+                    obj: "tdf-cyclist-total",
+                    kwh: 21.2,
+                    bg: "url('/img/cyclist-wg-bg.png')"
+                },
+                12: {
+                    obj: "km-driven-tdf-cyclist",
+                    kwh: 0.0057,
+                    bg: "url('/img/cyclist-wg-bg.png')"
+                },
+                13: {
+                    obj: "home-batt-panasonic",
+                    kwh: 0.8,
+                    bg: "url('/img/panason-wg-bg.png')"
+                },
+                14: {
+                    obj: "coal-kg",
+                    kwh: 4,
+                    bg: "url('/img/coal-wg-bg.png')"
+                },
+                15: {
+                    obj: "TNT-kg",
+                    kwh: 1.2,
+                    bg: "url('tnt-wg-bg.png')"
+                },
+                16: {
+                    obj: "home-batt-enphase",
+                    kwh: 1.2,
+                    bg: "url('/img/enphase-wg-bg.png')"
+                },
+                17: {
+                    obj: "tdf-cyclist-40k1hr",
+                    kwh: 0.230,
+                    bg: "url('/img/cyclist-wg-bg.png')"
+                },
+                18: {
+                    obj: "batt-chromebook",
+                    kwh: 0.04,
+                    bg: "url('img/laptop-bg.png')"
+                },
+                19: {
+                    obj: "batt-tablet",
+                    kwh: 0.02,
+                    bg: "url('img/laptop-bg.png')"
+                },
+                // object 0
+                20: {
+                    obj: "batt-phone",
+                    kwh: 0.01,
+                    bg: "url('img/laptop-bg.png')"
+                }
+            },
+            /* returns an array of numbers corresponding to comparison objects.
+             These are cleared to be included in the slider. */
+            threshLevel: function threshLevel(x) {
+                // level 1
+                if (x <= 50) { return slideArray(0, 10); }
+                // level 2
+                if (x > 50 && x <= 250) { return slideArray(0, 11); }
+                // level 3
+                if (x > 250 && x <= 1500 ) { return slideArray(4, 14); }
+                // level 4
+                if (x > 1500 && x <= 3000) { return slideArray(4, 15, null, 8); }
+                // level 5
+                if (x > 3000 && x <= 6000) { return slideArray(4, 16, 19, 8); }
+                // level 6
+                if (x > 6000 && x <= 10000) { return slideArray(10, 17, 19); }
+                // level 7
+                if (x > 10000 && x <= 100000) { return slideArray(11, 19); }
+                // level 8
+                if (x > 100000 && x <= 500000 ) { return slideArray(11, 20); }
+                // level 9
+                if (x > 500000 ) { return slideArray(13, 20); }
 
+                // returns an array of numbers with plus at end and minus taken out.
+                function slideArray(start, stop, plus, minus){
+                    slideArr = [];
+                    for (var i = start; i <= stop; i ++){
+                        if (minus === undefined || minus === null || i !== minus){
+                            slideArr.push(i);
+                        }
+                    }
+                    if (plus === undefined || plus === null){
+                        return slideArr;
+                    } else {
+                        slideArr.push(plus);
+                        return slideArr;
+                    }
+                }
             }
         },
         // WEIGHT : taken from http://www.bluebulbprojects.com/measureofthings/
-        w : {
+        w: {
             /* weight of a cow in kg*/
             cow: {
                 name: "cow",
@@ -121,48 +264,6 @@ $(document).ready(function () {
     // holds the current date object
     var date = new Date();
     // holds objects to compare schoolgen stats to for the widgets
-    var SgCompare = {
-        // POWER : taken from http://energyusecalculator.com/ or rob's slides
-        // one laptop running continuously for a year
-        laptops: {
-            name: "laptop",
-            val: 0.36 //i.e one laptop uses around 0.36 kwh/day
-        },
-        ps4: {
-            name: "PS4",
-            val: 3.6 //ps4 running at max uses ~3.6 kwh/day
-        },
-        batteryTon: {
-            name: "tonnes of batteries",
-            val: 108 //108 kwh in a single tonne of batteries
-        },
-        TNT: {
-            name: "tonnes of TNT",
-            val: 1167 //one tonne of TNT releases 1166 kwh of energy
-        },
-        // WEIGHT : taken from http://www.bluebulbprojects.com/measureofthings/
-        /* weight of a cow in kg*/
-        cow: {
-            name: "cow",
-            val: 680 //one cow ~680 kg
-        },
-        car: {
-            name: "car",
-            val: 1650 //a 2009 Ford Taurus = ~1650 kg
-        },
-        elephant: {
-            name: "African Elephant",
-            val: 7500 //one elephant = ~7.5 t
-        },
-        bluewhale: {
-            name: "Blue Whale",
-            val: 104500 //one blue whale = ~104.5 t
-        },
-        house: {
-            name: "house",
-            val: 156000 //single level, unfurnished, 149 sq m = ~156 t
-        }
-    };
     // used for AJAX calls - remember to replace variable sections
     var ApiCallArray = [
         "http://api.schoolgen.co.nz/ProgramCharts/schoolgen/2016", //gets yearly data
@@ -431,7 +532,7 @@ $(document).ready(function () {
         /* chartBack is supposed to zoom back out of a time period and take
          you one level up. Supposedly it should remember where you were.
          */
-        this.chartBack = function chartBack(){
+        this.chartBack = function chartBack() {
             // -----------------------------
             //TODO: finish the back button!!
             // -----------------------------
@@ -527,20 +628,17 @@ $(document).ready(function () {
                 dateFunc = function dateFunc(group) {
                     return group.TimeStamp.substr(6, 4);
                 }
-            }
-            else if (timeDiv === TimePeriod.MONTH) {
+            } else if (timeDiv === TimePeriod.MONTH) {
                 dateFunc = function dateFunc(group) {
                     var ts = group.TimeStamp;
                     return MonthName[ts.substr(3, 2) - 1] + " " + ts.substr(6, 4);
                 }
-            }
-            else if (timeDiv === TimePeriod.DAY) {
+            } else if (timeDiv === TimePeriod.DAY) {
                 dateFunc = function dateFunc(group) {
                     var ts = group.TimeStamp;
                     return ts.substr(0, 2) + " " + MonthName[ts.substr(3, 2) - 1] + " " + ts.substr(6, 4);
                 }
-            }
-            else {
+            } else {
                 dateFunc = function dateFunc(group) {
                     var ts = group.TimeStamp;
                     return ts.substr(11, 5) + " " + ts.substr(0, 2) + " " + MonthName[ts.substr(3, 2) - 1];
@@ -552,25 +650,22 @@ $(document).ready(function () {
                 xdomainFunc = function (group) {
                     return group.TimeStamp.substr(6, 4);
                 }
-            }
-            else if (timeDiv === TimePeriod.MONTH) {
+            } else if (timeDiv === TimePeriod.MONTH) {
                 xdomainFunc = function (group) {
                     return MonthName[group.TimeStamp.substr(3, 2) - 1];
                 }
-            }
-            else if (timeDiv === TimePeriod.DAY) {
+            } else if (timeDiv === TimePeriod.DAY) {
                 xdomainFunc = function (group) {
                     return group.TimeStamp.substr(0, 2);
                 }
-            }
-            else  {
+            } else {
                 xdomainFunc = function (group) {
                     return group.TimeStamp.substr(11, 5);
                 }
             }
 
             //mapName tells us what the name will be on the stat.
-            kwhGenFunc.mapName = "kwhGen";
+            kwhGenFunc.mapName = kwhgen;
             co2SavedFunc.mapName = "co2Saved";
             dateFunc.mapName = "dateString";
             xdomainFunc.mapName = "xdomain";
@@ -583,7 +678,7 @@ $(document).ready(function () {
             });
 
             /* 2028 ERROR FIX*/
-            if (pc.stat.currentVisual === TimePeriod.LIFETIME){
+            if (pc.stat.currentVisual === TimePeriod.LIFETIME) {
                 pc.stat.spec.xdomain.pop();
                 pc.stat.spec.co2Saved.pop();
                 pc.stat.spec.dateString.pop();
@@ -695,13 +790,13 @@ $(document).ready(function () {
 
 
         /* drawChart is used in notify to actually create the chart graphic. */
-        function drawChart(){
+        function drawChart() {
             // set up selection, call axis.x
             var selection = chart.append("g")
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")")
                 .call(axes.x);
-            if (pc.stat.currentTimeDivs === TimePeriod.HOUR){
+            if (pc.stat.currentTimeDivs === TimePeriod.HOUR) {
                 selection.selectAll("text")
                     .attr("transform", "rotate(-90)")
                     .attr("x", -22)
@@ -726,10 +821,10 @@ $(document).ready(function () {
             // sets the kwh generated label at the top
             var sumString = pc.stat.spec.kwhSum + " KWh";
             if (pc.stat.spec.kwhSum > 1000000) {
-                sumString = (pc.stat.spec.kwhSum/1000000) + " GWh";
+                sumString = (pc.stat.spec.kwhSum / 1000000) + " GWh";
             } else
-            if (pc.stat.spec.kwhSum > 1000){
-                sumString = (pc.stat.spec.kwhSum/1000) + " MWh";
+            if (pc.stat.spec.kwhSum > 1000) {
+                sumString = (pc.stat.spec.kwhSum / 1000) + " MWh";
             }
             document.getElementById("energyGen").innerHTML = sumString;
 
@@ -745,13 +840,13 @@ $(document).ready(function () {
             //enter selection
             bars.enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function (d, i){
-                    return scales.x( pc.stat.spec.xdomain[i] );
+                .attr("x", function (d, i) {
+                    return scales.x(pc.stat.spec.xdomain[i]);
                 })
                 .attr("y", function (d) {
                     return scales.y(d);
                 })
-                .attr("height", function (d){
+                .attr("height", function (d) {
                     return height - scales.y(d)
                 })
                 .attr("width", scales.x.rangeBand());
@@ -764,24 +859,25 @@ $(document).ready(function () {
         /* utility method to get tooltips onto each bar.
          bars is the d3 selection and ttDiv is the tooltip div.
         */
-        function createTooltips(bars, ttDiv){
+        function createTooltips(bars, ttDiv) {
             bars.on("mouseover", createTTOnFunc(createTTContainer(ttDiv)))
                 .on("mousemove", null)
                 .on("mouseout", createTTOffFunc(createTTContainer(ttDiv)))
                 .on("click", changePeriod)
 
-            function createTTContainer(tooltipDiv){
+            function createTTContainer(tooltipDiv) {
                 return {
                     tt: tooltipDiv,
                     func: function (param, i) {
                         param.html(pc.stat.spec.dateString[i] + "<br> KWH Generated: " +
-                                  pc.stat.spec.kwhGen[i])
+                                pc.stat.spec.kwhGen[i])
                             .style("left", d3.event.pageX + "px")
                             .style("top", d3.event.pageY + "px");
                     }
                 }
             }
-            function createTTOnFunc(container){
+
+            function createTTOnFunc(container) {
                 return (function (d, i) {
                     container.tt.transition()
                         .duration(200)
@@ -789,18 +885,20 @@ $(document).ready(function () {
                     container.func(container.tt, i);
                 })
             }
-            function createTTOffFunc(container){
+
+            function createTTOffFunc(container) {
                 return (function () {
                     container.tt.transition()
                         .duration(200)
                         .style("opacity", 0);
                 })
             }
-            function changePeriod(d, i){
+
+            function changePeriod(d, i) {
                 // get old time div, if already at hour, cancel zoom operation
                 var oldTimeDiv = pc.stat.currentTimeDivs;
                 var newTimeDiv = decrementTimePeriod(oldTimeDiv);
-                if (newTimeDiv === null){
+                if (newTimeDiv === null) {
                     return;
                 }
                 // destroy tooltip
@@ -809,7 +907,7 @@ $(document).ready(function () {
                 // get the new date
                 var zoomInDate = pc.stat.spec.dateString[i];
                 var year, month, day, finalFunc;
-                switch(newTimeDiv){
+                switch (newTimeDiv) {
                     // zooming into a single month from a year
                     case TimePeriod.MONTH:
                         year = parseInt(zoomInDate);
@@ -817,34 +915,40 @@ $(document).ready(function () {
                         finalFunc = pc.chartYear.bind(pc, year);
                         break;
                     case TimePeriod.DAY:
-                        year = parseInt(zoomInDate.substr(4,4));
-                        month = MonthName.indexOf(zoomInDate.substr(0,3));
+                        year = parseInt(zoomInDate.substr(4, 4));
+                        month = MonthName.indexOf(zoomInDate.substr(0, 3));
                         day = 0;
                         finalFunc = pc.chartMonth.bind(pc, year, month);
                         break;
                     case TimePeriod.HOUR:
-                        year = parseInt(zoomInDate.substr(7,4));
-                        month = MonthName.indexOf(zoomInDate.substr(3,3));
-                        day = parseInt(zoomInDate.substr(0,2));
+                        year = parseInt(zoomInDate.substr(7, 4));
+                        month = MonthName.indexOf(zoomInDate.substr(3, 3));
+                        day = parseInt(zoomInDate.substr(0, 2));
                         finalFunc = pc.chartDay.bind(pc, year, month, day);
                         break;
                 }
-                if (finalFunc === undefined){
+                if (finalFunc === undefined) {
                     console.log("no final func");
                     return;
                 }
                 finalFunc();
 
-                function decrementTimePeriod(old){
-                    if (old === TimePeriod.YEAR){ return TimePeriod.MONTH; }
-                    if (old === TimePeriod.MONTH){ return TimePeriod.DAY; }
-                    if (old === TimePeriod.DAY){ return TimePeriod.HOUR; }
+                function decrementTimePeriod(old) {
+                    if (old === TimePeriod.YEAR) {
+                        return TimePeriod.MONTH;
+                    }
+                    if (old === TimePeriod.MONTH) {
+                        return TimePeriod.DAY;
+                    }
+                    if (old === TimePeriod.DAY) {
+                        return TimePeriod.HOUR;
+                    }
                     return null;
                 }
             }
         }
 
-        function getScaleDomains(){
+        function getScaleDomains() {
             scales.x.domain(pc.stat.spec.xdomain);
             scales.y.domain([0, d3.max(pc.stat.spec.kwhGen)]);
         }
@@ -905,35 +1009,38 @@ $(document).ready(function () {
             nav: false,
             arrows: false
         };
-        //An array of all hooked up sliders
-        var slides1 =[], slides2 = [], slides3 = [];
+        var getSliderData
+        var slides1 = [],
+            slides2 = [],
+            slides3 = [];
         initializeSlides();
+        //An array of all hooked up sliders
         var sliderList = this.sliderList = initializeSliders();
 
         /* Widget Controller Interface */
         //update gets all the data from SGS and re-inserts it into the sliders
-        this.update = function update(){
+        this.update = function update() {
             // create string, replace span element with new span element
             var stat = pc.stat.general;
-            replace(stat.egco2.total.energy/1000000, "GWh", sgNames.lt.kwhGen.name);
-            replace(stat.egco2.total.co2/1000, "t", sgNames.lt.CO2Saved.name);
+            replace(stat.egco2.total.energy / 1000000, "GWh", sgNames.lt.kwhGen.name);
+            replace(stat.egco2.total.co2 / 1000, "t", sgNames.lt.CO2Saved.name);
             //TODO: get update to insert all the object stats into the widgets
 
             /* utility methods */
 
             // Replaces a given span (identified by class name) with a new span,
             //  where the inner html is the value followed by a unit.
-            function replace(value, unit, spanClassName){
+            function replace(value, unit, spanClassName) {
                 // create replacer string
                 var replacer = '<span class="' + undot(spanClassName) + '">';
                 replacer += value.toPrecision(3) + ' ' + unit;
                 replacer += '</span>'
-                // replace HTML element with replacer string
+                    // replace HTML element with replacer string
                 $(replacer).replaceAll(spanClassName)
             }
             // removes the first character from a string if that character is a period.
-            function undot(spanClassName){
-                if ( spanClassName.charAt(0) === '.' ){
+            function undot(spanClassName) {
+                if (spanClassName.charAt(0) === '.') {
                     return spanClassName.substr(1);
                 }
                 return spanClassName;
@@ -942,68 +1049,75 @@ $(document).ready(function () {
 
         /* UTILITY METHODS*/
         // sets up sliders and returns the array of sliders.
-        function initializeSliders(){
+        function initializeSliders() {
             var slider1 = $('#slider1');
             var slider2 = $('#slider2');
             var slider3 = $('#slider3');
             var sliders = [slider1, slider2, slider3];
             // set up each silder
-            sliders.forEach(function (sliderElem){
+            sliders.forEach(function (sliderElem) {
                 // configuration for slider
                 sliderElem.unslider(sliderConfig);
                 // gets children of the slider (i.e. left and right children)
                 //  and changes HTMLCollection objects to arrays
-                var sliderLeft = [].slice.call( sliderElem[0].getElementsByClassName("wg-left") );
-                var sliderRight = [].slice.call( sliderElem[0].getElementsByClassName("wg-right") );
+                var sliderLeft = [].slice.call(sliderElem[0].getElementsByClassName("wg-left"));
+                var sliderRight = [].slice.call(sliderElem[0].getElementsByClassName("wg-right"));
                 // attaching event listeners
                 // stop slider on mouse over
-                sliderElem[0].addEventListener( "mouseover", createStopSlider(sliderElem) );
+                sliderElem[0].addEventListener("mouseover", createStopSlider(sliderElem));
                 // restart slider on mouse out
-                sliderElem[0].addEventListener( "mouseout", createStartSlider(sliderElem) );
+                sliderElem[0].addEventListener("mouseout", createStartSlider(sliderElem));
                 // clicking the left of a slider slides to prev panel
-                sliderLeft.forEach(function (wgLeft){
+                sliderLeft.forEach(function (wgLeft) {
                     wgLeft.addEventListener("click", createPrevPanel(sliderElem));
                 });
                 // clicking the right of a slider slides to the next panel
-                sliderRight.forEach(function (wgRight){
+                sliderRight.forEach(function (wgRight) {
                     wgRight.addEventListener("click", createNextPanel(sliderElem));
                 });
             });
             return sliders;
 
             /* CALLBACK FUNCTION FACTORIES */
-            function createStopSlider(sliderElem){
-                return function() {
+            function createStopSlider(sliderElem) {
+                return function () {
                     sliderElem.data('unslider').stop();
                 }
             }
-            function createStartSlider(sliderElem){
-                return function(){
+
+            function createStartSlider(sliderElem) {
+                return function () {
                     sliderElem.data('unslider').start();
                 }
             }
-            function createPrevPanel(sliderElem){
-                return function(){
+
+            function createPrevPanel(sliderElem) {
+                return function () {
                     sliderElem.data('unslider').prev();
                 }
             }
-            function createNextPanel(sliderElem){
-                return function(){
+
+            function createNextPanel(sliderElem) {
+                return function () {
                     sliderElem.data('unslider').next();
                 }
             }
         }
-        function initializeSlides(){
 
+        function initializeSlides() {
+            nodify("turbine, ")
         }
     }
 
 
     //TODO: finish the matrix controller
     /* MatrixController makes and updates the solar power generation matrix. */
-    function MatrixController(){
+    function MatrixController() {
         var margin = {
-            top: 10, bottom: 10, left: 10, right: 10
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10
         };
         var width = 980 - margin.left - margin.right;
         var height = 300 - margin.top - margin.bottom;
@@ -1011,20 +1125,20 @@ $(document).ready(function () {
         // make sure to set the domain for color as well
         var color = d3.scale.quantize().range(['#987200', '#9b7500', '#9f7800', '#a37a00', '#a67d00', '#aa8000', '#ae8301', '#b28601', '#b58801', '#b98b01', '#bd8e02', '#c09002', '#c49403', '#c79704', '#cb9a04', '#cf9c05', '#d39f06', '#d6a207', '#daa508', '#dea80a', '#e1ab0b', '#e5ae0d', '#e9b10e', '#ecb510', '#f0b711', '#f3bb13', '#f7bd15', '#fbc117', '#fec419', '#ffc82d', '#ffcd3e', '#ffd04e', '#ffd55d', '#ffd96c', '#ffdc7a', '#ffe089', '#ffe498', '#ffe8a5']);
 
-        this.update = function update(){
+        this.update = function update() {
             initializeMatrix();
         }
 
-        function initializeMatrix(){
+        function initializeMatrix() {
             var svg = d3.select('#matrix').select("svg");
             svg.attr("width", width)
                 .attr("height", height);
 
-            color.domain([ d3.min(pc.stat.spec.kwhGen), d3.max(pc.stat.spec.kwhGen) ]);
+            color.domain([d3.min(pc.stat.spec.kwhGen), d3.max(pc.stat.spec.kwhGen)]);
 
             var boxes = svg.selectAll(".cell")
                 .data(pc.stat.spec.kwhGen)
-              .enter().append("rect")
+                .enter().append("rect")
                 .attr("width", cellSize).attr("height", cellSize)
         }
     }
@@ -1040,7 +1154,7 @@ $(document).ready(function () {
         weekBtn.addEventListener("click", pc.chartWeek.bind(pc));
         dayBtn.addEventListener("click", pc.chartDay.bind(pc));
         // TODO: finish the back button, part 2
-    //    backBtn.addEventListener("click", pc.chartBack.bind(pc));
+        //    backBtn.addEventListener("click", pc.chartBack.bind(pc));
     }
 
 });
