@@ -662,8 +662,8 @@ $(document).ready(function () {
             bottom: 40,
             left: 60
         };
-        var width = 600 - margin.left - margin.right;
-        var height = 350 - margin.top - margin.bottom;
+        var width = 550 - margin.left - margin.right;
+        var height = 425 - margin.top - margin.bottom;
         var scales = this.scales = createScalesNoDomain(height, width);
         var axes = this.axes = createAxes(scales.x, scales.y);
         var chart;
@@ -906,6 +906,8 @@ $(document).ready(function () {
             arrows: false
         };
         //An array of all hooked up sliders
+        var slides1 =[], slides2 = [], slides3 = [];
+        initializeSlides();
         var sliderList = this.sliderList = initializeSliders();
 
         /* Widget Controller Interface */
@@ -990,6 +992,9 @@ $(document).ready(function () {
                     sliderElem.data('unslider').next();
                 }
             }
+        }
+        function initializeSlides(){
+
         }
     }
 
