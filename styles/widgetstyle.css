@@ -49,3 +49,7 @@
 .small {
     font-size: 75%;
 }
+
+.slider-invis {
+    opacity: 0;
+}

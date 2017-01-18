@@ -75,18 +75,18 @@
                 <div class="element">
                     <!-- BOX ONE -->
                     <!-- This slider has to do with the selected periods -->
-                    <div id="slider1" class="wg-slider">
+                    <div id="slider1" class="wg-slider slider-invis">
                         <ul>
                             <!-- lifetime kwh gen + laptops -->
                             <li>
-                                <div id="power1" class="hbox main-center cross-center cross-stretch">
-                                    <div class="wg-left">
+                                <div id="p1" class="hbox main-center cross-center cross-stretch">
+                                    <div id="p1-left" class="wg-left">
                                         <p style="margin-top:30px;">Generated <br />
                                         <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!
                                         </p>
                                         <p class="small" style="position: static"><br />*running continuously for one hour</p>
                                     </div>
-                                    <div class="wg-right">
+                                    <div id="p1-right" class="wg-right">
                                         <p style="margin-left:50px; margin-top:30px ;">Equivalent to<br />
                                         <span class="big"><span class="lt-laptops">50</span></span> laptops!*</p>
                                     </div>
@@ -94,22 +94,30 @@
                             </li>
                             <!-- lifetime kwh gen + houses  -->
                             <li>
-                                <div id="power2" class="hbox main-center cross-center cross-stretch">
-                                    <div class="wg-left">
-                                        <p>Generated <span class="big"><span class="lt-kwhGen">xyz kwh</span></span> of energy!</p>
+                                <div id="p2" class="hbox main-center cross-center cross-stretch">
+                                    <div id="p2-left" class="wg-left">
+                                        <p>Generated
+                                        <span class="big"><span class="lt-kwhGen">xyz kwh</span></span>
+                                        of energy!</p>
+                                        <p class="small" style="position: static"><br />*based on energy expenditure of NZ houses</p>
                                     </div>
-                                    <div class="wg-right">
-                                        <p style="margin-left:40px;">enough power for <span class="big"><span id="wgc-house-min">20 houses</span></span> for one year! </p>
+                                    <div id="p2-right" class="wg-right">
+                                        <p style="margin-left:40px;">Enough power for <span class="big"><span id="wgc-house-min">20 houses</span></span> for one year! </p>
                                     </div>
                                 </div>
                             </li>
                             <li>
-                                <div id="power3" class="hbox main-center cross-center cross-stretch">
-                                    <div class="wg-left" style="min-width:45%;">
-                                        <p>Providing 92 schools with solar panels</p>
+                                <div id="p3" class="hbox main-center cross-center cross-stretch">
+                                    <div id="p3-left" class="wg-left" style="min-width:45%;">
+                                        <p>Generated <br />
+                                        <span class="big"><span class="lt-kwhGen">xyz kwh</span></span> of energy!</p>
+                                        <p class="small" style="position: static"><br />*based on donkeys and zebras</p>
                                     </div>
-                                    <div class="wg-right">
-                                        <p>Saving schools an average of $120,000 per year</p>
+                                    <div id="p3-right" class="wg-right">
+                                        <p>Enough power for
+                                        <span class="big"><span id="wgc-house-min">99 placeholders</span></span>
+                                        on a single wall!
+                                        </p>
                                     </div>
                                 </div>
                             </li>
@@ -117,7 +125,7 @@
                     </div>
                     <!-- BOX TWO -->
                     <!-- TODO: replace with relevant programme sliders -->
-                    <div id="slider2" class="wg-slider">
+                    <div id="slider2" class="wg-slider slider-invis">
                         <ul>
                             <!-- lifetime kwh gen + laptops -->
                             <li>
@@ -130,27 +138,6 @@
                                         <!-- TODO: replace w/ image -->
                                         <p style="font-size:60%">&lt;laptop img here&gt;</p>
                                         <p class="small">*running continuously for a single year</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- CO2 saved over lifetime  -->
-                            <li>
-                                <div class="hbox main-center cross-center cross-stretch">
-                                    <div class="wg-left">
-                                        <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
-                                    </div>
-                                    <div class="wg-right">
-                                        <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="hbox main-center cross-center cross-stretch">
-                                    <div class="wg-left" style="min-width:45%;">
-                                        <p>Providing 92 schools with solar panels</p>
-                                    </div>
-                                    <div class="wg-right">
-                                        <p>Saving schools an average of $120,000 per year</p>
                                     </div>
                                 </div>
                             </li>
@@ -158,33 +145,8 @@
                     </div>
                     <!-- BOX THREE -->
                     <!-- TODO: replace with relevant record sliders -->
-                    <div id="slider3" class="wg-slider">
+                    <div id="slider3" class="wg-slider slider-invis">
                         <ul>
-                            <!-- lifetime kwh gen + laptops -->
-                            <li>
-                                <div class="hbox main-center cross-center cross-stretch">
-                                    <div class="wg-left">
-                                        <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
-                                    </div>
-                                    <div class="wg-right">
-                                        <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
-                                        <!-- TODO: replace w/ image -->
-                                        <p style="font-size:60%">&lt;laptop img here&gt;</p>
-                                        <p class="small">*running continuously for a single year</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- CO2 saved over lifetime  -->
-                            <li>
-                                <div class="hbox main-center cross-center cross-stretch">
-                                    <div class="wg-left">
-                                        <p>Saved <span class="big"><span class="lt-CO2Saved">xyz t</span></span> of CO2!</p>
-                                    </div>
-                                    <div class="wg-right">
-                                        <p>Thats as heavy as <span class="lt-whales">xamt</span> blue whales!</p>
-                                    </div>
-                                </div>
-                            </li>
                             <li>
                                 <div class="hbox main-center cross-center cross-stretch">
                                     <div class="wg-left" style="min-width:45%;">
