@@ -22,15 +22,15 @@
 20 - x months of genesis energy wind turbine operating
 
 Thresholds:
-y < 50: 		10 or less
-51 < y < 250: 		11 to 4
-251 < y < 1500:		14 to 4
-1501 < y < 3000:	15 to 4, minus 8,
-3001 < y < 6000:	16 to 4, minus 8, plus 19
-6k < y < 10k:		17 to 10, plus 19
-10k < y < 100k:		19 to 11
-100k < y < 500k:	19 to 11
-500k onwards:		19 to 13
+1:  y < 50: 		10 or less
+2:  51 < y < 250: 		11 to 4
+3:  251 < y < 1500:		14 to 4
+4:  1501 < y < 3000:	15 to 4, minus 8,
+5:  3001 < y < 6000:	16 to 4, minus 8, plus 19
+6:  6k < y < 10k:		17 to 10, plus 19
+7:  10k < y < 100k:		19 to 11
+8:  100k < y < 500k:	20 to 11
+9:  500k onwards:		20 to 13
 
 
 Factoids:
