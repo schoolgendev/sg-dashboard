@@ -81,12 +81,20 @@ $(document).ready(function () {
                     kwh: 125000,
                     bg: "url('/img/laptop-wg-bg.png')",
                     lText: {
+                        margin: {
+                            top: "2px",
+                            left: "8px"
+                        },
                         up: "Generated",
                         span: "kwh",
                         down: "of energy!",
                         smallprint: "Based on Genesis Energy wind turbines"
                     },
-                    rText:  {
+                    rText: {
+                        margin: {
+                            top: "2px",
+                            left: "8px"
+                        },
                         up: "Equivalent to",
                         span: "turbines",
                         down: "spinning for a month"
@@ -199,33 +207,51 @@ $(document).ready(function () {
              These are cleared to be included in the slider. */
             threshLevel: function threshLevel(x) {
                 // level 1
-                if (x <= 50) { return slideArray(0, 10); }
+                if (x <= 50) {
+                    return slideArray(0, 10);
+                }
                 // level 2
-                if (x > 50 && x <= 250) { return slideArray(0, 11); }
+                if (x > 50 && x <= 250) {
+                    return slideArray(0, 11);
+                }
                 // level 3
-                if (x > 250 && x <= 1500 ) { return slideArray(4, 14); }
+                if (x > 250 && x <= 1500) {
+                    return slideArray(4, 14);
+                }
                 // level 4
-                if (x > 1500 && x <= 3000) { return slideArray(4, 15, null, 8); }
+                if (x > 1500 && x <= 3000) {
+                    return slideArray(4, 15, null, 8);
+                }
                 // level 5
-                if (x > 3000 && x <= 6000) { return slideArray(4, 16, 19, 8); }
+                if (x > 3000 && x <= 6000) {
+                    return slideArray(4, 16, 19, 8);
+                }
                 // level 6
-                if (x > 6000 && x <= 10000) { return slideArray(10, 17, 19); }
+                if (x > 6000 && x <= 10000) {
+                    return slideArray(10, 17, 19);
+                }
                 // level 7
-                if (x > 10000 && x <= 100000) { return slideArray(11, 19); }
+                if (x > 10000 && x <= 100000) {
+                    return slideArray(11, 19);
+                }
                 // level 8
-                if (x > 100000 && x <= 500000 ) { return slideArray(11, 20); }
+                if (x > 100000 && x <= 500000) {
+                    return slideArray(11, 20);
+                }
                 // level 9
-                if (x > 500000 ) { return slideArray(13, 20); }
+                if (x > 500000) {
+                    return slideArray(13, 20);
+                }
 
                 // returns an array of numbers with plus at end and minus taken out.
-                function slideArray(start, stop, plus, minus){
+                function slideArray(start, stop, plus, minus) {
                     slideArr = [];
-                    for (var i = start; i <= stop; i ++){
-                        if (minus === undefined || minus === null || i !== minus){
+                    for (var i = start; i <= stop; i++) {
+                        if (minus === undefined || minus === null || i !== minus) {
                             slideArr.push(i);
                         }
                     }
-                    if (plus === undefined || plus === null){
+                    if (plus === undefined || plus === null) {
                         return slideArr;
                     } else {
                         slideArr.push(plus);
@@ -676,7 +702,7 @@ $(document).ready(function () {
             }
 
             //mapName tells us what the name will be on the stat.
-            kwhGenFunc.mapName = kwhgen;
+            kwhGenFunc.mapName = "kwhGen";
             co2SavedFunc.mapName = "co2Saved";
             dateFunc.mapName = "dateString";
             xdomainFunc.mapName = "xdomain";
@@ -1026,9 +1052,13 @@ $(document).ready(function () {
             slides3 = [], // record slides
             slideReservoir1 = [], // holds all slides
             slidePool1 = []; // holds slides that can be used
-        initializeSlides();
+        //   initializeSlides();
         //An array of all hooked up sliders
         var sliderList = this.sliderList = initializeSliders();
+
+        this.preUpdate = function preUpdate() {
+            //TODO: complete preupdate, populate with a slider fade out
+        }
 
         /* Widget Controller Interface */
         //update gets all the data from SGS and re-inserts it into the sliders
@@ -1131,37 +1161,50 @@ $(document).ready(function () {
             // nodify all slides and store in slide pool using name or index
             // TODO: finish slide initialization
 
-
-            function nodify(i){
+            /* creates a node object using the index of the comparison object in the comparison
+             object array. */
+            function nodify(i, id) {
                 //TODO: finish nodify
+                // gets the comparison object
                 var cObj = sgComp.e.objects[i];
-                var leftHTMLString = compStringConcat(cObj.lText, cObj.obj);
+                // create the right side div. will replace the div with id=p2-right.
+                var rightDiv = $(document.createElement('div'))
+                    .addClass("wg-right")
+                    .css({
+                        "margin-left": cObj.rText.margin.left,
+                        "margin-top": cObj.rText.margin.top
+                    });
+                // creates the p element for the #p2-right div
                 var rightHTMLString = compStringConcat(cObj.rText, cObj.obj);
-                var li = $(document.createElement("li"));
-                var topLevelDiv = $(document.createElement('div'))
-                    .addClass("hbox main-center cross-center cross-stretch");
-                var leftDiv = $(document.createElement('div'))
-                    .addClass("wg-left");
-                var lText = $(document.createElement('p'))
-                var rText = $(document.createElement('p'));
+                rightDiv.append(rightHTMLString);
             }
 
             // returns an HTML string including all the spans and line breaks
-            function compStringConcat(cObj, className){
+            function compStringConcat(cObj, className) {
                 var r = "";
-                r += "<p>" cObj.up + "<br />";  // insert upper text, line break
-                r += spanify(cObj, className);  // insert middle text with spans
-                r += cObj.down + "</p>";        // insert bottom text with ending p tag
+                r += "<p>" + cObj.up + "<br />"; // insert upper text, line break
+                r += spanify(cObj, className); // insert middle text with spans
+                r += cObj.down + "</p>"; // insert bottom text with ending p tag
             }
 
             // returns a span element with the span text and the enclosing span elements
-            function spanify(cObj, className){
+            function spanify(cObj, className) {
                 var r = "<span class='" + className + "'>"; //span class="xyz"
-                r += "<span class='big'>"   // span class="big"
-                r += cObj.lText.span        // insert your text here
-                r += "</span></span>";      // /span /span
+                r += "<span class='big'>" // span class="big"
+                r += cObj.lText.span // insert your text here
+                r += "</span></span>"; // /span /span
                 return r;
             }
+        }
+
+        /* function constructor for slide object. Holds a node object as well as some data. */
+        function Slide(node, name, compObj) {
+            /* a DOM node */
+            this.node = node;
+            /* the span name to be replaced */
+            this.name = name;
+            /* a reference to the object holding all the data (from the sgComp.e.obj array) */
+            this.data = compObj;
         }
     }
 
