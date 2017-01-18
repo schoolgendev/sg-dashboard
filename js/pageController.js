@@ -79,7 +79,18 @@ $(document).ready(function () {
                 0: {
                     obj: "ge-wind-turbine-month",
                     kwh: 125000,
-                    bg: "url('/img/laptop-wg-bg.png')"
+                    bg: "url('/img/laptop-wg-bg.png')",
+                    lText: {
+                        up: "Generated",
+                        span: "kwh",
+                        down: "of energy!",
+                        smallprint: "Based on Genesis Energy wind turbines"
+                    },
+                    rText:  {
+                        up: "Equivalent to",
+                        span: "turbines",
+                        down: "spinning for a month"
+                    }
                 },
                 1: {
                     obj: "ge-wind-turbine-days",
@@ -1027,6 +1038,7 @@ $(document).ready(function () {
             // use sgComp.e.threshLevel(x) to get what slides to put in
             // detach all slides from top slider
             // re-attach random subset of cleared slides to the top slider
+            // replace string placeholders with up to date stats
             // TODO: implement the above update function
 
             // create string, replace span element with new span element
@@ -1120,9 +1132,35 @@ $(document).ready(function () {
             // TODO: finish slide initialization
 
 
-            function nodify(){
+            function nodify(i){
                 //TODO: finish nodify
+                var cObj = sgComp.e.objects[i];
+                var leftHTMLString = compStringConcat(cObj.lText, cObj.obj);
+                var rightHTMLString = compStringConcat(cObj.rText, cObj.obj);
+                var li = $(document.createElement("li"));
+                var topLevelDiv = $(document.createElement('div'))
+                    .addClass("hbox main-center cross-center cross-stretch");
+                var leftDiv = $(document.createElement('div'))
+                    .addClass("wg-left");
+                var lText = $(document.createElement('p'))
+                var rText = $(document.createElement('p'));
+            }
 
+            // returns an HTML string including all the spans and line breaks
+            function compStringConcat(cObj, className){
+                var r = "";
+                r += "<p>" cObj.up + "<br />";  // insert upper text, line break
+                r += spanify(cObj, className);  // insert middle text with spans
+                r += cObj.down + "</p>";        // insert bottom text with ending p tag
+            }
+
+            // returns a span element with the span text and the enclosing span elements
+            function spanify(cObj, className){
+                var r = "<span class='" + className + "'>"; //span class="xyz"
+                r += "<span class='big'>"   // span class="big"
+                r += cObj.lText.span        // insert your text here
+                r += "</span></span>";      // /span /span
+                return r;
             }
         }
     }
