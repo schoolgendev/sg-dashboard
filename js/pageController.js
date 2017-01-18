@@ -534,7 +534,7 @@ $(document).ready(function () {
          */
         this.chartBack = function chartBack() {
             // -----------------------------
-            //TODO: finish the back button!!
+            //FUTURE: finish the back button!!
             // -----------------------------
         }
 
@@ -998,7 +998,7 @@ $(document).ready(function () {
 
     }
 
-    //TODO: finish the widget controller
+
     /* WidgetController makes and updates the widget. */
     function WidgetController() {
         //A configuration object used for all sliders.
@@ -1010,9 +1010,11 @@ $(document).ready(function () {
             arrows: false
         };
         var getSliderData
-        var slides1 = [],
-            slides2 = [],
-            slides3 = [];
+        var slides1 = [], // current period slides
+            slides2 = [], // whole of schoolgen slides
+            slides3 = [], // record slides
+            slideReservoir1 = [], // holds all slides
+            slidePool1 = []; // holds slides that can be used
         initializeSlides();
         //An array of all hooked up sliders
         var sliderList = this.sliderList = initializeSliders();
@@ -1020,11 +1022,20 @@ $(document).ready(function () {
         /* Widget Controller Interface */
         //update gets all the data from SGS and re-inserts it into the sliders
         this.update = function update() {
+            // look at kwh data
+            // figure out what slides to put in top
+            // use sgComp.e.threshLevel(x) to get what slides to put in
+            // detach all slides from top slider
+            // re-attach random subset of cleared slides to the top slider
+            // TODO: implement the above update function
+
             // create string, replace span element with new span element
             var stat = pc.stat.general;
             replace(stat.egco2.total.energy / 1000000, "GWh", sgNames.lt.kwhGen.name);
             replace(stat.egco2.total.co2 / 1000, "t", sgNames.lt.CO2Saved.name);
-            //TODO: get update to insert all the object stats into the widgets
+
+            // TODO: get update to insert all the object stats into the widgets
+            // TODO: update needs to also replace stats in the record sliders too.
 
             /* utility methods */
 
@@ -1105,12 +1116,19 @@ $(document).ready(function () {
         }
 
         function initializeSlides() {
-            nodify("turbine, ")
+            // nodify all slides and store in slide pool using name or index
+            // TODO: finish slide initialization
+
+
+            function nodify(){
+                //TODO: finish nodify
+
+            }
         }
     }
 
 
-    //TODO: finish the matrix controller
+    //FUTURE: finish the matrix controller
     /* MatrixController makes and updates the solar power generation matrix. */
     function MatrixController() {
         var margin = {
@@ -1153,7 +1171,7 @@ $(document).ready(function () {
         monthBtn.addEventListener("click", pc.chartMonth.bind(pc));
         weekBtn.addEventListener("click", pc.chartWeek.bind(pc));
         dayBtn.addEventListener("click", pc.chartDay.bind(pc));
-        // TODO: finish the back button, part 2
+        // FUTURE: finish the back button, part 2
         //    backBtn.addEventListener("click", pc.chartBack.bind(pc));
     }
 
