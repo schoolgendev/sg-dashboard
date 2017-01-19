@@ -71,136 +71,452 @@ $(document).ready(function () {
     var sgComp = {
         // ENERGY: taken from rob's spreadsheet
         e: {
-            /* cut-off levels for energy levels*/
-            thresholds: [50, 250, 1500, 3000, 6000, 10000, 500000],
             /* the objects that we are comparing the energy levels to */
             objects: {
                 //object 20
                 0: {
                     obj: "ge-wind-turbine-month",
-                    kwh: 125000,
+                    val: 125000,
                     bg: "url('/img/laptop-wg-bg.png')",
                     lText: {
                         margin: {
-                            top: "2px",
-                            left: "8px"
+                            top: "30px",
+                            left: null
                         },
-                        up: "Generated",
-                        span: "kwh",
-                        down: "of energy!",
                         smallprint: "Based on Genesis Energy wind turbines"
                     },
                     rText: {
                         margin: {
-                            top: "2px",
-                            left: "8px"
+                            top: "50px",
+                            left: "30px"
                         },
                         up: "Equivalent to",
-                        span: "turbines",
+                        span: " turbines",
                         down: "spinning for a month"
                     }
                 },
                 1: {
                     obj: "ge-wind-turbine-days",
-                    kwh: 4110,
-                    bg: "url('/img/laptop-wg-bg.png')"
+                    val: 4110,
+                    bg: "url('/img/laptop-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: "Based on Genesis Energy wind turbines"
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "Equivalent to",
+                        span: " turbines",
+                        down: "spinning for a month"
+                    }
                 },
                 2: {
                     obj: "nz-generation-minutes",
-                    kwh: 102986,
-                    bg: "url('/img/nz-wg-bg.png')"
+                    val: 102986,
+                    bg: "url('/img/nz-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That could power the whole of NZ for",
+                        span: "",
+                        down: "months!"
+                    }
                 },
                 3: {
                     obj: "nz-houses-year",
-                    kwh: 7000,
-                    bg: "url('house-wg-bg.png')"
+                    val: 7000,
+                    bg: "url('house-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's enough energy to power",
+                        span: " houses",
+                        down: "in NZ for a year!"
+                    }
                 },
                 4: {
                     obj: "nz-generation-seconds",
-                    kwh: 1716,
-                    bg: "url('/img/nz-wg-bg.png')"
+                    val: 1716,
+                    bg: "url('/img/nz-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's enough energy to power",
+                        span: " houses",
+                        down: "in NZ for a year!"
+                    }
                 },
                 5: {
                     obj: "oil-barrels",
-                    kwh: 1700,
-                    bg: "url('/img/oil-wg-bg.png')"
+                    val: 1700,
+                    bg: "url('/img/oil-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "Equivalent to",
+                        span: " barrels",
+                        down: "of oil!"
+                    }
                 },
                 6: {
                     obj: "nz-houses-month",
-                    kwh: 583,
-                    bg: "url('/img/house-wg-bg.png')"
+                    val: 583,
+                    bg: "url('/img/house-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's enough energy to power",
+                        span: " houses",
+                        down: "in NZ for a month!"
+                    }
                 },
                 7: {
                     obj: "TNT-tonne",
-                    kwh: 1200,
-                    bg: "url('/img/tnt-wg-bg.png')"
+                    val: 1200,
+                    bg: "url('/img/tnt-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "Equivalent to",
+                        span: " tonnes",
+                        down: "of TNT!"
+                    }
                 },
                 8: {
+                    // note: objects beginning with km-driven must be multiplied
                     obj: "km-driven-train",
-                    kwh: 10,
-                    bg: "url('/img/train-wg-bg.png')"
+                    val: 10,
+                    bg: "url('/img/train-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: "based on Auckland's electric trains"
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "A train could travel for",
+                        span: " km",
+                        down: "on that energy!"
+                    }
                 },
                 9: {
                     obj: "tesla-battery",
-                    kwh: 90,
-                    bg: "url('/img/tesla-wg-bg.png')"
+                    val: 90,
+                    bg: "url('/img/tesla-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "You could charge your Tesla S",
+                        span: " times",
+                        down: "on that kind of energy!"
+                    }
                 },
                 // object 10
                 10: {
                     obj: "km-driven-tesla",
-                    kwh: 6.25,
-                    bg: "url('/img/tesla-wg-bg.png')"
+                    val: 6.25,
+                    bg: "url('/img/tesla-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "An electric car could travel",
+                        span: " km",
+                        down: "with that kind of power!"
+                    }
                 },
                 11: {
                     obj: "tdf-cyclist-total",
-                    kwh: 21.2,
-                    bg: "url('/img/cyclist-wg-bg.png')"
+                    val: 21.2,
+                    bg: "url('/img/cyclist-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's the amount of energy output by",
+                        span: " Tour de France cyclists",
+                        down: "over the whole course!"
+                    }
                 },
                 12: {
                     obj: "km-driven-tdf-cyclist",
-                    kwh: 0.0057,
-                    bg: "url('/img/cyclist-wg-bg.png')"
+                    val: 0.0057,
+                    bg: "url('/img/cyclist-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "A Tour de France cyclist could cycle",
+                        span: " km",
+                        down: "on that kind of power!"
+                    }
                 },
                 13: {
                     obj: "home-batt-panasonic",
-                    kwh: 0.8,
-                    bg: "url('/img/panason-wg-bg.png')"
+                    val: 0.8,
+                    bg: "url('/img/panason-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "You could recharge your Panasonic home battery",
+                        span: " times",
+                        down: "on that much energy!"
+                    }
                 },
                 14: {
                     obj: "coal-kg",
-                    kwh: 4,
-                    bg: "url('/img/coal-wg-bg.png')"
+                    val: 4,
+                    bg: "url('/img/coal-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's enough heat energy from",
+                        span: " kg",
+                        down: "of coal burned!"
+                    }
                 },
                 15: {
                     obj: "TNT-kg",
-                    kwh: 1.2,
-                    bg: "url('tnt-wg-bg.png')"
+                    val: 1.2,
+                    bg: "url('tnt-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "Equivalent to",
+                        span: " kg",
+                        down: "of TNT!"
+                    }
                 },
                 16: {
                     obj: "home-batt-enphase",
-                    kwh: 1.2,
-                    bg: "url('/img/enphase-wg-bg.png')"
+                    val: 1.2,
+                    bg: "url('/img/enphase-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: "based on a 1.2 kwh Enphase AC battery"
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "Equivalent to",
+                        span: " recharges",
+                        down: "of your Enphase home battery!"
+                    }
                 },
                 17: {
                     obj: "tdf-cyclist-40k1hr",
-                    kwh: 0.230,
-                    bg: "url('/img/cyclist-wg-bg.png')"
+                    val: 0.230,
+                    bg: "url('/img/cyclist-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: "based on cyclists going 40km/hr for 1 hour"
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "Equivalent to",
+                        span: " Tour de France cyclists",
+                        down: "cycling for 1 hour"
+                    }
                 },
                 18: {
                     obj: "batt-chromebook",
-                    kwh: 0.04,
-                    bg: "url('img/laptop-bg.png')"
+                    val: 0.04,
+                    bg: "url('img/laptop-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "Equal to recharging",
+                        span: "",
+                        down: "Chromebook batteries!"
+                    }
                 },
                 19: {
                     obj: "batt-tablet",
-                    kwh: 0.02,
-                    bg: "url('img/laptop-bg.png')"
+                    val: 0.02,
+                    bg: "url('img/laptop-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "You could recharge your tablet",
+                        span: "",
+                        down: "times!"
+                    }
                 },
                 // object 0
                 20: {
                     obj: "batt-phone",
-                    kwh: 0.01,
-                    bg: "url('img/laptop-bg.png')"
+                    val: 0.01,
+                    bg: "url('img/laptop-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "Equal to recharging your phone",
+                        span: "",
+                        down: "times!"
+                    }
                 }
             },
             /* returns an array of numbers corresponding to comparison objects.
@@ -242,49 +558,151 @@ $(document).ready(function () {
                 if (x > 500000) {
                     return slideArray(13, 20);
                 }
-
-                // returns an array of numbers with plus at end and minus taken out.
-                function slideArray(start, stop, plus, minus) {
-                    slideArr = [];
-                    for (var i = start; i <= stop; i++) {
-                        if (minus === undefined || minus === null || i !== minus) {
-                            slideArr.push(i);
-                        }
-                    }
-                    if (plus === undefined || plus === null) {
-                        return slideArr;
-                    } else {
-                        slideArr.push(plus);
-                        return slideArr;
-                    }
-                }
             }
         },
         // WEIGHT : taken from http://www.bluebulbprojects.com/measureofthings/
         w: {
-            /* weight of a cow in kg*/
-            cow: {
-                name: "cow",
-                val: 680 //one cow ~680 kg
+            objects: {
+                0: {
+                    obj: "cow",
+                    val: 680,
+                    bg: "url('/img/cow-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's as heavy as",
+                        span: " cows!",
+                        down: ""
+                    }
+                },
+                1: {
+                    obj: "car",
+                    val: 1650, //a 2009 Ford Taurus = ~1650 kg
+                    bg: "url('/img/car-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: "based on weight of 2009 Ford Taurus"
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's as heavy as",
+                        span: " cars!",
+                        down: ""
+                    }
+                },
+                2: {
+                    obj: "elephant",
+                    val: 7500, //one elephant = ~7.5 t
+                    bg: "url('/img/elephant-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: "based on weight of an African Elephant"
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's as heavy as",
+                        span: " elephants!",
+                        down: ""
+                    }
+                },
+                3: {
+                    obj: "Blue Whale",
+                    val: 104500, //one blue whale = ~104.5 t
+                    bg: "url('/img/elephant-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: "one blue whale is around 104.5 t"
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's as heavy as",
+                        span: " Blue Whales!",
+                        down: ""
+                    }
+                },
+                4: {
+                    obj: "house",
+                    val: 156000, //single level, unfurnished, 149 sq m = ~156 t
+                    bg: "url('/img/house2-wg-bg.png')",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "50px",
+                            left: "30px"
+                        },
+                        up: "That's as heavy as",
+                        span: " houses!",
+                        down: ""
+                    }
+                }
             },
-            car: {
-                name: "car",
-                val: 1650 //a 2009 Ford Taurus = ~1650 kg
-            },
-            elephant: {
-                name: "African Elephant",
-                val: 7500 //one elephant = ~7.5 t
-            },
-            bluewhale: {
-                name: "Blue Whale",
-                val: 104500 //one blue whale = ~104.5 t
-            },
-            house: {
-                name: "house",
-                val: 156000 //single level, unfurnished, 149 sq m = ~156 t
+            threshLevel: function threshLevel(x){
+                if (x <= 1000){
+                    return [0,1];
+                }
+                if (x > 1000 && x <= 50000){
+                    return [0,2];
+                }
+                if (x > 50000 && x <= 100000){
+                    return [1,2];
+                }
+                if (x > 100000 && <= 500000){
+                    return [2,4];
+                }
+                if (x > 500000){
+                    return [3,4];
+                }
             }
         }
+        // returns an array of numbers with plus at end and minus taken out.
     };
+    function slideArray(start, stop, plus, minus) {
+            slideArr = [];
+            for (var i = start; i <= stop; i++) {
+                if (minus === undefined || minus === null || i !== minus) {
+                    slideArr.push(i);
+                }
+            }
+            if (plus === undefined || plus === null) {
+                return slideArr;
+            } else {
+                slideArr.push(plus);
+                return slideArr;
+            }
+        }
     // holds time divisions. Used in the chart.
     var TimePeriod = {
         HOUR: "hour",
@@ -1050,7 +1468,10 @@ $(document).ready(function () {
         var slides1 = []; // current period slides
         var slides2 = []; // whole of schoolgen slides
         var slides3 = []; // record slides
-        var slideReservoir1 = []; // holds all slides
+        var slideReservoir1 = {
+            e: [], // slideReservoir1.e holds energy related slides for slider 1
+            w: [] // slideReservoir1.w holds carbon related slides for slider 1
+        }; // holds all slides
         var slidePool1 = []; // holds slides that can be used
         //   initializeSlides();
         //An array of all hooked up sliders
@@ -1132,6 +1553,7 @@ $(document).ready(function () {
             return sliders;
 
             /* CALLBACK FUNCTION FACTORIES */
+
             function createStopSlider(sliderElem) {
                 return function () {
                     sliderElem.data('unslider').stop();
@@ -1157,21 +1579,45 @@ $(document).ready(function () {
             }
         }
 
+        // sets up the slide reservoirs by nodifying all slide objects and
+        // storing in the slide reservoir
         function initializeSlides() {
-            // nodify all slides and store in slide reservoir using name or index
-            // TODO: finish slide initialization
-            // have an array of
+            // fill energy slide reservoir first
+            var energyArray = sgComp.e.objects;
+            // class for the div element. different between power and carbon divs.
+            var classString = "power wg-right";
+            // reference holder for what current reservoir we are filling. Crucial for
+            // fillReservoir() to work correctly.
+            var currentReservoir
+            currentReservoir = 'e'
+            // fill in slideReservoir1.e by nodifying items in sgComp.e.objects
+            energyArray.forEach(fillReservoir);
+            // repeat for carbon divs and slides.
+            var carbonArray = sgComp.w;
+            classString = "carbon wg-right";
+            currentReservoir = 'c'
+            carbonArray.forEach(fillReservoir);
 
-
+            function fillReservoir (val, i, arr) {
+                //nodify
+                var node = nodifyRight(val, classString);
+                //package
+                var slide = new Slide(node, val.obj, val);
+                //push to reservoir
+                slideReservoir1[currentReservoir].push(slide);
+            }
             /* creates a node object using the index of the comparison object in the comparison
-             object array. Returns a jquery object with the node. */
-            function nodify(i) {
+             object array, as well as a string for classes to be put in. Returns a jquery object with the node. */
+            function nodifyRight(cObj, classString) {
                 // TODO [x]: finish nodify
                 // gets the comparison object
-                var cObj = sgComp.e.objects[i];
+                if (classString === undefined) {
+                    console.error("no classes defined for node");
+                    classString = "noclass";
+                }
                 // create the right side div. will replace the div with id=p2-right.
                 var rightDiv = $(document.createElement('div'))
-                    .addClass("wg-right");
+                    .addClass(classString);
                 // creates the p element for the #p2-right div
                 var rightHTMLString = compStringConcat(cObj.rText, cObj.obj);
                 // appends the p element to the right div
@@ -1186,10 +1632,10 @@ $(document).ready(function () {
 
             /* returns an HTML string including all the spans and line breaks.
             cObj is the text object, while className is the name of the span class*/
-            function compStringConcat(cObj, className) {
+            function compStringConcat(textObject, className) {
                 var r = "";
-                r += "<p>" + cObj.up + "<br />"; // insert upper text, line break
-                r += spanify(cObj, className); // insert middle text with spans
+                r += "<p>" + textObject.up + "<br />"; // insert upper text, line break
+                r += spanify(textObject, className); // insert middle text with spans
                 r += cObj.down + "</p>"; // insert bottom text with ending p tag
                 return r;
             }
@@ -1198,7 +1644,7 @@ $(document).ready(function () {
             function spanify(cObj, className) {
                 var r = "<span class='" + className + "'>"; //span class="xyz"
                 r += "<span class='big'>" // span class="big"
-                r += cObj.lText.span // insert your text here
+                r += cObj.span // insert your text here
                 r += "</span></span>"; // /span /span
                 return r;
             }

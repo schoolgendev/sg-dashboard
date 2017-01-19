@@ -77,12 +77,12 @@
                     <!-- This slider has to do with the selected periods -->
                     <div id="slider1" class="wg-slider slider-invis">
                         <ul>
-                            <!-- lifetime kwh gen + laptops -->
+
                             <li>
                                 <div id="p1" class="hbox main-center cross-center cross-stretch">
-                                    <div id="p1-left" class="wg-left">
+                                    <div id="p1-left" class="power wg-left">
                                         <p style="margin-top:30px;">Generated <br />
-                                        <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!
+                                        <span class="big"><span class="sum-kwhGen">xyz kWh</span></span> of energy!
                                         </p>
                                         <p class="small" style="position: static"><br />*running continuously for one hour</p>
                                     </div>
@@ -92,12 +92,28 @@
                                     </div>
                                 </div>
                             </li>
-                            <!-- lifetime kwh gen + houses  -->
+
+                            <li>
+                                <div id="c1" class="hbox main-center cross-center cross-stretch">
+                                    <div id="c1-left" class="power wg-left">
+                                        <p>Saved
+                                        <span class="big"><span class="sum-co2">xyz tonnes</span></span>
+                                        of CO2!</p>
+                                        <p class="small" style="position: static"><br />*based on average weight of African Elephant</p>
+                                    </div>
+                                    <div id="p2-right" class="wg-right">
+                                        <p style="margin-left:40px;">That's as much as
+                                        <span class="big"><span id="wgc-house-min">20</span></span>
+                                         Elephants! </p>
+                                    </div>
+                                </div>
+                            </li>
+
                             <li>
                                 <div id="p2" class="hbox main-center cross-center cross-stretch">
-                                    <div id="p2-left" class="wg-left">
+                                    <div id="p2-left" class="power wg-left">
                                         <p>Generated
-                                        <span class="big"><span class="lt-kwhGen">xyz kwh</span></span>
+                                        <span class="big"><span class="sum-kwhGen">xyz kwh</span></span>
                                         of energy!</p>
                                         <p class="small" style="position: static"><br />*based on energy expenditure of NZ houses</p>
                                     </div>
@@ -106,11 +122,26 @@
                                     </div>
                                 </div>
                             </li>
+
+                            <li>
+                                <div id="c2" class="hbox main-center cross-center cross-stretch">
+                                    <div id="c2-left" class="power wg-left">
+                                        <p>Saved
+                                        <span class="big"><span class="sum-co2">xyz tonnes</span></span>
+                                        of CO2!</p>
+                                        <p class="small" style="position: static"><br />*based on energy average size of NZ house</p>
+                                    </div>
+                                    <div id="p2-right" class="wg-right">
+                                        <p style="margin-left:40px;">That's as much as <span class="big"><span id="wgc-house-min">20 houses</span></span> </p>
+                                    </div>
+                                </div>
+                            </li>
+
                             <li>
                                 <div id="p3" class="hbox main-center cross-center cross-stretch">
-                                    <div id="p3-left" class="wg-left" style="min-width:45%;">
+                                    <div id="p3-left" class="power wg-left" style="min-width:45%;">
                                         <p>Generated <br />
-                                        <span class="big"><span class="lt-kwhGen">xyz kwh</span></span> of energy!</p>
+                                        <span class="big"><span class="sum-kwhGen">xyz kwh</span></span> of energy!</p>
                                         <p class="small" style="position: static"><br />*based on donkeys and zebras</p>
                                     </div>
                                     <div id="p3-right" class="wg-right">
