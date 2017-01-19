@@ -1047,11 +1047,11 @@ $(document).ready(function () {
             arrows: false
         };
         var getSliderData
-        var slides1 = [], // current period slides
-            slides2 = [], // whole of schoolgen slides
-            slides3 = [], // record slides
-            slideReservoir1 = [], // holds all slides
-            slidePool1 = []; // holds slides that can be used
+        var slides1 = []; // current period slides
+        var slides2 = []; // whole of schoolgen slides
+        var slides3 = []; // record slides
+        var slideReservoir1 = []; // holds all slides
+        var slidePool1 = []; // holds slides that can be used
         //   initializeSlides();
         //An array of all hooked up sliders
         var sliderList = this.sliderList = initializeSliders();
@@ -1158,33 +1158,40 @@ $(document).ready(function () {
         }
 
         function initializeSlides() {
-            // nodify all slides and store in slide pool using name or index
+            // nodify all slides and store in slide reservoir using name or index
             // TODO: finish slide initialization
+            // have an array of
+
 
             /* creates a node object using the index of the comparison object in the comparison
-             object array. */
-            function nodify(i, id) {
-                //TODO: finish nodify
+             object array. Returns a jquery object with the node. */
+            function nodify(i) {
+                // TODO [x]: finish nodify
                 // gets the comparison object
                 var cObj = sgComp.e.objects[i];
                 // create the right side div. will replace the div with id=p2-right.
                 var rightDiv = $(document.createElement('div'))
-                    .addClass("wg-right")
-                    .css({
-                        "margin-left": cObj.rText.margin.left,
-                        "margin-top": cObj.rText.margin.top
-                    });
+                    .addClass("wg-right");
                 // creates the p element for the #p2-right div
                 var rightHTMLString = compStringConcat(cObj.rText, cObj.obj);
+                // appends the p element to the right div
                 rightDiv.append(rightHTMLString);
+                // updates the margins for the p element
+                rightDiv.childNodes[0].css({
+                    "margin-left": cObj.rText.margin.left,
+                    "margin-top": cObj.rText.margin.top
+                });
+                return rightDiv;
             }
 
-            // returns an HTML string including all the spans and line breaks
+            /* returns an HTML string including all the spans and line breaks.
+            cObj is the text object, while className is the name of the span class*/
             function compStringConcat(cObj, className) {
                 var r = "";
                 r += "<p>" + cObj.up + "<br />"; // insert upper text, line break
                 r += spanify(cObj, className); // insert middle text with spans
                 r += cObj.down + "</p>"; // insert bottom text with ending p tag
+                return r;
             }
 
             // returns a span element with the span text and the enclosing span elements
