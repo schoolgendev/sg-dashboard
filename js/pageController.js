@@ -72,9 +72,9 @@ $(document).ready(function () {
         // ENERGY: taken from rob's spreadsheet
         e: {
             /* the objects that we are comparing the energy levels to */
-            objects: {
+            objects: [
                 //object 20
-                0: {
+                {
                     obj: "ge-wind-turbine-month",
                     val: 125000,
                     bg: "url('/img/laptop-wg-bg.png')",
@@ -95,7 +95,7 @@ $(document).ready(function () {
                         down: "spinning for a month"
                     }
                 },
-                1: {
+                {
                     obj: "ge-wind-turbine-days",
                     val: 4110,
                     bg: "url('/img/laptop-wg-bg.png')",
@@ -116,7 +116,7 @@ $(document).ready(function () {
                         down: "spinning for a month"
                     }
                 },
-                2: {
+                {
                     obj: "nz-generation-minutes",
                     val: 102986,
                     bg: "url('/img/nz-wg-bg.png')",
@@ -137,7 +137,7 @@ $(document).ready(function () {
                         down: "months!"
                     }
                 },
-                3: {
+                {
                     obj: "nz-houses-year",
                     val: 7000,
                     bg: "url('house-wg-bg.png')",
@@ -158,7 +158,7 @@ $(document).ready(function () {
                         down: "in NZ for a year!"
                     }
                 },
-                4: {
+                {
                     obj: "nz-generation-seconds",
                     val: 1716,
                     bg: "url('/img/nz-wg-bg.png')",
@@ -179,7 +179,7 @@ $(document).ready(function () {
                         down: "in NZ for a year!"
                     }
                 },
-                5: {
+                {
                     obj: "oil-barrels",
                     val: 1700,
                     bg: "url('/img/oil-wg-bg.png')",
@@ -200,7 +200,7 @@ $(document).ready(function () {
                         down: "of oil!"
                     }
                 },
-                6: {
+                {
                     obj: "nz-houses-month",
                     val: 583,
                     bg: "url('/img/house-wg-bg.png')",
@@ -221,7 +221,7 @@ $(document).ready(function () {
                         down: "in NZ for a month!"
                     }
                 },
-                7: {
+                {
                     obj: "TNT-tonne",
                     val: 1200,
                     bg: "url('/img/tnt-wg-bg.png')",
@@ -242,7 +242,7 @@ $(document).ready(function () {
                         down: "of TNT!"
                     }
                 },
-                8: {
+                {
                     // note: objects beginning with km-driven must be multiplied
                     obj: "km-driven-train",
                     val: 10,
@@ -264,7 +264,7 @@ $(document).ready(function () {
                         down: "on that energy!"
                     }
                 },
-                9: {
+                {
                     obj: "tesla-battery",
                     val: 90,
                     bg: "url('/img/tesla-wg-bg.png')",
@@ -286,7 +286,7 @@ $(document).ready(function () {
                     }
                 },
                 // object 10
-                10: {
+                {
                     obj: "km-driven-tesla",
                     val: 6.25,
                     bg: "url('/img/tesla-wg-bg.png')",
@@ -307,7 +307,7 @@ $(document).ready(function () {
                         down: "with that kind of power!"
                     }
                 },
-                11: {
+                {
                     obj: "tdf-cyclist-total",
                     val: 21.2,
                     bg: "url('/img/cyclist-wg-bg.png')",
@@ -328,7 +328,7 @@ $(document).ready(function () {
                         down: "over the whole course!"
                     }
                 },
-                12: {
+                {
                     obj: "km-driven-tdf-cyclist",
                     val: 0.0057,
                     bg: "url('/img/cyclist-wg-bg.png')",
@@ -349,7 +349,7 @@ $(document).ready(function () {
                         down: "on that kind of power!"
                     }
                 },
-                13: {
+                {
                     obj: "home-batt-panasonic",
                     val: 0.8,
                     bg: "url('/img/panason-wg-bg.png')",
@@ -370,7 +370,7 @@ $(document).ready(function () {
                         down: "on that much energy!"
                     }
                 },
-                14: {
+                {
                     obj: "coal-kg",
                     val: 4,
                     bg: "url('/img/coal-wg-bg.png')",
@@ -391,7 +391,7 @@ $(document).ready(function () {
                         down: "of coal burned!"
                     }
                 },
-                15: {
+                {
                     obj: "TNT-kg",
                     val: 1.2,
                     bg: "url('tnt-wg-bg.png')",
@@ -412,7 +412,7 @@ $(document).ready(function () {
                         down: "of TNT!"
                     }
                 },
-                16: {
+                {
                     obj: "home-batt-enphase",
                     val: 1.2,
                     bg: "url('/img/enphase-wg-bg.png')",
@@ -433,7 +433,7 @@ $(document).ready(function () {
                         down: "of your Enphase home battery!"
                     }
                 },
-                17: {
+                {
                     obj: "tdf-cyclist-40k1hr",
                     val: 0.230,
                     bg: "url('/img/cyclist-wg-bg.png')",
@@ -454,7 +454,7 @@ $(document).ready(function () {
                         down: "cycling for 1 hour"
                     }
                 },
-                18: {
+                {
                     obj: "batt-chromebook",
                     val: 0.04,
                     bg: "url('img/laptop-bg.png')",
@@ -475,7 +475,7 @@ $(document).ready(function () {
                         down: "Chromebook batteries!"
                     }
                 },
-                19: {
+                {
                     obj: "batt-tablet",
                     val: 0.02,
                     bg: "url('img/laptop-bg.png')",
@@ -497,7 +497,7 @@ $(document).ready(function () {
                     }
                 },
                 // object 0
-                20: {
+                {
                     obj: "batt-phone",
                     val: 0.01,
                     bg: "url('img/laptop-bg.png')",
@@ -518,7 +518,7 @@ $(document).ready(function () {
                         down: "times!"
                     }
                 }
-            },
+            ],
             /* returns an array of numbers corresponding to comparison objects.
              These are cleared to be included in the slider. */
             threshLevel: function threshLevel(x) {
@@ -562,8 +562,8 @@ $(document).ready(function () {
         },
         // WEIGHT : taken from http://www.bluebulbprojects.com/measureofthings/
         w: {
-            objects: {
-                0: {
+            objects: [
+                {
                     obj: "cow",
                     val: 680,
                     bg: "url('/img/cow-wg-bg.png')",
@@ -584,7 +584,7 @@ $(document).ready(function () {
                         down: ""
                     }
                 },
-                1: {
+                {
                     obj: "car",
                     val: 1650, //a 2009 Ford Taurus = ~1650 kg
                     bg: "url('/img/car-wg-bg.png')",
@@ -605,7 +605,7 @@ $(document).ready(function () {
                         down: ""
                     }
                 },
-                2: {
+                {
                     obj: "elephant",
                     val: 7500, //one elephant = ~7.5 t
                     bg: "url('/img/elephant-wg-bg.png')",
@@ -626,7 +626,7 @@ $(document).ready(function () {
                         down: ""
                     }
                 },
-                3: {
+                {
                     obj: "Blue Whale",
                     val: 104500, //one blue whale = ~104.5 t
                     bg: "url('/img/elephant-wg-bg.png')",
@@ -647,7 +647,7 @@ $(document).ready(function () {
                         down: ""
                     }
                 },
-                4: {
+                {
                     obj: "house",
                     val: 156000, //single level, unfurnished, 149 sq m = ~156 t
                     bg: "url('/img/house2-wg-bg.png')",
@@ -668,7 +668,7 @@ $(document).ready(function () {
                         down: ""
                     }
                 }
-            },
+            ],
             threshLevel: function threshLevel(x){
                 if (x <= 1000){
                     return [0,1];
@@ -679,7 +679,7 @@ $(document).ready(function () {
                 if (x > 50000 && x <= 100000){
                     return [1,2];
                 }
-                if (x > 100000 && <= 500000){
+                if (x > 100000 && x <= 500000){
                     return [2,4];
                 }
                 if (x > 500000){
@@ -687,8 +687,8 @@ $(document).ready(function () {
                 }
             }
         }
-        // returns an array of numbers with plus at end and minus taken out.
     };
+    // returns an array of numbers with plus at end and minus taken out.
     function slideArray(start, stop, plus, minus) {
             slideArr = [];
             for (var i = start; i <= stop; i++) {
@@ -1142,6 +1142,7 @@ $(document).ready(function () {
 
             // additional field: the sum of the kwh
             pc.stat.spec.kwhSum = d3.sum(pc.stat.spec.kwhGen).toPrecision(4);
+            pc.stat.spec.co2Sum = d3.sum(pc.stat.spec.co2Saved).toPrecision(4);
 
             console.log("compile specific data complete");
             console.log(pc.stat);
@@ -1472,39 +1473,82 @@ $(document).ready(function () {
             e: [], // slideReservoir1.e holds energy related slides for slider 1
             w: [] // slideReservoir1.w holds carbon related slides for slider 1
         }; // holds all slides
-        var slidePool1 = []; // holds slides that can be used
-        //   initializeSlides();
+        var slidePool1 = {
+            e: [],
+            w: []
+        }; // holds slides that can be used
+        initializeSlides();
         //An array of all hooked up sliders
         var sliderList = this.sliderList = initializeSliders();
 
         this.preUpdate = function preUpdate() {
             //TODO: complete preupdate, populate with a slider fade out
+            //clear out slide pool
         }
 
         /* Widget Controller Interface */
         //update gets all the data from SGS and re-inserts it into the sliders
         this.update = function update() {
-            // look at kwh data
-            // figure out what slides to put in top
-            // use sgComp.e.threshLevel(x) to get what slides to put in
-            // detach all slides from top slider
-            // re-attach random subset of cleared slides to the top slider
-            // replace string placeholders with up to date stats
-            // TODO: implement the above update function
+            var sumKwh = pc.stat.kwhSum;    // sum of kwh data in current time period
+            var sumCO2 = pc.stat.co2Sum;    // sum of co2 data in current time period
+
+            // holds the indices of suitable slides for slidePool.e (energy related).
+            // the slide pool itself however is not yet repopulated.
+            var clearedSlideIndicesKWH = sgComp.e.threshLevel(sumKwh);
+            // array of indices of suitable slides for slidePool.w (weight/carbon related)
+            var clearedSlideIndicesCO2 = sgComp.w.threshLevel(co2Sum);
+
+            //   repopulate the slide pool with a subset of suitable slides from the reservoir
+            var fillingPool = 'e'   // choose which pool of slides to repopulate
+            slidePool1.e = [];      // clear out the pool before refilling it
+            clearedSlideIndicesKWH.forEach(reservoirToPool);    // repopulates the pool
+            fillingPool = 'w'
+            slidePool1.w = [];
+            clearedSlideIndicesCO2.forEach(reservoirToPool);
+
+            // Array with div ids (p1-right, p2-right etc) - will be written onto
+            // the node later using attr()
+            var powerIdArray = ["p1", "p2", "p3", "p4", "p5"];
+            var carbonIdArray = ["c1", "c2"];
+
+            // Select 5 slides in the power pool and 2 in the carbon pool, at random.
+
+            // powerNodes has a random selection of 5 power-related SlideContainers.
+            var powerNodes = getRandomNodes(5, slidePool1.e);
+            // carbonNodes has a random selection of 2 CO2-related SlideContainers.
+            var carbonNodes = getRandomNodes(2, slidePool1.w);
+
+            // required for divReplacer to work properly
+            var currentSlideArray = powerNodes;
+            // replaces each node in the DOM using the powerIdArray, divReplacer, and the currentSlideArray variable.
+            powerIdArray.forEach(divReplacer);
+            currentSlideArray = carbonNodes;
+            carbonIdArray.forEach(divReplacer);
+
+            // TODO: create a fixedNodes array of nodes that are always present
+            // TODO: replace all the placeholder strings dynamically.
+            // use powerNodes, carbonNodes, and fixedNodes to replace strings
+
+            // replace string placeholders with up to date stats for ALL SLIDERS
+
 
             // create string, replace span element with new span element
-            var stat = pc.stat.general;
+      /*      var stat = pc.stat.general;
             replace(stat.egco2.total.energy / 1000000, "GWh", sgNames.lt.kwhGen.name);
             replace(stat.egco2.total.co2 / 1000, "t", sgNames.lt.CO2Saved.name);
-
+*/
             // TODO: get update to insert all the object stats into the widgets
             // TODO: update needs to also replace stats in the record sliders too.
 
             /* utility methods */
 
+            function replaceAllSpans(){
+                // TODO
+            }
+
             // Replaces a given span (identified by class name) with a new span,
             //  where the inner html is the value followed by a unit.
-            function replace(value, unit, spanClassName) {
+            function replaceSpan(value, unit, spanClassName) {
                 // create replacer string
                 var replacer = '<span class="' + undot(spanClassName) + '">';
                 replacer += value.toPrecision(3) + ' ' + unit;
@@ -1518,6 +1562,52 @@ $(document).ready(function () {
                     return spanClassName.substr(1);
                 }
                 return spanClassName;
+            }
+            // takes slide e (where e is from array a) from a reservoir and inserts them into pool[i].
+            // the reservoir and pool are demarcated by a variable, fillingPool.
+            function reservoirToPool (e, i, a){
+                // copy reference from slideReservoir to slidePool for each index
+                slidePool1[fillingPool][i] = slideReservoir1[fillingPool][e];
+            }
+
+            // takes an array of objects and an argument x. Returns an array with x elements
+            // from the array taken randomly.
+            function getRandomNodes(x, array) {
+                // create an array randArray of length = array.length
+                let randArray = range(0, array.length - 1);
+                // shuffle randArray
+                for (var i = 0; i < randArray.length; i++){
+                    // select random number from i to length
+                    let z = Math.random() * (randArray.length - 1 - i);
+                    // swap with i
+                    swap(randArray, z, i);
+                }
+
+                // deal out the nodes
+                var returnable = [];
+                for (var i = 0; i < x; i ++) {
+                    returnable.push (array[v]);
+                }
+                return returnable;
+            }
+
+            // function handler - needs currentSlideArray to work
+            function divReplacer (v, i, a){
+                // get the nodes to replace - these are div elements (p1, p2, p3...)
+                var nodeParent = document.getElementById(v);
+                var nodeToReplace = document.getElementById( v + '-right' );
+                // check that nodeToReplace exists
+                if (nodeToReplace === null ) {
+                    console.error("Couldn't find node");
+                    return;
+                }
+                // remove old node, attach new node
+                nodeParent.removeChild( nodeToReplace );
+                nodeParent.appendChild( powerNodes[i].node );
+                // rewrite the id to the node, replacing whatever id was attached to that node previously
+                $(currentSlideArray[i].node).attr("id", v + "-right");
+                // sets the background of the parent node
+                nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
             }
         }
 
@@ -1588,21 +1678,22 @@ $(document).ready(function () {
             var classString = "power wg-right";
             // reference holder for what current reservoir we are filling. Crucial for
             // fillReservoir() to work correctly.
-            var currentReservoir
-            currentReservoir = 'e'
+            var currentReservoir;
+            currentReservoir = 'e';
             // fill in slideReservoir1.e by nodifying items in sgComp.e.objects
             energyArray.forEach(fillReservoir);
             // repeat for carbon divs and slides.
-            var carbonArray = sgComp.w;
+            var carbonArray = sgComp.w.objects;
             classString = "carbon wg-right";
-            currentReservoir = 'c'
+            currentReservoir = 'w'
+            console.log(carbonArray);
             carbonArray.forEach(fillReservoir);
 
             function fillReservoir (val, i, arr) {
                 //nodify
                 var node = nodifyRight(val, classString);
                 //package
-                var slide = new Slide(node, val.obj, val);
+                var slide = new SlideContainer(node, val.obj, val);
                 //push to reservoir
                 slideReservoir1[currentReservoir].push(slide);
             }
@@ -1616,18 +1707,18 @@ $(document).ready(function () {
                     classString = "noclass";
                 }
                 // create the right side div. will replace the div with id=p2-right.
-                var rightDiv = $(document.createElement('div'))
+                var $rightDiv = $(document.createElement('div'))
                     .addClass(classString);
                 // creates the p element for the #p2-right div
                 var rightHTMLString = compStringConcat(cObj.rText, cObj.obj);
                 // appends the p element to the right div
-                rightDiv.append(rightHTMLString);
+                $rightDiv.append(rightHTMLString);
                 // updates the margins for the p element
-                rightDiv.childNodes[0].css({
+                $($rightDiv[0].childNodes).css({
                     "margin-left": cObj.rText.margin.left,
                     "margin-top": cObj.rText.margin.top
                 });
-                return rightDiv;
+                return $rightDiv;
             }
 
             /* returns an HTML string including all the spans and line breaks.
@@ -1636,7 +1727,7 @@ $(document).ready(function () {
                 var r = "";
                 r += "<p>" + textObject.up + "<br />"; // insert upper text, line break
                 r += spanify(textObject, className); // insert middle text with spans
-                r += cObj.down + "</p>"; // insert bottom text with ending p tag
+                r += textObject.down + "</p>"; // insert bottom text with ending p tag
                 return r;
             }
 
@@ -1650,8 +1741,8 @@ $(document).ready(function () {
             }
         }
 
-        /* function constructor for slide object. Holds a node object as well as some data. */
-        function Slide(node, name, compObj) {
+        /* function constructor for slide container. Holds a node object as well as some data. */
+        function SlideContainer(node, name, compObj) {
             /* a DOM node */
             this.node = node;
             /* the span name to be replaced */
@@ -1707,6 +1798,23 @@ $(document).ready(function () {
         dayBtn.addEventListener("click", pc.chartDay.bind(pc));
         // FUTURE: finish the back button, part 2
         //    backBtn.addEventListener("click", pc.chartBack.bind(pc));
+    }
+
+    /* Returns an array from start to stop, including start and stop. */
+    function range(start, stop){
+        var r = [];
+        for (var i = start; i <= stop; i ++){
+            r.push(i);
+        }
+        return r;
+    }
+
+    /* r is the array, i and x are elements you want to swap */
+    function swap(r, i, j){
+        let x = r[i];
+        r[i] = r[j];
+        r[j] = x;
+        return;
     }
 
 });
