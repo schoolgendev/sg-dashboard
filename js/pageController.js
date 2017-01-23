@@ -77,7 +77,7 @@ $(document).ready(function () {
                 {
                     obj: "ge-wind-turbine-month",
                     val: 125000,
-                    bg: "url('/img/laptop-wg-bg.png')",
+                    bg: "url('img/laptop-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -98,7 +98,7 @@ $(document).ready(function () {
                 {
                     obj: "ge-wind-turbine-days",
                     val: 4110,
-                    bg: "url('/img/laptop-wg-bg.png')",
+                    bg: "url('img/laptop-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -119,7 +119,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-generation-minutes",
                     val: 102986,
-                    bg: "url('/img/nz-wg-bg.png')",
+                    bg: "url('img/nz-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -140,7 +140,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-houses-year",
                     val: 7000,
-                    bg: "url('house-wg-bg.png')",
+                    bg: "url('img/house-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -161,7 +161,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-generation-seconds",
                     val: 1716,
-                    bg: "url('/img/nz-wg-bg.png')",
+                    bg: "url('img/nz-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -183,7 +183,7 @@ $(document).ready(function () {
 /*                {
                     obj: "oil-barrels",
                     val: 1700,
-                    bg: "url('/img/oil-wg-bg.png')",
+                    bg: "url('img/oil-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -204,7 +204,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-houses-month",
                     val: 583,
-                    bg: "url('/img/house-wg-bg.png')",
+                    bg: "url('img/house-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -225,7 +225,7 @@ $(document).ready(function () {
                 {
                     obj: "TNT-tonne",
                     val: 1200,
-                    bg: "url('/img/tnt-wg-bg.png')",
+                    bg: "url('img/tnt-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -247,7 +247,7 @@ $(document).ready(function () {
                     // note: objects beginning with km-driven must be multiplied
                     obj: "km-driven-train",
                     val: 10,
-                    bg: "url('/img/train-wg-bg.png')",
+                    bg: "url('img/train-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -268,7 +268,7 @@ $(document).ready(function () {
                 {
                     obj: "tesla-battery",
                     val: 90,
-                    bg: "url('/img/tesla-wg-bg.png')",
+                    bg: "url('img/tesla-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -290,7 +290,7 @@ $(document).ready(function () {
                 {
                     obj: "km-driven-tesla",
                     val: 6.25,
-                    bg: "url('/img/tesla-wg-bg.png')",
+                    bg: "url('img/tesla-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -311,7 +311,7 @@ $(document).ready(function () {
                 {
                     obj: "tdf-cyclist-total",
                     val: 21.2,
-                    bg: "url('/img/cyclist-wg-bg.png')",
+                    bg: "url('img/cyclist-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -332,7 +332,7 @@ $(document).ready(function () {
                 {
                     obj: "km-driven-tdf-cyclist",
                     val: 0.0057,
-                    bg: "url('/img/cyclist-wg-bg.png')",
+                    bg: "url('img/cyclist-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -353,7 +353,7 @@ $(document).ready(function () {
                 {
                     obj: "home-batt-panasonic",
                     val: 0.8,
-                    bg: "url('/img/panason-wg-bg.png')",
+                    bg: "url('img/panason-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -374,7 +374,7 @@ $(document).ready(function () {
                 {
                     obj: "coal-kg",
                     val: 4,
-                    bg: "url('/img/coal-wg-bg.png')",
+                    bg: "url('img/coal-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -416,7 +416,7 @@ $(document).ready(function () {
                 {
                     obj: "home-batt-enphase",
                     val: 1.2,
-                    bg: "url('/img/enphase-wg-bg.png')",
+                    bg: "url('img/enphase-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -437,7 +437,7 @@ $(document).ready(function () {
                 {
                     obj: "tdf-cyclist-40k1hr",
                     val: 0.230,
-                    bg: "url('/img/cyclist-wg-bg.png')",
+                    bg: "url('img/cyclist-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -567,7 +567,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-cow",
                     val: 680,
-                    bg: "url('/img/cow-wg-bg.png')",
+                    bg: "url('img/cow-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -588,7 +588,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-car",
                     val: 1650, //a 2009 Ford Taurus = ~1650 kg
-                    bg: "url('/img/car-wg-bg.png')",
+                    bg: "url('img/car-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -609,7 +609,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-elephant",
                     val: 7500, //one elephant = ~7.5 t
-                    bg: "url('/img/elephant-wg-bg.png')",
+                    bg: "url('img/elephant-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -630,7 +630,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-blue-whale",
                     val: 104500, //one blue whale = ~104.5 t
-                    bg: "url('/img/elephant-wg-bg.png')",
+                    bg: "url('img/elephant-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
@@ -651,7 +651,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-house",
                     val: 156000, //single level, unfurnished, 149 sq m = ~156 t
-                    bg: "url('/img/house2-wg-bg.png')",
+                    bg: "url('img/house2-wg-bg.png')",
                     lText: {
                         margin: {
                             top: "30px",
