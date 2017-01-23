@@ -565,7 +565,7 @@ $(document).ready(function () {
         w: {
             objects: [
                 {
-                    obj: "cow",
+                    obj: "wg-cow",
                     val: 680,
                     bg: "url('/img/cow-wg-bg.png')",
                     lText: {
@@ -586,7 +586,7 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    obj: "car",
+                    obj: "wg-car",
                     val: 1650, //a 2009 Ford Taurus = ~1650 kg
                     bg: "url('/img/car-wg-bg.png')",
                     lText: {
@@ -607,7 +607,7 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    obj: "elephant",
+                    obj: "wg-elephant",
                     val: 7500, //one elephant = ~7.5 t
                     bg: "url('/img/elephant-wg-bg.png')",
                     lText: {
@@ -628,7 +628,7 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    obj: "Blue Whale",
+                    obj: "wg-blue-whale",
                     val: 104500, //one blue whale = ~104.5 t
                     bg: "url('/img/elephant-wg-bg.png')",
                     lText: {
@@ -649,7 +649,7 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    obj: "house",
+                    obj: "wg-house",
                     val: 156000, //single level, unfurnished, 149 sq m = ~156 t
                     bg: "url('/img/house2-wg-bg.png')",
                     lText: {
