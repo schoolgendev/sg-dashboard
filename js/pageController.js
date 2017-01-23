@@ -1490,14 +1490,12 @@ $(document).ready(function () {
         /* Widget Controller Interface */
         //update gets all the data from SGS and re-inserts it into the sliders
         this.update = function update() {
-            var sumKwh = pc.stat.kwhSum;    // sum of kwh data in current time period
-            var sumCO2 = pc.stat.co2Sum;    // sum of co2 data in current time period
 
             // holds the indices of suitable slides for slidePool.e (energy related).
             // the slide pool itself however is not yet repopulated.
-            var clearedSlideIndicesKWH = sgComp.e.threshLevel(sumKwh);
+            var clearedSlideIndicesKWH = sgComp.e.threshLevel(pc.stat.spec.kwhSum);
             // array of indices of suitable slides for slidePool.w (weight/carbon related)
-            var clearedSlideIndicesCO2 = sgComp.w.threshLevel(co2Sum);
+            var clearedSlideIndicesCO2 = sgComp.w.threshLevel(pc.stat.spec.co2Sum);
 
             //   repopulate the slide pool with a subset of suitable slides from the reservoir
             var fillingPool = 'e'   // choose which pool of slides to repopulate
@@ -1514,9 +1512,9 @@ $(document).ready(function () {
 
             // Select 5 slides in the power pool and 2 in the carbon pool, at random.
 
-            // powerNodes has a random selection of 5 power-related SlideContainers.
+            // store a random selection of 5 power-related SlideContainers into powerNodes.
             var powerNodes = getRandomNodes(5, slidePool1.e);
-            // carbonNodes has a random selection of 2 CO2-related SlideContainers.
+            // store a random selection of 2 CO2-related SlideContainers into carbonNodes.
             var carbonNodes = getRandomNodes(2, slidePool1.w);
             // fixedNodes has all the fixed nodes as slides.
 
@@ -1580,15 +1578,18 @@ $(document).ready(function () {
                 // shuffle randArray
                 for (var i = 0; i < randArray.length; i++){
                     // select random number from i to length
-                    let z = Math.random() * (randArray.length - 1 - i);
+                    let z = Math.trunc(i + Math.random() * (randArray.length - 1 - i));
                     // swap with i
                     swap(randArray, z, i);
                 }
+                console.log("shuffledArray")
+                console.log(randArray)
 
                 // deal out the nodes
                 var returnable = [];
                 for (var i = 0; i < x; i ++) {
-                    returnable.push (array[v]);
+                    var nextSlide = array[randArray[i]];
+                    returnable.push (nextSlide);
                 }
                 return returnable;
             }
@@ -1604,8 +1605,9 @@ $(document).ready(function () {
                     return;
                 }
                 // remove old node, attach new node
-                nodeParent.removeChild( nodeToReplace );
-                nodeParent.appendChild( powerNodes[i].node );
+                nodeParent.removeChild(nodeToReplace);
+                console.log(currentSlideArray)
+                $(nodeParent).append( currentSlideArray[i].node );
                 // rewrite the id to the node, replacing whatever id was attached to that node previously
                 $(currentSlideArray[i].node).attr("id", v + "-right");
                 // sets the background of the parent node
