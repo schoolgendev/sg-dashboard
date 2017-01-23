@@ -75,9 +75,8 @@
                 <div class="element">
                     <!-- BOX ONE -->
                     <!-- This slider has to do with the selected periods -->
-                    <div id="slider1" class="wg-slider slider-invis">
+                    <div id="slider1" class="wg-slider">
                         <ul>
-
                             <li>
                                 <div id="p1" class="hbox main-center cross-center cross-stretch">
                                     <div id="p1-left" class="power wg-left">
@@ -109,7 +108,7 @@
                                 </div>
                             </li>
 
-                             <li>
+                            <li>
                                 <div id="p2" class="hbox main-center cross-center cross-stretch">
                                     <div id="p2-left" class="power wg-left" style="min-width:45%;">
                                         <p>Generated <br />
@@ -169,7 +168,7 @@
                                 </div>
                             </li>
 
-                             <li>
+                            <li>
                                 <div id="p5" class="hbox main-center cross-center cross-stretch">
                                     <div id="p5-left" class="power wg-left" style="min-width:45%;">
                                         <p>Generated <br />
@@ -189,56 +188,125 @@
                     </div>
                     <!-- BOX TWO -->
                     <!-- TODO: replace with relevant programme sliders -->
-                    <div id="slider2" class="wg-slider slider-invis">
+                    <div class="wg-overlay"><p>Over the last eight years of Schoolgen...</p></div>
+                    <div id="slider2" class="wg-slider lt-gen">
                         <ul>
-                            <!-- lifetime kwh gen + laptops -->
+                            <!-- lifetime kwh gen + houses -->
                             <li>
                                 <div class="hbox main-center cross-center cross-stretch">
                                     <div class="wg-left">
-                                        <p>Generated <span class="big"><span class="lt-kwhGen">xyz kWh</span></span> of energy!</p>
+                                        <p class="">...we've generated
+                                        <span class="big"><span class="lt-kwhGen">xyz kWh</span></span>
+                                        of energy...</p>
                                     </div>
                                     <div class="wg-right">
-                                        <p>That's <span class="lt-laptops">xyz</span> laptops!</p>
-                                        <!-- TODO: replace w/ image -->
-                                        <p style="font-size:60%">&lt;laptop img here&gt;</p>
-                                        <p class="small">*running continuously for a single year</p>
+                                        <p>(that's x houses powered for a month!)</p>
                                     </div>
                                 </div>
                             </li>
+
+                            <!-- lifetime CO2 saved -->
+                            <li>
+                                <div class="hbox main-center cross-center cross-stretch">
+                                    <div class="wg-left">
+                                        <p class="">...we've saved
+                                        <span class="big"><span class="lt-kwhGen">xyz tonnes</span></span>
+                                        of CO2 from polluting the air...</p>
+                                    </div>
+                                    <div class="wg-right">
+                                        <p>(that's as heavy as fifty elephants!)</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- schools provided with stuff -->
+                             <li>
+                                <div class="hbox main-center cross-center cross-stretch lt-gen">
+                                    <div class="wg-left">
+                                        <p class="">...and we've provided
+                                        <span class="big"><span class="lt-kwhGen">92 schools</span></span>
+                                        with free solar technology</p>
+                                    </div>
+                                    <div class="wg-right">
+                                        <p>Saving them more than $120,000 each year in power bills!</p>
+                                    </div>
+                                </div>
+                            </li>
+
                         </ul>
                     </div>
                     <!-- BOX THREE -->
                     <!-- TODO: replace with relevant record sliders -->
-                    <div id="slider3" class="wg-slider slider-invis">
+                    <div class="wg-overlay"><p>Record-breaking days and schools</p></div>
+                    <div id="slider3" class="wg-slider record-gen">
                         <ul>
+                            <!-- record schoolgen day -->
                             <li>
                                 <div class="hbox main-center cross-center cross-stretch">
                                     <div class="wg-left" style="min-width:45%;">
-                                        <p>Providing 92 schools with solar panels</p>
+                                        <p>Record Schoolgen day:<br />
+                                        <span id="record-day-whole-programme"><span class="big">20 Dec 2016</span></span>
+                                        </p>
                                     </div>
                                     <div class="wg-right">
-                                        <p>Saving schools an average of $120,000 per year</p>
+                                        <p><span class="big"><span id="record-day-generation">2837 KWH</span></span>
+                                        of energy generated</p>
                                     </div>
                                 </div>
                             </li>
+
+                            <!-- record school: last hour -->
+                            <li>
+                                <div class="hbox main-center cross-center cross-stretch">
+                                    <div class="wg-left" style="min-width:45%;">
+                                        <p>Best school - past hour:
+                                        <span id="record-day-whole-programme">Takapuna Normal Intermediate School - 16.8 kW</span>
+                                        </p>
+                                    </div>
+                                    <div class="wg-right">
+                                        <p><span class="big">11.34 KWH</span>
+                                        of energy generated over the past hour!</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                              <!-- record school last week -->
+                             <li>
+                                <div class="hbox main-center cross-center cross-stretch">
+                                    <div class="wg-left" style="min-width:45%;">
+                                        <p>Best school - past week:
+                                        <span id="record-day-whole-programme">Otonga Primary - 30 kW</span>
+                                        </p>
+                                    </div>
+                                    <div class="wg-right">
+                                        <p><span class="big">984 KWH</span>
+                                        of energy generated over the last 7 days!</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- record school: last year -->
+                            <li>
+                                <div class="hbox main-center cross-center cross-stretch">
+                                    <div class="wg-left" style="min-width:45%;">
+                                        <p>Best school - past year:
+                                        <span id="record-day-whole-programme">Rawhiti Primary - 20 kW</span>
+                                        </p>
+                                    </div>
+                                    <div class="wg-right">
+                                        <p><span class="big">26076 KWH</span>
+                                        of energy generated</p>
+                                    </div>
+                                </div>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
                 <div class="element">
                     <div id="matrix" style="width:960px; height:150px; border: 2px dotted red">
+                        <p style="position: absolute;"> This div reserved for the power generation matrix.</p>
                         <svg></svg>
-                        <p> This div reserved for the power generation matrix.</p>
-                    </div>
-                </div>
-                <div class="element">
-                    <div style="width:200px">
-                        <p> more content!</p>
-                    </div>
-                </div>
-                <div class="element">
-                    <div style="width:300px">
-                        <p> even more content!</p>
-                        <p> Goes to a maximum of 1000px width (I think).</p>
                     </div>
                 </div>
             </div>

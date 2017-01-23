@@ -53,3 +53,39 @@
 .slider-invis {
     opacity: 0;
 }
+
+.wg-overlay {
+    width: 265px;
+    position: absolute;
+    margin-left: 50%;
+    margin-top: 5px;
+    left: 133px;
+    z-index: 10;
+    background-color: #f25724;
+    color: bisque;
+    padding: 8px;
+    border-radius: 0px 0px 12px 12px;
+}
+
+.wg-overlay p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.lt-gen p {
+    margin-top: 40px;
+}
+
+.record-gen p {
+    margin-top: 40px;
+}
+
+#record-day-whole-programme {
+    font-size: 110%;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+

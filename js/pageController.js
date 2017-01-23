@@ -179,7 +179,8 @@ $(document).ready(function () {
                         down: "in NZ for a year!"
                     }
                 },
-                {
+                // object 15
+/*                {
                     obj: "oil-barrels",
                     val: 1700,
                     bg: "url('/img/oil-wg-bg.png')",
@@ -199,7 +200,7 @@ $(document).ready(function () {
                         span: " barrels",
                         down: "of oil!"
                     }
-                },
+                },  */
                 {
                     obj: "nz-houses-month",
                     val: 583,
@@ -536,27 +537,27 @@ $(document).ready(function () {
                 }
                 // level 4
                 if (x > 1500 && x <= 3000) {
-                    return slideArray(4, 15, null, 8);
+                    return slideArray(4, 14, null, 8);
                 }
                 // level 5
                 if (x > 3000 && x <= 6000) {
-                    return slideArray(4, 16, 19, 8);
+                    return slideArray(4, 15, 18, 8);
                 }
                 // level 6
                 if (x > 6000 && x <= 10000) {
-                    return slideArray(10, 17, 19);
+                    return slideArray(10, 16, 18);
                 }
                 // level 7
                 if (x > 10000 && x <= 100000) {
-                    return slideArray(11, 19);
+                    return slideArray(11, 18);
                 }
                 // level 8
                 if (x > 100000 && x <= 500000) {
-                    return slideArray(11, 20);
+                    return slideArray(11, 19);
                 }
                 // level 9
                 if (x > 500000) {
-                    return slideArray(13, 20);
+                    return slideArray(13, 19);
                 }
             }
         },
@@ -1517,6 +1518,7 @@ $(document).ready(function () {
             var powerNodes = getRandomNodes(5, slidePool1.e);
             // carbonNodes has a random selection of 2 CO2-related SlideContainers.
             var carbonNodes = getRandomNodes(2, slidePool1.w);
+            // fixedNodes has all the fixed nodes as slides.
 
             // required for divReplacer to work properly
             var currentSlideArray = powerNodes;
