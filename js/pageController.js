@@ -87,7 +87,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equivalent to",
@@ -108,7 +108,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equivalent to",
@@ -129,7 +129,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That could power the whole of NZ for",
@@ -150,7 +150,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's enough energy to power",
@@ -171,7 +171,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's enough energy to power",
@@ -193,7 +193,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equivalent to",
@@ -214,7 +214,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's enough energy to power",
@@ -235,7 +235,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equivalent to",
@@ -257,7 +257,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "A train could travel for",
@@ -278,7 +278,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "You could charge your Tesla S",
@@ -300,7 +300,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "An electric car could travel",
@@ -321,7 +321,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's the amount of energy output by",
@@ -342,7 +342,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "A Tour de France cyclist could cycle",
@@ -363,7 +363,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "You could recharge your Panasonic home battery",
@@ -384,7 +384,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's enough heat energy from",
@@ -405,7 +405,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equivalent to",
@@ -426,7 +426,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equivalent to",
@@ -447,7 +447,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equivalent to",
@@ -468,7 +468,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equal to recharging",
@@ -489,7 +489,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "You could recharge your tablet",
@@ -511,7 +511,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "Equal to recharging your phone",
@@ -577,7 +577,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's as heavy as",
@@ -598,7 +598,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's as heavy as",
@@ -619,7 +619,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's as heavy as",
@@ -640,7 +640,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's as heavy as",
@@ -661,7 +661,7 @@ $(document).ready(function () {
                     },
                     rText: {
                         margin: {
-                            top: "50px",
+                            top: "20px",
                             left: "30px"
                         },
                         up: "That's as heavy as",
@@ -1461,7 +1461,7 @@ $(document).ready(function () {
         var sliderConfig = this.sliderConfig = {
             autoplay: true,
             delay: 5000,
-            infinite: true,
+            infinite: false,
             nav: false,
             arrows: false
         };
@@ -1610,7 +1610,8 @@ $(document).ready(function () {
                 $(currentSlideArray[i].node).attr("id", v + "-right");
                 // sets the background of the parent node
                 nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
-                $('#slider1').unslider('calculateSlides');
+                //$('#slider1').data('unslider').init(sliderConfig);
+
             }
         }
 
