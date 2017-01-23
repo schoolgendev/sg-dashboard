@@ -738,7 +738,6 @@ $(document).ready(function () {
     var backBtn = document.getElementById("btn-back");
     bindButtons();
     var cc = new ChartController();
-    console.log(cc);
     var wc = new WidgetController();
     pc.register(cc);
     pc.register(wc);
@@ -1514,9 +1513,11 @@ $(document).ready(function () {
 
             // store a random selection of 5 power-related SlideContainers into powerNodes.
             var powerNodes = getRandomNodes(5, slidePool1.e);
+            console.log(powerNodes);
             // store a random selection of 2 CO2-related SlideContainers into carbonNodes.
             var carbonNodes = getRandomNodes(2, slidePool1.w);
             // fixedNodes has all the fixed nodes as slides.
+            var fixedNodes; //TODO: create fixedNodes - an array of nodes that are always present
 
             // required for divReplacer to work properly
             var currentSlideArray = powerNodes;
@@ -1525,25 +1526,25 @@ $(document).ready(function () {
             currentSlideArray = carbonNodes;
             carbonIdArray.forEach(divReplacer);
 
-            // TODO: create a fixedNodes array of nodes that are always present
-            // TODO: replace all the placeholder strings dynamically.
-            // use powerNodes, carbonNodes, and fixedNodes to replace strings
+            replaceAllSpans();
+            resetSliderHandlers();
 
-            // replace string placeholders with up to date stats for ALL SLIDERS
-
-
-            // create string, replace span element with new span element
-      /*      var stat = pc.stat.general;
-            replace(stat.egco2.total.energy / 1000000, "GWh", sgNames.lt.kwhGen.name);
-            replace(stat.egco2.total.co2 / 1000, "t", sgNames.lt.CO2Saved.name);
-*/
-            // TODO: get update to insert all the object stats into the widgets
-            // TODO: update needs to also replace stats in the record sliders too.
 
             /* utility methods */
 
             function replaceAllSpans(){
-                // TODO
+                // TODO: replace all spans function
+            }
+
+            /* Resets handlers for slider 1 (the top slider with the dynamic slides) */
+            function resetSliderHandlers(){
+                var scf = new SliderCallbackFactory();
+                var slider = $('#slider1');
+                var sliderRight = [].slice.call(slider[0].getElementsByClassName("wg-right"));
+                // only the right div was replaced - only redo right div
+                sliderRight.forEach(function (wgRight) {
+                    wgRight.addEventListener("click", scf.next(slider));
+                });
             }
 
             // Replaces a given span (identified by class name) with a new span,
@@ -1582,8 +1583,6 @@ $(document).ready(function () {
                     // swap with i
                     swap(randArray, z, i);
                 }
-                console.log("shuffledArray")
-                console.log(randArray)
 
                 // deal out the nodes
                 var returnable = [];
@@ -1606,12 +1605,12 @@ $(document).ready(function () {
                 }
                 // remove old node, attach new node
                 nodeParent.removeChild(nodeToReplace);
-                console.log(currentSlideArray)
                 $(nodeParent).append( currentSlideArray[i].node );
                 // rewrite the id to the node, replacing whatever id was attached to that node previously
                 $(currentSlideArray[i].node).attr("id", v + "-right");
                 // sets the background of the parent node
                 nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
+                $('#slider1').unslider('calculateSlides');
             }
         }
 
@@ -1631,46 +1630,22 @@ $(document).ready(function () {
                 var sliderLeft = [].slice.call(sliderElem[0].getElementsByClassName("wg-left"));
                 var sliderRight = [].slice.call(sliderElem[0].getElementsByClassName("wg-right"));
                 // attaching event listeners
+                var scf = new SliderCallbackFactory();
                 // stop slider on mouse over
-                sliderElem[0].addEventListener("mouseover", createStopSlider(sliderElem));
+                sliderElem[0].addEventListener("mouseover", scf.stop(sliderElem), true);
                 // restart slider on mouse out
-                sliderElem[0].addEventListener("mouseout", createStartSlider(sliderElem));
+                sliderElem[0].addEventListener("mouseout", scf.start(sliderElem), true);
                 // clicking the left of a slider slides to prev panel
                 sliderLeft.forEach(function (wgLeft) {
-                    wgLeft.addEventListener("click", createPrevPanel(sliderElem));
+                    wgLeft.addEventListener("click", scf.prev(sliderElem));
                 });
                 // clicking the right of a slider slides to the next panel
                 sliderRight.forEach(function (wgRight) {
-                    wgRight.addEventListener("click", createNextPanel(sliderElem));
+                    wgRight.addEventListener("click", scf.next(sliderElem));
                 });
             });
             return sliders;
 
-            /* CALLBACK FUNCTION FACTORIES */
-
-            function createStopSlider(sliderElem) {
-                return function () {
-                    sliderElem.data('unslider').stop();
-                }
-            }
-
-            function createStartSlider(sliderElem) {
-                return function () {
-                    sliderElem.data('unslider').start();
-                }
-            }
-
-            function createPrevPanel(sliderElem) {
-                return function () {
-                    sliderElem.data('unslider').prev();
-                }
-            }
-
-            function createNextPanel(sliderElem) {
-                return function () {
-                    sliderElem.data('unslider').next();
-                }
-            }
         }
 
         // sets up the slide reservoirs by nodifying all slide objects and
@@ -1690,7 +1665,6 @@ $(document).ready(function () {
             var carbonArray = sgComp.w.objects;
             classString = "carbon wg-right";
             currentReservoir = 'w'
-            console.log(carbonArray);
             carbonArray.forEach(fillReservoir);
 
             function fillReservoir (val, i, arr) {
@@ -1753,6 +1727,33 @@ $(document).ready(function () {
             this.name = name;
             /* a reference to the object holding all the data (from the sgComp.e.obj array) */
             this.data = compObj;
+        }
+
+        /* Callback function factory. Used for mouseout/mouseover/click events on sliders. */
+        function SliderCallbackFactory(){
+            this.stop = function createStopSlider(sliderElem) {
+                return function () {
+                    sliderElem.data('unslider').stop();
+                }
+            }
+            this.start = function createStartSlider(sliderElem) {
+                return function () {
+                    sliderElem.data('unslider').start();
+                }
+            }
+            this.prev = function createPrevPanel(sliderElem) {
+                return function () {
+                    sliderElem.data('unslider').prev();
+                    sliderElem.data('unslider').stop();
+                }
+            }
+            this.next = function createNextPanel(sliderElem) {
+                return function () {
+                    sliderElem.data('unslider').next();
+                    sliderElem.data('unslider').stop();
+                }
+            }
+
         }
     }
 
