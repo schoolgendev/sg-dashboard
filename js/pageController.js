@@ -1574,8 +1574,8 @@ $(document).ready(function () {
                     {name: ".lt-CO2",                        val: pc.stat.general.egco2.total.co2           },
                     {name: ".lt-schools",                    val: 92                                        },
                     {name: ".lt-money-saved",                val: 120000                                    },
-                    {name: ".record-day-whole-programme",    val: pc.stat.general.records.total.val         },
-                    {name: ".record-day-generation",         val: pc.stat.general.records.total.timestamp   },
+                    {name: ".record-day-whole-programme",    val: pc.stat.general.records.total.timestamp   },
+                    {name: ".record-day-generation",         val: pc.stat.general.records.total.val         },
                     {name: ".record-school-last-hour",       val: pc.stat.general.bestSch.hour.name         },
                     {name: ".record-gen-last-hour",          val: pc.stat.general.bestSch.hour.val          },
                     {name: ".record-school-last-week",       val: pc.stat.general.bestSch.week.name         },
@@ -1583,56 +1583,68 @@ $(document).ready(function () {
                     {name: ".record-school-last-year",       val: pc.stat.general.bestSch.year.name         },
                     {name: ".record-gen-last-year",          val: pc.stat.general.bestSch.year.val          }
                 ];
-                var kwhSum = thUnit('kwh', fcn[0].val);
-                var co2Sum = thUnit('co2', fcn[1].val);
-                var kwhgenlt = thUnit('kwh', fcn[2].val);
-                var ltco2 = thUnit('co2', fcn[3].val);
-                replaceSpan(kwhSum.val, kwhSum.unit, fcn[0].name);
-                replaceSpan(co2Sum.val, co2Sum.unit, fcn[1].name);
-                replaceSpan(kwhgenlt.val, kwhgenlt.unit, fcn[2].name);
-                replaceSpan(ltco2.val, ltco2.unit, fcn[3].name);
-                replaceSpan(fcn[4].val, 'schools', fcn[4].name);
+                [0,2,7,9,11,13].forEach(function (x){
+                    replaceSpan(new ThUnit('kwh', fcn[x]));
+                })
+
+                // summed period generation
+                replaceSpan(new ThUnit('co2', fcn[1]));
+                // lifetime generation
+                replaceSpan(new ThUnit('co2', fcn[3]));
+                replaceSpan(fcn[4].val, 'schools', fcn[4].name, true);
                 replaceSpan(fcn[5].val, '$', fcn[5].name, true, true);
+                // records
+                replaceDateSpan(fcn[6].val, fcn[6].name);
 
 
-                function thUnit (str, value){
-                    var units;
-                    var i = 0
-                    console.log(value);
-                    for (i = 0; value > 1000; i ++){
-                        value = value/1000;
-                    }
 
-                    if (str === 'kwh'){
-                        units = ['kWh', 'MWh', 'GWh'];
-                    }
-                    if (str === 'co2'){
-                        units = ['kg', 't', 'kt'];
-                    }
-
-                    var x = units[i];
-                    var returnable = {
-                        val: value,
-                        unit: x
-                    };
-                    return returnable;
-                }
             }
 
-            /* Resets handlers for slider 1 (the top slider with the dynamic slides) */
-            function resetSliderHandlers(){
-                var scf = new SliderCallbackFactory();
-                var slider = $('#slider1');
-                var sliderRight = [].slice.call(slider[0].getElementsByClassName("wg-right"));
-                // only the right div was replaced - only redo right div
-                sliderRight.forEach(function (wgRight) {
-                    wgRight.onclick = scf.next(slider);
-                });
+            function ThUnit (str, fcn, noFix, prefix){
+                var units;
+                var i = 0
+                var xvalue = fcn.val;
+                for (i = 0; xvalue > 1000; i ++){
+                    xvalue = xvalue/1000;
+                }
+
+                if (str === 'kwh'){
+                    units = ['kWh', 'MWh', 'GWh'];
+                } else if (str === 'co2'){
+                    units = ['kg', 't', 'kt'];
+                } else {
+                    console.err("no units for this");
+                }
+
+                var x = units[i];
+
+                this.name = fcn.name;
+                this.val = xvalue;
+                this.unit = x;
+                this.noFix = noFix;
+                this.prefix = prefix;
+            }
+
+            //replaces date spans
+            function replaceDateSpan(dateString, spanClassName){
+                var replacer = '<span class="' + undot(spanClassName) + '">';
+                replacer += dateString.substr(8,2) + " ";
+                replacer += MonthName[ +dateString.substr(5,2) - 1] + ", ";
+                replacer += dateString.substr(0,4) + '</span>'
+                $(replacer).replaceAll(spanClassName);
+                console.log("replacer is " + replacer);
             }
 
             // Replaces a given span (identified by class name) with a new span,
             //  where the inner html is the value followed by a unit.
             function replaceSpan(value, unit, spanClassName, noFixPrecision, prefixUnit) {
+                if (value instanceof ThUnit){
+                    console.log("thUnit detected")
+                    var thousandUnit = value;
+                    value = thousandUnit.val;
+                    unit = thousandUnit.unit;
+                    spanClassName = thousandUnit.name;
+                }
                 // create replacer string
                 var replacer = '<span class="' + undot(spanClassName) + '">';
                 if (prefixUnit) {
@@ -1647,8 +1659,6 @@ $(document).ready(function () {
                      replacer += ' ' + unit;
                 }
                 replacer += '</span>'
-                    // replace HTML element with replacer string
-                console.log("replacer is " + replacer);
                 $(replacer).replaceAll(spanClassName)
             }
             // removes the first character from a string if that character is a period.
@@ -1704,6 +1714,17 @@ $(document).ready(function () {
                 nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
                 nodeParent.style.height = "160px";
                 nodeParent.style.color = currentSlideArray[i].data.color;
+            }
+
+            /* Resets handlers for slider 1 (the top slider with the dynamic slides) */
+            function resetSliderHandlers(){
+                var scf = new SliderCallbackFactory();
+                var slider = $('#slider1');
+                var sliderRight = [].slice.call(slider[0].getElementsByClassName("wg-right"));
+                // only the right div was replaced - only redo right div
+                sliderRight.forEach(function (wgRight) {
+                    wgRight.onclick = scf.next(slider);
+                });
             }
         }
 
