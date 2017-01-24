@@ -77,7 +77,7 @@ $(document).ready(function () {
                 {
                     obj: "ge-wind-turbine-month",
                     val: 125000,
-                    bg: "url('img/laptop-wg-bg.png')",
+                    bg: "url('img/windmill-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -99,7 +99,7 @@ $(document).ready(function () {
                 {
                     obj: "ge-wind-turbine-days",
                     val: 4110,
-                    bg: "url('img/laptop-wg-bg.png')",
+                    bg: "url('img/windmill-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -410,7 +410,7 @@ $(document).ready(function () {
                 {
                     obj: "TNT-kg",
                     val: 1.2,
-                    bg: "url('tnt-wg-bg.png')",
+                    bg: "url('img/tnt-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -476,7 +476,7 @@ $(document).ready(function () {
                 {
                     obj: "batt-chromebook",
                     val: 0.04,
-                    bg: "url('img/laptop-bg.png')",
+                    bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -498,7 +498,7 @@ $(document).ready(function () {
                 {
                     obj: "batt-tablet",
                     val: 0.02,
-                    bg: "url('img/laptop-bg.png')",
+                    bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -521,7 +521,7 @@ $(document).ready(function () {
                 {
                     obj: "batt-phone",
                     val: 0.01,
-                    bg: "url('img/laptop-bg.png')",
+                    bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -1167,8 +1167,8 @@ $(document).ready(function () {
             }
 
             // additional field: the sum of the kwh
-            pc.stat.spec.kwhSum = d3.sum(pc.stat.spec.kwhGen).toPrecision(4);
-            pc.stat.spec.co2Sum = d3.sum(pc.stat.spec.co2Saved).toPrecision(4);
+            pc.stat.spec.kwhSum = +d3.sum(pc.stat.spec.kwhGen).toPrecision(4);
+            pc.stat.spec.co2Sum = +d3.sum(pc.stat.spec.co2Saved).toPrecision(4);
 
             console.log("compile specific data complete");
             console.log(pc.stat);
@@ -1542,6 +1542,7 @@ $(document).ready(function () {
             console.log(powerSlideContainers);
             // store a random selection of 2 CO2-related SlideContainers into carbonSlideContainers.
             var carbonSlideContainers = getRandomNodes(2, slidePool1.w);
+            console.log(carbonSlideContainers);
             // fixedSlideContainers has all the fixed nodes as slides.
             var fixedSlideContainers;
             //TODO: create fixedSlideContainers - an array of nodes that are always present
@@ -1561,6 +1562,50 @@ $(document).ready(function () {
 
             function replaceAllSpans(){
                 // TODO: replace all spans function
+                //fixed class names.
+                var fcn = [
+                    {name: ".sum-kwhGen",                   val: pc.stat.spec.kwhSum},
+                    {name: ".sum-co2",                       val: pc.stat.spec.co2Sum},
+                    {name: ".lt-kwhGen",                     val: pc.stat.general.egco2.total.energy},
+                    {name: ".lt-CO2",                        val: pc.stat.general.egco2.total.co2},
+                    {name: ".lt-schools",                    val: 92},
+                    {name: ".lt-money-saved",                val: 120000},
+                    {name: ".record-day-whole-programme",    val: pc.stat.general.records.total.val},
+                    {name: ".record-day-generation",         val: pc.stat.general.records.total.timestamp},
+                    {name: ".record-school-last-hour",       val: pc.stat.general.bestSch.hour.name},
+                    {name: ".record-gen-last-hour",          val: pc.stat.general.bestSch.hour.val},
+                    {name: ".record-school-last-week",       val: pc.stat.general.bestSch.week.name},
+                    {name: ".record-gen-last-week",          val: pc.stat.general.bestSch.week.val},
+                    {name: ".record-school-last-year",       val: pc.stat.general.bestSch.year.name},
+                    {name: ".record-gen-last-year",          val: pc.stat.general.bestSch.year.val}
+                ];
+                var kwhSum = thUnit('kwh', fcn[0].val);
+                var co2Sum = thUnit('co2', fcn[1].val)
+                replaceSpan(kwhSum.val, kwhSum.unit, fcn[0].name);
+                replaceSpan(co2Sum.val, co2Sum.unit, fcn[1].name);
+
+                function thUnit (str, value){
+                    var units;
+                    var i = 0
+                    console.log(value);
+                    for (i = 0; value > 1000; i ++){
+                        value = value/1000;
+                    }
+
+                    if (str === 'kwh'){
+                        units = ['kWh', 'MWh', 'GWh'];
+                    }
+                    if (str === 'co2'){
+                        units = ['kg', 't', 'kt'];
+                    }
+
+                    var x = units[i];
+                    var returnable = {
+                        val: value,
+                        unit: x
+                    };
+                    return returnable;
+                }
             }
 
             /* Resets handlers for slider 1 (the top slider with the dynamic slides) */
@@ -1570,7 +1615,7 @@ $(document).ready(function () {
                 var sliderRight = [].slice.call(slider[0].getElementsByClassName("wg-right"));
                 // only the right div was replaced - only redo right div
                 sliderRight.forEach(function (wgRight) {
-                    wgRight.addEventListener("click", scf.next(slider));
+                    wgRight.onclick = scf.next(slider);
                 });
             }
 
@@ -1582,6 +1627,7 @@ $(document).ready(function () {
                 replacer += value.toPrecision(3) + ' ' + unit;
                 replacer += '</span>'
                     // replace HTML element with replacer string
+                console.log("replacer is " + replacer);
                 $(replacer).replaceAll(spanClassName)
             }
             // removes the first character from a string if that character is a period.
@@ -1628,6 +1674,8 @@ $(document).ready(function () {
                 // check that nodeToReplace exists
                 if (nodeToReplace === null ) {
                     console.error("Couldn't find node");
+                    console.log(v);
+                    console.error(nodeToReplace);
                     return;
                 }
                 // remove old node, attach new node
@@ -1667,11 +1715,11 @@ $(document).ready(function () {
                 sliderElem[0].addEventListener("mouseout", scf.start(sliderElem), true);
                 // clicking the left of a slider slides to prev panel
                 sliderLeft.forEach(function (wgLeft) {
-                    wgLeft.addEventListener("click", scf.prev(sliderElem));
+                    wgLeft.onclick = scf.prev(sliderElem);
                 });
                 // clicking the right of a slider slides to the next panel
                 sliderRight.forEach(function (wgRight) {
-                    wgRight.addEventListener("click", scf.next(sliderElem));
+                    wgRight.onclick = scf.next(sliderElem);
                 });
             });
             return sliders;
@@ -1708,7 +1756,6 @@ $(document).ready(function () {
             /* creates a node object using the index of the comparison object in the comparison
              object array, as well as a string for classes to be put in. Returns a jquery object with the node. */
             function nodifyRight(cObj, classString) {
-                // TODO [x]: finish nodify
                 // gets the comparison object
                 if (classString === undefined) {
                     console.error("no classes defined for node");
