@@ -1568,25 +1568,32 @@ $(document).ready(function () {
                 // TODO: replace all spans function
                 //fixed class names.
                 var fcn = [
-                    {name: ".sum-kwhGen",                   val: pc.stat.spec.kwhSum},
-                    {name: ".sum-co2",                       val: pc.stat.spec.co2Sum},
-                    {name: ".lt-kwhGen",                     val: pc.stat.general.egco2.total.energy},
-                    {name: ".lt-CO2",                        val: pc.stat.general.egco2.total.co2},
-                    {name: ".lt-schools",                    val: 92},
-                    {name: ".lt-money-saved",                val: 120000},
-                    {name: ".record-day-whole-programme",    val: pc.stat.general.records.total.val},
-                    {name: ".record-day-generation",         val: pc.stat.general.records.total.timestamp},
-                    {name: ".record-school-last-hour",       val: pc.stat.general.bestSch.hour.name},
-                    {name: ".record-gen-last-hour",          val: pc.stat.general.bestSch.hour.val},
-                    {name: ".record-school-last-week",       val: pc.stat.general.bestSch.week.name},
-                    {name: ".record-gen-last-week",          val: pc.stat.general.bestSch.week.val},
-                    {name: ".record-school-last-year",       val: pc.stat.general.bestSch.year.name},
-                    {name: ".record-gen-last-year",          val: pc.stat.general.bestSch.year.val}
+                    {name: ".sum-kwhGen",                   val: pc.stat.spec.kwhSum                        },
+                    {name: ".sum-co2",                       val: pc.stat.spec.co2Sum                       },
+                    {name: ".lt-kwhGen",                     val: pc.stat.general.egco2.total.energy        },
+                    {name: ".lt-CO2",                        val: pc.stat.general.egco2.total.co2           },
+                    {name: ".lt-schools",                    val: 92                                        },
+                    {name: ".lt-money-saved",                val: 120000                                    },
+                    {name: ".record-day-whole-programme",    val: pc.stat.general.records.total.val         },
+                    {name: ".record-day-generation",         val: pc.stat.general.records.total.timestamp   },
+                    {name: ".record-school-last-hour",       val: pc.stat.general.bestSch.hour.name         },
+                    {name: ".record-gen-last-hour",          val: pc.stat.general.bestSch.hour.val          },
+                    {name: ".record-school-last-week",       val: pc.stat.general.bestSch.week.name         },
+                    {name: ".record-gen-last-week",          val: pc.stat.general.bestSch.week.val          },
+                    {name: ".record-school-last-year",       val: pc.stat.general.bestSch.year.name         },
+                    {name: ".record-gen-last-year",          val: pc.stat.general.bestSch.year.val          }
                 ];
                 var kwhSum = thUnit('kwh', fcn[0].val);
-                var co2Sum = thUnit('co2', fcn[1].val)
+                var co2Sum = thUnit('co2', fcn[1].val);
+                var kwhgenlt = thUnit('kwh', fcn[2].val);
+                var ltco2 = thUnit('co2', fcn[3].val);
                 replaceSpan(kwhSum.val, kwhSum.unit, fcn[0].name);
                 replaceSpan(co2Sum.val, co2Sum.unit, fcn[1].name);
+                replaceSpan(kwhgenlt.val, kwhgenlt.unit, fcn[2].name);
+                replaceSpan(ltco2.val, ltco2.unit, fcn[3].name);
+                replaceSpan(fcn[4].val, 'schools', fcn[4].name);
+                replaceSpan(fcn[5].val, '$', fcn[5].name, true, true);
+
 
                 function thUnit (str, value){
                     var units;
@@ -1625,10 +1632,20 @@ $(document).ready(function () {
 
             // Replaces a given span (identified by class name) with a new span,
             //  where the inner html is the value followed by a unit.
-            function replaceSpan(value, unit, spanClassName) {
+            function replaceSpan(value, unit, spanClassName, noFixPrecision, prefixUnit) {
                 // create replacer string
                 var replacer = '<span class="' + undot(spanClassName) + '">';
-                replacer += value.toPrecision(3) + ' ' + unit;
+                if (prefixUnit) {
+                    replacer += unit + '';
+                }
+                if (noFixPrecision){
+                    replacer += value;
+                } else {
+                    replacer += value.toPrecision(3);
+                }
+                if (!prefixUnit){
+                     replacer += ' ' + unit;
+                }
                 replacer += '</span>'
                     // replace HTML element with replacer string
                 console.log("replacer is " + replacer);
