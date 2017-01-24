@@ -1581,23 +1581,45 @@ $(document).ready(function () {
                     {name: ".record-school-last-week",       val: pc.stat.general.bestSch.week.name         },
                     {name: ".record-gen-last-week",          val: pc.stat.general.bestSch.week.val          },
                     {name: ".record-school-last-year",       val: pc.stat.general.bestSch.year.name         },
-                    {name: ".record-gen-last-year",          val: pc.stat.general.bestSch.year.val          }
+                    {name: ".record-gen-last-year",          val: pc.stat.general.bestSch.year.val          },
+                    {name: ".lt-houses",                     val: pc.stat.general.egco2.total.energy
+                                                                    / sgComp.e.objects[5].val               },
+                    {name: ".lt-elephants",                  val: pc.stat.general.egco2.total.co2
+                                                                    / sgComp.w.objects[2].val               }
                 ];
                 [0,2,7,9,11,13].forEach(function (x){
                     replaceSpan(new ThUnit('kwh', fcn[x]));
-                })
-
+                });
                 // summed period generation
-                replaceSpan(new ThUnit('co2', fcn[1]));
-                // lifetime generation
-                replaceSpan(new ThUnit('co2', fcn[3]));
+                [1,3].forEach(function (x) {
+                    replaceSpan(new ThUnit('co2', fcn[x]));
+                });
                 replaceSpan(fcn[4].val, 'schools', fcn[4].name, true);
                 replaceSpan(fcn[5].val, '$', fcn[5].name, true, true);
                 // records
                 replaceDateSpan(fcn[6].val, fcn[6].name);
+                [8,10,12, 14, 15].forEach(function (x){
+                    replaceSpan(fcn[x].val, "", fcn[x].name, true);
+                });
+                [14,15].forEach(function (x){
+                    replaceSpan(fcn[x].val, "", fcn[x].name, 4);
+                });
 
+                sgComp.e.objects.forEach(comparatorReplacer.bind(this, pc.stat.spec.kwhSum));
+                sgComp.w.objects.forEach(comparatorReplacer.bind(this, pc.stat.spec.co2Sum));
 
-
+                function comparatorReplacer(sumData, x ){
+                    var className = x.obj;
+                    var comparatorValue = x.val;
+                    // if start of the className has km-driven, create reciprocal of comparator
+                    if (className.match(/^km-driven/)){
+                        comparatorValue = 1/comparatorValue;
+                    }
+                    // divide sum by comparator
+                    var newValue = sumData/comparatorValue;
+                    // replace spans of className with new value
+                    replaceSpan(newValue, "", className);
+                }
             }
 
             function ThUnit (str, fcn, noFix, prefix){
@@ -1650,21 +1672,31 @@ $(document).ready(function () {
                 if (prefixUnit) {
                     replacer += unit + '';
                 }
-                if (noFixPrecision){
+                if (noFixPrecision === true){
                     replacer += value;
+                } else if (typeof noFixPrecision === 'number' ) {
+                    replacer += value.toPrecision(noFixPrecision);
                 } else {
-                    replacer += value.toPrecision(3);
+                    replacer += value.toPrecision(3)
                 }
                 if (!prefixUnit){
                      replacer += ' ' + unit;
                 }
                 replacer += '</span>'
-                $(replacer).replaceAll(spanClassName)
+                console.log(replacer);
+                console.log(spanClassName);
+                $(replacer).replaceAll(redot(spanClassName))
             }
             // removes the first character from a string if that character is a period.
             function undot(spanClassName) {
                 if (spanClassName.charAt(0) === '.') {
                     return spanClassName.substr(1);
+                }
+                return spanClassName;
+            }
+            function redot(spanClassName) {
+                if (spanClassName.charAt(0) !== '.') {
+                    return "." + spanClassName;
                 }
                 return spanClassName;
             }
@@ -1816,7 +1848,7 @@ $(document).ready(function () {
             cObj is the text object, while className is the name of the span class*/
             function compStringConcat(textObject, className) {
                 var r = "";
-                r += "<p>" + textObject.up + "<br />"; // insert upper text, line break
+                r += "<p>" + textObject.up ; // insert upper text, line break
                 r += spanify(textObject, className); // insert middle text with spans
                 r += textObject.down + "</p>"; // insert bottom text with ending p tag
                 return r;
@@ -1824,10 +1856,10 @@ $(document).ready(function () {
 
             // returns a span element with the span text and the enclosing span elements
             function spanify(cObj, className) {
-                var r = "<span class='" + className + "'>"; //span class="xyz"
-                r += "<span class='big'>" // span class="big"
-                r += cObj.span // insert your text here
-                r += "</span></span>"; // /span /span
+                var r = "<span class='big'>" // span class="big"
+                r += "<span class='" + className + "'>"; //span class="xyz"
+                r += "</span> " + cObj.span; // insert your text here
+                r += "</span>"; // /span /span
                 return r;
             }
         }
