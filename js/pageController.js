@@ -78,6 +78,7 @@ $(document).ready(function () {
                     obj: "ge-wind-turbine-month",
                     val: 125000,
                     bg: "url('img/laptop-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -99,6 +100,7 @@ $(document).ready(function () {
                     obj: "ge-wind-turbine-days",
                     val: 4110,
                     bg: "url('img/laptop-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -120,6 +122,7 @@ $(document).ready(function () {
                     obj: "nz-generation-minutes",
                     val: 102986,
                     bg: "url('img/nz-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -141,6 +144,7 @@ $(document).ready(function () {
                     obj: "nz-houses-year",
                     val: 7000,
                     bg: "url('img/house-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -162,6 +166,7 @@ $(document).ready(function () {
                     obj: "nz-generation-seconds",
                     val: 1716,
                     bg: "url('img/nz-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -184,6 +189,7 @@ $(document).ready(function () {
                     obj: "oil-barrels",
                     val: 1700,
                     bg: "url('img/oil-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -205,6 +211,7 @@ $(document).ready(function () {
                     obj: "nz-houses-month",
                     val: 583,
                     bg: "url('img/house-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -226,6 +233,7 @@ $(document).ready(function () {
                     obj: "TNT-tonne",
                     val: 1200,
                     bg: "url('img/tnt-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -248,6 +256,7 @@ $(document).ready(function () {
                     obj: "km-driven-train",
                     val: 10,
                     bg: "url('img/train-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -269,6 +278,7 @@ $(document).ready(function () {
                     obj: "tesla-battery",
                     val: 90,
                     bg: "url('img/tesla-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -291,6 +301,7 @@ $(document).ready(function () {
                     obj: "km-driven-tesla",
                     val: 6.25,
                     bg: "url('img/tesla-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -312,6 +323,7 @@ $(document).ready(function () {
                     obj: "tdf-cyclist-total",
                     val: 21.2,
                     bg: "url('img/cyclist-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -333,6 +345,7 @@ $(document).ready(function () {
                     obj: "km-driven-tdf-cyclist",
                     val: 0.0057,
                     bg: "url('img/cyclist-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -354,6 +367,7 @@ $(document).ready(function () {
                     obj: "home-batt-panasonic",
                     val: 0.8,
                     bg: "url('img/panason-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -375,6 +389,7 @@ $(document).ready(function () {
                     obj: "coal-kg",
                     val: 4,
                     bg: "url('img/coal-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -396,6 +411,7 @@ $(document).ready(function () {
                     obj: "TNT-kg",
                     val: 1.2,
                     bg: "url('tnt-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -417,6 +433,7 @@ $(document).ready(function () {
                     obj: "home-batt-enphase",
                     val: 1.2,
                     bg: "url('img/enphase-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -438,6 +455,7 @@ $(document).ready(function () {
                     obj: "tdf-cyclist-40k1hr",
                     val: 0.230,
                     bg: "url('img/cyclist-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -459,6 +477,7 @@ $(document).ready(function () {
                     obj: "batt-chromebook",
                     val: 0.04,
                     bg: "url('img/laptop-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -480,6 +499,7 @@ $(document).ready(function () {
                     obj: "batt-tablet",
                     val: 0.02,
                     bg: "url('img/laptop-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -502,6 +522,7 @@ $(document).ready(function () {
                     obj: "batt-phone",
                     val: 0.01,
                     bg: "url('img/laptop-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -568,6 +589,7 @@ $(document).ready(function () {
                     obj: "wg-cow",
                     val: 680,
                     bg: "url('img/cow-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -589,6 +611,7 @@ $(document).ready(function () {
                     obj: "wg-car",
                     val: 1650, //a 2009 Ford Taurus = ~1650 kg
                     bg: "url('img/car-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -610,6 +633,7 @@ $(document).ready(function () {
                     obj: "wg-elephant",
                     val: 7500, //one elephant = ~7.5 t
                     bg: "url('img/elephant-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -631,6 +655,7 @@ $(document).ready(function () {
                     obj: "wg-blue-whale",
                     val: 104500, //one blue whale = ~104.5 t
                     bg: "url('img/elephant-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -652,6 +677,7 @@ $(document).ready(function () {
                     obj: "wg-house",
                     val: 156000, //single level, unfurnished, 149 sq m = ~156 t
                     bg: "url('img/house2-wg-bg.png')",
+                    color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
@@ -1511,19 +1537,20 @@ $(document).ready(function () {
 
             // Select 5 slides in the power pool and 2 in the carbon pool, at random.
 
-            // store a random selection of 5 power-related SlideContainers into powerNodes.
-            var powerNodes = getRandomNodes(5, slidePool1.e);
-            console.log(powerNodes);
-            // store a random selection of 2 CO2-related SlideContainers into carbonNodes.
-            var carbonNodes = getRandomNodes(2, slidePool1.w);
-            // fixedNodes has all the fixed nodes as slides.
-            var fixedNodes; //TODO: create fixedNodes - an array of nodes that are always present
+            // store a random selection of 5 power-related SlideContainers into powerSlideContainers.
+            var powerSlideContainers = getRandomNodes(5, slidePool1.e);
+            console.log(powerSlideContainers);
+            // store a random selection of 2 CO2-related SlideContainers into carbonSlideContainers.
+            var carbonSlideContainers = getRandomNodes(2, slidePool1.w);
+            // fixedSlideContainers has all the fixed nodes as slides.
+            var fixedSlideContainers;
+            //TODO: create fixedSlideContainers - an array of nodes that are always present
 
             // required for divReplacer to work properly
-            var currentSlideArray = powerNodes;
+            var currentSlideArray = powerSlideContainers;
             // replaces each node in the DOM using the powerIdArray, divReplacer, and the currentSlideArray variable.
             powerIdArray.forEach(divReplacer);
-            currentSlideArray = carbonNodes;
+            currentSlideArray = carbonSlideContainers;
             carbonIdArray.forEach(divReplacer);
 
             replaceAllSpans();
@@ -1610,6 +1637,8 @@ $(document).ready(function () {
                 $(currentSlideArray[i].node).attr("id", v + "-right");
                 // sets the background of the parent node
                 nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
+                nodeParent.style.height = "160px";
+                nodeParent.style.color = currentSlideArray[i].data.color;
                 //$('#slider1').data('unslider').init(sliderConfig);
 
             }
