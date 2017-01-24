@@ -854,8 +854,12 @@ $(document).ready(function () {
                 callString2 = generateCallString(year, month, day, period);
             }
             // 1. call observer.preNotify() - this will e.g. kill the graph and launch the loader
+            console.log("====================================================================")
+            console.log("======================= RUNNING PRENOTIFY ==========================")
             this.preNotify();
             // 2. make API call. will need to make two API calls.
+            console.log("======================== RUNNING NOTIFY ============================")
+            console.log("====================================================================")
             console.log("API call 1: " + callString1);
             console.log("API call 2: " + callString2);
             // 2.1 - make API call for general stats
@@ -1673,13 +1677,13 @@ $(document).ready(function () {
                 var nodeToReplace = document.getElementById( v + '-right' );
                 // check that nodeToReplace exists
                 if (nodeToReplace === null ) {
-                    console.error("Couldn't find node");
-                    console.log(v);
-                    console.error(nodeToReplace);
-                    return;
+                    // node already removed
+                    console.log("node already removed");
+                } else {
+                    // remove old node
+                    nodeParent.removeChild(nodeToReplace);
                 }
-                // remove old node, attach new node
-                nodeParent.removeChild(nodeToReplace);
+                // attach new node
                 $(nodeParent).append( currentSlideArray[i].node );
                 // rewrite the id to the node, replacing whatever id was attached to that node previously
                 $(currentSlideArray[i].node).attr("id", v + "-right");
@@ -1688,6 +1692,12 @@ $(document).ready(function () {
                 nodeParent.style.height = "160px";
                 nodeParent.style.color = currentSlideArray[i].data.color;
                 //$('#slider1').data('unslider').init(sliderConfig);
+                console.log("parent " + i + "-------------------------------------")
+                console.log(nodeParent)
+                console.log("to be replaced")
+                console.log(nodeToReplace)
+                console.log("replacer")
+                console.log(currentSlideArray[i].node[0])
 
             }
         }
