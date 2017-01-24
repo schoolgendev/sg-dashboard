@@ -1676,12 +1676,8 @@ $(document).ready(function () {
                 var nodeParent = document.getElementById(v);
                 var nodeToReplace = document.getElementById( v + '-right' );
                 // check that nodeToReplace exists
-                if (nodeToReplace === null ) {
-                    // node already removed
-                    console.log("node already removed");
-                } else {
-                    // remove old node
-                    nodeParent.removeChild(nodeToReplace);
+                if (nodeToReplace !== null ) {
+                     nodeParent.removeChild(nodeToReplace);
                 }
                 // attach new node
                 $(nodeParent).append( currentSlideArray[i].node );
@@ -1691,14 +1687,6 @@ $(document).ready(function () {
                 nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
                 nodeParent.style.height = "160px";
                 nodeParent.style.color = currentSlideArray[i].data.color;
-                //$('#slider1').data('unslider').init(sliderConfig);
-                console.log("parent " + i + "-------------------------------------")
-                console.log(nodeParent)
-                console.log("to be replaced")
-                console.log(nodeToReplace)
-                console.log("replacer")
-                console.log(currentSlideArray[i].node[0])
-
             }
         }
 
