@@ -5,67 +5,10 @@ glob = this;
 $(document).ready(function () {
 
     /* GLOBAL VARIABLES*/
-
+    var util = new Utilities();
     var UnitType = {
         ENERGY: ["kWh", "MWh", "GWh"],
         MASS: ["kg", "tonnes"]
-    };
-    // SgNames holds names for classes for page, as well as a few stats.
-    var sgNames = {
-        lt: {
-            kwhGen: {
-                name: ".lt-kwhGen",
-                unitType: UnitType.ENERGY
-            },
-            CO2Saved: {
-                name: ".lt-CO2Saved",
-                unitType: UnitType.MASS
-            },
-            bestSchool: {
-                name: ".lt-school",
-                unitType: UnitType.ENERGY
-            }
-        },
-        year: {
-            kwhGen: {
-                name: ".year-kwhGen",
-                unitType: UnitType.ENERGY
-            },
-            CO2Saved: {
-                name: ".year-CO2Saved",
-                unitType: UnitType.MASS
-            },
-            bestSchool: {
-                name: ".year-school",
-                unitType: UnitType.ENERGY
-            }
-        },
-        week: {
-            kwhGen: {
-                name: ".week-kwhGen",
-                unitType: UnitType.ENERGY
-            },
-            CO2Saved: {
-                name: ".week-CO2Saved",
-                unitType: UnitType.MASS
-            },
-            bestSchool: {
-                name: ".week-school",
-                unitType: UnitType.ENERGY
-            }
-        },
-        special: {
-            // total number of schools involved
-            noOfSchools: {
-                name: ".sp-noOfSchools",
-                val: 92
-            },
-            // money saved for schools
-            moneySaved: {
-                name: ".sp-moneySaved",
-                val: 125000 //dollars per year
-            }
-        }
     };
     // sgObjects has all the objects you want to compare to
     var sgComp = {
@@ -79,6 +22,7 @@ $(document).ready(function () {
                     val: 0.01,
                     bg: "url('img/phone-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -583,31 +527,31 @@ $(document).ready(function () {
             threshLevel: function threshLevel(x) {
                 console.log(x);
                 if (x <= 50) {
-                    return slideArray(0, 10);
+                    return util.slideArray(0, 10);
                 }
                 if (x > 50 && x <= 250) {
-                    return slideArray(0, 11);
+                    return util.slideArray(0, 11);
                 }
                 if (x > 250 && x <= 1500) {
-                    return slideArray(4, 14);
+                    return util.slideArray(4, 14);
                 }
                 if (x > 1500 && x <= 3000) {
-                    return slideArray(4, 14, null, 8);
+                    return util.slideArray(4, 14, null, 8);
                 }
                 if (x > 3000 && x <= 6000) {
-                    return slideArray(4, 15, 18, 8);
+                    return util.slideArray(4, 15, 18, 8);
                 }
                 if (x > 6000 && x <= 10000) {
-                    return slideArray(10, 16, 18);
+                    return util.slideArray(10, 16, 18);
                 }
                 if (x > 10000 && x <= 100000) {
-                    return slideArray(11, 18);
+                    return util.slideArray(11, 18);
                 }
                 if (x > 100000 && x <= 500000) {
-                    return slideArray(11, 19);
+                    return util.slideArray(11, 19);
                 }
                 if (x > 500000) {
-                    return slideArray(13, 19);
+                    return util.slideArray(13, 19);
                 }
             }
         },
@@ -725,40 +669,27 @@ $(document).ready(function () {
                     }
                 }
             ],
-            threshLevel: function threshLevel(x){
-                if (x <= 1000){
-                    return [0,1];
+            threshLevel: function threshLevel(x) {
+                if (x <= 1000) {
+                    return [0, 1];
                 }
-                if (x > 1000 && x <= 50000){
-                    return [0,2];
+                if (x > 1000 && x <= 50000) {
+                    return [0, 2];
                 }
-                if (x > 50000 && x <= 100000){
-                    return [1,2];
+                if (x > 50000 && x <= 100000) {
+                    return [1, 2];
                 }
-                if (x > 100000 && x <= 500000){
-                    return [2,4];
+                if (x > 100000 && x <= 500000) {
+                    return [2, 4];
                 }
-                if (x > 500000){
-                    return [3,4];
+                if (x > 500000) {
+                    return [3, 4];
                 }
             }
         }
     };
     // returns an array of numbers with plus at end and minus taken out.
-    function slideArray(start, stop, plus, minus) {
-            slideArr = [];
-            for (var i = start; i <= stop; i++) {
-                if (minus === undefined || minus === null || i !== minus) {
-                    slideArr.push(i);
-                }
-            }
-            if (plus === undefined || plus === null) {
-                return slideArr;
-            } else {
-                slideArr.push(plus);
-                return slideArr;
-            }
-        }
+
     // holds time divisions. Used in the chart.
     var TimePeriod = {
         HOUR: "hour",
@@ -816,9 +747,7 @@ $(document).ready(function () {
 
     /* PageController constructor function*/
     function PageController() {
-        /* SUBJECT/OBSERVER-RELATED LOGIC */
-
-        /* sgStats is the subject for the observers */
+        /* sgStats is the subject object*/
         var stat = this.stat = new SgStats();
         /* obsList is the list of observers for the subject. */
         var obsList = this.obsList = new ObserverList();
@@ -834,11 +763,13 @@ $(document).ready(function () {
                 return;
             }
             // removal failed - couldn't find the observing object in the list.
-            console.log("observer removal failed");
+            console.err("observer removal failed");
         };
         /* notify() triggers the update mechanism for all registered observers. */
         var notify = this.notify = function () {
-            console.log("notify called");
+            console.log("====================================================================");
+            console.log("======================== RUNNING NOTIFY ============================");
+            console.log("====================================================================");
             // cycle through observers, call update()
             let i, obsCount = obsList.count();
             for (i = 0; i < obsCount; i++) {
@@ -851,6 +782,9 @@ $(document).ready(function () {
         };
         /*preNotify() triggers preupdate mechanism for all registered observers*/
         var preNotify = this.preNotify = function () {
+            console.log("====================================================================");
+            console.log("======================= RUNNING PRENOTIFY ==========================");
+            console.log("====================================================================");
             let i, obsCount = obsList.count();
             // cycle through observers, call preUpdate()
             for (i = 0; i < obsCount; i++) {
@@ -883,12 +817,8 @@ $(document).ready(function () {
                 callString2 = generateCallString(year, month, day, period);
             }
             // 1. call observer.preNotify() - this will e.g. kill the graph and launch the loader
-            console.log("====================================================================")
-            console.log("======================= RUNNING PRENOTIFY ==========================")
             this.preNotify();
             // 2. make API call. will need to make two API calls.
-            console.log("======================== RUNNING NOTIFY ============================")
-            console.log("====================================================================")
             console.log("API call 1: " + callString1);
             console.log("API call 2: " + callString2);
             // 2.1 - make API call for general stats
@@ -1344,7 +1274,7 @@ $(document).ready(function () {
             document.getElementById("energyGen").innerHTML = sumString;
 
             // sets up the div for the tooltip. Initially starts at opacity = 0.
-            var ttDiv = d3.select("body").append("div")
+            var ttDiv = d3.select(".chart").append("div")
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
@@ -1384,10 +1314,10 @@ $(document).ready(function () {
                 return {
                     tt: tooltipDiv,
                     func: function (param, i) {
-                        param.html(pc.stat.spec.dateString[i] + "<br> KWH Generated: " +
-                                pc.stat.spec.kwhGen[i])
-                            .style("left", d3.event.pageX + "px")
-                            .style("top", d3.event.pageY + "px");
+                        param.html("<strong>" + rectifyDate(pc.stat.spec.dateString[i]) + "</strong><hr><br>" +
+                                pc.stat.spec.kwhGen[i] + " kWh")
+                            .style("left", scales.x(pc.stat.spec.xdomain[i]) + 30 + "px")
+                            .style("top", height + 20 + "px");
                     }
                 }
             }
@@ -1395,7 +1325,7 @@ $(document).ready(function () {
             function createTTOnFunc(container) {
                 return (function (d, i) {
                     container.tt.transition()
-                        .duration(200)
+                        .duration(100)
                         .style("opacity", .9);
                     container.func(container.tt, i);
                 })
@@ -1404,7 +1334,7 @@ $(document).ready(function () {
             function createTTOffFunc(container) {
                 return (function () {
                     container.tt.transition()
-                        .duration(200)
+                        .duration(100)
                         .style("opacity", 0);
                 })
             }
@@ -1460,6 +1390,12 @@ $(document).ready(function () {
                     }
                     return null;
                 }
+            }
+            function rectifyDate(dateString){
+                if (dateString.charAt(2) === ':'){
+                    return dateString.substr(7) + " " + dateString.substr(0,5);
+                }
+                return dateString;
             }
         }
 
@@ -1553,13 +1489,13 @@ $(document).ready(function () {
             // the slide pool itself however is not yet repopulated.
             var clearedSlideIndicesKWH = sgComp.e.threshLevel(pc.stat.spec.kwhSum);
             console.log(clearedSlideIndicesKWH)
-            // array of indices of suitable slides for slidePool.w (weight/carbon related)
+                // array of indices of suitable slides for slidePool.w (weight/carbon related)
             var clearedSlideIndicesCO2 = sgComp.w.threshLevel(pc.stat.spec.co2Sum);
 
             //   repopulate the slide pool with a subset of suitable slides from the reservoir
-            var fillingPool = 'e'   // choose which pool of slides to repopulate
-            slidePool1.e = [];      // clear out the pool before refilling it
-            clearedSlideIndicesKWH.forEach(reservoirToPool);    // repopulates the pool
+            var fillingPool = 'e' // choose which pool of slides to repopulate
+            slidePool1.e = []; // clear out the pool before refilling it
+            clearedSlideIndicesKWH.forEach(reservoirToPool); // repopulates the pool
             fillingPool = 'w'
             slidePool1.w = [];
             clearedSlideIndicesCO2.forEach(reservoirToPool);
@@ -1594,144 +1530,193 @@ $(document).ready(function () {
 
             /* utility methods */
 
-            function replaceAllSpans(){
+            function replaceAllSpans() {
                 // TODO: replace all spans function
                 //fixed class names.
                 var fcn = [
-                    {name: ".sum-kwhGen",                   val: pc.stat.spec.kwhSum                        },
-                    {name: ".sum-co2",                       val: pc.stat.spec.co2Sum                       },
-                    {name: ".lt-kwhGen",                     val: pc.stat.general.egco2.total.energy        },
-                    {name: ".lt-CO2",                        val: pc.stat.general.egco2.total.co2           },
-                    {name: ".lt-schools",                    val: 92                                        },
-                    {name: ".lt-money-saved",                val: 120000                                    },
-                    {name: ".record-day-whole-programme",    val: pc.stat.general.records.total.timestamp   },
-                    {name: ".record-day-generation",         val: pc.stat.general.records.total.val         },
-                    {name: ".record-school-last-hour",       val: pc.stat.general.bestSch.hour.name         },
-                    {name: ".record-gen-last-hour",          val: pc.stat.general.bestSch.hour.val          },
-                    {name: ".record-school-last-week",       val: pc.stat.general.bestSch.week.name         },
-                    {name: ".record-gen-last-week",          val: pc.stat.general.bestSch.week.val          },
-                    {name: ".record-school-last-year",       val: pc.stat.general.bestSch.year.name         },
-                    {name: ".record-gen-last-year",          val: pc.stat.general.bestSch.year.val          },
-                    {name: ".lt-houses",                     val: pc.stat.general.egco2.total.energy
-                                                                    / sgComp.e.objects[14].val               },
-                    {name: ".lt-elephants",                  val: pc.stat.general.egco2.total.co2
-                                                                    / sgComp.w.objects[2].val               }
+                    {
+                        name: ".sum-kwhGen",
+                        val: pc.stat.spec.kwhSum
+                    },
+                    {
+                        name: ".sum-co2",
+                        val: pc.stat.spec.co2Sum
+                    },
+                    {
+                        name: ".lt-kwhGen",
+                        val: pc.stat.general.egco2.total.energy
+                    },
+                    {
+                        name: ".lt-CO2",
+                        val: pc.stat.general.egco2.total.co2
+                    },
+                    {
+                        name: ".lt-schools",
+                        val: 92
+                    },
+                    {
+                        name: ".lt-money-saved",
+                        val: 120000
+                    },
+                    {
+                        name: ".record-day-whole-programme",
+                        val: pc.stat.general.records.total.timestamp
+                    },
+                    {
+                        name: ".record-day-generation",
+                        val: pc.stat.general.records.total.val
+                    },
+                    {
+                        name: ".record-school-last-hour",
+                        val: pc.stat.general.bestSch.hour.name
+                    },
+                    {
+                        name: ".record-gen-last-hour",
+                        val: pc.stat.general.bestSch.hour.val
+                    },
+                    {
+                        name: ".record-school-last-week",
+                        val: pc.stat.general.bestSch.week.name
+                    },
+                    {
+                        name: ".record-gen-last-week",
+                        val: pc.stat.general.bestSch.week.val
+                    },
+                    {
+                        name: ".record-school-last-year",
+                        val: pc.stat.general.bestSch.year.name
+                    },
+                    {
+                        name: ".record-gen-last-year",
+                        val: pc.stat.general.bestSch.year.val
+                    },
+                    {
+                        name: ".lt-houses",
+                        val: pc.stat.general.egco2.total.energy /
+                            sgComp.e.objects[14].val
+                    },
+                    {
+                        name: ".lt-elephants",
+                        val: pc.stat.general.egco2.total.co2 /
+                            sgComp.w.objects[2].val
+                    }
                 ];
-                [0,2,7,9,11,13].forEach(function (x){
+                [0, 2, 7, 9, 11, 13].forEach(function (x) {
                     replaceSpan(new ThUnit('kwh', fcn[x]));
                 });
                 // summed period generation
-                [1,3].forEach(function (x) {
+                [1, 3].forEach(function (x) {
                     replaceSpan(new ThUnit('co2', fcn[x]));
                 });
                 replaceSpan(fcn[4].val, 'schools', fcn[4].name, true);
                 replaceSpan(fcn[5].val, '$', fcn[5].name, true, true);
                 // records
                 replaceDateSpan(fcn[6].val, fcn[6].name);
-                [8,10,12, 14, 15].forEach(function (x){
+                [8, 10, 12, 14, 15].forEach(function (x) {
                     replaceSpan(fcn[x].val, "", fcn[x].name, true);
                 });
-                [14,15].forEach(function (x){
-                    replaceSpan(fcn[x].val, "", fcn[x].name, 4);
+                [14, 15].forEach(function (x) {
+                    replaceSpan(fcn[x].val, "", fcn[x].name, 0);
                 });
 
                 sgComp.e.objects.forEach(comparatorReplacer.bind(this, pc.stat.spec.kwhSum));
                 sgComp.w.objects.forEach(comparatorReplacer.bind(this, pc.stat.spec.co2Sum));
 
-                function comparatorReplacer(sumData, x ){
+                function comparatorReplacer(sumData, x) {
                     var className = x.obj;
                     var comparatorValue = x.val;
                     // if start of the className has km-driven, create reciprocal of comparator
-                    if (className.match(/^km-driven/)){
-                        comparatorValue = 1/comparatorValue;
+                    if (className.match(/^km-driven/)) {
+                        comparatorValue = 1 / comparatorValue;
                     }
                     // divide sum by comparator
-                    var newValue = sumData/comparatorValue;
+                    var newValue = sumData / comparatorValue;
                     // replace spans of className with new value
                     replaceSpan(newValue, "", className, x.precision);
                 }
 
-                function ThUnit (str, fcn, noFix, prefix){
-                var units;
-                var i = 0
-                var xvalue = fcn.val;
-                for (i = 0; xvalue > 1000; i ++){
-                    xvalue = xvalue/1000;
+                function ThUnit(str, fcn, noFix, prefix) {
+                    var units;
+                    var i = 0
+                    var xvalue = fcn.val;
+                    for (i = 0; xvalue > 1000; i++) {
+                        xvalue = xvalue / 1000;
+                    }
+
+                    if (str === 'kwh') {
+                        units = ['kWh', 'MWh', 'GWh'];
+                    } else if (str === 'co2') {
+                        units = ['kg', 't', 'kt'];
+                    } else {
+                        console.err("no units for this");
+                    }
+
+                    var x = units[i];
+
+                    this.name = fcn.name;
+                    this.val = xvalue;
+                    this.unit = x;
+                    this.noFix = noFix;
+                    this.prefix = prefix;
                 }
 
-                if (str === 'kwh'){
-                    units = ['kWh', 'MWh', 'GWh'];
-                } else if (str === 'co2'){
-                    units = ['kg', 't', 'kt'];
-                } else {
-                    console.err("no units for this");
+                //replaces date spans
+                function replaceDateSpan(dateString, spanClassName) {
+                    var replacer = '<span class="' + undot(spanClassName) + '">';
+                    replacer += dateString.substr(8, 2) + " ";
+                    replacer += MonthName[+dateString.substr(5, 2) - 1] + ", ";
+                    replacer += dateString.substr(0, 4) + '</span>'
+                    $(replacer).replaceAll(spanClassName);
                 }
 
-                var x = units[i];
+                // Replaces a given span (identified by class name) with a new span,
+                //  where the inner html is the value followed by a unit.
+                function replaceSpan(value, unit, spanClassName, noFixPrecision, prefixUnit) {
+                    if (value instanceof ThUnit) {
+                        var thousandUnit = value;
+                        value = thousandUnit.val;
+                        unit = thousandUnit.unit;
+                        spanClassName = thousandUnit.name;
+                    }
+                    // create replacer string
+                    var replacer = '<span class="' + undot(spanClassName) + '">';
+                    if (prefixUnit) {
+                        replacer += unit + '';
+                    }
+                    if (noFixPrecision === true) {
+                        replacer += value;
+                    } else if (typeof noFixPrecision === 'number' && noFixPrecision !== 0) {
+                        replacer += value.toPrecision(noFixPrecision);
+                    } else if (noFixPrecision === 0) {
+                        replacer += value.toFixed(0);
+                    } else {
+                        replacer += value.toPrecision(3)
+                    }
+                    if (!prefixUnit) {
+                        replacer += ' ' + unit;
+                    }
+                    replacer += '</span>'
+                    $(replacer).replaceAll(redot(spanClassName))
+                }
+                // removes the first character from a string if that character is a period.
+                function undot(spanClassName) {
+                    if (spanClassName.charAt(0) === '.') {
+                        return spanClassName.substr(1);
+                    }
+                    return spanClassName;
+                }
 
-                this.name = fcn.name;
-                this.val = xvalue;
-                this.unit = x;
-                this.noFix = noFix;
-                this.prefix = prefix;
-            }
-
-            //replaces date spans
-            function replaceDateSpan(dateString, spanClassName){
-                var replacer = '<span class="' + undot(spanClassName) + '">';
-                replacer += dateString.substr(8,2) + " ";
-                replacer += MonthName[ +dateString.substr(5,2) - 1] + ", ";
-                replacer += dateString.substr(0,4) + '</span>'
-                $(replacer).replaceAll(spanClassName);
-            }
-
-            // Replaces a given span (identified by class name) with a new span,
-            //  where the inner html is the value followed by a unit.
-            function replaceSpan(value, unit, spanClassName, noFixPrecision, prefixUnit) {
-                if (value instanceof ThUnit){
-                    var thousandUnit = value;
-                    value = thousandUnit.val;
-                    unit = thousandUnit.unit;
-                    spanClassName = thousandUnit.name;
+                function redot(spanClassName) {
+                    if (spanClassName.charAt(0) !== '.') {
+                        return "." + spanClassName;
+                    }
+                    return spanClassName;
                 }
-                // create replacer string
-                var replacer = '<span class="' + undot(spanClassName) + '">';
-                if (prefixUnit) {
-                    replacer += unit + '';
-                }
-                if (noFixPrecision === true){
-                    replacer += value;
-                } else if (typeof noFixPrecision === 'number' && noFixPrecision !== 0) {
-                    replacer += value.toPrecision(noFixPrecision);
-                } else if (noFixPrecision === 0) {
-                    replacer += value.toFixed(0);
-                } else {
-                    replacer += value.toPrecision(3)
-                }
-                if (!prefixUnit){
-                     replacer += ' ' + unit;
-                }
-                replacer += '</span>'
-                $(replacer).replaceAll(redot(spanClassName))
-            }
-            // removes the first character from a string if that character is a period.
-            function undot(spanClassName) {
-                if (spanClassName.charAt(0) === '.') {
-                    return spanClassName.substr(1);
-                }
-                return spanClassName;
-            }
-            function redot(spanClassName) {
-                if (spanClassName.charAt(0) !== '.') {
-                    return "." + spanClassName;
-                }
-                return spanClassName;
-            }
             }
 
             // takes slide e (where e is from array a) from a reservoir and inserts them into pool[i].
             // the reservoir and pool are demarcated by a variable, fillingPool.
-            function reservoirToPool (e, i, a){
+            function reservoirToPool(e, i, a) {
                 // copy reference from slideReservoir to slidePool for each index
                 console.log(slideReservoir1[fillingPool][e]);
                 slidePool1[fillingPool][i] = slideReservoir1[fillingPool][e];
@@ -1741,35 +1726,35 @@ $(document).ready(function () {
             // from the array taken randomly.
             function getRandomNodes(x, array) {
                 // create an array randArray of length = array.length
-                let randArray = range(0, array.length - 1);
+                let randArray = util.range(0, array.length - 1);
                 // shuffle randArray
-                for (var i = 0; i < randArray.length; i++){
+                for (var i = 0; i < randArray.length; i++) {
                     // select random number from i to length
                     let z = Math.trunc(i + Math.random() * (randArray.length - 1 - i));
                     // swap with i
-                    swap(randArray, z, i);
+                    util.swap(randArray, z, i);
                 }
 
                 // deal out the nodes
                 var returnable = [];
-                for (var i = 0; i < x; i ++) {
+                for (var i = 0; i < x; i++) {
                     var nextSlide = array[randArray[i]];
-                    returnable.push (nextSlide);
+                    returnable.push(nextSlide);
                 }
                 return returnable;
             }
 
             // function handler - needs currentSlideArray to work
-            function divReplacer (v, i, a){
+            function divReplacer(v, i, a) {
                 // get the nodes to replace - these are div elements (p1, p2, p3...)
                 var nodeParent = document.getElementById(v);
-                var nodeToReplace = document.getElementById( v + '-right' );
+                var nodeToReplace = document.getElementById(v + '-right');
                 // check that nodeToReplace exists
-                if (nodeToReplace !== null ) {
-                     nodeParent.removeChild(nodeToReplace);
+                if (nodeToReplace !== null) {
+                    nodeParent.removeChild(nodeToReplace);
                 }
                 // attach new node
-                $(nodeParent).append( currentSlideArray[i].node );
+                $(nodeParent).append(currentSlideArray[i].node);
                 // rewrite the id to the node, replacing whatever id was attached to that node previously
                 $(currentSlideArray[i].node).attr("id", v + "-right");
                 // sets the background of the parent node
@@ -1779,7 +1764,7 @@ $(document).ready(function () {
             }
 
             /* Resets handlers for slider 1 (the top slider with the dynamic slides) */
-            function resetSliderHandlers(){
+            function resetSliderHandlers() {
                 var scf = new SliderCallbackFactory();
                 var slider = $('#slider1');
                 var sliderRight = [].slice.call(slider[0].getElementsByClassName("wg-right"));
@@ -1843,7 +1828,7 @@ $(document).ready(function () {
             currentReservoir = 'w'
             carbonArray.forEach(fillReservoir);
 
-            function fillReservoir (val, i, arr) {
+            function fillReservoir(val, i, arr) {
                 //nodify
                 var node = nodifyRight(val, classString);
                 //package
@@ -1878,7 +1863,7 @@ $(document).ready(function () {
             cObj is the text object, while className is the name of the span class*/
             function compStringConcat(textObject, className) {
                 var r = "";
-                r += "<p>" + textObject.up ; // insert upper text, line break
+                r += "<p>" + textObject.up; // insert upper text, line break
                 r += spanify(textObject, className); // insert middle text with spans
                 r += textObject.down + "</p>"; // insert bottom text with ending p tag
                 return r;
@@ -1905,7 +1890,7 @@ $(document).ready(function () {
         }
 
         /* Callback function factory. Used for mouseout/mouseover/click events on sliders. */
-        function SliderCallbackFactory(){
+        function SliderCallbackFactory() {
             this.stop = function createStopSlider(sliderElem) {
                 return function () {
                     sliderElem.data('unslider').stop();
@@ -1980,21 +1965,40 @@ $(document).ready(function () {
         //    backBtn.addEventListener("click", pc.chartBack.bind(pc));
     }
 
-    /* Returns an array from start to stop, including start and stop. */
-    function range(start, stop){
-        var r = [];
-        for (var i = start; i <= stop; i ++){
-            r.push(i);
-        }
-        return r;
-    }
 
-    /* r is the array, i and x are elements you want to swap */
-    function swap(r, i, j){
-        let x = r[i];
-        r[i] = r[j];
-        r[j] = x;
-        return;
+    function Utilities (){
+        /* Returns an array from start to stop, including start and stop. */
+        this.range = function range(start, stop) {
+            var r = [];
+            for (var i = start; i <= stop; i++) {
+                r.push(i);
+            }
+            return r;
+        };
+
+        /* r is the array, i and x are elements you want to swap */
+        this.swap = function swap(r, i, j) {
+            let x = r[i];
+            r[i] = r[j];
+            r[j] = x;
+            return;
+        };
+
+        /* returns an array of numbers. kind of like range. used in sgComp object. */
+        this.slideArray = function slideArray(start, stop, plus, minus) {
+            slideArr = [];
+            for (var i = start; i <= stop; i++) {
+                if (minus === undefined || minus === null || i !== minus) {
+                    slideArr.push(i);
+                }
+            }
+            if (plus === undefined || plus === null) {
+                return slideArr;
+            } else {
+                slideArr.push(plus);
+                return slideArr;
+            }
+        }
     }
 
 });

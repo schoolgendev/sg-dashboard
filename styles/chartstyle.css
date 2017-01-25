@@ -1,7 +1,10 @@
 /* CHART SPECIFIC*/
+.chart {
+    position: relative;
+}
 
 .chart rect {
-    fill: #FFB600;
+    fill: #eab721;
 }
 
 .chart text {
@@ -30,14 +33,33 @@
 .tooltip {
     position: absolute;
     text-align: center;
-    width: 120px;
+    width: 100px;
     height: 42px;
     padding: 2px;
     font: 12px sans-serif;
-    background: #FF6400;
+    background: #fdfdfd;
     border: 0px;
-    border-radius: 8px;
+    border-radius: 4px;
     pointer-events: none;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.65);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.65);
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.65);
+}
+
+.tooltip hr {
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: -8px;
+    border-style: none none dotted none;
+    border-color: #acacac;
+}
+
+.tooltip .swatch {
+    float: left;
+}
+
+.tooltip p{
+    float: right;
 }
 
 
