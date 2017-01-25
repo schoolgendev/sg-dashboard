@@ -102,3 +102,13 @@
 #power1 p {
     color: #DDDDDD;
 }
+
+#currentDate {
+    float: left;
+    margin-left: 20px;
+}
+
+#energy-generated-text {
+    float: right;
+    margin-right: 20px;
+}

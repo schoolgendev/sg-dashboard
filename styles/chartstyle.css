@@ -253,3 +253,12 @@
     width: 900px;
     padding: 20px;
 }
+
+.buttons {
+    margin: 0px 20px;
+}
+
+#btn-back {
+    float: right;
+    opacity: 0.9;
+}
