@@ -77,7 +77,7 @@ $(document).ready(function () {
                 {
                     obj: "batt-phone",
                     val: 0.01,
-                    bg: "url('img/laptop-wg-bg.png')",
+                    bg: "url('img/phone-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -102,6 +102,7 @@ $(document).ready(function () {
                     val: 0.02,
                     bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -125,6 +126,7 @@ $(document).ready(function () {
                     val: 0.04,
                     bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -148,6 +150,7 @@ $(document).ready(function () {
                     val: 0.230,
                     bg: "url('img/cyclist-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -171,6 +174,7 @@ $(document).ready(function () {
                     val: 1.2,
                     bg: "url('img/enphase-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -194,6 +198,7 @@ $(document).ready(function () {
                     val: 1.2,
                     bg: "url('img/tnt-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -217,6 +222,7 @@ $(document).ready(function () {
                     val: 4,
                     bg: "url('img/coal-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -240,6 +246,7 @@ $(document).ready(function () {
                     val: 0.8,
                     bg: "url('img/panason-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -263,6 +270,7 @@ $(document).ready(function () {
                     val: 0.0057,
                     bg: "url('img/cyclist-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 2,
                     lText: {
                         margin: {
                             top: "30px",
@@ -286,6 +294,7 @@ $(document).ready(function () {
                     val: 21.2,
                     bg: "url('img/cyclist-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 2,
                     lText: {
                         margin: {
                             top: "30px",
@@ -309,6 +318,7 @@ $(document).ready(function () {
                     val: 6.25,
                     bg: "url('img/tesla-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -332,6 +342,7 @@ $(document).ready(function () {
                     val: 90,
                     bg: "url('img/tesla-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -356,6 +367,7 @@ $(document).ready(function () {
                     val: 10,
                     bg: "url('img/train-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -379,6 +391,7 @@ $(document).ready(function () {
                     val: 1200,
                     bg: "url('img/tnt-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -402,6 +415,7 @@ $(document).ready(function () {
                     val: 583,
                     bg: "url('img/house-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 0,
                     lText: {
                         margin: {
                             top: "30px",
@@ -425,6 +439,7 @@ $(document).ready(function () {
                     val: 1700,
                     bg: "url('img/oil-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 3,
                     lText: {
                         margin: {
                             top: "30px",
@@ -448,6 +463,7 @@ $(document).ready(function () {
                     val: 1716,
                     bg: "url('img/nz-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 3,
                     lText: {
                         margin: {
                             top: "30px",
@@ -471,6 +487,7 @@ $(document).ready(function () {
                     val: 7000,
                     bg: "url('img/house-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 3,
                     lText: {
                         margin: {
                             top: "30px",
@@ -494,6 +511,7 @@ $(document).ready(function () {
                     val: 102986,
                     bg: "url('img/nz-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 3,
                     lText: {
                         margin: {
                             top: "30px",
@@ -517,6 +535,7 @@ $(document).ready(function () {
                     val: 4110,
                     bg: "url('img/windmill-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 3,
                     lText: {
                         margin: {
                             top: "30px",
@@ -540,6 +559,7 @@ $(document).ready(function () {
                     val: 125000,
                     bg: "url('img/windmill-wg-bg.png')",
                     color: "#4F4F4F",
+                    precision: 3,
                     lText: {
                         margin: {
                             top: "30px",
@@ -1593,7 +1613,7 @@ $(document).ready(function () {
                     {name: ".record-school-last-year",       val: pc.stat.general.bestSch.year.name         },
                     {name: ".record-gen-last-year",          val: pc.stat.general.bestSch.year.val          },
                     {name: ".lt-houses",                     val: pc.stat.general.egco2.total.energy
-                                                                    / sgComp.e.objects[5].val               },
+                                                                    / sgComp.e.objects[14].val               },
                     {name: ".lt-elephants",                  val: pc.stat.general.egco2.total.co2
                                                                     / sgComp.w.objects[2].val               }
                 ];
@@ -1628,7 +1648,7 @@ $(document).ready(function () {
                     // divide sum by comparator
                     var newValue = sumData/comparatorValue;
                     // replace spans of className with new value
-                    replaceSpan(newValue, "", className);
+                    replaceSpan(newValue, "", className, x.precision);
                 }
 
                 function ThUnit (str, fcn, noFix, prefix){
@@ -1681,8 +1701,10 @@ $(document).ready(function () {
                 }
                 if (noFixPrecision === true){
                     replacer += value;
-                } else if (typeof noFixPrecision === 'number' ) {
+                } else if (typeof noFixPrecision === 'number' && noFixPrecision !== 0) {
                     replacer += value.toPrecision(noFixPrecision);
+                } else if (noFixPrecision === 0) {
+                    replacer += value.toFixed(0);
                 } else {
                     replacer += value.toPrecision(3)
                 }
