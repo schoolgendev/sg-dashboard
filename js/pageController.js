@@ -73,55 +73,11 @@ $(document).ready(function () {
         e: {
             /* the objects that we are comparing the energy levels to */
             objects: [
-                //object 20
+                // object 0 - smartphone battery, 0.01
                 {
-                    obj: "ge-wind-turbine-month",
-                    val: 125000,
-                    bg: "url('img/windmill-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: null
-                        },
-                        smallprint: "Based on Genesis Energy wind turbines"
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "Equivalent to",
-                        span: " turbines",
-                        down: "spinning for a month"
-                    }
-                },
-                {
-                    obj: "ge-wind-turbine-days",
-                    val: 4110,
-                    bg: "url('img/windmill-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: "Based on Genesis Energy wind turbines"
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "Equivalent to",
-                        span: " turbines",
-                        down: "spinning for a month"
-                    }
-                },
-                {
-                    obj: "nz-generation-minutes",
-                    val: 102986,
-                    bg: "url('img/nz-wg-bg.png')",
+                    obj: "batt-phone",
+                    val: 0.01,
+                    bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -135,15 +91,16 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "That could power the whole of NZ for",
+                        up: "Equal to recharging your phone",
                         span: "",
-                        down: "months!"
+                        down: "times!"
                     }
                 },
+                // tablet, 0.02
                 {
-                    obj: "nz-houses-year",
-                    val: 7000,
-                    bg: "url('img/house-wg-bg.png')",
+                    obj: "batt-tablet",
+                    val: 0.02,
+                    bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -157,15 +114,16 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "That's enough energy to power",
-                        span: " houses",
-                        down: "in NZ for a year!"
+                        up: "You could recharge your tablet",
+                        span: "",
+                        down: "times!"
                     }
                 },
+                // chromebook, 0.04 kwh
                 {
-                    obj: "nz-generation-seconds",
-                    val: 1716,
-                    bg: "url('img/nz-wg-bg.png')",
+                    obj: "batt-chromebook",
+                    val: 0.04,
+                    bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -179,23 +137,23 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "That's enough energy to power",
-                        span: " houses",
-                        down: "in NZ for a year!"
+                        up: "Equal to recharging",
+                        span: "",
+                        down: "Chromebook batteries!"
                     }
                 },
-                // object 15
-/*                {
-                    obj: "oil-barrels",
-                    val: 1700,
-                    bg: "url('img/oil-wg-bg.png')",
+                // tdf cyc 40kmph, 0.230
+                {
+                    obj: "tdf-cyclist-40k1hr",
+                    val: 0.230,
+                    bg: "url('img/cyclist-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
                             left: "null"
                         },
-                        smallprint: ""
+                        smallprint: "based on cyclists going 40km/hr for 1 hour"
                     },
                     rText: {
                         margin: {
@@ -203,35 +161,37 @@ $(document).ready(function () {
                             left: "30px"
                         },
                         up: "Equivalent to",
-                        span: " barrels",
-                        down: "of oil!"
+                        span: " Tour de France cyclists",
+                        down: "cycling for 1 hour"
                     }
-                },  */
+                },
+                // home batt enphase, 1.2 kwh
                 {
-                    obj: "nz-houses-month",
-                    val: 583,
-                    bg: "url('img/house-wg-bg.png')",
+                    obj: "home-batt-enphase",
+                    val: 1.2,
+                    bg: "url('img/enphase-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
                             left: "null"
                         },
-                        smallprint: ""
+                        smallprint: "based on a 1.2 kwh Enphase AC battery"
                     },
                     rText: {
                         margin: {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "That's enough energy to power",
-                        span: " houses",
-                        down: "in NZ for a month!"
+                        up: "Equivalent to",
+                        span: " recharges",
+                        down: "of your Enphase home battery!"
                     }
                 },
+                // tnt, 1.2 per kg
                 {
-                    obj: "TNT-tonne",
-                    val: 1200,
+                    obj: "TNT-kg",
+                    val: 1.2,
                     bg: "url('img/tnt-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
@@ -247,10 +207,149 @@ $(document).ready(function () {
                             left: "30px"
                         },
                         up: "Equivalent to",
-                        span: " tonnes",
+                        span: " kg",
                         down: "of TNT!"
                     }
                 },
+                // coal, 4kwh per kg
+                {
+                    obj: "coal-kg",
+                    val: 4,
+                    bg: "url('img/coal-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "That's enough heat energy from",
+                        span: " kg",
+                        down: "of coal burned!"
+                    }
+                },
+                // home batt panasonic, 0.8
+                {
+                    obj: "home-batt-panasonic",
+                    val: 0.8,
+                    bg: "url('img/panason-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "You could recharge your Panasonic home battery",
+                        span: " times",
+                        down: "on that much energy!"
+                    }
+                },
+                // km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
+                {
+                    obj: "km-driven-tdf-cyclist",
+                    val: 0.0057,
+                    bg: "url('img/cyclist-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "A Tour de France cyclist could cycle",
+                        span: " km",
+                        down: "on that kind of power!"
+                    }
+                },
+                // tdf cyclist, 21.2
+                {
+                    obj: "tdf-cyclist-total",
+                    val: 21.2,
+                    bg: "url('img/cyclist-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "That's the amount of energy output by",
+                        span: " Tour de France cyclists",
+                        down: "over the whole course!"
+                    }
+                },
+                // object 10 - km driven tesla, 6.25 km per kwh
+                {
+                    obj: "km-driven-tesla",
+                    val: 6.25,
+                    bg: "url('img/tesla-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "An electric car could travel",
+                        span: " km",
+                        down: "with that kind of power!"
+                    }
+                },
+                // tesla batt charges, 90
+                {
+                    obj: "tesla-battery",
+                    val: 90,
+                    bg: "url('img/tesla-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "You could charge your Tesla S",
+                        span: " times",
+                        down: "on that kind of energy!"
+                    }
+                },
+                // km driven train - 10km p kwh?
                 {
                     // note: objects beginning with km-driven must be multiplied
                     obj: "km-driven-train",
@@ -274,142 +373,10 @@ $(document).ready(function () {
                         down: "on that energy!"
                     }
                 },
+                // TNT t, 1200
                 {
-                    obj: "tesla-battery",
-                    val: 90,
-                    bg: "url('img/tesla-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: ""
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "You could charge your Tesla S",
-                        span: " times",
-                        down: "on that kind of energy!"
-                    }
-                },
-                // object 10
-                {
-                    obj: "km-driven-tesla",
-                    val: 6.25,
-                    bg: "url('img/tesla-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: ""
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "An electric car could travel",
-                        span: " km",
-                        down: "with that kind of power!"
-                    }
-                },
-                {
-                    obj: "tdf-cyclist-total",
-                    val: 21.2,
-                    bg: "url('img/cyclist-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: ""
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "That's the amount of energy output by",
-                        span: " Tour de France cyclists",
-                        down: "over the whole course!"
-                    }
-                },
-                {
-                    obj: "km-driven-tdf-cyclist",
-                    val: 0.0057,
-                    bg: "url('img/cyclist-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: ""
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "A Tour de France cyclist could cycle",
-                        span: " km",
-                        down: "on that kind of power!"
-                    }
-                },
-                {
-                    obj: "home-batt-panasonic",
-                    val: 0.8,
-                    bg: "url('img/panason-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: ""
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "You could recharge your Panasonic home battery",
-                        span: " times",
-                        down: "on that much energy!"
-                    }
-                },
-                {
-                    obj: "coal-kg",
-                    val: 4,
-                    bg: "url('img/coal-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: ""
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "That's enough heat energy from",
-                        span: " kg",
-                        down: "of coal burned!"
-                    }
-                },
-                {
-                    obj: "TNT-kg",
-                    val: 1.2,
+                    obj: "TNT-tonne",
+                    val: 1200,
                     bg: "url('img/tnt-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
@@ -425,21 +392,45 @@ $(document).ready(function () {
                             left: "30px"
                         },
                         up: "Equivalent to",
-                        span: " kg",
+                        span: " tonnes",
                         down: "of TNT!"
                     }
                 },
+                // nz houses, 600
                 {
-                    obj: "home-batt-enphase",
-                    val: 1.2,
-                    bg: "url('img/enphase-wg-bg.png')",
+                    obj: "nz-houses-month",
+                    val: 583,
+                    bg: "url('img/house-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
                             left: "null"
                         },
-                        smallprint: "based on a 1.2 kwh Enphase AC battery"
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "That's enough energy to power",
+                        span: " houses",
+                        down: "in NZ for a month!"
+                    }
+                },
+                // object 15 - oil barrels, 1.7k
+                /*{
+                    obj: "oil-barrels",
+                    val: 1700,
+                    bg: "url('img/oil-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
                     },
                     rText: {
                         margin: {
@@ -447,21 +438,91 @@ $(document).ready(function () {
                             left: "30px"
                         },
                         up: "Equivalent to",
-                        span: " recharges",
-                        down: "of your Enphase home battery!"
+                        span: " barrels",
+                        down: "of oil!"
                     }
-                },
+                },  */
+                // nz generation, 1.7k
                 {
-                    obj: "tdf-cyclist-40k1hr",
-                    val: 0.230,
-                    bg: "url('img/cyclist-wg-bg.png')",
+                    obj: "nz-generation-seconds",
+                    val: 1716,
+                    bg: "url('img/nz-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
                             left: "null"
                         },
-                        smallprint: "based on cyclists going 40km/hr for 1 hour"
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "That's enough energy to power",
+                        span: " houses",
+                        down: "in NZ for a year!"
+                    }
+                },
+                // nz houses, 7k
+                {
+                    obj: "nz-houses-year",
+                    val: 7000,
+                    bg: "url('img/house-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "That's enough energy to power",
+                        span: " houses",
+                        down: "in NZ for a year!"
+                    }
+                },
+                // nz generation, 102k
+                {
+                    obj: "nz-generation-minutes",
+                    val: 102986,
+                    bg: "url('img/nz-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "20px",
+                            left: "30px"
+                        },
+                        up: "That could power the whole of NZ for",
+                        span: "",
+                        down: "months!"
+                    }
+                },
+                //wind turbine, 4k
+                {
+                    obj: "ge-wind-turbine-days",
+                    val: 4110,
+                    bg: "url('img/windmill-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "30px",
+                            left: "null"
+                        },
+                        smallprint: "Based on Genesis Energy wind turbines"
                     },
                     rText: {
                         margin: {
@@ -469,114 +530,62 @@ $(document).ready(function () {
                             left: "30px"
                         },
                         up: "Equivalent to",
-                        span: " Tour de France cyclists",
-                        down: "cycling for 1 hour"
+                        span: " turbines",
+                        down: "spinning for a month"
                     }
                 },
+                //wind turbine, 125k
                 {
-                    obj: "batt-chromebook",
-                    val: 0.04,
-                    bg: "url('img/laptop-wg-bg.png')",
+                    obj: "ge-wind-turbine-month",
+                    val: 125000,
+                    bg: "url('img/windmill-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
                             top: "30px",
-                            left: "null"
+                            left: null
                         },
-                        smallprint: ""
+                        smallprint: "Based on Genesis Energy wind turbines"
                     },
                     rText: {
                         margin: {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "Equal to recharging",
-                        span: "",
-                        down: "Chromebook batteries!"
-                    }
-                },
-                {
-                    obj: "batt-tablet",
-                    val: 0.02,
-                    bg: "url('img/laptop-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: ""
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "You could recharge your tablet",
-                        span: "",
-                        down: "times!"
-                    }
-                },
-                // object 0
-                {
-                    obj: "batt-phone",
-                    val: 0.01,
-                    bg: "url('img/laptop-wg-bg.png')",
-                    color: "#4F4F4F",
-                    lText: {
-                        margin: {
-                            top: "30px",
-                            left: "null"
-                        },
-                        smallprint: ""
-                    },
-                    rText: {
-                        margin: {
-                            top: "20px",
-                            left: "30px"
-                        },
-                        up: "Equal to recharging your phone",
-                        span: "",
-                        down: "times!"
+                        up: "Equivalent to",
+                        span: " turbines",
+                        down: "spinning for a month"
                     }
                 }
             ],
             /* returns an array of numbers corresponding to comparison objects.
              These are cleared to be included in the slider. */
             threshLevel: function threshLevel(x) {
-                // level 1
+                console.log(x);
                 if (x <= 50) {
                     return slideArray(0, 10);
                 }
-                // level 2
                 if (x > 50 && x <= 250) {
                     return slideArray(0, 11);
                 }
-                // level 3
                 if (x > 250 && x <= 1500) {
                     return slideArray(4, 14);
                 }
-                // level 4
                 if (x > 1500 && x <= 3000) {
                     return slideArray(4, 14, null, 8);
                 }
-                // level 5
                 if (x > 3000 && x <= 6000) {
                     return slideArray(4, 15, 18, 8);
                 }
-                // level 6
                 if (x > 6000 && x <= 10000) {
                     return slideArray(10, 16, 18);
                 }
-                // level 7
                 if (x > 10000 && x <= 100000) {
                     return slideArray(11, 18);
                 }
-                // level 8
                 if (x > 100000 && x <= 500000) {
                     return slideArray(11, 19);
                 }
-                // level 9
                 if (x > 500000) {
                     return slideArray(13, 19);
                 }
@@ -1523,6 +1532,7 @@ $(document).ready(function () {
             // holds the indices of suitable slides for slidePool.e (energy related).
             // the slide pool itself however is not yet repopulated.
             var clearedSlideIndicesKWH = sgComp.e.threshLevel(pc.stat.spec.kwhSum);
+            console.log(clearedSlideIndicesKWH)
             // array of indices of suitable slides for slidePool.w (weight/carbon related)
             var clearedSlideIndicesCO2 = sgComp.w.threshLevel(pc.stat.spec.co2Sum);
 
@@ -1620,9 +1630,8 @@ $(document).ready(function () {
                     // replace spans of className with new value
                     replaceSpan(newValue, "", className);
                 }
-            }
 
-            function ThUnit (str, fcn, noFix, prefix){
+                function ThUnit (str, fcn, noFix, prefix){
                 var units;
                 var i = 0
                 var xvalue = fcn.val;
@@ -1654,14 +1663,12 @@ $(document).ready(function () {
                 replacer += MonthName[ +dateString.substr(5,2) - 1] + ", ";
                 replacer += dateString.substr(0,4) + '</span>'
                 $(replacer).replaceAll(spanClassName);
-                console.log("replacer is " + replacer);
             }
 
             // Replaces a given span (identified by class name) with a new span,
             //  where the inner html is the value followed by a unit.
             function replaceSpan(value, unit, spanClassName, noFixPrecision, prefixUnit) {
                 if (value instanceof ThUnit){
-                    console.log("thUnit detected")
                     var thousandUnit = value;
                     value = thousandUnit.val;
                     unit = thousandUnit.unit;
@@ -1683,8 +1690,6 @@ $(document).ready(function () {
                      replacer += ' ' + unit;
                 }
                 replacer += '</span>'
-                console.log(replacer);
-                console.log(spanClassName);
                 $(replacer).replaceAll(redot(spanClassName))
             }
             // removes the first character from a string if that character is a period.
@@ -1700,10 +1705,13 @@ $(document).ready(function () {
                 }
                 return spanClassName;
             }
+            }
+
             // takes slide e (where e is from array a) from a reservoir and inserts them into pool[i].
             // the reservoir and pool are demarcated by a variable, fillingPool.
             function reservoirToPool (e, i, a){
                 // copy reference from slideReservoir to slidePool for each index
+                console.log(slideReservoir1[fillingPool][e]);
                 slidePool1[fillingPool][i] = slideReservoir1[fillingPool][e];
             }
 
