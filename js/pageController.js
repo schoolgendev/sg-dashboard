@@ -35,9 +35,9 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "Equal to recharging your phone",
+                        up: "Enough electricity to charge",
                         span: "",
-                        down: "times!"
+                        down: "smartphones!"
                     }
                 },
                 // tablet, 0.02
@@ -59,9 +59,9 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "You could recharge your tablet",
+                        up: "Enough electricity to charge",
                         span: "",
-                        down: "times!"
+                        down: "tablets!"
                     }
                 },
                 // chromebook, 0.04 kwh
@@ -83,9 +83,9 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "Equal to recharging",
+                        up: "Enough electricity to recharge",
                         span: "",
-                        down: "Chromebook batteries!"
+                        down: "Chromebooks!"
                     }
                 },
                 // tdf cyc 40kmph, 0.230
@@ -108,8 +108,8 @@ $(document).ready(function () {
                             left: "30px"
                         },
                         up: "Equivalent to",
-                        span: " Tour de France cyclists",
-                        down: "cycling for 1 hour"
+                        span: " cyclists",
+                        down: "cycling for an hour at 40 km/hr"
                     }
                 },
                 // home batt enphase, 1.2 kwh
@@ -131,9 +131,9 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "Equivalent to",
-                        span: " recharges",
-                        down: "of your Enphase home battery!"
+                        up: "You could recharge your Enphase Home Battery",
+                        span: " times",
+                        down: "on that much energy!"
                     }
                 },
                 // tnt, 1.2 per kg
@@ -155,7 +155,7 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "Equivalent to",
+                        up: "Equivalent to the energy released by",
                         span: " kg",
                         down: "of TNT!"
                     }
@@ -179,9 +179,9 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "That's enough heat energy from",
+                        up: "That's enough heat energy released from",
                         span: " kg",
-                        down: "of coal burned!"
+                        down: "of coal!"
                     }
                 },
                 // home batt panasonic, 0.8
@@ -229,7 +229,7 @@ $(document).ready(function () {
                         },
                         up: "A Tour de France cyclist could cycle",
                         span: " km",
-                        down: "on that kind of power!"
+                        down: "on that kind of energy!"
                     }
                 },
                 // tdf cyclist, 21.2
@@ -268,7 +268,7 @@ $(document).ready(function () {
                             top: "30px",
                             left: "null"
                         },
-                        smallprint: ""
+                        smallprint: "based on the Tesla Model S"
                     },
                     rText: {
                         margin: {
@@ -301,7 +301,7 @@ $(document).ready(function () {
                         },
                         up: "You could charge your Tesla S",
                         span: " times",
-                        down: "on that kind of energy!"
+                        down: "on that much energy!"
                     }
                 },
                 // km driven train - 10km p kwh?
@@ -326,7 +326,7 @@ $(document).ready(function () {
                         },
                         up: "A train could travel for",
                         span: " km",
-                        down: "on that energy!"
+                        down: "on that much energy!"
                     }
                 },
                 // TNT t, 1200
@@ -348,7 +348,7 @@ $(document).ready(function () {
                             top: "20px",
                             left: "30px"
                         },
-                        up: "Equivalent to",
+                        up: "Equivalent to the energy released by",
                         span: " tonnes",
                         down: "of TNT!"
                     }
@@ -373,8 +373,8 @@ $(document).ready(function () {
                             left: "30px"
                         },
                         up: "That's enough energy to power",
-                        span: " houses",
-                        down: "in NZ for a month!"
+                        span: " NZ houses",
+                        down: "for a month!"
                     }
                 },
                 // object 15 - oil barrels, 1.7k
@@ -1271,7 +1271,8 @@ $(document).ready(function () {
             if (pc.stat.spec.kwhSum > 1000) {
                 sumString = (pc.stat.spec.kwhSum / 1000) + " MWh";
             }
-            document.getElementById("energyGen").innerHTML = sumString;
+            document.getElementById("energyGen").textContent = sumString;
+            document.getElementById("currentDate").textContent = getCurrentDate();
 
             // sets up the div for the tooltip. Initially starts at opacity = 0.
             var ttDiv = d3.select(".chart").append("div")
@@ -1299,6 +1300,19 @@ $(document).ready(function () {
             bars.exit().remove();
 
             createTooltips(bars, ttDiv);
+
+            function getCurrentDate(){
+                var timeDivs = pc.stat.currentTimeDivs;
+                var dates = pc.stat.spec.dateString;
+                var firstDate = dates[0];
+                var lastDate = dates[dates.length - 1];
+                if (timeDivs === TimePeriod.HOUR){
+                    return firstDate.substr(6);
+                }
+                else {
+                    return firstDate + " - " + lastDate;
+                }
+            }
         }
 
         /* utility method to get tooltips onto each bar.
