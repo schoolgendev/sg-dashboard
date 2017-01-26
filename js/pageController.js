@@ -810,6 +810,7 @@ $(document).ready(function () {
             // callString1 is for the general data
             var callString1 = ApiCallArray[2];
             var callString2;
+            date = new Date(year, month, day);
 
             if (arguments.length === 0) {
                 callString2 = ApiCallArray[0];
@@ -1307,7 +1308,7 @@ $(document).ready(function () {
                 var firstDate = dates[0];
                 var lastDate = dates[dates.length - 1];
                 if (timeDivs === TimePeriod.HOUR){
-                    return firstDate.substr(6);
+                    return firstDate.substr(6) + " " + date.getFullYear();
                 }
                 else {
                     return firstDate + " - " + lastDate;
@@ -1528,9 +1529,6 @@ $(document).ready(function () {
             var carbonSlideContainers = getRandomNodes(2, slidePool1.w);
             console.log(carbonSlideContainers);
             // fixedSlideContainers has all the fixed nodes as slides.
-            var fixedSlideContainers;
-            //TODO: create fixedSlideContainers - an array of nodes that are always present
-
             // required for divReplacer to work properly
             var currentSlideArray = powerSlideContainers;
             // replaces each node in the DOM using the powerIdArray, divReplacer, and the currentSlideArray variable.
@@ -1545,7 +1543,6 @@ $(document).ready(function () {
             /* utility methods */
 
             function replaceAllSpans() {
-                // TODO: replace all spans function
                 //fixed class names.
                 var fcn = [
                     {
