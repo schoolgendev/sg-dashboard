@@ -112,3 +112,10 @@
     float: right;
     margin-right: 20px;
 }
+
+.medium {
+    font-size: 125%;
+    display: block;
+    text-align: center;
+    margin: 10px 9px;
+}
