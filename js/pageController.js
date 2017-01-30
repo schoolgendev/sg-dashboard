@@ -23,6 +23,10 @@ $(document).ready(function () {
                     bg: "url('img/phone-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
+                    threshold: {
+                        upper: 10000,
+                        lower: 0
+                    },
                     lText: {
                         margin: {
                             top: "30px",
@@ -44,9 +48,13 @@ $(document).ready(function () {
                 {
                     obj: "batt-tablet",
                     val: 0.02,
-                    bg: "url('img/laptop-wg-bg.png')",
+                    bg: "url('img/phone-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
+                    threshold: {
+                        upper: 20000,
+                        lower: 0
+                    },
                     lText: {
                         margin: {
                             top: "30px",
@@ -71,6 +79,10 @@ $(document).ready(function () {
                     bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
+                    threshold: {
+                        upper: 40000,
+                        lower: 0
+                    },
                     lText: {
                         margin: {
                             top: "30px",
@@ -92,9 +104,13 @@ $(document).ready(function () {
                 {
                     obj: "tdf-cyclist-40k1hr",
                     val: 0.230,
-                    bg: "url('img/cyclist-wg-bg.png')",
+                    bg: "url('img/cyclist1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
+                    threshold: {
+                        upper: 40000,
+                        lower: 0
+                    },
                     lText: {
                         margin: {
                             top: "30px",
@@ -212,7 +228,7 @@ $(document).ready(function () {
                 {
                     obj: "km-driven-tdf-cyclist",
                     val: 0.0057,
-                    bg: "url('img/cyclist-wg-bg.png')",
+                    bg: "url('img/cyclist1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 2,
                     lText: {
@@ -236,7 +252,7 @@ $(document).ready(function () {
                 {
                     obj: "tdf-cyclist-total",
                     val: 21.2,
-                    bg: "url('img/cyclist-wg-bg.png')",
+                    bg: "url('img/cyclist1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 2,
                     lText: {
@@ -900,6 +916,7 @@ $(document).ready(function () {
             this.stat.currentTimeDivs = TimePeriod.MONTH;
             // no arg call: returns 12 months from current month
             if (arguments.length === 0 || typeof arguments[0] === 'object') {
+                date = new Date();
                 year = date.getFullYear() - 1;
                 month = date.getMonth() + 1;
             }
@@ -919,6 +936,7 @@ $(document).ready(function () {
             var period;
             // no arg call: looks at last 28 days
             if (arguments.length === 0 || typeof arguments[0] === 'object') {
+                date = new Date();
                 var backdate = new Date();
                 backdate.setDate(date.getDate() - 28);
                 year = backdate.getFullYear();
@@ -950,6 +968,7 @@ $(document).ready(function () {
             // calling with less than three params filled is equivalent with none filled.
             if (arguments.length < 3) {
                 // set backdate
+                date = new Date();
                 var backdate = new Date();
                 backdate.setDate(date.getDate() - 7);
                 // pass backdate data into the chart period
@@ -967,6 +986,7 @@ $(document).ready(function () {
             this.stat.currentVisual = TimePeriod.DAY;
             this.stat.currentTimeDivs = TimePeriod.HOUR;
             if (arguments.length < 3) {
+                date = new Date();
                 year = date.getFullYear();
                 month = date.getMonth();
                 day = date.getDate();
@@ -1332,7 +1352,7 @@ $(document).ready(function () {
                         param.html("<strong>" + rectifyDate(pc.stat.spec.dateString[i]) + "</strong><hr><br>" +
                                 pc.stat.spec.kwhGen[i] + " kWh")
                             .style("left", scales.x(pc.stat.spec.xdomain[i]) + 30 + "px")
-                            .style("top", height + 20 + "px");
+                            .style("top", height +40 + "px");
                     }
                 }
             }
@@ -1402,6 +1422,19 @@ $(document).ready(function () {
                     }
                     if (old === TimePeriod.DAY) {
                         return TimePeriod.HOUR;
+                    }
+                    return null;
+                }
+
+                function incrementTimePeriod(old) {
+                    if (old === TimePeriod.MONTH) {
+                        return TimePeriod.YEAR;
+                    }
+                    if (old === TimePeriod.DAY) {
+                        return TimePeriod.MONTH;
+                    }
+                    if (old === TimePeriod.HOUR) {
+                        return TimePeriod.DAY;
                     }
                     return null;
                 }
@@ -1729,7 +1762,6 @@ $(document).ready(function () {
             // the reservoir and pool are demarcated by a variable, fillingPool.
             function reservoirToPool(e, i, a) {
                 // copy reference from slideReservoir to slidePool for each index
-                console.log(slideReservoir1[fillingPool][e]);
                 slidePool1[fillingPool][i] = slideReservoir1[fillingPool][e];
             }
 
