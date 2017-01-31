@@ -135,6 +135,10 @@ $(document).ready(function () {
                     bg: "url('img/enphase-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
+                    threshold: {
+                        upper: 40000,
+                        lower: 0
+                    },
                     lText: {
                         margin: {
                             top: "30px",
@@ -541,7 +545,6 @@ $(document).ready(function () {
             /* returns an array of numbers corresponding to comparison objects.
              These are cleared to be included in the slider. */
             threshLevel: function threshLevel(x) {
-                console.log(x);
                 if (x <= 50) {
                     return util.slideArray(0, 10);
                 }
@@ -850,8 +853,8 @@ $(document).ready(function () {
             function generalStatHandler(err, xhr) {
                 //handle error
                 if (err !== null) {
-                    console.log("failed to complete request for general stats");
-                    console.log(err);
+                    console.err("failed to complete request for general stats");
+                    console.err(err);
                     return;
                 }
                 // compile in the general data
@@ -866,8 +869,8 @@ $(document).ready(function () {
             function periodStatHandler(err, xhr) {
                 //handle error
                 if (err !== null) {
-                    console.log("failed to complete request for specific stats");
-                    console.log(err);
+                    console.err("failed to complete request for specific stats");
+                    console.err(err);
                     return;
                 }
                 // compile stats
@@ -884,7 +887,6 @@ $(document).ready(function () {
                 create a new string to be used in an API call for a specified period.
             */
             function generateCallString(year, month, day, period) {
-                console.log("running call string generator");
                 // returnable is the string that will eventually be returned.
                 var returnable = ApiCallArray[1];
                 // month label is the required month name for the api.
@@ -894,7 +896,6 @@ $(document).ready(function () {
                     .replace(new RegExp("{month}"), monthLabel)
                     .replace(new RegExp("{day}"), day)
                     .replace(new RegExp("{period}"), period);
-                console.log(returnable);
                 return returnable;
             }
         };
@@ -1061,7 +1062,6 @@ $(document).ready(function () {
                 }
             };
             console.log("compile general data complete");
-            console.log(pc.stat);
         }
 
         /* compileSpecificData(xhr, timeDiv) - takes a data object and uses a
@@ -1155,7 +1155,6 @@ $(document).ready(function () {
             pc.stat.spec.co2Sum = +d3.sum(pc.stat.spec.co2Saved).toPrecision(4);
 
             console.log("compile specific data complete");
-            console.log(pc.stat);
 
             /* utility methods*/
             // mapToArray takes a function and runs it on every top level object on
@@ -1187,7 +1186,7 @@ $(document).ready(function () {
             if (index > -1 && index < this.list.length) {
                 return this.list[index];
             } else {
-                console.log("observer retrieval failed - out of bounds")
+                console.err("observer retrieval failed - out of bounds")
                 return false;
             }
         };
@@ -1223,8 +1222,8 @@ $(document).ready(function () {
             bottom: 40,
             left: 60
         };
-        var width = 550 - margin.left - margin.right;
-        var height = 425 - margin.top - margin.bottom;
+        var width = 525 - margin.left - margin.right;
+        var height = 450 - margin.top - margin.bottom;
         var scales = this.scales = createScalesNoDomain(height, width);
         var axes = this.axes = createAxes(scales.x, scales.y);
         var chart;
@@ -1257,7 +1256,9 @@ $(document).ready(function () {
 
         /* drawChart is used in notify to actually create the chart graphic. */
         function drawChart() {
-            // set up selection, call axis.x
+            // set up selection
+            // call axis.x
+            axes.x.ticks(5);
             var selection = chart.append("g")
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")")
@@ -1408,7 +1409,7 @@ $(document).ready(function () {
                         break;
                 }
                 if (finalFunc === undefined) {
-                    console.log("no final func");
+                    console.err("no final func");
                     return;
                 }
                 finalFunc();
@@ -1476,9 +1477,12 @@ $(document).ready(function () {
         /* creates axes objects based on two objects, xScale and yScale. */
         function createAxes(xScale, yScale) {
             var xAxis = d3.svg.axis()
-                .scale(xScale).orient("bottom");
+                .scale(xScale)
+                .orient("bottom")
+                .ticks(10);
             var yAxis = d3.svg.axis()
-                .scale(yScale).orient("left");
+                .scale(yScale)
+                .orient("left");
             return {
                 x: xAxis,
                 y: yAxis
@@ -1487,7 +1491,7 @@ $(document).ready(function () {
 
         /* makeLoader is a function that makes the loading animation visible. */
         function makeLoader() {
-            d3.select("#spinLoader").style("display", "block");
+            d3.select("#spinLoader").style("display", "inline-block");
         }
 
         /* makeLoader is a function that makes the loading animation invisible. */
@@ -1536,7 +1540,6 @@ $(document).ready(function () {
             // holds the indices of suitable slides for slidePool.e (energy related).
             // the slide pool itself however is not yet repopulated.
             var clearedSlideIndicesKWH = sgComp.e.threshLevel(pc.stat.spec.kwhSum);
-            console.log(clearedSlideIndicesKWH)
                 // array of indices of suitable slides for slidePool.w (weight/carbon related)
             var clearedSlideIndicesCO2 = sgComp.w.threshLevel(pc.stat.spec.co2Sum);
 
@@ -1557,10 +1560,8 @@ $(document).ready(function () {
 
             // store a random selection of 5 power-related SlideContainers into powerSlideContainers.
             var powerSlideContainers = getRandomNodes(5, slidePool1.e);
-            console.log(powerSlideContainers);
             // store a random selection of 2 CO2-related SlideContainers into carbonSlideContainers.
             var carbonSlideContainers = getRandomNodes(2, slidePool1.w);
-            console.log(carbonSlideContainers);
             // fixedSlideContainers has all the fixed nodes as slides.
             // required for divReplacer to work properly
             var currentSlideArray = powerSlideContainers;

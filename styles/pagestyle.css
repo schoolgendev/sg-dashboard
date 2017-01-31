@@ -16,8 +16,10 @@
 }
 
 .element {
-    margin: 10px;
+    padding: 12px;
+    margin: 10px 10px;
     display: inline-block;
+    background-color: #FBF5E2;
 }
 
 #masthead {
@@ -68,15 +70,16 @@
 }
 
 .buttons button {
-    -webkit-border-radius: 28;
-    -moz-border-radius: 28;
-    border-radius: 28px;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
     font-family: Arial;
-    color: #ffffff;
-    background: #F47F23;
-    padding: 5px 10px 5px 10px;
+    color: #603913;
+    background: #f5d1b5;
+    border: 2px solid #f47f23;
     text-decoration: none;
-    border: 0px;
+    font-weight: 700;
+    font-size: 12px;
 }
 
 .buttons button:hover {

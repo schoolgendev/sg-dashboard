@@ -262,3 +262,9 @@
     float: right;
     opacity: 0.9;
 }
+
+#matrix {
+    width: 932px;
+    min-height: 142px;
+    display: inline-block;
+}
