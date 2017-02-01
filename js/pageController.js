@@ -1129,25 +1129,32 @@ $(document).ready(function () {
                 }
             }
 
+            var timestampFunc = function (group) {
+                return group.TimeStamp;
+            }
+
             //mapName tells us what the name will be on the stat.
             kwhGenFunc.mapName = "kwhGen";
             co2SavedFunc.mapName = "co2Saved";
             dateFunc.mapName = "dateString";
             xdomainFunc.mapName = "xdomain";
+            timestampFunc.mapName = "timestamp"
             /* add your additional statistics here*/
 
             /* this piece of code actually puts the data onto the stats object*/
-            var funcArray = [kwhGenFunc, co2SavedFunc, dateFunc, xdomainFunc];
+            var funcArray = [kwhGenFunc, co2SavedFunc, dateFunc, xdomainFunc, timestampFunc];
             funcArray.forEach(function (funcInArr) {
                 stat.spec[funcInArr.mapName] = mapToArray(xhr, funcInArr);
             });
 
             /* 2028 ERROR FIX*/
             if (pc.stat.currentVisual === TimePeriod.LIFETIME) {
-                pc.stat.spec.xdomain.pop();
-                pc.stat.spec.co2Saved.pop();
-                pc.stat.spec.dateString.pop();
-                pc.stat.spec.kwhGen.pop();
+                var pcs = pc.stat.spec;
+                pcs.xdomain.pop();
+                pcs.co2Saved.pop();
+                pcs.dateString.pop();
+                pcs.kwhGen.pop();
+                pcs.timestamp.pop()
             }
 
             // additional field: the sum of the kwh
@@ -1216,287 +1223,68 @@ $(document).ready(function () {
         Its update method updates the chart.
     */
     function ChartController() {
-        var margin = {
-            top: 20,
-            right: 40,
-            bottom: 40,
-            left: 60
-        };
+        var margin = { top: 20, right: 40, bottom: 40, left: 60 };
         var width = 525 - margin.left - margin.right;
         var height = 450 - margin.top - margin.bottom;
-        var scales = this.scales = createScalesNoDomain(height, width);
-        var axes = this.axes = createAxes(scales.x, scales.y);
-        var chart;
-
-        /* preNotify - kills the current chart and replaces it with a loading animation. */
-        this.preUpdate = function preUpdate() {
-            destroyChart();
-            makeLoader();
-        }
-
-        /* notify kills the loading animation, sets the scale for the chart, and then
-            draws in the chart using pc.stat.
-        */
-        this.update = function update() {
-            killLoader();
-            initializeChart();
-            getScaleDomains();
-            drawChart();
-        }
-
-        /* sets the chart object and initializes it with a grouping svg element.*/
-        function initializeChart() {
-            chart = d3.select("#kwhGenChart")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        }
-
-
-        /* drawChart is used in notify to actually create the chart graphic. */
-        function drawChart() {
-            // set up selection
-            // call axis.x
-            axes.x.ticks(5);
-            var selection = chart.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(axes.x);
-            if (pc.stat.currentTimeDivs === TimePeriod.HOUR) {
-                selection.selectAll("text")
-                    .attr("transform", "rotate(-90)")
-                    .attr("x", -22)
-                    .attr("y", -4);
-            }
-            // draws the axis label for x
-            selection.append("text")
-                .attr("y", 24).attr("x", width + 15).attr("dy", "-0.71 em")
-                .style("text-anchor", "end")
-                .text(pc.stat.currentTimeDivs);
-            // set up y axis and call axis.y, draw axis label
-            chart.append("g")
-                .attr("class", "y axis")
-                .call(axes.y)
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 12)
-                .attr("dy", "0.71 em")
-                .style("text-anchor", "end")
-                .text("kWh Generated");
-
-            // sets the kwh generated label at the top
-            var sumString = pc.stat.spec.kwhSum + " KWh";
-            if (pc.stat.spec.kwhSum > 1000000) {
-                sumString = (pc.stat.spec.kwhSum / 1000000) + " GWh";
-            } else
-            if (pc.stat.spec.kwhSum > 1000) {
-                sumString = (pc.stat.spec.kwhSum / 1000) + " MWh";
-            }
-            document.getElementById("energyGen").textContent = sumString;
-            document.getElementById("currentDate").textContent = getCurrentDate();
-
-            // sets up the div for the tooltip. Initially starts at opacity = 0.
-            var ttDiv = d3.select(".chart").append("div")
-                .attr("class", "tooltip")
-                .style("opacity", 0);
-
-            // sets up the columns for the column graph
-            // data join + update selection
-            var bars = chart.selectAll(".bar")
-                .data(pc.stat.spec.kwhGen);
-            //enter selection
-            bars.enter().append("rect")
-                .attr("class", "bar")
-                .attr("x", function (d, i) {
-                    return scales.x(pc.stat.spec.xdomain[i]);
-                })
-                .attr("y", function (d) {
-                    return scales.y(d);
-                })
-                .attr("height", function (d) {
-                    return height - scales.y(d)
-                })
-                .attr("width", scales.x.rangeBand());
-            // exit selection
-            bars.exit().remove();
-
-            createTooltips(bars, ttDiv);
-
-            function getCurrentDate(){
-                var timeDivs = pc.stat.currentTimeDivs;
-                var dates = pc.stat.spec.dateString;
-                var firstDate = dates[0];
-                var lastDate = dates[dates.length - 1];
-                if (timeDivs === TimePeriod.HOUR){
-                    return firstDate.substr(6) + " " + date.getFullYear();
-                }
-                else {
-                    return firstDate + " - " + lastDate;
-                }
-            }
-        }
-
-        /* utility method to get tooltips onto each bar.
-         bars is the d3 selection and ttDiv is the tooltip div.
-        */
-        function createTooltips(bars, ttDiv) {
-            bars.on("mouseover", createTTOnFunc(createTTContainer(ttDiv)))
-                .on("mousemove", null)
-                .on("mouseout", createTTOffFunc(createTTContainer(ttDiv)))
-                .on("click", changePeriod)
-
-            function createTTContainer(tooltipDiv) {
-                return {
-                    tt: tooltipDiv,
-                    func: function (param, i) {
-                        param.html("<strong>" + rectifyDate(pc.stat.spec.dateString[i]) + "</strong><hr><br>" +
-                                pc.stat.spec.kwhGen[i] + " kWh")
-                            .style("left", scales.x(pc.stat.spec.xdomain[i]) + 30 + "px")
-                            .style("top", height +40 + "px");
-                    }
-                }
-            }
-
-            function createTTOnFunc(container) {
-                return (function (d, i) {
-                    container.tt.transition()
-                        .duration(100)
-                        .style("opacity", .9);
-                    container.func(container.tt, i);
-                })
-            }
-
-            function createTTOffFunc(container) {
-                return (function () {
-                    container.tt.transition()
-                        .duration(100)
-                        .style("opacity", 0);
-                })
-            }
-
-            function changePeriod(d, i) {
-                // get old time div, if already at hour, cancel zoom operation
-                var oldTimeDiv = pc.stat.currentTimeDivs;
-                var newTimeDiv = decrementTimePeriod(oldTimeDiv);
-                if (newTimeDiv === null) {
-                    return;
-                }
-                // destroy tooltip
-                var killTooltip = createTTOffFunc(createTTContainer(ttDiv));
-                killTooltip();
-                // get the new date
-                var zoomInDate = pc.stat.spec.dateString[i];
-                var year, month, day, finalFunc;
-                switch (newTimeDiv) {
-                    // zooming into a single month from a year
-                    case TimePeriod.MONTH:
-                        year = parseInt(zoomInDate);
-                        month, day = 0;
-                        finalFunc = pc.chartYear.bind(pc, year);
-                        break;
-                    case TimePeriod.DAY:
-                        year = parseInt(zoomInDate.substr(4, 4));
-                        month = MonthName.indexOf(zoomInDate.substr(0, 3));
-                        day = 0;
-                        finalFunc = pc.chartMonth.bind(pc, year, month);
-                        break;
-                    case TimePeriod.HOUR:
-                        year = parseInt(zoomInDate.substr(7, 4));
-                        month = MonthName.indexOf(zoomInDate.substr(3, 3));
-                        day = parseInt(zoomInDate.substr(0, 2));
-                        finalFunc = pc.chartDay.bind(pc, year, month, day);
-                        break;
-                }
-                if (finalFunc === undefined) {
-                    console.err("no final func");
-                    return;
-                }
-                finalFunc();
-
-                function decrementTimePeriod(old) {
-                    if (old === TimePeriod.YEAR) {
-                        return TimePeriod.MONTH;
-                    }
-                    if (old === TimePeriod.MONTH) {
-                        return TimePeriod.DAY;
-                    }
-                    if (old === TimePeriod.DAY) {
-                        return TimePeriod.HOUR;
-                    }
-                    return null;
-                }
-
-                function incrementTimePeriod(old) {
-                    if (old === TimePeriod.MONTH) {
-                        return TimePeriod.YEAR;
-                    }
-                    if (old === TimePeriod.DAY) {
-                        return TimePeriod.MONTH;
-                    }
-                    if (old === TimePeriod.HOUR) {
-                        return TimePeriod.DAY;
-                    }
-                    return null;
-                }
-            }
-            function rectifyDate(dateString){
-                if (dateString.charAt(2) === ':'){
-                    return dateString.substr(7) + " " + dateString.substr(0,5);
-                }
-                return dateString;
-            }
-        }
-
-        function getScaleDomains() {
-            scales.x.domain(pc.stat.spec.xdomain);
-            scales.y.domain([0, d3.max(pc.stat.spec.kwhGen)]);
-        }
-
-        /* gets rid of all child nodes of the document object known as 'kwhGenChart'*/
-        function destroyChart() {
-            var rootNode = document.getElementById("kwhGenChart");
-            while (rootNode.hasChildNodes()) {
-                rootNode.removeChild(rootNode.firstChild);
-            }
-        }
-
-        /* create scales with the domain not yet set. Returns an object with two children,
-         x and y, both d3 scale objects. */
-        function createScalesNoDomain(height, width) {
-            var xScale = d3.scale.ordinal()
-                .rangeRoundBands([0, width], 0.1);
-            var yScale = d3.scale.linear()
-                .range([height, 0]);
-            return {
-                x: xScale,
-                y: yScale
-            };
-        }
-
-        /* creates axes objects based on two objects, xScale and yScale. */
-        function createAxes(xScale, yScale) {
-            var xAxis = d3.svg.axis()
-                .scale(xScale)
+        var parseDate = d3.time.format("%d-%m-%Y %H:%M").parse;
+        // set up chart
+        var chart =  d3.select("#kwhGenChart")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        // TODO: set up loader
+        // range for the scales
+        var chartRange = {
+            x: [0, width],
+            y: [height, 0]
+        };
+        // scales for the data
+        var chartScale = {
+            x: d3.time.scale(),
+            y: d3.scale.ordinal()
+        };
+        // axes use the scales and are for the chart
+        // hook scales to axes
+        var axes = {
+            x: d3.svg.axis()
+                .scale(chartScale.x)
                 .orient("bottom")
-                .ticks(10);
-            var yAxis = d3.svg.axis()
-                .scale(yScale)
-                .orient("left");
-            return {
-                x: xAxis,
-                y: yAxis
+                .ticks(4),
+            y: d3.svg.axis()
+                .scale(chartScale.y)
+                .orient("left")
+        };
+        // hook ranges to scales
+        chartScale.x.range(chartRange.x);
+        chartScale.y.range(chartRange.y);
+
+        /* compiles domains, called during update */
+        function compileDomains() {
+            // domain is for the scales
+            var dataDomain = {
+                x: pc.stat.spec.timestamp,
+                y: pc.stat.spec.kwhGen
+            }
+            var chartDomain = {
+                x: [d3.extent(dataDomain.x, function(d) { return parseDate(d)})],
+                y: [0, d3.max(dataDomain.y)]
             };
+            // hook domains to scales
+            chartScale.x.domain(chartDomain.x);
+            chartScale.y.domain(chartDomain.y);
         }
 
-        /* makeLoader is a function that makes the loading animation visible. */
-        function makeLoader() {
-            d3.select("#spinLoader").style("display", "inline-block");
+        /* creates and compiles the chart */
+        function drawChart(){
+            
         }
 
-        /* makeLoader is a function that makes the loading animation invisible. */
-        function killLoader() {
-            d3.select("#spinLoader").style("display", "none");
+
+        /* called on data change*/
+        function update(){
+            compileDomains();
+            drawChart();
         }
 
     }
