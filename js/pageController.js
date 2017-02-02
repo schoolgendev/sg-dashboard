@@ -1271,6 +1271,9 @@ $(document).ready(function () {
                 .scale(chartScale.y)
                 .orient("left")
         };
+        var ttDiv = chart.append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
 
         // hook ranges to scales
         chartScale.x.range(chartRange.x);
@@ -1278,6 +1281,18 @@ $(document).ready(function () {
         chartScale.w.rangeRoundBands(chartRange.x, 0.1);
 
         drawChart();
+
+        /* creates and compiles the chart */
+        function drawChart() {
+            // create x axis
+            chart.append("g")
+                .attr("class", "x axis x-axis")
+                .attr("transform", "translate(0," + height + ")");
+            // create y axis
+            chart.append("g")
+                .attr("class", "y axis y-axis");
+        }
+
 
         /* updates the domain, sets the scale's domains as well */
         function updateScales(){
@@ -1311,17 +1326,6 @@ $(document).ready(function () {
                 .call(axes.y);
         }
 
-        /* creates and compiles the chart */
-        function drawChart() {
-            // create x axis
-            chart.append("g")
-                .attr("class", "x axis x-axis")
-                .attr("transform", "translate(0," + height + ")");
-            // create y axis
-            chart.append("g")
-                .attr("class", "y axis y-axis");
-        }
-
         /* updates the rectangles on the chart representing the data */
         function updateRects(){
             // use the kwhgen for data domain
@@ -1352,7 +1356,7 @@ $(document).ready(function () {
 
             // UPDATE SELECTION
             bars.attr("class", "bar")
-              .transition().duration(500)
+              .transition().duration(300)
                 // x position depends on scaling from dates to pixels
                 .attr("x", function (d, i){ return chartScale.w( d.time ); } )
                 // height of rect extends downwards. use height and scale.
@@ -1363,12 +1367,30 @@ $(document).ready(function () {
 
         }
 
+        /* Puts event handlers for click events and mouseovers onto the bars */
+        function attachEventHandlers(){
+            var bars = chart.selectAll('.bar');
+
+            // we should probably add in e.g. a 'zoomIn' and a 'zoomOut' function
+            // to the PageController object to further separate views and logic
+            // and enhance reusability
+
+        }
+
+        /* called while API call occuring but before data comes through */
+        this.preUpdate = function preUpdate() {
+            // makes the loader
+            d3.select('#spinLoader').attr('style','display:absolute');
+        }
 
         /* called on data change*/
         this.update = function update() {
+            // kills the loader animation
+            d3.select("#spinLoader").attr('style','display:none');
             updateScales();
             updateAxes();
             updateRects();
+            attachEventHandlers();
         }
 
     }
