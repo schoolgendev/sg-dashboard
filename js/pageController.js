@@ -1300,7 +1300,6 @@ $(document).ready(function () {
                 .attr("class", "y axis y-axis");
         }
 
-
         /* updates the domain, sets the scale's domains as well */
         function updateScales(){
             dataDomain.x = pc.stat.spec.timestamp;
@@ -1342,9 +1341,9 @@ $(document).ready(function () {
 
             // EXIT SELECTION
             bars.exit()
-              .transition().duration(500)
-                .attr("y", height)
-                .attr("height", 0)
+              .transition().duration(400)
+                .attr("x", width)
+                .attr("width", 0)
               .remove();
 
             // ENTER SELECTION
@@ -1356,19 +1355,19 @@ $(document).ready(function () {
                 .attr("width", function (d, i) { return chartScale.w.rangeBand(); })
                 .attr("height", 0)
                 .attr("y", height)
-              .transition().delay(500).duration(500)
+              .transition().delay(400).duration(400)
                 .attr("y", function (d) { return chartScale.y(d.kwh); })
                 .attr("height", function (d) { return height - chartScale.y(d.kwh); });
 
 
             // UPDATE SELECTION
             bars.attr("class", "bar")
-              .transition().duration(300)
+              .transition().duration(400)
                 // x position depends on scaling from dates to pixels
                 .attr("x", function (d, i){ return chartScale.w( d.time ); } )
                 // height of rect extends downwards. use height and scale.
                 .attr("width", function (d, i) { return chartScale.w.rangeBand(); })
-              .transition().duration(500)
+              .transition().duration(400)
                 .attr("y", function (d) { return chartScale.y(d.kwh); })
                 .attr("height", function (d) { return height - chartScale.y(d.kwh); });
 
@@ -1390,14 +1389,12 @@ $(document).ready(function () {
             function TooltipController(){
                 /* handler for tooltip on */
                 this.on = function tooltipOn(d, i){
-                    var ttDateParse = getDateParser(dataDomain.x[i]);
                     ttDiv.transition().duration(100)
                         .style("opacity", 0.9);
-                    ttDiv.html( "<strong>" + ttDateParse(d.time) + "</strong><hr><br>" +
+                    ttDiv.html( "<strong>" + formatDate(d.time) + "</strong><hr><br>" +
                                 d.kwh + " kWh")
                         .style("left", Math.trunc(chartScale.x(parseDate(d.time))) + "px")
                         .style("top", height + margin.bottom + "px");
-                    console.log(d.time + " " + d.kwh);
                 }
 
                 /* handler for tooltip off */
@@ -1407,22 +1404,24 @@ $(document).ready(function () {
                 }
 
                 // TODO: USE THE DATE PARSE OBJECT TO DO COOL STUFF
-                function getDateParser(){
-                    var dateParseFormat;
+                function formatDate(date){
+                    var dateFormat;
+                    var dateParse = "%d-%m-%Y %H:%M"
+                    date = d3.time.format(dateParse).parse(date);
                     var timeDivs = pc.stat.currentTimeDivs;
                     if (timeDivs === TimePeriod.YEAR) {
-                        dateParseFormat = "%Y"
+                        dateFormat = "%Y"
                     }
                     else if (timeDivs === TimePeriod.DAY){
-                        dateParseFormat = "%d %b %Y";
+                        dateFormat = "%d %b %Y";
                     }
                     else if (timeDivs === TimePeriod.MONTH){
-                        dateParseFormat = "%b %Y";
+                        dateFormat = "%b %Y";
                     }
                     else {
-                        dateParseFormat = "%H:%M %p %d %b %Y";
+                        dateFormat = "%H:%M %d %b";
                     }
-                    return d3.time.format(dateParseFormat).parse;
+                    return d3.time.format(dateFormat)(date);
                 }
 
             }
