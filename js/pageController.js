@@ -1331,10 +1331,10 @@ $(document).ready(function () {
 
             // EXIT SELECTION
             bars.exit()
+              .transition().duration(500)
+                .attr("y", height)
+                .attr("height", 0)
               .remove();
-            
-            console.log(chartScale.w.domain());
-            console.log(chartScale.w.range());
 
             // ENTER SELECTION
             bars.enter().append("rect")
@@ -1342,22 +1342,24 @@ $(document).ready(function () {
                 .attr("x", function (d, i){
                     return chartScale.w( d.time );
                 })
+                .attr("width", function (d, i) { return chartScale.w.rangeBand(); })
+                .attr("height", 0)
+                .attr("y", height)
+              .transition().delay(500).duration(500)
                 .attr("y", function (d) { return chartScale.y(d.kwh); })
-                .attr("height", function (d) { return height - chartScale.y(d.kwh); })
-            // TODO: ALSO COMPLETE WIDTH FUNC
-                .attr("width", function (d, i) { return chartScale.w.rangeBand(); });
+                .attr("height", function (d) { return height - chartScale.y(d.kwh); });
 
 
             // UPDATE SELECTION
             bars.attr("class", "bar")
+              .transition().duration(500)
                 // x position depends on scaling from dates to pixels
-              .attr("x", function (d, i){ return chartScale.w( d.time ); } )
-                // y position of rect starts at top of rect, so need the scale here.
-              .attr("y", function (d) { return chartScale.y(d.kwh); })
+                .attr("x", function (d, i){ return chartScale.w( d.time ); } )
                 // height of rect extends downwards. use height and scale.
-              .attr("height", function (d) { return height - chartScale.y(d.kwh); })
-            //TODO: COMPLETE WIDTH FUNC
-              .attr("width", function (d, i) { return chartScale.w.rangeBand(); });
+                .attr("width", function (d, i) { return chartScale.w.rangeBand(); })
+              .transition().duration(500)
+                .attr("y", function (d) { return chartScale.y(d.kwh); })
+                .attr("height", function (d) { return height - chartScale.y(d.kwh); });
 
         }
 

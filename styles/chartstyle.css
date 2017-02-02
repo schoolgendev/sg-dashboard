@@ -68,8 +68,8 @@
 #spinLoader {
     /* throw your positional stuff here*/
     position: absolute;
-    top:50%;
-    left: 30%;
+    top: -15%;
+    left: 90%;
     z-index: 10;
 }
 
