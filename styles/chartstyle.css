@@ -13,6 +13,10 @@
     text-anchor: middle;
 }
 
+.bar {
+    opacity: 0.7;
+}
+
 
 /* AXES RELATED*/
 
