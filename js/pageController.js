@@ -784,21 +784,7 @@ $(document).ready(function () {
             // removal failed - couldn't find the observing object in the list.
             console.err("observer removal failed");
         };
-        /* notify() triggers the update mechanism for all registered observers. */
-        var notify = this.notify = function () {
-            console.log("====================================================================");
-            console.log("======================== RUNNING NOTIFY ============================");
-            console.log("====================================================================");
-            // cycle through observers, call update()
-            let i, obsCount = obsList.count();
-            for (i = 0; i < obsCount; i++) {
-                console.log("notifying observer " + i)
-                if (typeof obsList.list[i].update === 'function') {
-                    obsList.list[i].update();
-                }
-                console.log("finished notifying observer " + i)
-            }
-        };
+
         /*preNotify() triggers preupdate mechanism for all registered observers*/
         var preNotify = this.preNotify = function () {
             console.log("====================================================================");
@@ -811,6 +797,25 @@ $(document).ready(function () {
                     obsList.list[i].preUpdate();
                 }
             }
+        };
+
+        /* notify() triggers the update mechanism for all registered observers. */
+        var notify = this.notify = function () {
+            console.log("====================================================================");
+            console.log("======================== RUNNING NOTIFY ============================");
+            console.log("====================================================================");
+            // update the Energy Generated text
+            document.getElementById('energyGen').textContent = util.cutKWHSum(stat.spec.kwhSum);
+            // cycle through observers, call update()
+            let i, obsCount = obsList.count();
+            for (i = 0; i < obsCount; i++) {
+                console.log("notifying observer " + i)
+                if (typeof obsList.list[i].update === 'function') {
+                    obsList.list[i].update();
+                }
+                console.log("finished notifying observer " + i)
+            }
+
         };
 
         /* PAGE CONTROLLER INTERFACE */
@@ -1139,7 +1144,7 @@ $(document).ready(function () {
             dateFunc.mapName = "dateString";
             xdomainFunc.mapName = "xdomain";
             timestampFunc.mapName = "timestamp"
-            /* add your additional statistics here*/
+                /* add your additional statistics here*/
 
             /* this piece of code actually puts the data onto the stats object*/
             var funcArray = [kwhGenFunc, co2SavedFunc, dateFunc, xdomainFunc, timestampFunc];
@@ -1223,12 +1228,19 @@ $(document).ready(function () {
         Its update method updates the chart.
     */
     function ChartController() {
-        var margin = { top: 20, right: 40, bottom: 40, left: 60 };
+        // boolean flag, true if chart already drawn, false if not yet drawn
+        var init = false;
+        var margin = {
+            top: 20,
+            right: 40,
+            bottom: 40,
+            left: 60
+        };
         var width = 525 - margin.left - margin.right;
         var height = 450 - margin.top - margin.bottom;
         var parseDate = d3.time.format("%d-%m-%Y %H:%M").parse;
         // set up chart
-        var chart =  d3.select("#kwhGenChart")
+        var chart = d3.select("#kwhGenChart")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -1237,13 +1249,17 @@ $(document).ready(function () {
         // range for the scales
         var chartRange = {
             x: [0, width],
-            y: [height, 0]
+            y: [height, 0],
         };
         // scales for the data
         var chartScale = {
             x: d3.time.scale(),
-            y: d3.scale.ordinal()
+            y: d3.scale.linear(),
+            w: d3.scale.ordinal()   //sorts out the width of the bars
         };
+        var dataDomain = {}; // domain for the data
+        var dataAccessor = []; // array holding a new mapped array
+        var chartDomain = {};// domain for the chart. See updateScales for assignment.
         // axes use the scales and are for the chart
         // hook scales to axes
         var axes = {
@@ -1255,36 +1271,102 @@ $(document).ready(function () {
                 .scale(chartScale.y)
                 .orient("left")
         };
+
         // hook ranges to scales
         chartScale.x.range(chartRange.x);
         chartScale.y.range(chartRange.y);
+        chartScale.w.rangeRoundBands(chartRange.x, 0.1);
 
-        /* compiles domains, called during update */
-        function compileDomains() {
-            // domain is for the scales
-            var dataDomain = {
-                x: pc.stat.spec.timestamp,
-                y: pc.stat.spec.kwhGen
-            }
-            var chartDomain = {
-                x: [d3.extent(dataDomain.x, function(d) { return parseDate(d)})],
-                y: [0, d3.max(dataDomain.y)]
-            };
-            // hook domains to scales
+        drawChart();
+
+        /* updates the domain, sets the scale's domains as well */
+        function updateScales(){
+            dataDomain.x = pc.stat.spec.timestamp;
+            dataDomain.y = pc.stat.spec.kwhGen;
+            chartDomain.x = d3.extent(dataDomain.x, function(d) { return parseDate(d); } );
+            chartDomain.y = [ 0, d3.max(dataDomain.y) ];
+            chartDomain.w = [ 0, dataDomain.x.length]
+            // this assigns the chart scale domains.
+            // See the root of object for assignment of chart scale ranges.
             chartScale.x.domain(chartDomain.x);
             chartScale.y.domain(chartDomain.y);
+            chartScale.w.domain(dataDomain.x);
+            // creates a new data accessor object
+            dataAccessor = dataDomain.y.map( function (v, i, a){
+                return { time: dataDomain.x[i],
+                         kwh: dataDomain.y[i]
+                       };
+            });
+        }
+
+        /* hooks up axes with scales and redraws them */
+        function updateAxes(){
+            axes.x.scale(chartScale.x);
+            axes.y.scale(chartScale.y);
+            d3.select('.x-axis')
+                .transition().duration(500)
+                .call(axes.x)
+            d3.select('.y-axis')
+                .transition().duration(500)
+                .call(axes.y);
         }
 
         /* creates and compiles the chart */
-        function drawChart(){
+        function drawChart() {
+            // create x axis
+            chart.append("g")
+                .attr("class", "x axis x-axis")
+                .attr("transform", "translate(0," + height + ")");
+            // create y axis
+            chart.append("g")
+                .attr("class", "y axis y-axis");
+        }
+
+        /* updates the rectangles on the chart representing the data */
+        function updateRects(){
+            // use the kwhgen for data domain
+            var bars = chart.selectAll('.bar')
+            // for dataAccessor's assignment see updateScales()
+              .data(dataAccessor);
+
+            // EXIT SELECTION
+            bars.exit()
+              .remove();
             
+            console.log(chartScale.w.domain());
+            console.log(chartScale.w.range());
+
+            // ENTER SELECTION
+            bars.enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d, i){
+                    return chartScale.w( d.time );
+                })
+                .attr("y", function (d) { return chartScale.y(d.kwh); })
+                .attr("height", function (d) { return height - chartScale.y(d.kwh); })
+            // TODO: ALSO COMPLETE WIDTH FUNC
+                .attr("width", function (d, i) { return chartScale.w.rangeBand(); });
+
+
+            // UPDATE SELECTION
+            bars.attr("class", "bar")
+                // x position depends on scaling from dates to pixels
+              .attr("x", function (d, i){ return chartScale.w( d.time ); } )
+                // y position of rect starts at top of rect, so need the scale here.
+              .attr("y", function (d) { return chartScale.y(d.kwh); })
+                // height of rect extends downwards. use height and scale.
+              .attr("height", function (d) { return height - chartScale.y(d.kwh); })
+            //TODO: COMPLETE WIDTH FUNC
+              .attr("width", function (d, i) { return chartScale.w.rangeBand(); });
+
         }
 
 
         /* called on data change*/
-        function update(){
-            compileDomains();
-            drawChart();
+        this.update = function update() {
+            updateScales();
+            updateAxes();
+            updateRects();
         }
 
     }
@@ -1328,7 +1410,7 @@ $(document).ready(function () {
             // holds the indices of suitable slides for slidePool.e (energy related).
             // the slide pool itself however is not yet repopulated.
             var clearedSlideIndicesKWH = sgComp.e.threshLevel(pc.stat.spec.kwhSum);
-                // array of indices of suitable slides for slidePool.w (weight/carbon related)
+            // array of indices of suitable slides for slidePool.w (weight/carbon related)
             var clearedSlideIndicesCO2 = sgComp.w.threshLevel(pc.stat.spec.co2Sum);
 
             //   repopulate the slide pool with a subset of suitable slides from the reservoir
@@ -1798,7 +1880,7 @@ $(document).ready(function () {
     }
 
 
-    function Utilities (){
+    function Utilities() {
         /* Returns an array from start to stop, including start and stop. */
         this.range = function range(start, stop) {
             var r = [];
@@ -1830,6 +1912,19 @@ $(document).ready(function () {
                 slideArr.push(plus);
                 return slideArr;
             }
+        }
+
+        /* Takes a number and an array of units to cut via 1000s */
+        this.cutKWHSum = function cutKWHSum(x) {
+            //take x, if more than 1000, divide by 1000 and increase unit magnitude.
+            // repeat while x > 1000
+            var prefixArray = ['kWh', 'MWh', 'GWh'];
+            var prefixIndex = 0;
+            while (x > 1000) {
+                x = x / 1000;
+                prefixIndex++;
+            }
+            return x + " " + prefixArray[prefixIndex];
         }
     }
 
