@@ -1378,10 +1378,10 @@ $(document).ready(function () {
             axes.x.scale(chartScale.x);
             axes.y.scale(chartScale.y);
             d3.select('.x-axis')
-                .transition().duration(500)
+                .transition().duration(600)
                 .call(axes.x)
             d3.select('.y-axis')
-                .transition().duration(500)
+                .transition().duration(600)
                 .call(axes.y);
         }
 
@@ -1394,7 +1394,7 @@ $(document).ready(function () {
 
             // EXIT SELECTION
             bars.exit()
-                .transition().duration(400)
+                .transition().duration(250)
                 .attr("y", height)
                 .attr("height", 0)
                 .remove();
@@ -1410,7 +1410,7 @@ $(document).ready(function () {
                 })
                 .attr("height", 0)
                 .attr("y", height)
-                .transition().delay(400).duration(400)
+                .transition().delay(250).duration(300)
                 .attr("y", function (d) {
                     return chartScale.y(d.kwh);
                 })
@@ -1421,7 +1421,7 @@ $(document).ready(function () {
 
             // UPDATE SELECTION
             bars.attr("class", "bar")
-                .transition().duration(400)
+                .transition().duration(250)
                 .attr("y", height)
                 .attr("height", 0)
                 .transition()
@@ -1433,7 +1433,7 @@ $(document).ready(function () {
                 .attr("width", function (d, i) {
                     return chartScale.w.rangeBand();
                 })
-                .transition().duration(400)
+                .transition().duration(300)
                 .attr("y", function (d) {
                     return chartScale.y(d.kwh);
                 })
