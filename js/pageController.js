@@ -746,7 +746,7 @@ $(document).ready(function () {
     var wc = new WidgetController();
     pc.register(cc);
     pc.register(wc);
-    pc.chartPeriod(date.getFullYear(), date.getMonth(), date.getDate(), 1);
+    pc.chartDay();
 
 
     /* FUNCTIONS AND FUNCTION CONSTRUCTORS*/
@@ -824,6 +824,8 @@ $(document).ready(function () {
          for a given period, before calling notify on everything.
          If called with no parameters, the data period is the entire lifetime of schoolgen.
          Makes use of the top-level dc (data compiler) and the stat.
+         Must set currentVisual and currentTimeDivs for this to work correctly,
+          note that this is already done by the common interface methods (chartYear, chartDay etc)
          */
         this.chartPeriod = function chartPeriod(year, month, day, period) {
             // a signal variable for the AJAX request with callString1
@@ -1010,9 +1012,8 @@ $(document).ready(function () {
             console.log("chart back to be implemented")
         }
 
+        /* zoom into a date */
         this.zoomIn = function zoomIn(year, month, day) {
-            // TODO: zoom in function on pc
-            console.log("zoom in to be implemented")
             if (stat.currentTimeDivs === TimePeriod.YEAR ){
                 this.chartYear(year, month);
                 return;
@@ -1030,9 +1031,38 @@ $(document).ready(function () {
                 return null;
             }
         }
-        this.zoomOut = function zoomOut(date) {
-            // TODO: zoom out function on pc
-            console.log("zoom out to be implemented")
+
+        /* zoom out of a date */
+        this.zoomOut = function zoomOut(year, month, day) {
+            var backdate = new Date(year, month + 1, day)
+            if (stat.currentVisual === TimePeriod.DAY){
+                // zoom out means call chartWeek possibly? or chartMonth?
+                backdate.setDate(backdate.getDate() - 3);
+                this.chartWeek(backdate.getFullYear(), backdate.getMonth() - 1, backdate.getDate());
+            }
+            else if (stat.currentVisual === TimePeriod.WEEK){
+                // zoom out means call chart month
+                backdate.setDate(backdate.getDate() - 14);
+                this.chartMonth(backdate.getFullYear(), backdate.getMonth() - 1, backdate.getDate());
+            }
+            else if (stat.currentVisual === TimePeriod.MONTH){
+                // call chart year
+                backdate.setMonth( backdate.getMonth() - 6);
+                this.chartYear(backdate.getFullYear(), backdate.getMonth());
+            }
+            else if (stat.currentVisual === TimePeriod.YEAR) {
+                // call chartLifetime
+                this.chartLifetime();
+            }
+            else if (stat.currentVisual === TimePeriod.LIFETIME) {
+                // do nothing, return null
+                console.warn("furtherest zoom reached");
+                return null;
+            }
+            else {
+                console.warn("cannot zoom out");
+                return null;
+            }
         }
 
     }
@@ -1473,8 +1503,7 @@ $(document).ready(function () {
             }
 
             function chartClickHandler(d, i) {
-                //TODO: alt-click, single-click and shift-click actions
-                // d3.event.keyCode: shift - 16; ctrl - 17; alt - 18
+                var t = breakDate(d);
                 if (d3.event.shiftKey){
                     // TODO: do the shift action (start selection or zoom into period)
                     console.log("shift clicked");
@@ -1491,18 +1520,22 @@ $(document).ready(function () {
                     }
                 }
                 else if (d3.event.altKey){
-                    pc.zoomOut(d.time);
+                    pc.zoomOut(t.year, t.month, t.day);
                 }
                 else {
                     console.log(d);
                     ttc.off(d, i);
-                    // date is in form of dd-mm-yyyy HH:MM
-                    var year, month, day;
-                    year = + d.time.substr(6,4);
-                    month = + d.time.substr(3,2) - 1;
-                    day = + d.time.substr(0,2);
-                    pc.zoomIn(year, month, day);
+                    pc.zoomIn(t.year, t.month, t.day);
                 }
+            }
+
+            function breakDate(d){
+                // date is in form of dd-mm-yyyy HH:MM
+                var year, month, day;
+                year = + d.time.substr(6,4);
+                month = + d.time.substr(3,2) - 1;
+                day = + d.time.substr(0,2);
+                return { year: year, month: month, day: day };
             }
 
         }
