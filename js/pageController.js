@@ -806,6 +806,7 @@ $(document).ready(function () {
             console.log("====================================================================");
             // update the Energy Generated text
             document.getElementById('energyGen').textContent = util.cutKWHSum(stat.spec.kwhSum);
+            document.getElementById('currentDate').textContent = util.getCurrentDateString();
             // cycle through observers, call update()
             let i, obsCount = obsList.count();
             for (i = 0; i < obsCount; i++) {
@@ -1147,7 +1148,7 @@ $(document).ready(function () {
                 return Math.round(group.CO2Saved);
             };
 
-            /* dateStringFunc extracts the appropriate dateString from the dataObjects.
+            /* dateFunc extracts the appropriate dateString from the dataObjects.
                 The value of dateFunc changes according to what timeDiv is being run*/
             var dateFunc;
             if (timeDiv === TimePeriod.YEAR) {
@@ -2113,6 +2114,18 @@ $(document).ready(function () {
                 prefixIndex++;
             }
             return x + " " + prefixArray[prefixIndex];
+        }
+
+        this.getCurrentDateString = function getCurrentDateString (){
+            var ts =  pc.stat.spec.timestamp;
+            var parse = d3.time.format("%d-%m-%Y %H:%M").parse;
+            var format = d3.time.format("%d %b %Y")
+            if (pc.stat.currentVisual === TimePeriod.DAY) {
+                return format(new Date(parse(ts[0])));
+            }
+            else {
+                return format(new Date(parse(ts[0]))) + " - " + format(new Date(parse(ts[ts.length - 1])));
+            }
         }
     }
 
