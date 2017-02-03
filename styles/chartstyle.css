@@ -7,6 +7,11 @@
     fill: #eab721;
 }
 
+.chart .highlightRect {
+    opacity: 0.3;
+    fill: yellow;
+}
+
 .chart text {
     fill: grey;
     font: 12px calibri;

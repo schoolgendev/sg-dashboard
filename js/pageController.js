@@ -1007,13 +1007,32 @@ $(document).ready(function () {
             // -----------------------------
             //FUTURE: finish the back button!!
             // -----------------------------
+            console.log("chart back to be implemented")
         }
 
-        this.zoomIn = function zoomIn(date){
+        this.zoomIn = function zoomIn(year, month, day) {
             // TODO: zoom in function on pc
+            console.log("zoom in to be implemented")
+            if (stat.currentTimeDivs === TimePeriod.YEAR ){
+                this.chartYear(year, month);
+                return;
+            }
+            else if (stat.currentTimeDivs === TimePeriod.MONTH ){
+                //chart month (jan 1, jan 2, jan 3...)
+                this.chartMonth(year, month)
+                return;
+            }
+            else if (stat.currentTimeDivs === TimePeriod.DAY ){
+                //chart day (3:00, 3:30, 4:00, 4:30...)
+                this.chartDay(year, month, day);
+            }
+            else {
+                return null;
+            }
         }
-        this.zoomOut = function zoomOut(date){
+        this.zoomOut = function zoomOut(date) {
             // TODO: zoom out function on pc
+            console.log("zoom out to be implemented")
         }
 
     }
@@ -1237,6 +1256,7 @@ $(document).ready(function () {
     function ChartController() {
         // boolean flag, true if chart already drawn, false if not yet drawn
         var init = false;
+        var zoomInArray = [];
         var margin = {
             top: 20,
             right: 40,
@@ -1252,7 +1272,6 @@ $(document).ready(function () {
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        // TODO: set up loader
         // range for the scales
         var chartRange = {
             x: [0, width],
@@ -1262,11 +1281,11 @@ $(document).ready(function () {
         var chartScale = {
             x: d3.time.scale(),
             y: d3.scale.linear(),
-            w: d3.scale.ordinal()   //sorts out the width of the bars
+            w: d3.scale.ordinal() //sorts out the width of the bars
         };
         var dataDomain = {}; // domain for the data
         var dataAccessor = []; // array holding a new mapped array
-        var chartDomain = {};// domain for the chart. See updateScales for assignment.
+        var chartDomain = {}; // domain for the chart. See updateScales for assignment.
         // axes use the scales and are for the chart
         // hook scales to axes
         var axes = {
@@ -1301,27 +1320,30 @@ $(document).ready(function () {
         }
 
         /* updates the domain, sets the scale's domains as well */
-        function updateScales(){
+        function updateScales() {
             dataDomain.x = pc.stat.spec.timestamp;
             dataDomain.y = pc.stat.spec.kwhGen;
-            chartDomain.x = d3.extent(dataDomain.x, function(d) { return parseDate(d); } );
-            chartDomain.y = [ 0, d3.max(dataDomain.y) ];
-            chartDomain.w = [ 0, dataDomain.x.length]
+            chartDomain.x = d3.extent(dataDomain.x, function (d) {
+                return parseDate(d);
+            });
+            chartDomain.y = [0, d3.max(dataDomain.y)];
+            chartDomain.w = [0, dataDomain.x.length];
             // this assigns the chart scale domains.
             // See the root of object for assignment of chart scale ranges.
             chartScale.x.domain(chartDomain.x);
             chartScale.y.domain(chartDomain.y);
             chartScale.w.domain(dataDomain.x);
             // creates a new data accessor object
-            dataAccessor = dataDomain.y.map( function (v, i, a){
-                return { time: dataDomain.x[i],
-                         kwh: dataDomain.y[i]
-                       };
+            dataAccessor = dataDomain.y.map(function (v, i, a) {
+                return {
+                    time: dataDomain.x[i],
+                    kwh: dataDomain.y[i]
+                };
             });
         }
 
         /* hooks up axes with scales and redraws them */
-        function updateAxes(){
+        function updateAxes() {
             axes.x.scale(chartScale.x);
             axes.y.scale(chartScale.y);
             d3.select('.x-axis')
@@ -1333,92 +1355,116 @@ $(document).ready(function () {
         }
 
         /* updates the rectangles on the chart representing the data */
-        function updateRects(){
+        function updateRects() {
             // use the kwhgen for data domain
             var bars = chart.selectAll('.bar')
-            // for dataAccessor's assignment see updateScales()
-              .data(dataAccessor);
+                // for dataAccessor's assignment see updateScales()
+                .data(dataAccessor);
 
             // EXIT SELECTION
             bars.exit()
-              .transition().duration(400)
-                .attr("x", width)
-                .attr("width", 0)
-              .remove();
+                .transition().duration(400)
+                .attr("y", height)
+                .attr("height", 0)
+                .remove();
 
             // ENTER SELECTION
             bars.enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function (d, i){
-                    return chartScale.w( d.time );
+                .attr("x", function (d, i) {
+                    return chartScale.w(d.time);
                 })
-                .attr("width", function (d, i) { return chartScale.w.rangeBand(); })
+                .attr("width", function (d, i) {
+                    return chartScale.w.rangeBand();
+                })
                 .attr("height", 0)
                 .attr("y", height)
-              .transition().delay(400).duration(400)
-                .attr("y", function (d) { return chartScale.y(d.kwh); })
-                .attr("height", function (d) { return height - chartScale.y(d.kwh); });
+                .transition().delay(400).duration(400)
+                .attr("y", function (d) {
+                    return chartScale.y(d.kwh);
+                })
+                .attr("height", function (d) {
+                    return height - chartScale.y(d.kwh);
+                });
 
 
             // UPDATE SELECTION
             bars.attr("class", "bar")
-              .transition().duration(400)
+                .transition().duration(400)
+                .attr("y", height)
+                .attr("height", 0)
+                .transition()
                 // x position depends on scaling from dates to pixels
-                .attr("x", function (d, i){ return chartScale.w( d.time ); } )
+                .attr("x", function (d, i) {
+                    return chartScale.w(d.time);
+                })
                 // height of rect extends downwards. use height and scale.
-                .attr("width", function (d, i) { return chartScale.w.rangeBand(); })
-              .transition().duration(400)
-                .attr("y", function (d) { return chartScale.y(d.kwh); })
-                .attr("height", function (d) { return height - chartScale.y(d.kwh); });
+                .attr("width", function (d, i) {
+                    return chartScale.w.rangeBand();
+                })
+                .transition().duration(400)
+                .attr("y", function (d) {
+                    return chartScale.y(d.kwh);
+                })
+                .attr("height", function (d) {
+                    return height - chartScale.y(d.kwh);
+                });
 
         }
 
         /* Puts event handlers for click events and mouseovers onto the bars */
-        function attachEventHandlers(){
+        function attachEventHandlers() {
             var bars = chart.selectAll('.bar');
             var ttc = new TooltipController();
 
             // we should probably add in e.g. a 'zoomIn' and a 'zoomOut' function
             // to the PageController object to further separate views and logic
             // and enhance reusability
-            bars.on("mouseover", ttc.on)
-                .on("mouseout", ttc.off)
+            bars.on("mouseover", mouseOnBar)
+                .on("mousemove", null)
+                .on("mouseout", mouseOffBar)
                 .on("click", chartClickHandler)
 
+            /* EVENT HANDLER WRAPPER METHODS*/
+            function mouseOnBar(d, i){
+                ttc.on(d, i);
+            }
+
+            function mouseOffBar(d, i){
+                ttc.off(d, i);
+            }
+
             /* wrapping object for tooltip methods */
-            function TooltipController(){
+            function TooltipController() {
                 /* handler for tooltip on */
-                this.on = function tooltipOn(d, i){
+                this.on = function tooltipOn(d, i) {
                     ttDiv.transition().duration(100)
                         .style("opacity", 0.9);
-                    ttDiv.html( "<strong>" + formatDate(d.time) + "</strong><hr><br>" +
-                                d.kwh + " kWh")
+                    ttDiv.html("<strong>" + formatDate(d.time) + "</strong><hr><br>" +
+                            d.kwh + " kWh")
                         .style("left", Math.trunc(chartScale.x(parseDate(d.time))) + "px")
                         .style("top", height + margin.bottom + "px");
                 }
 
                 /* handler for tooltip off */
-                this.off = function tooltipOff(d, i){
+                this.off = function tooltipOff(d, i) {
                     ttDiv.transition().duration(100)
                         .style("opacity", 0);
                 }
 
-                // TODO: USE THE DATE PARSE OBJECT TO DO COOL STUFF
-                function formatDate(date){
+                /* formats the date according to currentTimeDivs */
+                function formatDate(date) {
                     var dateFormat;
                     var dateParse = "%d-%m-%Y %H:%M"
                     date = d3.time.format(dateParse).parse(date);
                     var timeDivs = pc.stat.currentTimeDivs;
                     if (timeDivs === TimePeriod.YEAR) {
                         dateFormat = "%Y"
-                    }
-                    else if (timeDivs === TimePeriod.DAY){
+                    } else if (timeDivs === TimePeriod.DAY) {
                         dateFormat = "%d %b %Y";
-                    }
-                    else if (timeDivs === TimePeriod.MONTH){
+                    } else if (timeDivs === TimePeriod.MONTH) {
                         dateFormat = "%b %Y";
-                    }
-                    else {
+                    } else {
                         dateFormat = "%H:%M %d %b";
                     }
                     return d3.time.format(dateFormat)(date);
@@ -1426,8 +1472,37 @@ $(document).ready(function () {
 
             }
 
-            function chartClickHandler(d, i){
-                //TODO: alt-click, double-click and shift-click actions
+            function chartClickHandler(d, i) {
+                //TODO: alt-click, single-click and shift-click actions
+                // d3.event.keyCode: shift - 16; ctrl - 17; alt - 18
+                if (d3.event.shiftKey){
+                    // TODO: do the shift action (start selection or zoom into period)
+                    console.log("shift clicked");
+                    if (zoomInArray.length === 0){
+                        // push a new date onto the array
+                        // provide some sort of visual feedback
+                        console.log("first date set");
+                    }
+                    else {
+                        // push date onto array
+                        // work out the period
+                        // call chartPeriod with the start date and the period length
+                        console.log("second date set, zoom in");
+                    }
+                }
+                else if (d3.event.altKey){
+                    pc.zoomOut(d.time);
+                }
+                else {
+                    console.log(d);
+                    ttc.off(d, i);
+                    // date is in form of dd-mm-yyyy HH:MM
+                    var year, month, day;
+                    year = + d.time.substr(6,4);
+                    month = + d.time.substr(3,2) - 1;
+                    day = + d.time.substr(0,2);
+                    pc.zoomIn(year, month, day);
+                }
             }
 
         }
@@ -1435,13 +1510,14 @@ $(document).ready(function () {
         /* called while API call occuring but before data comes through */
         this.preUpdate = function preUpdate() {
             // makes the loader
-            d3.select('#spinLoader').attr('style','display:absolute');
+            d3.select('#spinLoader').attr('style', 'display:absolute');
+            zoomInArray = [];
         }
 
         /* called on data change*/
         this.update = function update() {
             // kills the loader animation
-            d3.select("#spinLoader").attr('style','display:none');
+            d3.select("#spinLoader").attr('style', 'display:none');
             updateScales();
             updateAxes();
             updateRects();
