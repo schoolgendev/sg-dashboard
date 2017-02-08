@@ -1499,8 +1499,14 @@ $(document).ready(function () {
                 this.on = function tooltipOn(d, i) {
                     ttDiv.transition().duration(100)
                         .style("opacity", 0.9);
+                    var ttText;
+                    if (pc.stat.currentTimeDivs === TimePeriod.HOUR || pc.stat.currentTimeDivs === TimePeriod.DAY){
+                        ttText = d.kwh + " kWh";
+                    } else {
+                        ttText = Math.trunc(d.kwh/1000) + " MWh";
+                    }
                     ttDiv.html("<strong>" + formatDate(d.time) + "</strong><hr><br>" +
-                            d.kwh + " kWh")
+                            ttText)
                         .style("left", Math.trunc(chartScale.x(parseDate(d.time))) + "px")
                         .style("top", height + margin.bottom + 4 + "px");
                 }
@@ -2137,11 +2143,11 @@ $(document).ready(function () {
             // repeat while x > 1000
             var prefixArray = ['kWh', 'MWh', 'GWh'];
             var prefixIndex = 0;
-            while (x > 1000) {
+            if (x > 1000) {
                 x = x / 1000;
                 prefixIndex++;
             }
-            return x + " " + prefixArray[prefixIndex];
+            return Math.round(x) + " " + prefixArray[prefixIndex];
         }
 
         this.getCurrentDateString = function getCurrentDateString (){
