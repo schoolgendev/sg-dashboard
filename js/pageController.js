@@ -1327,6 +1327,7 @@ $(document).ready(function () {
             y: d3.svg.axis()
                 .scale(chartScale.y)
                 .orient("left")
+                .ticks(6)
         };
         var ttDiv = d3.select('.chart').append("div")
             .attr("class", "tooltip")
@@ -1379,13 +1380,12 @@ $(document).ready(function () {
             axes.y.scale(chartScale.y);
             d3.select('.x-axis')
                 .transition().duration(600)
-                .call(axes.x)
+                .call(axes.x.tickSize(-height, 0, 0))
             d3.select('.y-axis')
                 .transition().duration(600)
-                .call(axes.y);
-            // remove the axes ticks
-            d3.selectAll(".tick").selectAll("line").remove
-            //TODO: put back horizontal ticks and extend them
+                .call(axes.y.tickSize(-width, 0, 0));
+            // remove path tag with class "domain" to get rid of y-axis
+            d3.selectAll(".y-axis").select(".domain").remove()
 
         }
 
