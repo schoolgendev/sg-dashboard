@@ -2,7 +2,7 @@
 .header {
     color: #F47F23;
     display: inline-block;
-    text-align: center;
+    text-align: left;
 }
 
 .row-element {
@@ -114,6 +114,8 @@
 #energy-generated-text {
     float: right;
     margin-right: 20px;
+    background-color: #f5d1b5;
+    padding: 2px 16px
 }
 
 .medium {

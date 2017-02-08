@@ -1295,7 +1295,7 @@ $(document).ready(function () {
             left: 60
         };
         var width = 525 - margin.left - margin.right;
-        var height = 450 - margin.top - margin.bottom;
+        var height = 391 - margin.top - margin.bottom;
         var parseDate = d3.time.format("%d-%m-%Y %H:%M").parse;
         // set up chart
         var chart = d3.select("#kwhGenChart")
@@ -1383,6 +1383,10 @@ $(document).ready(function () {
             d3.select('.y-axis')
                 .transition().duration(600)
                 .call(axes.y);
+            // remove the axes ticks
+            d3.selectAll(".tick").selectAll("line").remove
+            //TODO: put back horizontal ticks and extend them
+
         }
 
         /* updates the rectangles on the chart representing the data */
