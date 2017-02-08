@@ -1394,8 +1394,23 @@ $(document).ready(function () {
                 }
               }));
             // remove path tag with class "domain" to get rid of y-axis
-            d3.selectAll(".y-axis").select(".domain").remove()
-
+            d3.selectAll(".y-axis").select(".domain").remove();
+            chart.selectAll(".y-axis-label").remove();
+            chart.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("class", "y-axis-label")
+                .attr("y", 0 - margin.left)
+                .attr("x", 0 - (height/2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .html(function (){
+                    if (pc.stat.currentTimeDivs === TimePeriod.YEAR ||
+                       pc.stat.currentTimeDivs === TimePeriod.MONTH) {
+                        return "<tspan>ENERGY</tspan> MWh";
+                    } else {
+                        return "<tspan>ENERGY</tspan> kWh";
+                    }
+            });
         }
 
         /* updates the rectangles on the chart representing the data */
