@@ -1328,7 +1328,8 @@ $(document).ready(function () {
                 .scale(chartScale.y)
                 .orient("left")
                 .ticks(6)
-        };
+            };
+
         var ttDiv = d3.select('.chart').append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
@@ -1383,7 +1384,15 @@ $(document).ready(function () {
                 .call(axes.x.tickSize(-height, 0, 0))
             d3.select('.y-axis')
                 .transition().duration(600)
-                .call(axes.y.tickSize(-width, 0, 0));
+                .call(axes.y
+                  .tickSize(-width, 0, 0)
+                  .tickFormat(function (d) {
+                if (pc.stat.currentTimeDivs === TimePeriod.YEAR || pc.stat.currentTimeDivs === TimePeriod.MONTH){
+                    return d/1000;
+                } else {
+                    return d;
+                }
+              }));
             // remove path tag with class "domain" to get rid of y-axis
             d3.selectAll(".y-axis").select(".domain").remove()
 
