@@ -1487,7 +1487,7 @@ $(document).ready(function () {
                     ttDiv.html("<strong>" + formatDate(d.time) + "</strong><hr><br>" +
                             d.kwh + " kWh")
                         .style("left", Math.trunc(chartScale.x(parseDate(d.time))) + "px")
-                        .style("top", height + margin.bottom + "px");
+                        .style("top", height + margin.bottom + 4 + "px");
                 }
 
                 /* handler for tooltip off */
