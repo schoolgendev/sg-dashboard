@@ -2143,9 +2143,17 @@ $(document).ready(function () {
             // repeat while x > 1000
             var prefixArray = ['kWh', 'MWh', 'GWh'];
             var prefixIndex = 0;
-            if (x > 1000) {
+            /*if (x > 1000) {
                 x = x / 1000;
                 prefixIndex++;
+            }*/
+            var timeDivs = pc.stat.currentTimeDivs;
+
+            if (timeDivs === TimePeriod.DAY || timeDivs === TimePeriod.HOUR){
+                prefixIndex = 0;
+            } else if (timeDivs === TimePeriod.MONTH || timeDivs === TimePeriod.YEAR){
+                x /= 1000;
+                prefixIndex = 1;
             }
             return Math.round(x) + " " + prefixArray[prefixIndex];
         }
