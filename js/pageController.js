@@ -21,7 +21,7 @@ $(document).ready(function () {
                     obj: "batt-phone",
                     val: 0.01,
                     bg: "url('img/phone-wg-bg.png')",
-                    color: "#4F4F4F",
+                    color: "green",
                     precision: 0,
                     threshold: {
                         upper: 10000,
