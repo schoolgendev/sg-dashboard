@@ -44,7 +44,7 @@ $(document).ready(function () {
                         down: "smartphones!"
                     }
                 },
-                // tablet, 0.02
+                // 1 tablet, 0.02
                 {
                     obj: "batt-tablet",
                     val: 0.02,
@@ -72,7 +72,7 @@ $(document).ready(function () {
                         down: "tablets!"
                     }
                 },
-                // chromebook, 0.04 kwh
+                // 2 chromebook, 0.04 kwh
                 {
                     obj: "batt-chromebook",
                     val: 0.04,
@@ -100,7 +100,7 @@ $(document).ready(function () {
                         down: "Chromebooks!"
                     }
                 },
-                // tdf cyc 40kmph, 0.230
+                // 3 tdf cyc 40kmph, 0.230
                 {
                     obj: "tdf-cyclist-40k1hr",
                     val: 0.230,
@@ -128,7 +128,7 @@ $(document).ready(function () {
                         down: "cycling for an hour at 40 km/hr"
                     }
                 },
-                // home batt enphase, 1.2 kwh
+                // 4 home batt enphase, 1.2 kwh
                 {
                     obj: "home-batt-enphase",
                     val: 1.2,
@@ -156,7 +156,7 @@ $(document).ready(function () {
                         down: "on that much energy!"
                     }
                 },
-                // tnt, 1.2 per kg
+                // 5 tnt, 1.2 per kg
                 {
                     obj: "TNT-kg",
                     val: 1.2,
@@ -180,7 +180,7 @@ $(document).ready(function () {
                         down: "of TNT!"
                     }
                 },
-                // coal, 4kwh per kg
+                // 6 coal, 4kwh per kg
                 {
                     obj: "coal-kg",
                     val: 4,
@@ -204,7 +204,7 @@ $(document).ready(function () {
                         down: "of coal!"
                     }
                 },
-                // home batt panasonic, 0.8
+                // 7 home batt panasonic, 0.8
                 {
                     obj: "home-batt-panasonic",
                     val: 0.8,
@@ -228,7 +228,7 @@ $(document).ready(function () {
                         down: "on that much energy!"
                     }
                 },
-                // km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
+                // 8 km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
                 {
                     obj: "km-driven-tdf-cyclist",
                     val: 0.0057,
@@ -252,7 +252,7 @@ $(document).ready(function () {
                         down: "on that kind of energy!"
                     }
                 },
-                // tdf cyclist, 21.2
+                // 9 tdf cyclist, 21.2
                 {
                     obj: "tdf-cyclist-total",
                     val: 21.2,
@@ -300,7 +300,7 @@ $(document).ready(function () {
                         down: "with that kind of power!"
                     }
                 },
-                // tesla batt charges, 90
+                // 11 tesla batt charges, 90
                 {
                     obj: "tesla-battery",
                     val: 90,
@@ -324,7 +324,7 @@ $(document).ready(function () {
                         down: "on that much energy!"
                     }
                 },
-                // km driven train - 10km p kwh?
+                // 12 km driven train - 10km p kwh?
                 {
                     // note: objects beginning with km-driven must be multiplied
                     obj: "km-driven-train",
@@ -349,7 +349,7 @@ $(document).ready(function () {
                         down: "on that much energy!"
                     }
                 },
-                // TNT t, 1200
+                // 13 TNT t, 1200
                 {
                     obj: "TNT-tonne",
                     val: 1200,
@@ -373,7 +373,7 @@ $(document).ready(function () {
                         down: "of TNT!"
                     }
                 },
-                // nz houses, 600
+                // 14 nz houses, 600
                 {
                     obj: "nz-houses-month",
                     val: 583,
@@ -421,7 +421,7 @@ $(document).ready(function () {
                         down: "of oil!"
                     }
                 },  */
-                // nz generation, 1.7k
+                // 15 nz generation, 1.7k
                 {
                     obj: "nz-generation-seconds",
                     val: 1716,
@@ -445,7 +445,7 @@ $(document).ready(function () {
                         down: "in NZ for a year!"
                     }
                 },
-                // nz houses, 7k
+                // 16 nz houses, 7k
                 {
                     obj: "nz-houses-year",
                     val: 7000,
@@ -469,7 +469,7 @@ $(document).ready(function () {
                         down: "in NZ for a year!"
                     }
                 },
-                // nz generation, 102k
+                // 17 nz generation, 102k
                 {
                     obj: "nz-generation-minutes",
                     val: 102986,
@@ -493,7 +493,7 @@ $(document).ready(function () {
                         down: "months!"
                     }
                 },
-                //wind turbine, 4k
+                // 18 wind turbine, 4k
                 {
                     obj: "ge-wind-turbine-days",
                     val: 4110,
@@ -517,7 +517,7 @@ $(document).ready(function () {
                         down: "spinning for a month"
                     }
                 },
-                //wind turbine, 125k
+                // 19 wind turbine, 125k
                 {
                     obj: "ge-wind-turbine-month",
                     val: 125000,
@@ -1742,7 +1742,7 @@ $(document).ready(function () {
                     {
                         name: ".lt-houses",
                         val: pc.stat.general.egco2.total.energy /
-                            sgComp.e.objects[14].val
+                            sgComp.e.objects[16].val
                     },
                     //15
                     {
