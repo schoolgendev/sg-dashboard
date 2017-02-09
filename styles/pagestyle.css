@@ -107,15 +107,8 @@
 }
 
 #currentDate {
-    float: left;
-    margin-left: 20px;
-}
-
-#energy-generated-text {
-    float: right;
-    margin-right: 20px;
-    background-color: #f5d1b5;
-    padding: 2px 16px
+    position: absolute;
+    left: 20px;
 }
 
 .medium {
@@ -123,4 +116,37 @@
     display: block;
     text-align: center;
     margin: 10px 9px;
+}
+
+
+.tooltipped .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 6px;
+    position: absolute;
+    opacity: 0.7;
+    z-index: 10;
+}
+
+
+.tooltipped:hover .tooltip-text {
+    visibility: visible;
+}
+
+
+.tooltipped {
+    position: absolute;
+    display: inline-block;
+    padding:  2px 16px;
+    background-color: #f5d1b5;
+    right: 0px;
+}
+.rowelement {
+    height: 20px;
+    position: relative;
 }

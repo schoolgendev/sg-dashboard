@@ -35,13 +35,20 @@
                         <button id="btn-day">Today</button>
          <!--               <button id="btn-back">Back</button> -->
                     </div>
-                    <div>
-                        <p><strong><span id="currentDate">...</span></strong>
-                            <span id="energy-generated-text">Energy Generated: <span id="energyGen"></span></span></p>
+                    <div class="rowelement">
+                        <p><strong>
+                            <span id="currentDate">...</span></strong>
+                            <div class="tooltipped">
+                                <span id="energy-generated-text">Energy Generated: 
+                                    <span id="energyGen"></span>
+                                    <span class="tooltip-text" id="energy-tooltip"></span>
+                                </span>
+                            </div>
+                        </p>
                     </div>
                     <div class="chart">
                         <div>
-                            <svg id="kwhGenChart">
+                            <svg id="kwhGenChart" height="800px">
                                 <style>
                                     <![CDATA[
                                     .y-axis-label {

@@ -742,10 +742,9 @@ $(document).ready(function () {
     var dayBtn = document.getElementById("btn-day");
     var backBtn = document.getElementById("btn-back");
     bindButtons();
-    var cc = new ChartController();
-    var wc = new WidgetController();
-    pc.register(cc);
-    pc.register(wc);
+    pc.register(new ChartController());
+    pc.register(new WidgetController());
+    pc.register(new EGTextController());
     pc.chartDay();
 
 
@@ -804,9 +803,6 @@ $(document).ready(function () {
             console.log("====================================================================");
             console.log("======================== RUNNING NOTIFY ============================");
             console.log("====================================================================");
-            // update the Energy Generated text
-            document.getElementById('energyGen').textContent = util.cutKWHSum(stat.spec.kwhSum);
-            document.getElementById('currentDate').textContent = util.getCurrentDateString();
             // cycle through observers, call update()
             let i, obsCount = obsList.count();
             for (i = 0; i < obsCount; i++) {
@@ -2054,6 +2050,29 @@ $(document).ready(function () {
         }
     }
 
+    // changes the text above the chart
+    function EGTextController(){
+        var energyGen = document.getElementById('energyGen');
+        var currentDate = document.getElementById('currentDate');
+        var energyTooltip = document.getElementById('energy-tooltip')
+
+        var kwhString = "1 kiloWatt-hour is the base amount of energy charged for in your power bill."
+        var mwhString = "1 megaWatt-hour = 1000 kiloWatt hours"
+        this.update = function () {
+            // set upper level text
+            energyGen.textContent = util.cutKWHSum(pc.stat.spec.kwhSum);
+            currentDate.textContent = util.getCurrentDateString();
+            // set tooltip text
+            var timeDivs = pc.stat.currentTimeDivs;
+            if (timeDivs === TimePeriod.HOUR || timeDivs === TimePeriod.DAY){
+                energyTooltip.textContent = kwhString;
+            }
+            else if (timeDivs === TimePeriod.MONTH || timeDivs === TimePeriod.YEAR) {
+                energyTooltip.textDecoration = mwhString;
+            }
+        }
+    }
+
 
     //FUTURE: finish the matrix controller
     /* MatrixController makes and updates the solar power generation matrix. */
@@ -2089,7 +2108,6 @@ $(document).ready(function () {
     }
 
     /* UTILITY METHODS*/
-
     /* bindButtons does what it says ;)
      */
     function bindButtons() {
