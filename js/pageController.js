@@ -1668,67 +1668,83 @@ $(document).ready(function () {
             function replaceAllSpans() {
                 //fixed class names.
                 var fcn = [
+                    //0
                     {
                         name: ".sum-kwhGen",
                         val: pc.stat.spec.kwhSum
                     },
+                    //1
                     {
                         name: ".sum-co2",
                         val: pc.stat.spec.co2Sum
                     },
+                    //2
                     {
                         name: ".lt-kwhGen",
                         val: pc.stat.general.egco2.total.energy
                     },
+                    //3
                     {
                         name: ".lt-CO2",
                         val: pc.stat.general.egco2.total.co2
                     },
+                    //4
                     {
                         name: ".lt-schools",
                         val: 92
                     },
+                    //5
                     {
                         name: ".lt-money-saved",
-                        val: 120000
+                        val: "216,000"
                     },
+                    //6
                     {
                         name: ".record-day-whole-programme",
                         val: pc.stat.general.records.total.timestamp
                     },
+                    //7
                     {
                         name: ".record-day-generation",
                         val: pc.stat.general.records.total.val
                     },
+                    //8
                     {
                         name: ".record-school-last-hour",
                         val: pc.stat.general.bestSch.hour.name
                     },
+                    //9
                     {
                         name: ".record-gen-last-hour",
                         val: pc.stat.general.bestSch.hour.val
                     },
+                    //10
                     {
                         name: ".record-school-last-week",
                         val: pc.stat.general.bestSch.week.name
                     },
+                    //11
                     {
                         name: ".record-gen-last-week",
                         val: pc.stat.general.bestSch.week.val
                     },
+                    //12
                     {
                         name: ".record-school-last-year",
                         val: pc.stat.general.bestSch.year.name
                     },
+                    //13
                     {
                         name: ".record-gen-last-year",
                         val: pc.stat.general.bestSch.year.val
                     },
+                    //14
                     {
                         name: ".lt-houses",
                         val: pc.stat.general.egco2.total.energy /
                             sgComp.e.objects[14].val
                     },
+                    //15
                     {
                         name: ".lt-elephants",
                         val: pc.stat.general.egco2.total.co2 /
