@@ -1291,7 +1291,7 @@ $(document).ready(function () {
             left: 60
         };
         var width = 525 - margin.left - margin.right;
-        var height = 391 - margin.top - margin.bottom;
+        var height = 450 - margin.top - margin.bottom;
         var parseDate = d3.time.format("%d-%m-%Y %H:%M").parse;
         // set up chart
         var chart = d3.select("#kwhGenChart")

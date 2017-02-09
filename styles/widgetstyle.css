@@ -57,9 +57,9 @@
 .wg-overlay {
     width: 265px;
     position: absolute;
-    margin-left: 50%;
-    margin-top: 5px;
-    left: 133px;
+    margin-left: 0;
+    margin-top: 0;
+    left: 12.5%;
     z-index: 10;
     background-color: #f25724;
     color: bisque;
@@ -68,7 +68,7 @@
 }
 
 .wg-overlay p {
-    margin-top: 0px;
+    margin-top: 0px !important;
     margin-bottom: 0px;
     text-align: center;
 }
