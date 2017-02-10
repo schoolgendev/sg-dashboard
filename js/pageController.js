@@ -6,10 +6,6 @@ $(document).ready(function () {
 
     /* GLOBAL VARIABLES*/
     var util = new Utilities();
-    var UnitType = {
-        ENERGY: ["kWh", "MWh", "GWh"],
-        MASS: ["kg", "tonnes"]
-    };
     // sgObjects has all the objects you want to compare to
     var sgComp = {
         // ENERGY: taken from rob's spreadsheet
@@ -39,7 +35,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Enough electricity to charge",
+                        up: "Could recharge",
                         span: "",
                         down: "smartphones!"
                     }
@@ -67,7 +63,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Enough electricity to charge",
+                        up: "Could recharge",
                         span: "",
                         down: "tablets!"
                     }
@@ -95,15 +91,15 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Enough electricity to recharge",
+                        up: "Could recharge",
                         span: "",
                         down: "Chromebooks!"
                     }
                 },
                 // 3 tdf cyc 40kmph, 0.230
                 {
-                    obj: "tdf-cyclist-40k1hr",
-                    val: 0.230,
+                    obj: "ebikes",
+                    val: 0.4,
                     bg: "url('img/cyclist1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
@@ -116,16 +112,16 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        smallprint: "based on cyclists going 40km/hr for 1 hour"
+                        smallprint: ""
                     },
                     rText: {
                         margin: {
                             top: "null",
                             left: "null"
                         },
-                        up: "Equivalent to",
-                        span: " cyclists",
-                        down: "cycling for an hour at 40 km/hr"
+                        up: "Could recharge",
+                        span: " ",
+                        down: "e-bikes"
                     }
                 },
                 // 4 home batt enphase, 1.2 kwh
@@ -151,9 +147,9 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "You could recharge your Enphase Home Battery",
-                        span: " times",
-                        down: "on that much energy!"
+                        up: "Could recharge",
+                        span: "",
+                        down: "Enphase Home Batteries"
                     }
                 },
                 // 5 tnt, 1.2 per kg
@@ -175,7 +171,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Equivalent to the energy released by",
+                        up: "Same as exploding",
                         span: " kg",
                         down: "of TNT!"
                     }
@@ -199,9 +195,9 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "That's enough heat energy released from",
+                        up: "Same as burning",
                         span: " kg",
-                        down: "of coal!"
+                        down: "of coal"
                     }
                 },
                 // 7 home batt panasonic, 0.8
@@ -223,9 +219,9 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "You could recharge your Panasonic home battery",
-                        span: " times",
-                        down: "on that much energy!"
+                        up: "Could recharge",
+                        span: "",
+                        down: "Panasonic home batteries!"
                     }
                 },
                 // 8 km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
@@ -544,7 +540,7 @@ $(document).ready(function () {
             ],
             /* returns an array of numbers corresponding to comparison objects.
              These are cleared to be included in the slider. */
-            threshLevel: function threshLevel(x) {
+            DEPRECATEDthreshLevel: function DEPRECATEDthreshLevel(x) {
                 if (x <= 50) {
                     return util.slideArray(0, 10);
                 }
@@ -572,6 +568,24 @@ $(document).ready(function () {
                 if (x > 500000) {
                     return util.slideArray(13, 19);
                 }
+            },
+
+            /* also returns an array of numbers corresponding to comparison objects,
+             but does it in a lazy way.*/
+            threshLevel: function threshLevel(x) {
+                var slideIndexArray = [];
+                sgComp.e.objects.forEach(function (v, i, a) {
+                    var widgetNumber;
+                    if (v.obj.includes('km-driven')){
+                        widgetNumber = x * v.val;
+                    } else {
+                        widgetNumber = x / v.val;
+                    }
+                    if (widgetNumber > 1 && widgetNumber < 1000000){
+                        slideIndexArray.push(i);
+                    }
+                });
+                return slideIndexArray;
             }
         },
         // WEIGHT : taken from http://www.bluebulbprojects.com/measureofthings/
