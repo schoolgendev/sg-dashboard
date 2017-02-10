@@ -719,28 +719,72 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Like taking ",
+                        up: "Equivalent to taking ",
                         span: " cars",
                         down: "off the road for a year!"
+                    }
+                },
+                // 6
+                {
+                    obj: "wg-kiwifruit",
+                    val: 0.1,
+                    bg: "url('img/laptop-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        },
+                        up: "Weighs as much as",
+                        span: "",
+                        down: "kiwifruit"
+                    }
+                },
+                // 7
+                {
+                    obj: "wg-avocado",
+                    val: 0.215, //single level, unfurnished, 149 sq m = ~156 t
+                    bg: "url('img/car-wg-bg.png')",
+                    color: "#4F4F4F",
+                    lText: {
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        },
+                        up: "Weighs as much as",
+                        span: "",
+                        down: "avocados"
                     }
                 }
             ],
             threshLevel: function threshLevel(x) {
-                if (x <= 1000) {
-                    return [0, 1];
-                }
-                if (x > 1000 && x <= 50000) {
-                    return [0, 2];
-                }
-                if (x > 50000 && x <= 100000) {
-                    return [1, 2];
-                }
-                if (x > 100000 && x <= 500000) {
-                    return [2, 4];
-                }
-                if (x > 500000) {
-                    return [3, 4];
-                }
+                var slideIndexArray = [];
+                sgComp.w.objects.forEach(function (v, i, a) {
+                    var widgetNumber;
+                    if (v.obj.includes('km-driven')){
+                        widgetNumber = x * v.val;
+                    } else {
+                        widgetNumber = x / v.val;
+                    }
+                    if (widgetNumber > 1 && widgetNumber < 1000000){
+                        slideIndexArray.push(i);
+                    }
+                });
+                return slideIndexArray;
             }
         }
     };
@@ -1811,16 +1855,15 @@ $(document).ready(function () {
                 sgComp.w.objects.forEach(comparatorReplacer.bind(this, pc.stat.spec.co2Sum));
 
                 function comparatorReplacer(sumData, x) {
-                    var className = x.obj;
                     var comparatorValue = x.val;
                     // if start of the className has km-driven, create reciprocal of comparator
-                    if (className.match(/^km-driven/)) {
+                    if (x.obj.match(/^km-driven/)) {
                         comparatorValue = 1 / comparatorValue;
                     }
                     // divide sum by comparator
                     var newValue = sumData / comparatorValue;
                     // replace spans of className with new value
-                    replaceSpan(newValue, "", className, x.precision);
+                    replaceNumericalSpan(newValue, "", x.obj);
                 }
 
                 // noFix - if true, do not fix precision to 3. If a number, fix to that prec.
@@ -1852,7 +1895,7 @@ $(document).ready(function () {
 
                 function replaceNumericalSpan(value, unit, spanClassName){
                     var formatValue = d3.format(',')
-                    value = formatValue(value);
+                    value = formatValue(Math.round(value));
                     var replacer = '<span class="' + undot(spanClassName) + '">';
                     replacer += value + " " + unit;
                     replacer += '</span>';

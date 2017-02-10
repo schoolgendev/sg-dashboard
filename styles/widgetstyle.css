@@ -82,6 +82,10 @@
     margin-top: 40px;
 }
 
+.wg-left p, .wg-right p {
+    vertical-align: middle;
+}
+
 #record-day-whole-programme {
     font-size: 110%;
     display: block;
