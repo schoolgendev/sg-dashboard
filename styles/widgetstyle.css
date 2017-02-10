@@ -34,6 +34,7 @@
     min-width: 45%;
     padding: 2px;
     min-height: 50%;
+    text-align: center;
 }
 
 /* big-num is used under the wg-left item

@@ -1751,12 +1751,13 @@ $(document).ready(function () {
                             sgComp.w.objects[2].val
                     }
                 ];
+                // kwh sliders
                 [0, 2, 7, 9, 11, 13].forEach(function (x) {
-                    replaceSpan(new ThUnit('kwh', fcn[x]));
+                    replaceNumericalSpan(Number(Math.trunc(fcn[x].val)), 'kWh', fcn[x].name);
                 });
-                // summed period generation
+                // co2 slider divs
                 [1, 3].forEach(function (x) {
-                    replaceSpan(new ThUnit('co2', fcn[x]));
+                    replaceNumericalSpan(Number(Math.trunc(fcn[x].val)), 'kg', fcn[x].name);
                 });
                 replaceSpan(fcn[4].val, 'schools', fcn[4].name, true);
                 replaceSpan(fcn[5].val, '$', fcn[5].name, true, true);
@@ -1785,6 +1786,8 @@ $(document).ready(function () {
                     replaceSpan(newValue, "", className, x.precision);
                 }
 
+                // noFix - if true, do not fix precision to 3. If a number, fix to that prec.
+                // preFix - if true, put unit in front instead of behind the number.
                 function ThUnit(str, fcn, noFix, prefix) {
                     var units;
                     var i = 0
@@ -1810,6 +1813,15 @@ $(document).ready(function () {
                     this.prefix = prefix;
                 }
 
+                function replaceNumericalSpan(value, unit, spanClassName){
+                    var formatValue = d3.format(',')
+                    value = formatValue(value);
+                    var replacer = '<span class="' + undot(spanClassName) + '">';
+                    replacer += value + " " + unit;
+                    replacer += '</span>';
+                    $(replacer).replaceAll(redot(spanClassName));
+                }
+
                 //replaces date spans
                 function replaceDateSpan(dateString, spanClassName) {
                     var replacer = '<span class="' + undot(spanClassName) + '">';
@@ -1821,6 +1833,7 @@ $(document).ready(function () {
 
                 // Replaces a given span (identified by class name) with a new span,
                 //  where the inner html is the value followed by a unit.
+                // TODO: PROBLEMS SO MANY PROBLEMS KSJILJLJKAS
                 function replaceSpan(value, unit, spanClassName, noFixPrecision, prefixUnit) {
                     if (value instanceof ThUnit) {
                         var thousandUnit = value;
