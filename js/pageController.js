@@ -291,9 +291,9 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "An electric car could travel",
+                        up: "Could drive an electric car",
                         span: " km",
-                        down: "with that kind of power!"
+                        down: ""
                     }
                 },
                 // 11 tesla batt charges, 90
@@ -315,15 +315,15 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "You could charge your Tesla S",
+                        up: "Could fully charge a Tesla electric car",
                         span: " times",
-                        down: "on that much energy!"
+                        down: ""
                     }
                 },
                 // 12 km driven train - 10km p kwh?
+                // note: objects beginning with km-driven must be multiplied
                 {
-                    // note: objects beginning with km-driven must be multiplied
-                    obj: "km-driven-train",
+                    obj: "hours-driven-train",
                     val: 10,
                     bg: "url('img/train-wg-bg.png')",
                     color: "#4F4F4F",
@@ -340,9 +340,9 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "A train could travel for",
-                        span: " km",
-                        down: "on that much energy!"
+                        up: "An e-train could travel for",
+                        span: " hours",
+                        down: "at 110 km/h"
                     }
                 },
                 // 13 TNT t, 1200
@@ -364,7 +364,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Equivalent to the energy released by",
+                        up: "Same as exploding",
                         span: " tonnes",
                         down: "of TNT!"
                     }
@@ -388,8 +388,8 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "That's enough energy to power",
-                        span: " NZ houses",
+                        up: "Enough energy to power",
+                        span: " houses",
                         down: "for a month!"
                     }
                 },
@@ -436,9 +436,9 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "That's enough energy to power",
-                        span: " houses",
-                        down: "in NZ for a year!"
+                        up: "Could power all of NZ for",
+                        span: "",
+                        down: "seconds"
                     }
                 },
                 // 16 nz houses, 7k
@@ -460,7 +460,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "That's enough energy to power",
+                        up: "Could power",
                         span: " houses",
                         down: "in NZ for a year!"
                     }
@@ -486,7 +486,7 @@ $(document).ready(function () {
                         },
                         up: "That could power the whole of NZ for",
                         span: "",
-                        down: "months!"
+                        down: "minutes!"
                     }
                 },
                 // 18 wind turbine, 4k
@@ -501,16 +501,16 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        smallprint: "Based on Genesis Energy wind turbines"
+                        smallprint: ""
                     },
                     rText: {
                         margin: {
                             top: "null",
                             left: "null"
                         },
-                        up: "Equivalent to",
-                        span: " turbines",
-                        down: "spinning for a month"
+                        up: "Equivalent to one Genesis Energy wind turbine spinning for",
+                        span: "",
+                        down: "days!"
                     }
                 },
                 // 19 wind turbine, 125k
@@ -532,44 +532,12 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Equivalent to",
-                        span: " turbines",
-                        down: "spinning for a month"
+                        up: "Equivalent to one Genesis Energy wind turbine spinning for",
+                        span: "",
+                        down: "months!"
                     }
                 }
             ],
-            /* returns an array of numbers corresponding to comparison objects.
-             These are cleared to be included in the slider. */
-            DEPRECATEDthreshLevel: function DEPRECATEDthreshLevel(x) {
-                if (x <= 50) {
-                    return util.slideArray(0, 10);
-                }
-                if (x > 50 && x <= 250) {
-                    return util.slideArray(0, 11);
-                }
-                if (x > 250 && x <= 1500) {
-                    return util.slideArray(4, 14);
-                }
-                if (x > 1500 && x <= 3000) {
-                    return util.slideArray(4, 14, null, 8);
-                }
-                if (x > 3000 && x <= 6000) {
-                    return util.slideArray(4, 15, 18, 8);
-                }
-                if (x > 6000 && x <= 10000) {
-                    return util.slideArray(10, 16, 18);
-                }
-                if (x > 10000 && x <= 100000) {
-                    return util.slideArray(11, 18);
-                }
-                if (x > 100000 && x <= 500000) {
-                    return util.slideArray(11, 19);
-                }
-                if (x > 500000) {
-                    return util.slideArray(13, 19);
-                }
-            },
-
             /* also returns an array of numbers corresponding to comparison objects,
              but does it in a lazy way.*/
             threshLevel: function threshLevel(x) {
@@ -581,10 +549,11 @@ $(document).ready(function () {
                     } else {
                         widgetNumber = x / v.val;
                     }
-                    if (widgetNumber > 1 && widgetNumber < 1000000){
+                    if (widgetNumber > 100 && widgetNumber < 99999){
                         slideIndexArray.push(i);
                     }
                 });
+
                 return slideIndexArray;
             }
         },
@@ -774,13 +743,8 @@ $(document).ready(function () {
             threshLevel: function threshLevel(x) {
                 var slideIndexArray = [];
                 sgComp.w.objects.forEach(function (v, i, a) {
-                    var widgetNumber;
-                    if (v.obj.includes('km-driven')){
-                        widgetNumber = x * v.val;
-                    } else {
-                        widgetNumber = x / v.val;
-                    }
-                    if (widgetNumber > 1 && widgetNumber < 1000000){
+                    var widgetNumber = x / v.val;
+                    if (widgetNumber > 1 && widgetNumber < 99999){
                         slideIndexArray.push(i);
                     }
                 });
@@ -1866,33 +1830,6 @@ $(document).ready(function () {
                     replaceNumericalSpan(newValue, "", x.obj);
                 }
 
-                // noFix - if true, do not fix precision to 3. If a number, fix to that prec.
-                // preFix - if true, put unit in front instead of behind the number.
-                function ThUnit(str, fcn, noFix, prefix) {
-                    var units;
-                    var i = 0
-                    var xvalue = fcn.val;
-                    for (i = 0; xvalue > 1000; i++) {
-                        xvalue = xvalue / 1000;
-                    }
-
-                    if (str === 'kwh') {
-                        units = ['kWh', 'MWh', 'GWh'];
-                    } else if (str === 'co2') {
-                        units = ['kg', 't', 'kt'];
-                    } else {
-                        console.err("no units for this");
-                    }
-
-                    var x = units[i];
-
-                    this.name = fcn.name;
-                    this.val = xvalue;
-                    this.unit = x;
-                    this.noFix = noFix;
-                    this.prefix = prefix;
-                }
-
                 function replaceNumericalSpan(value, unit, spanClassName){
                     var formatValue = d3.format(',')
                     value = formatValue(Math.round(value));
@@ -1915,12 +1852,6 @@ $(document).ready(function () {
                 //  where the inner html is the value followed by a unit.
                 // TODO: PROBLEMS SO MANY PROBLEMS KSJILJLJKAS
                 function replaceSpan(value, unit, spanClassName, noFixPrecision, prefixUnit) {
-                    if (value instanceof ThUnit) {
-                        var thousandUnit = value;
-                        value = thousandUnit.val;
-                        unit = thousandUnit.unit;
-                        spanClassName = thousandUnit.name;
-                    }
                     // create replacer string
                     var replacer = '<span class="' + undot(spanClassName) + '">';
                     if (prefixUnit) {
