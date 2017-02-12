@@ -226,7 +226,7 @@ $(document).ready(function () {
                 },
                 // 8 km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
                 {
-                    obj: "km-driven-tdf-cyclist",
+                    obj: "MULTIPLY-km-driven-tdf-cyclist",
                     val: 0.0057,
                     bg: "url('img/cyclist1-wg-bg.png')",
                     color: "#4F4F4F",
@@ -243,9 +243,9 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "A Tour de France cyclist could cycle",
+                        up: "Equivalent to a Tour de France cyclist cycling",
                         span: " km",
-                        down: "on that kind of energy!"
+                        down: ""
                     }
                 },
                 // 9 tdf cyclist, 21.2
@@ -267,14 +267,14 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "That's the amount of energy output by",
-                        span: " Tour de France cyclists",
-                        down: "over the whole course!"
+                        up: "Equivalent to",
+                        span: " ",
+                        down: "Tour de France cyclists cycling the entire course"
                     }
                 },
                 // object 10 - km driven tesla, 6.25 km per kwh
                 {
-                    obj: "km-driven-tesla",
+                    obj: "MULTIPLY-km-driven-tesla",
                     val: 6.25,
                     bg: "url('img/tesla-wg-bg.png')",
                     color: "#4F4F4F",
@@ -321,7 +321,7 @@ $(document).ready(function () {
                     }
                 },
                 // 12 km driven train - 10km p kwh?
-                // note: objects beginning with km-driven must be multiplied
+                // note: objects beginning with MULTIPLY must be multiplied
                 {
                     obj: "hours-driven-train",
                     val: 10,
@@ -388,7 +388,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Enough energy to power",
+                        up: "Enough energy to run",
                         span: " houses",
                         down: "for a month!"
                     }
@@ -484,7 +484,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "That could power the whole of NZ for",
+                        up: "Could power all of NZ for",
                         span: "",
                         down: "minutes!"
                     }
@@ -508,7 +508,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        up: "Equivalent to one Genesis Energy wind turbine spinning for",
+                        up: "Equivalent to generation from one Genesis wind turbine for",
                         span: "",
                         down: "days!"
                     }
@@ -536,6 +536,30 @@ $(document).ready(function () {
                         span: "",
                         down: "months!"
                     }
+                },
+                // 20 - electrin train for 39 hours
+                {
+                    obj: "days-driven-etrain",
+                    val: 1520,
+                    bg: "url('img/train-wg-bg.png')",
+                    color: "#4F4F4F",
+                    precision: 3,
+                    lText: {
+                        margin: {
+                            top: "null",
+                            left: null
+                        },
+                        smallprint: ""
+                    },
+                    rText: {
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        },
+                        up: "One Auckland e-train could travel for",
+                        span: " days",
+                        down: "at 110km/h!"
+                    }
                 }
             ],
             /* also returns an array of numbers corresponding to comparison objects,
@@ -544,12 +568,12 @@ $(document).ready(function () {
                 var slideIndexArray = [];
                 sgComp.e.objects.forEach(function (v, i, a) {
                     var widgetNumber;
-                    if (v.obj.includes('km-driven')){
+                    if (v.obj.includes('MULTIPLY')){
                         widgetNumber = x * v.val;
                     } else {
                         widgetNumber = x / v.val;
                     }
-                    if (widgetNumber > 100 && widgetNumber < 99999){
+                    if (widgetNumber > 10 && widgetNumber < 99999){
                         slideIndexArray.push(i);
                     }
                 });
@@ -744,7 +768,7 @@ $(document).ready(function () {
                 var slideIndexArray = [];
                 sgComp.w.objects.forEach(function (v, i, a) {
                     var widgetNumber = x / v.val;
-                    if (widgetNumber > 1 && widgetNumber < 99999){
+                    if (widgetNumber > 2 && widgetNumber < 100000){
                         slideIndexArray.push(i);
                     }
                 });
@@ -1796,6 +1820,9 @@ $(document).ready(function () {
                             sgComp.w.objects[5].val
                     }
                 ];
+
+                /* plz refactor */
+
                 // kwh sliders
                 [0, 2, 7, 9, 11, 13].forEach(function (x) {
                     replaceNumericalSpan(Number(Math.trunc(fcn[x].val)), 'kWh', fcn[x].name);
@@ -1820,17 +1847,33 @@ $(document).ready(function () {
 
                 function comparatorReplacer(sumData, x) {
                     var comparatorValue = x.val;
-                    // if start of the className has km-driven, create reciprocal of comparator
-                    if (x.obj.match(/^km-driven/)) {
+                    // if start of the className has MULTIPLY, create reciprocal of comparator
+                    if (x.obj.match(/^MULTIPLY/)) {
                         comparatorValue = 1 / comparatorValue;
                     }
                     // divide sum by comparator
                     var newValue = sumData / comparatorValue;
                     // replace spans of className with new value
+                    console.log(x.obj);
                     replaceNumericalSpan(newValue, "", x.obj);
                 }
 
                 function replaceNumericalSpan(value, unit, spanClassName){
+
+                    if (
+                        (
+                        spanClassName === ".sum-kwhGen" ||
+                        spanClassName === ".lt-kwhGen"
+                        ) &&
+                        (
+                        pc.stat.currentTimeDivs === TimePeriod.MONTH ||
+                        pc.stat.currentTimeDivs === TimePeriod.YEAR
+                        )
+                      ) {
+                        value /= 1000;
+                        unit = 'MWh';
+                    }
+                    console.log(spanClassName);
                     var formatValue = d3.format(',')
                     value = formatValue(Math.round(value));
                     var replacer = '<span class="' + undot(spanClassName) + '">';
