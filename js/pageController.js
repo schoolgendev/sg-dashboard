@@ -17,7 +17,7 @@ $(document).ready(function () {
                     obj: "batt-phone",
                     val: 0.01,
                     bg: "url('img/phone-wg-bg.png')",
-                    color: "green",
+                    color: "grey",
                     precision: 0,
                     threshold: {
                         upper: 10000,
@@ -36,7 +36,7 @@ $(document).ready(function () {
                 {
                     obj: "batt-tablet",
                     val: 0.02,
-                    bg: "url('img/phone-wg-bg.png')",
+                    bg: "url('img/tablet-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
                     threshold: {
@@ -116,7 +116,7 @@ $(document).ready(function () {
                 {
                     obj: "TNT-kg",
                     val: 1.2,
-                    bg: "url('img/tnt-wg-bg.png')",
+                    bg: "url('img/tnt1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
@@ -180,7 +180,7 @@ $(document).ready(function () {
                 {
                     obj: "tdf-cyclist-total",
                     val: 21.2,
-                    bg: "url('img/cyclist1-wg-bg.png')",
+                    bg: "url('img/cyclist2-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 2,
                     lText: {
@@ -196,7 +196,7 @@ $(document).ready(function () {
                 {
                     obj: "MULTIPLY-km-driven-tesla",
                     val: 6.25,
-                    bg: "url('img/tesla-wg-bg.png')",
+                    bg: "url('img/tesla1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
@@ -212,7 +212,7 @@ $(document).ready(function () {
                 {
                     obj: "tesla-battery",
                     val: 90,
-                    bg: "url('img/tesla-wg-bg.png')",
+                    bg: "url('img/tesla2-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
@@ -245,7 +245,7 @@ $(document).ready(function () {
                 {
                     obj: "TNT-tonne",
                     val: 1200,
-                    bg: "url('img/tnt-wg-bg.png')",
+                    bg: "url('img/tnt2-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
