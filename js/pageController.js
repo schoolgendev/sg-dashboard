@@ -24,17 +24,9 @@ $(document).ready(function () {
                         lower: 0
                     },
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could recharge",
                         span: "",
                         down: "smartphones!"
@@ -52,17 +44,9 @@ $(document).ready(function () {
                         lower: 0
                     },
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could recharge",
                         span: "",
                         down: "tablets!"
@@ -80,17 +64,9 @@ $(document).ready(function () {
                         lower: 0
                     },
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could recharge",
                         span: "",
                         down: "Chromebooks!"
@@ -108,17 +84,9 @@ $(document).ready(function () {
                         lower: 0
                     },
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could recharge",
                         span: " ",
                         down: "e-bikes"
@@ -136,17 +104,9 @@ $(document).ready(function () {
                         lower: 0
                     },
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: "based on a 1.2 kwh Enphase AC battery"
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could recharge",
                         span: "",
                         down: "Enphase Home Batteries"
@@ -160,17 +120,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Same as exploding",
                         span: " kg",
                         down: "of TNT!"
@@ -184,17 +136,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Same as burning",
                         span: " kg",
                         down: "of coal"
@@ -208,17 +152,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could recharge",
                         span: "",
                         down: "Panasonic home batteries!"
@@ -232,17 +168,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 2,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Equivalent to a Tour de France cyclist cycling",
                         span: " km",
                         down: ""
@@ -256,17 +184,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 2,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Equivalent to",
                         span: " ",
                         down: "Tour de France cyclists cycling the entire course"
@@ -280,17 +200,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: "based on the Tesla Model S"
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could drive an electric car",
                         span: " km",
                         down: ""
@@ -304,17 +216,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could fully charge a Tesla electric car",
                         span: " times",
                         down: ""
@@ -329,17 +233,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: "based on Auckland's electric trains"
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "An e-train could travel for",
                         span: " hours",
                         down: "at 110 km/h"
@@ -353,17 +249,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Same as exploding",
                         span: " tonnes",
                         down: "of TNT!"
@@ -377,17 +265,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Enough energy to run",
                         span: " houses",
                         down: "for a month!"
@@ -401,17 +281,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Equivalent to",
                         span: " barrels",
                         down: "of oil!"
@@ -425,17 +297,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could power all of NZ for",
                         span: "",
                         down: "seconds"
@@ -449,17 +313,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could power",
                         span: " houses",
                         down: "in NZ for a year!"
@@ -473,17 +329,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Could power all of NZ for",
                         span: "",
                         down: "minutes!"
@@ -497,17 +345,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Equivalent to generation from one Genesis wind turbine for",
                         span: "",
                         down: "days!"
@@ -521,17 +361,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: null
-                        },
                         smallprint: "Based on Genesis Energy wind turbines"
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Equivalent to one Genesis Energy wind turbine spinning for",
                         span: "",
                         down: "months!"
@@ -545,17 +377,9 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: null
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "One Auckland e-train could travel for",
                         span: " days",
                         down: "at 110km/h!"
@@ -590,17 +414,9 @@ $(document).ready(function () {
                     bg: "url('img/cow-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "That's as heavy as",
                         span: " cows!",
                         down: ""
@@ -612,17 +428,9 @@ $(document).ready(function () {
                     bg: "url('img/car-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: "based on weight of 2009 Ford Taurus"
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "That's as heavy as",
                         span: " cars!",
                         down: ""
@@ -634,17 +442,9 @@ $(document).ready(function () {
                     bg: "url('img/elephant-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: "based on weight of an African Elephant"
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "That's as heavy as",
                         span: " elephants!",
                         down: ""
@@ -656,17 +456,9 @@ $(document).ready(function () {
                     bg: "url('img/elephant-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: "one blue whale is around 104.5 t"
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "That's as heavy as",
                         span: " Blue Whales!",
                         down: ""
@@ -678,17 +470,9 @@ $(document).ready(function () {
                     bg: "url('img/house2-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "That's as heavy as",
                         span: " houses!",
                         down: ""
@@ -701,17 +485,9 @@ $(document).ready(function () {
                     bg: "url('img/car-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Equivalent to taking ",
                         span: " cars",
                         down: "off the road for a year!"
@@ -724,17 +500,9 @@ $(document).ready(function () {
                     bg: "url('img/laptop-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Weighs as much as",
                         span: "",
                         down: "kiwifruit"
@@ -747,17 +515,9 @@ $(document).ready(function () {
                     bg: "url('img/car-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         smallprint: ""
                     },
                     rText: {
-                        margin: {
-                            top: "null",
-                            left: "null"
-                        },
                         up: "Weighs as much as",
                         span: "",
                         down: "avocados"
@@ -2068,10 +1828,6 @@ $(document).ready(function () {
                 // appends the p element to the right div
                 $rightDiv.append(rightHTMLString);
                 // updates the margins for the p element
-                $($rightDiv[0].childNodes).css({
-                    "margin-left": cObj.rText.margin.left,
-                    "margin-top": cObj.rText.margin.top
-                });
                 return $rightDiv;
             }
 
