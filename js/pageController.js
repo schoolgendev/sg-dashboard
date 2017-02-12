@@ -1730,13 +1730,18 @@ $(document).ready(function () {
                     nodeParent.removeChild(nodeToReplace);
                 }
                 // attach new node
-                $(nodeParent).append(currentSlideArray[i].node);
-                // rewrite the id to the node, replacing whatever id was attached to that node previously
-                $(currentSlideArray[i].node).attr("id", v + "-right");
-                // sets the background of the parent node
-                nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
-                nodeParent.style.height = "160px";
-                nodeParent.style.color = currentSlideArray[i].data.color;
+                try {
+                     $(nodeParent).append(currentSlideArray[i].node);
+                    // rewrite the id to the node, replacing whatever id was attached to that node previously
+                    $(currentSlideArray[i].node).attr("id", v + "-right");
+                    // sets the background of the parent node
+                    nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
+                    nodeParent.style.height = "160px";
+                    nodeParent.style.color = currentSlideArray[i].data.color;
+                } catch (err) {
+                    console.error(err);
+                }
+
             }
 
             /* Resets handlers for slider 1 (the top slider with the dynamic slides) */
@@ -1846,7 +1851,7 @@ $(document).ready(function () {
                 var r = "<span class='big'>" // span class="big"
                 r += "<span class='" + className + "'>"; //span class="xyz"
                 r += "</span> " + cObj.span; // insert your text here
-                r += "</span>"; // /span /span
+                r += "</span>"; //
                 return r;
             }
         }
