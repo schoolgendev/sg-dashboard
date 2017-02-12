@@ -1621,17 +1621,20 @@ $(document).ready(function () {
                 function replaceNumericalSpan(value, unit, spanClassName){
 
                     if (
-                        (
-                        spanClassName === ".sum-kwhGen" ||
-                        spanClassName === ".lt-kwhGen"
-                        ) &&
-                        (
-                        pc.stat.currentTimeDivs === TimePeriod.MONTH ||
-                        pc.stat.currentTimeDivs === TimePeriod.YEAR
-                        )
+                        (spanClassName === ".sum-kwhGen" || spanClassName === ".lt-kwhGen")
+                        &&
+                        ( pc.stat.currentTimeDivs === TimePeriod.MONTH || pc.stat.currentTimeDivs === TimePeriod.YEAR )
                       ) {
                         value /= 1000;
                         unit = 'MWh';
+                    }
+                    if (
+                        (spanClassName === ".sum-co2" || spanClassName === ".lt-CO2")
+                        &&
+                        ( pc.stat.currentTimeDivs === TimePeriod.MONTH || pc.stat.currentTimeDivs === TimePeriod.YEAR )
+                      ) {
+                        value /= 1000;
+                        unit = 't';
                     }
                     console.log(spanClassName);
                     var formatValue = d3.format(',')
