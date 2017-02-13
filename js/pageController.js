@@ -228,7 +228,7 @@ $(document).ready(function () {
                 // note: objects beginning with MULTIPLY must be multiplied
                 {
                     obj: "hours-driven-train",
-                    val: 10,
+                    val: 1520,
                     bg: "url('img/train-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
@@ -341,7 +341,7 @@ $(document).ready(function () {
                 {
                     obj: "ge-wind-turbine-days",
                     val: 4110,
-                    bg: "url('img/windmill-wg-bg.png')",
+                    bg: "url('img/windmill1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
@@ -357,7 +357,7 @@ $(document).ready(function () {
                 {
                     obj: "ge-wind-turbine-month",
                     val: 125000,
-                    bg: "url('img/windmill-wg-bg.png')",
+                    bg: "url('img/windmill2-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
@@ -425,7 +425,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-car",
                     val: 1650, //a 2009 Ford Taurus = ~1650 kg
-                    bg: "url('img/car-wg-bg.png')",
+                    bg: "url('img/car1-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         smallprint: "based on weight of 2009 Ford Taurus"
@@ -453,7 +453,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-blue-whale",
                     val: 104500, //one blue whale = ~104.5 t
-                    bg: "url('img/elephant-wg-bg.png')",
+                    bg: "url('img/blue-whale-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         smallprint: "one blue whale is around 104.5 t"
@@ -482,7 +482,7 @@ $(document).ready(function () {
                 {
                     obj: "co2-car",
                     val: 2000, //single level, unfurnished, 149 sq m = ~156 t
-                    bg: "url('img/car-wg-bg.png')",
+                    bg: "url('img/car2-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         smallprint: ""
@@ -497,7 +497,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-kiwifruit",
                     val: 0.1,
-                    bg: "url('img/laptop-wg-bg.png')",
+                    bg: "url('img/kiwifruit-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         smallprint: ""
@@ -512,7 +512,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-avocado",
                     val: 0.215, //single level, unfurnished, 149 sq m = ~156 t
-                    bg: "url('img/car-wg-bg.png')",
+                    bg: "url('img/avocado-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
                         smallprint: ""
