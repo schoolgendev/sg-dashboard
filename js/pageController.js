@@ -73,7 +73,7 @@ $(document).ready(function () {
                         span: "",
                         down: "Chromebooks!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "One chromebook takes 40 Watt-hours to charge"
                 },
                 // 3 tdf cyc 40kmph, 0.230
                 {
@@ -94,7 +94,7 @@ $(document).ready(function () {
                         span: " ",
                         down: "e-bikes"
                     },
-                    tooltip: "Default title"
+                    tooltip: "An electric bike holds 400 Watt-hours and is extremely efficient"
                 },
                 // 4 home batt enphase, 1.2 kwh
                 {
@@ -112,7 +112,7 @@ $(document).ready(function () {
                             top: "null",
                             left: "null"
                         },
-                        smallprint: "based on a 1.2 kwh Enphase AC battery"
+                        smallprint: ""
                     },
                     rText: {
                         margin: {
@@ -123,7 +123,7 @@ $(document).ready(function () {
                         span: "",
                         down: "Enphase Home Batteries"
                     },
-                    tooltip: "Default title"
+                    tooltip: "Based on a 1.2 kiloWatt-hour Enphase AC battery"
                 },
                 // 5 tnt, 1.2 per kg
                 {
@@ -140,7 +140,7 @@ $(document).ready(function () {
                         span: " kg",
                         down: "of TNT!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "1 kg of TNT holds 1200 kiloWatt-hours of potential energy, which cannot be easily controlled"
                 },
                 // 6 coal, 4kwh per kg
                 {
@@ -157,7 +157,7 @@ $(document).ready(function () {
                         span: " kg",
                         down: "of coal"
                     },
-                    tooltip: "Default title"
+                    tooltip: "1 kg of coal holds 4 kiloWatt-hours of potential energy"
                 },
                 // 7 home batt panasonic, 0.8
                 {
