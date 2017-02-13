@@ -57,7 +57,7 @@ $(document).ready(function () {
                     obj: "batt-chromebook",
                     val: 0.04,
                     bg: "url('img/laptop-wg-bg.png')",
-                    color: "#4F4F4F",
+                    color: "white",
                     precision: 0,
                     threshold: {
                         upper: 40000,
@@ -104,9 +104,17 @@ $(document).ready(function () {
                         lower: 0
                     },
                     lText: {
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        },
                         smallprint: "based on a 1.2 kwh Enphase AC battery"
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            left: "20px"
+                        },
                         up: "Could recharge",
                         span: "",
                         down: "Enphase Home Batteries"
@@ -401,7 +409,6 @@ $(document).ready(function () {
                         slideIndexArray.push(i);
                     }
                 });
-                console.log(slideIndexArray)
                 return slideIndexArray;
             }
         },
@@ -412,7 +419,7 @@ $(document).ready(function () {
                     obj: "wg-cow",
                     val: 680,
                     bg: "url('img/cow-wg-bg.png')",
-                    color: "#4F4F4F",
+                    color: "beige",
                     lText: {
                         smallprint: ""
                     },
@@ -835,7 +842,7 @@ $(document).ready(function () {
             // -----------------------------
             //FUTURE: finish the back button!!
             // -----------------------------
-            console.log("chart back to be implemented")
+            console.warn("chart back to be implemented")
         }
 
         /* zoom into a date */
@@ -1465,7 +1472,6 @@ $(document).ready(function () {
             var fillingPool = 'e' // choose which pool of slides to repopulate
             slidePool1.e = []; // clear out the pool before refilling it
             clearedSlideIndicesKWH.forEach(reservoirToPool); // repopulates the pool
-            console.log(clearedSlideIndicesKWH)
             fillingPool = 'w'
             slidePool1.w = [];
             clearedSlideIndicesCO2.forEach(reservoirToPool);
@@ -1713,15 +1719,12 @@ $(document).ready(function () {
                     // swap with i
                     util.swap(randArray, z, i);
                 }
-                console.log(array);
-                console.log(randArray);
                 // deal out the nodes
                 var returnable = [];
                 for (var i = 0; i < x; i++) {
                     var nextSlide = array[randArray[i]];
                     returnable.push(nextSlide);
                 }
-                console.log(returnable);
                 return returnable;
             }
 
@@ -1729,6 +1732,22 @@ $(document).ready(function () {
             function divReplacer(v, i, a) {
                 // get the nodes to replace - these are div elements (p1, p2, p3...)
                 var nodeParent = document.getElementById(v);
+
+                var leftNode = document.getElementById(v + '-left');
+                console.log(currentSlideArray[i].data)
+                try {
+                    if (currentSlideArray[i].data.lText.margin){
+                        console.log("adding left margin");
+                        var marginObj = currentSlideArray[i].data.lText.margin;
+                        $(leftNode.childNodes).css({
+                            "margin-left": marginObj.left,
+                            "margin-top": marginObj.top
+                        });
+                    }
+                } catch (err){
+                    console.log(err.message);
+                }
+                
                 var nodeToReplace = document.getElementById(v + '-right');
                 // check that nodeToReplace exists
                 if (nodeToReplace !== null) {
@@ -1838,6 +1857,12 @@ $(document).ready(function () {
                 // appends the p element to the right div
                 $rightDiv.append(rightHTMLString);
                 // updates the margins for the p element
+                if (cObj.rText.margin) {
+                    $($rightDiv[0].childNodes).css({
+                          "margin-left": cObj.rText.margin.left,
+                          "margin-top": cObj.rText.margin.top
+                    });
+                }
                 return $rightDiv;
             }
 
