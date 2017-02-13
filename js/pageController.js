@@ -17,7 +17,7 @@ $(document).ready(function () {
                     obj: "batt-phone",
                     val: 0.01,
                     bg: "url('img/phone-wg-bg.png')",
-                    color: "grey",
+                    color: "#333333",
                     precision: 0,
                     threshold: {
                         upper: 10000,
@@ -117,7 +117,7 @@ $(document).ready(function () {
                     obj: "TNT-kg",
                     val: 1.2,
                     bg: "url('img/tnt1-wg-bg.png')",
-                    color: "#4F4F4F",
+                    color: "#000000",
                     precision: 0,
                     lText: {
                         smallprint: ""
@@ -246,7 +246,7 @@ $(document).ready(function () {
                     obj: "TNT-tonne",
                     val: 1200,
                     bg: "url('img/tnt2-wg-bg.png')",
-                    color: "#4F4F4F",
+                    color: "#d3d3d3",
                     precision: 0,
                     lText: {
                         smallprint: ""
@@ -374,7 +374,7 @@ $(document).ready(function () {
                     obj: "days-driven-etrain",
                     val: 1520,
                     bg: "url('img/train-wg-bg.png')",
-                    color: "#4F4F4F",
+                    color: "#eeeeee",
                     precision: 3,
                     lText: {
                         smallprint: ""
@@ -397,11 +397,11 @@ $(document).ready(function () {
                     } else {
                         widgetNumber = x / v.val;
                     }
-                    if (widgetNumber > 10 && widgetNumber < 99999){
+                    if (widgetNumber > 10 && widgetNumber < 25000){
                         slideIndexArray.push(i);
                     }
                 });
-
+                console.log(slideIndexArray)
                 return slideIndexArray;
             }
         },
@@ -1465,6 +1465,7 @@ $(document).ready(function () {
             var fillingPool = 'e' // choose which pool of slides to repopulate
             slidePool1.e = []; // clear out the pool before refilling it
             clearedSlideIndicesKWH.forEach(reservoirToPool); // repopulates the pool
+            console.log(clearedSlideIndicesKWH)
             fillingPool = 'w'
             slidePool1.w = [];
             clearedSlideIndicesCO2.forEach(reservoirToPool);
@@ -1614,7 +1615,6 @@ $(document).ready(function () {
                     // divide sum by comparator
                     var newValue = sumData / comparatorValue;
                     // replace spans of className with new value
-                    console.log(x.obj);
                     replaceNumericalSpan(newValue, "", x.obj);
                 }
 
@@ -1636,7 +1636,6 @@ $(document).ready(function () {
                         value /= 1000;
                         unit = 't';
                     }
-                    console.log(spanClassName);
                     var formatValue = d3.format(',')
                     value = formatValue(Math.round(value));
                     var replacer = '<span class="' + undot(spanClassName) + '">';
@@ -1704,22 +1703,25 @@ $(document).ready(function () {
             // takes an array of objects and an argument x. Returns an array with x elements
             // from the array taken randomly.
             function getRandomNodes(x, array) {
+                //BUG: DOESN'T SHUFFLE THE FINAL ELEMENT
                 // create an array randArray of length = array.length
                 let randArray = util.range(0, array.length - 1);
                 // shuffle randArray
                 for (var i = 0; i < randArray.length; i++) {
                     // select random number from i to length
-                    let z = Math.trunc(i + Math.random() * (randArray.length - 1 - i));
+                    let z = Math.trunc(i + Math.random() * (randArray.length - i));
                     // swap with i
                     util.swap(randArray, z, i);
                 }
-
+                console.log(array);
+                console.log(randArray);
                 // deal out the nodes
                 var returnable = [];
                 for (var i = 0; i < x; i++) {
                     var nextSlide = array[randArray[i]];
                     returnable.push(nextSlide);
                 }
+                console.log(returnable);
                 return returnable;
             }
 
