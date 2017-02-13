@@ -155,7 +155,7 @@ $(document).ready(function () {
                 // 7 home batt panasonic, 0.8
                 {
                     obj: "home-batt-panasonic",
-                    val: 0.8,
+                    val: 8.0,
                     bg: "url('img/panason-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
@@ -165,7 +165,7 @@ $(document).ready(function () {
                     rText: {
                         up: "Could recharge",
                         span: "",
-                        down: "Panasonic home batteries!"
+                        down: "8 kWh home batteries!"
                     }
                 },
                 // 8 km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
@@ -232,7 +232,7 @@ $(document).ready(function () {
                         down: ""
                     }
                 },
-                // 12 km driven train - 10km p kwh?
+                // Train full power 1520 kW, 110km/h, 373 seated and standing passengers
                 // note: objects beginning with MULTIPLY must be multiplied
                 {
                     obj: "hours-driven-train",
@@ -356,7 +356,7 @@ $(document).ready(function () {
                         smallprint: ""
                     },
                     rText: {
-                        up: "Equivalent to generation from one Genesis wind turbine for",
+                        up: "Equals generation from one Genesis wind turbine for",
                         span: "",
                         down: "days!"
                     }
@@ -372,20 +372,20 @@ $(document).ready(function () {
                         smallprint: "Based on Genesis Energy wind turbines"
                     },
                     rText: {
-                        up: "Equivalent to one Genesis Energy wind turbine spinning for",
+                        up: "Equals generation from one Genesis wind turbine for",
                         span: "",
                         down: "months!"
                     }
                 },
-                // 20 - electrin train for 39 hours
+                // 20 - electric train for 39 hours
                 {
                     obj: "days-driven-etrain",
-                    val: 1520,
+                    val: 36480,
                     bg: "url('img/train-wg-bg.png')",
                     color: "#eeeeee",
                     precision: 3,
                     lText: {
-                        smallprint: ""
+                        smallprint: "(3 car train)"
                     },
                     rText: {
                         up: "One Auckland e-train could travel for",
@@ -424,7 +424,7 @@ $(document).ready(function () {
                         smallprint: ""
                     },
                     rText: {
-                        up: "That's as heavy as",
+                        up: "Equals the mass of",
                         span: " cows!",
                         down: ""
                     }
@@ -438,7 +438,7 @@ $(document).ready(function () {
                         smallprint: "based on weight of 2009 Ford Taurus"
                     },
                     rText: {
-                        up: "That's as heavy as",
+                        up: "Equals the mass of",
                         span: " cars!",
                         down: ""
                     }
@@ -452,7 +452,7 @@ $(document).ready(function () {
                         smallprint: "based on weight of an African Elephant"
                     },
                     rText: {
-                        up: "That's as heavy as",
+                        up: "Equals the mass of",
                         span: " elephants!",
                         down: ""
                     }
@@ -466,7 +466,7 @@ $(document).ready(function () {
                         smallprint: "one blue whale is around 104.5 t"
                     },
                     rText: {
-                        up: "That's as heavy as",
+                        up: "Equals the mass of",
                         span: " Blue Whales!",
                         down: ""
                     }
@@ -480,7 +480,7 @@ $(document).ready(function () {
                         smallprint: ""
                     },
                     rText: {
-                        up: "That's as heavy as",
+                        up: "Equals the mass of",
                         span: " houses!",
                         down: ""
                     }
@@ -1930,8 +1930,8 @@ $(document).ready(function () {
         var currentDate = document.getElementById('currentDate');
         var energyTooltip = document.getElementById('energy-tooltip')
 
-        var kwhString = "1 kiloWatt-hour is the base amount of energy charged for in your power bill."
-        var mwhString = "1 megaWatt-hour = 1000 kiloWatt hours"
+        var kwhString = "1 kilowatt-hour is the unit of energy charged for in your electricity bill."
+        var mwhString = "1 megawatt-hour = 1000 kilowatt hours"
         this.update = function () {
             // set upper level text
             energyGen.textContent = util.cutKWHSum(pc.stat.spec.kwhSum);
