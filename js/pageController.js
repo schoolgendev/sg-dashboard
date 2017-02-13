@@ -661,6 +661,7 @@ $(document).ready(function () {
           note that this is already done by the common interface methods (chartYear, chartDay etc)
          */
         this.chartPeriod = function chartPeriod(year, month, day, period) {
+            var lifetimeStatCallFinished = false;
             // a signal variable for the AJAX request with callString1
             var programStatCallFinished = false;
             // a signal variable for the AJAX request with callString2
@@ -684,6 +685,7 @@ $(document).ready(function () {
             // 2.1 - make API call for general stats
             d3.json(callString1, generalStatHandler);
             d3.json(callString2, periodStatHandler);
+            d3.json(ApiCallArray[0], lifetimeHandler);
             // 3. on success - throw data into sgStats
             // 4. use callback to trigger observer.notify() - this will e.g. kill the loader,
             //      redraw the graph, and replace the slider spans.
@@ -701,7 +703,7 @@ $(document).ready(function () {
                 dc.compileGeneralData(xhr);
                 // if both calls finished, run notify
                 programStatCallFinished = true;
-                if (programStatCallFinished && periodStatCallFinished) {
+                if (allCallsFinished()) {
                     pc.notify();
                 }
             }
@@ -717,11 +719,39 @@ $(document).ready(function () {
                 dc.compileSpecificData(xhr, pc.stat.currentTimeDivs, pc.stat.currentVisual);
                 // run notify when both calls finish
                 periodStatCallFinished = true;
-                if (programStatCallFinished && periodStatCallFinished) {
+                if (allCallsFinished()) {
                     pc.notify();
                 }
             }
 
+            function lifetimeHandler (err, xhr) {
+                if (err !== null) {
+                    console.err("failed to complete request for 2017 stats");
+                    console.err(err);
+                    return;
+                }
+                const co2Factor = 0.12;
+                const co2Saved2016 = 190119;
+                const kwhGenerated2016 = 1370287;
+                // 0 indexed - starts at 2007. 2017 is index 10.
+                var kwhGenerated2017 = xhr[10].kWhGen;
+                var co2Saved2017 = co2Factor * kwhGenerated2017;
+                var totalCO2Saved = co2Saved2017 + co2Saved2016;
+                var totalKWhGenerated = kwhGenerated2016 + kwhGenerated2017;
+
+                dc.compileLifetimeCO2(totalCO2Saved, totalKWhGenerated);
+
+                lifetimeStatCallFinished = true;
+                if (allCallsFinished()) {
+                    pc.notify();
+                }
+            }
+
+            function allCallsFinished(){
+                return programStatCallFinished &&
+                    periodStatCallFinished &&
+                    lifetimeStatCallFinished;
+            }
             /* UTILITY METHODS*/
             /* generateCallString(year, month, day, period) uses ApiCallArray[1] to
                 create a new string to be used in an API call for a specified period.
@@ -913,7 +943,9 @@ $(document).ready(function () {
         this.compileGeneralData = function compileGeneralData(xhr) {
             // stat.bestSch will hold the record holding schools.
             // All values are in kwh.
-            stat.general = {};
+            if (! stat.general) {
+                stat.general = {};
+            }
             stat.general.bestSch = {
                 year: {
                     name: xhr.BiggestTotalGenerationSchool,
@@ -945,16 +977,14 @@ $(document).ready(function () {
             };
             // egco2 will hold info about energy generated and
             // co2 offset today and for the whole programme.
-            stat.general.egco2 = {
-                today: {
+            if (! stat.general.egco2){
+                stat.general.egco2 = {};
+            }
+            stat.general.egco2.today = {
                     energy: xhr.EnergyGeneratedToday,
                     co2: xhr.CO2SavedToday
-                },
-                total: {
-                    energy: xhr.TotalEnergyGenerated,
-                    co2: xhr.TotalCO2Saved
-                }
-            };
+            }
+                // total gets set in compileLifetimeCO2
             console.log("compile general data complete");
         }
 
@@ -1066,6 +1096,19 @@ $(document).ready(function () {
                     arr.push(func(data[i]));
                 }
                 return arr;
+            }
+        }
+
+        this.compileLifetimeCO2 = function compileLifetimeCO2(co2, kwh){
+            if (! stat.general){
+                stat.general = {};
+            }
+            if (! stat.general.egco2){
+                stat.general.egco2 = {};
+            }
+            stat.general.egco2.total = {
+                energy: kwh,
+                co2: co2
             }
         }
     }
