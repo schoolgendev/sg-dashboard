@@ -313,7 +313,7 @@ $(document).ready(function () {
                         down: "seconds"
                     }
                 },
-                // 16 nz houses, 7k
+                // 16 nz houses, 7k. Do not delete/comment out.
                 {
                     obj: "nz-houses-year",
                     val: 7000,
@@ -1546,6 +1546,8 @@ $(document).ready(function () {
 
             function replaceAllSpans() {
                 //fixed class names.
+                var houseEnergyValue = sgComp.e.objects.find(function (elem) { return elem.obj === 'nz-houses-year' }).val;
+                var carCO2Value = sgComp.w.objects.find(function (elem) { return elem.obj === 'co2-car' }).val;
                 var fcn = [
                     //0
                     {
@@ -1621,13 +1623,13 @@ $(document).ready(function () {
                     {
                         name: ".lt-houses",
                         val: pc.stat.general.egco2.total.energy /
-                            sgComp.e.objects[16].val
+                            houseEnergyValue
                     },
                     //15
                     {
                         name: ".lt-carsCO2",
                         val: pc.stat.general.egco2.total.co2 /
-                            sgComp.w.objects[5].val
+                            carCO2Value
                     }
                 ];
 
@@ -1669,19 +1671,21 @@ $(document).ready(function () {
 
                 function replaceNumericalSpan(value, unit, spanClassName){
 
-                    if (
-                        (spanClassName === ".sum-kwhGen" || spanClassName === ".lt-kwhGen")
-                        &&
-                        ( pc.stat.currentTimeDivs === TimePeriod.MONTH || pc.stat.currentTimeDivs === TimePeriod.YEAR )
-                      ) {
+                    if (pc.stat.currentTimeDivs === TimePeriod.MONTH || pc.stat.currentTimeDivs === TimePeriod.YEAR ){
+                        if (spanClassName === ".sum-kwhGen"){
+                            value /= 1000;
+                            unit = 'MWh';
+                        }
+                        else if (spanClassName === ".sum-co2" ) {
+                            value /= 1000;
+                            unit = 't';
+                        }
+                    }
+                    if ( spanClassName === ".lt-kwhGen" ){
                         value /= 1000;
                         unit = 'MWh';
                     }
-                    if (
-                        (spanClassName === ".sum-co2" || spanClassName === ".lt-CO2")
-                        &&
-                        ( pc.stat.currentTimeDivs === TimePeriod.MONTH || pc.stat.currentTimeDivs === TimePeriod.YEAR )
-                      ) {
+                    if (spanClassName === ".lt-CO2"){
                         value /= 1000;
                         unit = 't';
                     }
@@ -1704,7 +1708,7 @@ $(document).ready(function () {
 
                 // Replaces a given span (identified by class name) with a new span,
                 //  where the inner html is the value followed by a unit.
-                // TODO: PROBLEMS SO MANY PROBLEMS KSJILJLJKAS
+                // TODO: PROBLEMS SO MANY PROBLEMS REPLACE THIS SOON
                 function replaceSpan(value, unit, spanClassName, noFixPrecision, prefixUnit) {
                     // create replacer string
                     var replacer = '<span class="' + undot(spanClassName) + '">';
