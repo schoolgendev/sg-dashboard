@@ -30,7 +30,8 @@ $(document).ready(function () {
                         up: "Could recharge",
                         span: "",
                         down: "smartphones!"
-                    }
+                    },
+                    tooltip: "One smartphone takes 10 Watt-hours to fully charge."
                 },
                 // 1 tablet, 0.02
                 {
@@ -50,7 +51,8 @@ $(document).ready(function () {
                         up: "Could recharge",
                         span: "",
                         down: "tablets!"
-                    }
+                    },
+                    tooltip: "One tablet takes 20 Watt-hours to fully charge."
                 },
                 // 2 chromebook, 0.04 kwh
                 {
@@ -70,7 +72,8 @@ $(document).ready(function () {
                         up: "Could recharge",
                         span: "",
                         down: "Chromebooks!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 3 tdf cyc 40kmph, 0.230
                 {
@@ -90,7 +93,8 @@ $(document).ready(function () {
                         up: "Could recharge",
                         span: " ",
                         down: "e-bikes"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 4 home batt enphase, 1.2 kwh
                 {
@@ -118,7 +122,8 @@ $(document).ready(function () {
                         up: "Could recharge",
                         span: "",
                         down: "Enphase Home Batteries"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 5 tnt, 1.2 per kg
                 {
@@ -134,7 +139,8 @@ $(document).ready(function () {
                         up: "Same as exploding",
                         span: " kg",
                         down: "of TNT!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 6 coal, 4kwh per kg
                 {
@@ -150,7 +156,8 @@ $(document).ready(function () {
                         up: "Same as burning",
                         span: " kg",
                         down: "of coal"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 7 home batt panasonic, 0.8
                 {
@@ -166,7 +173,8 @@ $(document).ready(function () {
                         up: "Could recharge",
                         span: "",
                         down: "8 kWh home batteries!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 8 km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
                 {
@@ -182,7 +190,8 @@ $(document).ready(function () {
                         up: "Equivalent to a Tour de France cyclist cycling",
                         span: " km",
                         down: ""
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 9 tdf cyclist, 21.2
                 {
@@ -198,7 +207,8 @@ $(document).ready(function () {
                         up: "Equivalent to",
                         span: " ",
                         down: "Tour de France cyclists cycling the entire course"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // object 10 - km driven tesla, 6.25 km per kwh
                 {
@@ -214,7 +224,8 @@ $(document).ready(function () {
                         up: "Could drive an electric car",
                         span: " km",
                         down: ""
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 11 tesla batt charges, 90
                 {
@@ -230,7 +241,8 @@ $(document).ready(function () {
                         up: "Could fully charge a Tesla electric car",
                         span: " times",
                         down: ""
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // Train full power 1520 kW, 110km/h, 373 seated and standing passengers
                 // note: objects beginning with MULTIPLY must be multiplied
@@ -247,7 +259,8 @@ $(document).ready(function () {
                         up: "An e-train could travel for",
                         span: " hours",
                         down: "at 110 km/h"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 13 TNT t, 1200
                 {
@@ -263,7 +276,8 @@ $(document).ready(function () {
                         up: "Same as exploding",
                         span: " tonnes",
                         down: "of TNT!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 14 nz houses, 600
                 {
@@ -279,7 +293,8 @@ $(document).ready(function () {
                         up: "Enough energy to run",
                         span: " houses",
                         down: "for a month!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // object 15 - oil barrels, 1.7k
                 /*{
@@ -295,7 +310,8 @@ $(document).ready(function () {
                         up: "Equivalent to",
                         span: " barrels",
                         down: "of oil!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },  */
                 // 15 nz generation, 1.7k
                 {
@@ -311,7 +327,8 @@ $(document).ready(function () {
                         up: "Could power all of NZ for",
                         span: "",
                         down: "seconds"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 16 nz houses, 7k. Do not delete/comment out.
                 {
@@ -327,7 +344,8 @@ $(document).ready(function () {
                         up: "Could power",
                         span: " houses",
                         down: "in NZ for a year!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 17 nz generation, 102k
                 {
@@ -343,7 +361,8 @@ $(document).ready(function () {
                         up: "Could power all of NZ for",
                         span: "",
                         down: "minutes!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 18 wind turbine, 4k
                 {
@@ -359,7 +378,8 @@ $(document).ready(function () {
                         up: "Equals generation from one Genesis wind turbine for",
                         span: "",
                         down: "days!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 19 wind turbine, 125k
                 {
@@ -375,7 +395,8 @@ $(document).ready(function () {
                         up: "Equals generation from one Genesis wind turbine for",
                         span: "",
                         down: "months!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 20 - electric train for 39 hours
                 {
@@ -391,7 +412,8 @@ $(document).ready(function () {
                         up: "One Auckland e-train could travel for",
                         span: " days",
                         down: "at 110km/h!"
-                    }
+                    },
+                    tooltip: "Default title"
                 }
             ],
             /* also returns an array of numbers corresponding to comparison objects,
@@ -427,7 +449,8 @@ $(document).ready(function () {
                         up: "Equals the mass of",
                         span: " cows!",
                         down: ""
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 {
                     obj: "wg-car",
@@ -441,7 +464,8 @@ $(document).ready(function () {
                         up: "Equals the mass of",
                         span: " cars!",
                         down: ""
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 {
                     obj: "wg-elephant",
@@ -455,7 +479,8 @@ $(document).ready(function () {
                         up: "Equals the mass of",
                         span: " elephants!",
                         down: ""
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 {
                     obj: "wg-blue-whale",
@@ -469,7 +494,8 @@ $(document).ready(function () {
                         up: "Equals the mass of",
                         span: " Blue Whales!",
                         down: ""
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 {
                     obj: "wg-house",
@@ -483,7 +509,8 @@ $(document).ready(function () {
                         up: "Equals the mass of",
                         span: " houses!",
                         down: ""
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 //5 (zero indexed)
                 {
@@ -498,7 +525,8 @@ $(document).ready(function () {
                         up: "Equivalent to taking ",
                         span: " cars",
                         down: "off the road for a year!"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 6
                 {
@@ -513,7 +541,8 @@ $(document).ready(function () {
                         up: "Weighs as much as",
                         span: "",
                         down: "kiwifruit"
-                    }
+                    },
+                    tooltip: "Default title"
                 },
                 // 7
                 {
@@ -528,7 +557,8 @@ $(document).ready(function () {
                         up: "Weighs as much as",
                         span: "",
                         down: "avocados"
-                    }
+                    },
+                    tooltip: "Default title"
                 }
             ],
             threshLevel: function threshLevel(x) {
@@ -1809,6 +1839,13 @@ $(document).ready(function () {
                     nodeParent.style.backgroundImage = currentSlideArray[i].data.bg;
                     nodeParent.style.height = "160px";
                     nodeParent.style.color = currentSlideArray[i].data.color;
+                } catch (err) {
+                    console.error(err);
+                }
+
+                try {
+                    console.log("adding tooltip: " + currentSlideArray[i].data.tooltip)
+                    $(nodeParent).attr("title", currentSlideArray[i].data.tooltip);
                 } catch (err) {
                     console.error(err);
                 }
