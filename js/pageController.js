@@ -19,9 +19,16 @@ $(document).ready(function () {
                     bg: "url('img/phone-wg-bg.png')",
                     color: "#333333",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could recharge",
                         span: "",
                         down: "smartphones!"
@@ -35,9 +42,16 @@ $(document).ready(function () {
                     bg: "url('img/tablet-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could recharge",
                         span: "",
                         down: "tablets!"
@@ -51,9 +65,16 @@ $(document).ready(function () {
                     bg: "url('img/laptop-wg-bg.png')",
                     color: "white",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could recharge",
                         span: "",
                         down: "Chromebooks!"
@@ -67,9 +88,16 @@ $(document).ready(function () {
                     bg: "url('img/cyclist1-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could recharge",
                         span: " ",
                         down: "e-bikes"
@@ -86,13 +114,12 @@ $(document).ready(function () {
                         margin: {
                             top: "null",
                             left: "null"
-                        },
-                        smallprint: ""
+                        }
                     },
                     rText: {
                         margin: {
                             top: "20px",
-                            left: "20px"
+                            right: "20px"
                         },
                         up: "Could recharge",
                         span: "",
@@ -108,9 +135,16 @@ $(document).ready(function () {
                     color: "#000000",
                     precision: 0,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Same as exploding",
                         span: " kg",
                         down: "of TNT!"
@@ -125,9 +159,16 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Same as burning",
                         span: " kg",
                         down: "of coal"
@@ -142,9 +183,16 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could recharge",
                         span: "",
                         down: "8 kWh home batteries!"
@@ -159,9 +207,16 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 2,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equivalent to a Tour de France cyclist cycling",
                         span: " km",
                         down: ""
@@ -176,9 +231,16 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 2,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equivalent to",
                         span: " ",
                         down: "Tour de France cyclists cycling the entire course"
@@ -192,10 +254,17 @@ $(document).ready(function () {
                     bg: "url('img/tesla1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 0,
-                    lText: {
-                        smallprint: "based on the Tesla Model S"
+                   lText: {
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could drive an electric car",
                         span: " km",
                         down: ""
@@ -210,14 +279,21 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could fully charge a Tesla electric car",
                         span: " times",
                         down: ""
                     },
-                    tooltip: "Default title"
+                    tooltip: "Based on the Tesla Model S"
                 },
                 // Train full power 1520 kW, 110km/h, 373 seated and standing passengers
                 // note: objects beginning with MULTIPLY must be multiplied
@@ -228,14 +304,21 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        smallprint: "based on Auckland's electric trains"
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "An e-train could travel for",
                         span: " hours",
                         down: "at 110 km/h"
                     },
-                    tooltip: "Default title"
+                    tooltip: "Based on Auckland's electric trains"
                 },
                 // 13 TNT t, 1200
                 {
@@ -244,10 +327,17 @@ $(document).ready(function () {
                     bg: "url('img/tnt2-wg-bg.png')",
                     color: "#d3d3d3",
                     precision: 0,
-                    lText: {
-                        smallprint: ""
+                   lText: {
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Same as exploding",
                         span: " tonnes",
                         down: "of TNT!"
@@ -262,9 +352,16 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 0,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Enough energy to run",
                         span: " houses",
                         down: "for a month!"
@@ -284,7 +381,7 @@ $(document).ready(function () {
                     rText: {
                         up: "Equivalent to",
                         span: " barrels",
-                        down: "of oil!"
+                        downrightf oil!"
                     },
                     tooltip: "Default title"
                 },  */
@@ -296,9 +393,16 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could power all of NZ for",
                         span: "",
                         down: "seconds"
@@ -313,9 +417,16 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could power",
                         span: " houses",
                         down: "in NZ for a year!"
@@ -330,9 +441,16 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Could power all of NZ for",
                         span: "",
                         down: "minutes!"
@@ -347,14 +465,21 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equals generation from one Genesis wind turbine for",
                         span: "",
                         down: "days!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "A single Genesis Energy wind turbine produces 4110kwh on a nice day"
                 },
                 // 19 wind turbine, 125k
                 {
@@ -364,14 +489,21 @@ $(document).ready(function () {
                     color: "#4F4F4F",
                     precision: 3,
                     lText: {
-                        smallprint: "Based on Genesis Energy wind turbines"
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equals generation from one Genesis wind turbine for",
                         span: "",
                         down: "months!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "A single Genesis Energy wind turbine produces 125000 kWh in an average month"
                 },
                 // 20 - electric train for 39 hours
                 {
@@ -381,14 +513,21 @@ $(document).ready(function () {
                     color: "#eeeeee",
                     precision: 3,
                     lText: {
-                        smallprint: "(3 car train)"
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "One Auckland e-train could travel for",
                         span: " days",
                         down: "at 110km/h!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "A 3 car train travelling at max speed with with maximum passengers takes 36480 kwh per day"
                 }
             ],
             /* also returns an array of numbers corresponding to comparison objects,
@@ -418,9 +557,16 @@ $(document).ready(function () {
                     bg: "url('img/cow-wg-bg.png')",
                     color: "beige",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equals the mass of",
                         span: " cows!",
                         down: ""
@@ -433,14 +579,21 @@ $(document).ready(function () {
                     bg: "url('img/car1-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: "based on weight of 2009 Ford Taurus"
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equals the mass of",
                         span: " cars!",
                         down: ""
                     },
-                    tooltip: "Default title"
+                    tooltip: "Based off the weight of a 2009 Ford Taurus"
                 },
                 {
                     obj: "wg-elephant",
@@ -448,14 +601,21 @@ $(document).ready(function () {
                     bg: "url('img/elephant-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: "based on weight of an African Elephant"
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equals the mass of",
                         span: " elephants!",
                         down: ""
                     },
-                    tooltip: "Default title"
+                    tooltip: "One African Elephant weighs around 7.5 tons"
                 },
                 {
                     obj: "wg-blue-whale",
@@ -463,14 +623,21 @@ $(document).ready(function () {
                     bg: "url('img/blue-whale-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: "one blue whale is around 104.5 t"
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equals the mass of",
                         span: " Blue Whales!",
                         down: ""
                     },
-                    tooltip: "Default title"
+                    tooltip: "One blue whale weighs around 104.5 tons"
                 },
                 {
                     obj: "wg-house",
@@ -478,30 +645,44 @@ $(document).ready(function () {
                     bg: "url('img/house2-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equals the mass of",
                         span: " houses!",
                         down: ""
                     },
-                    tooltip: "Default title"
+                    tooltip: "This is a single level, unfurnished house"
                 },
                 //5 (zero indexed)
                 {
                     obj: "co2-car",
-                    val: 2000, //single level, unfurnished, 149 sq m = ~156 t
+                    val: 2000,
                     bg: "url('img/car2-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Equivalent to taking ",
                         span: " cars",
                         down: "off the road for a year!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "One car emits 2000 kg of carbon a year"
                 },
                 // 6
                 {
@@ -510,9 +691,16 @@ $(document).ready(function () {
                     bg: "url('img/kiwifruit-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Weighs as much as",
                         span: "",
                         down: "kiwifruit"
@@ -522,13 +710,20 @@ $(document).ready(function () {
                 // 7
                 {
                     obj: "wg-avocado",
-                    val: 0.215, //single level, unfurnished, 149 sq m = ~156 t
+                    val: 0.215,
                     bg: "url('img/avocado-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
-                        smallprint: ""
+                        margin: {
+                            top: "null",
+                            left: "null"
+                        }
                     },
                     rText: {
+                        margin: {
+                            top: "20px",
+                            right: "20px"
+                        },
                         up: "Weighs as much as",
                         span: "",
                         down: "avocados"

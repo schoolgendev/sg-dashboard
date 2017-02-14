@@ -1,0 +1,46 @@
+SOLAR DASHBOARD
+
+- sgComp holds the comparator objects
+- sgComp.e = energy measured objects
+- sgComp.w = weight measured objects
+
+Comparators are in the format:
+
+{
+	obj: "batt-phone",
+    val: 0.01,
+    bg: "url('img/phone-wg-bg.png')",
+    color: "#333333",
+    lText: {
+        smallprint: ""
+    },
+    rText: {
+        up: "Could recharge",
+        span: "",
+        down: "smartphones!"
+    },
+    tooltip: "One smartphone takes 10 Watt-hours to fully charge."
+    }
+}
+
+The fields are:
+- obj: a name for the object. No spaces.
+- val: how much kWh this object requires.
+ Append "MULTIPLY-" at the front of the name - for multiplicative operations
+(e.g. km driven by a train requires multiplying total kWh,
+ compared to phone batteries charged, which requires dividing the total kWh)
+- bg: the background for the slider.
+ Backgrounds have dimensions of 360px x 160px.
+ Specify the background using a string "url('img/your-img-here.png')"
+- color: the color for the text that appears in that slide.
+- lText.margin: holds the top and left margins.
+ Specify in terms of pixels.
+ Specify "null" for the default margin.
+- rText.margin: holds the top and right margins.
+- rText.up: holds the text above the number
+- rText.span: holds the text after the number
+- rText.down: holds the text below the number
+ Use "" to not specify any of these texts.
+- tooltip: holds the text that appears on hovering over the slider.
+
+
