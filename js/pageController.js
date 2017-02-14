@@ -18,11 +18,6 @@ $(document).ready(function () {
                     val: 0.01,
                     bg: "url('img/phone-wg-bg.png')",
                     color: "#333333",
-                    precision: 0,
-                    threshold: {
-                        upper: 10000,
-                        lower: 0
-                    },
                     lText: {
                         smallprint: ""
                     },
@@ -39,11 +34,6 @@ $(document).ready(function () {
                     val: 0.02,
                     bg: "url('img/tablet-wg-bg.png')",
                     color: "#4F4F4F",
-                    precision: 0,
-                    threshold: {
-                        upper: 20000,
-                        lower: 0
-                    },
                     lText: {
                         smallprint: ""
                     },
@@ -60,11 +50,6 @@ $(document).ready(function () {
                     val: 0.04,
                     bg: "url('img/laptop-wg-bg.png')",
                     color: "white",
-                    precision: 0,
-                    threshold: {
-                        upper: 40000,
-                        lower: 0
-                    },
                     lText: {
                         smallprint: ""
                     },
@@ -81,11 +66,6 @@ $(document).ready(function () {
                     val: 0.4,
                     bg: "url('img/cyclist1-wg-bg.png')",
                     color: "#4F4F4F",
-                    precision: 0,
-                    threshold: {
-                        upper: 40000,
-                        lower: 0
-                    },
                     lText: {
                         smallprint: ""
                     },
@@ -102,11 +82,6 @@ $(document).ready(function () {
                     val: 1.2,
                     bg: "url('img/enphase-wg-bg.png')",
                     color: "#4F4F4F",
-                    precision: 0,
-                    threshold: {
-                        upper: 40000,
-                        lower: 0
-                    },
                     lText: {
                         margin: {
                             top: "null",
