@@ -139,9 +139,9 @@ button.
 
 FUTURE WORK
 - place page in iframe
-- enable CORS (done by BPB)
-- host schoolgen on an https server (for added security)
-
+- enable CORS (BPB)
+- host page on a separate server
+- make new images (Jade)
 
 ----------------- SCHOOLGEN MAP ----------------------
 
@@ -167,6 +167,9 @@ DATA - directiontiltlist.csv
 - The data is currently in a csv file.
 - This is taken from the google spreadsheet you're currently keeping
  (using File > Download As... > Comma Separated Values )
-- Future changes include automating this
 
 
+FUTURE CHANGES
+- Automating data retrieval
+- Tilt/direction presentation
+- Put this into an iframe, host on a separate server
