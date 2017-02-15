@@ -1,4 +1,5 @@
-GIT & GITHUB
+----------------------- GIT & GITHUB ----------------------------
+
 - Git: an application running on your computer.
  Send commands to Git using your editor or the command line.
  You can do things like make a new repository, commit some code, etc.
@@ -47,18 +48,18 @@ Staging and Committing:
 - To commmit your changes, use 'git commit -m "insert commit message here" '
 - Commits are ATOMIC - if at some point along the way the commit fails,
  the entire commit is rolled back.
+- Make small commits often (rather than a big commit infrequently).
+ This is because it is easier to rollback smaller changes than it is large ones.
 - Commit messages are supposed to be informative (but its entirely up to you what
  goes into the commit message).
 
 
-
-
-
-SOLAR DASHBOARD
+-------------- SOLAR DASHBOARD ----------------
 
 PAGECONTROLLER.JS
 
-- sgComp holds the comparator objects
+TOP SLIDER
+- sgComp is an object that holds the comparator objects
 - sgComp.e = energy measured objects
 - sgComp.w = weight measured objects
 
@@ -105,12 +106,67 @@ charged, which requires dividing the total kWh)
 
 INDEX.HTML
 
+- Background for page
 In the style tag, under the body selector, you can change the background
 image and the background color.
  The color is displayed if the background doesn't load.
  The background itself is being taken from the schoolgen website.
  You can replace the background attribute with 'background-color: <color-hexcode-here>'
 
+- Background for sliders
+The background for the first slider is set in the script file.
+  Change an object's bg property in the script file to change the background.
+The background for the second and third sliders are set in the style tag as well.
+    .solar-leader-hour {
+        background-image: url('<url-image-here>');
+    }
 
+- Text in sliders
+The text in the first slider is set in the script file. Change the object's rText properties
+ to change the text for the first slider.
+The text in the second and third sliders is set in the HTML file however.
+ These texts are under their associated <li> sections.
+
+
+
+REPLACING IMAGES
+- To replace an image being used for a slider, you need to know the image
+that it is currently using. You find this using the Inspect Element
+button.
+- Replace an image by overwriting it with another image of the same file name.
+
+
+
+FUTURE WORK
+- place page in iframe
+- enable CORS (done by BPB)
+- host schoolgen on an https server (for added security)
+
+
+----------------- SCHOOLGEN MAP ----------------------
+
+
+The map comes with 3 css files:
+- normalize.css and skeleton.css are both base styles that are applied to the page
+- custom.css is an editable stylesheet. Some key styles are in the annotations for the stylesheet.
+
+HTML - index.html
+- Change the text inside the <span class="tooltiptext"> elements to change
+ what pops up for that tooltip.
+- It might be worth learning a small bit of CSS so you can add to the <style> tag of the html file.
+ This way you can change e.g. the color of the <h4> tag saying 'Schoolgen Top 10'.
+
+SCRIPT FILE - mapdash.js
+
+Colors
+- The colors for the map are in the array called 'colors'. I generated this using a tool
+ called chroma.js - https://gka.github.io/palettes/
+- There are 100 steps for the color.
+
+DATA - directiontiltlist.csv
+- The data is currently in a csv file.
+- This is taken from the google spreadsheet you're currently keeping
+ (using File > Download As... > Comma Separated Values )
+- Future changes include automating this
 
 

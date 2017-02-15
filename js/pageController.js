@@ -479,7 +479,7 @@ $(document).ready(function () {
                         span: "",
                         down: "days!"
                     },
-                    tooltip: "A single Genesis Energy wind turbine produces 4110kwh on a nice day"
+                    tooltip: "A single Genesis Energy wind turbine produces 4100kWh on an average day"
                 },
                 // 19 wind turbine, 125k
                 {
@@ -527,7 +527,7 @@ $(document).ready(function () {
                         span: " days",
                         down: "at 110km/h!"
                     },
-                    tooltip: "A 3 car train travelling at max speed with with maximum passengers takes 36480 kwh per day"
+                    tooltip: "A 3 car train travelling at max speed with with maximum passengers takes 36480 kWh per day"
                 }
             ],
             /* also returns an array of numbers corresponding to comparison objects,
