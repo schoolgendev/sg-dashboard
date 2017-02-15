@@ -9,7 +9,6 @@
         <link rel="stylesheet" type="text/css" href="styles/unslider.css" />
         <link rel="stylesheet" type="text/css" href="styles/pagestyle.css" />
         <style>
-            @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
             html,
             body {
                 font-family: Calibri, sans-serif;
@@ -18,7 +17,29 @@
             }
             body {
                 background: #FFB100 url('http://www.schoolgen.co.nz/img/bg-body-yellow.jpg') top center no-repeat;
-        }
+            }
+            /* slider backgrounds for box 2 and 3 */
+            .solar-leader-hour{
+                background-image: url('img/sl-hour.png');
+            }
+            .solar-leader-week{
+                background-image: url('img/sl-week.png');
+            }
+            .solar-leader-year{
+                background-image: url('img/sl-year.png');
+            }
+            .record-day{
+                background-image: url('img/rl-day.png');
+            }
+            .record-lifetime-generation{
+                background-image: url('img/rl-gen.png');
+            }
+            .record-lifetime-co2{
+                background-image: url('img/rl-co2.png');
+            }
+            .record-lifetime-saved{
+                background-image: url('img/rl-saved.png');
+            }
         </style>
     </head>
 
@@ -38,7 +59,7 @@
                         <p><strong>
                             <span id="currentDate">...</span></strong>
                             <div class="tooltipped">
-                                <span id="energy-generated-text">Electricity: 
+                                <span id="energy-generated-text">Electricity:
                                     <span id="energyGen"></span>
                                     <span class="tooltip-text" id="energy-tooltip"></span>
                                 </span>
@@ -200,15 +221,15 @@
                         </ul>
                     </div>
 
-                    <!-- BOX THREE -->
-                    <!-- TODO: replace with relevant record sliders -->
+                    <!-- BOX TWO (formerly box THREE) -->
+                    <!-- Solar Leaders -->
 
                     <div id="slider3" class="wg-slider record-gen">
                         <div class="wg-overlay"><p>Solar Leaders</p></div>
                         <ul>
                             <!-- record school: last hour -->
                             <li>
-                                <div class="hbox main-center cross-center cross-stretch">
+                                <div class="hbox main-center cross-center cross-stretch solar-leader-hour">
                                     <div class="wg-left" style="min-width:45%;">
                                         <p>Top school - last hour:
                                             <span class="medium"><span class="record-school-last-hour"></span></span>
@@ -223,7 +244,7 @@
 
                               <!-- record school last week -->
                              <li>
-                                <div class="hbox main-center cross-center cross-stretch">
+                                <div class="hbox main-center cross-center cross-stretch solar-leader-week">
                                     <div class="wg-left" style="min-width:45%;">
                                         <p>Top school - last week:
                                             <span class="medium"><span class="record-school-last-week"></span></span>
@@ -238,7 +259,7 @@
 
                             <!-- record school: last year -->
                             <li>
-                                <div class="hbox main-center cross-center cross-stretch">
+                                <div class="hbox main-center cross-center cross-stretch solar-leader-year">
                                     <div class="wg-left" style="min-width:45%;">
                                         <p>Top school - last 12 months:
                                             <span class="medium"><span class="record-school-last-year"></span></span>
@@ -254,16 +275,15 @@
                         </ul>
                     </div>
 
-                    <!-- BOX TWO -->
-                    <!-- TODO: replace with relevant programme sliders -->
+                    <!-- BOX THREE (formerly box TWO) -->
+                    <!-- Schoolgen Programme Records -->
 
                     <div id="slider2" class="wg-slider lt-gen">
                         <div class="wg-overlay"><p>Schoolgen Programme since 2007</p></div>
                         <ul>
-
                             <!-- record schoolgen day -->
                             <li>
-                                <div class="hbox main-center cross-center cross-stretch">
+                                <div class="hbox main-center cross-center cross-stretch record-day">
                                     <div class="wg-left" style="min-width:45%;">
                                         <p>Record Schoolgen Day:<br />
                                         <span class="big"><span class="record-day-whole-programme"></span></span>
@@ -278,7 +298,7 @@
 
                             <!-- Lifetime - kwh generated -->
                             <li>
-                                <div class="hbox main-center cross-center cross-stretch">
+                                <div class="hbox main-center cross-center cross-stretch record-lifetime-generation">
                                     <div class="wg-left">
                                         <p class="">Has generated
                                         <span class="big"><span class="lt-kwhGen"></span></span>
@@ -292,7 +312,7 @@
 
                             <!-- Lifetime - CO2 saved -->
                             <li>
-                                <div class="hbox main-center cross-center cross-stretch">
+                                <div class="hbox main-center cross-center cross-stretch record-lifetime-co2">
                                     <div class="wg-left">
                                         <p class="">Has saved
                                         <span class="big"><span class="lt-CO2"></span></span>
@@ -307,7 +327,7 @@
 
                             <!-- Lifetime - schools supplied + money saved -->
                              <li>
-                                <div class="hbox main-center cross-center cross-stretch lt-gen">
+                                <div class="hbox main-center cross-center cross-stretch record-lifetime-saved">
                                     <div class="wg-left">
                                         <p class="">Has provided
                                         <span class="big"><span class="lt-schools"></span></span>

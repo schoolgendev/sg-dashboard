@@ -1,7 +1,3 @@
-/*
-
-*/
-
 .wg-slider {
     width: 360px;
     height: 160px;
@@ -93,4 +89,7 @@
     padding: 0px;
 }
 
-
+.record-gen .hbox,
+.lt-gen .hbox {
+    min-height: 160px;
+}

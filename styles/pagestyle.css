@@ -22,51 +22,10 @@
     background-color: #fbf5e2;
 }
 
-#masthead {
-    width: 100%;
-    margin: 10px 0px 0px 0px;
-    height: 120px;
-    display: block;
-}
-#mastLogo {
-    width: 50%;
-    margin: 0px 0px 0px 0px;
-    height: 120px;
-    float: left;
-    display: block;
-}
 #page {
     width: 1000px;
     margin-left: auto;
     margin-right: auto;
-}
-#mastNavBar {
-    width: auto;
-    height: 45px;
-    background-color: #F47F23;
-    margin: 50px 0px 0px 0px;
-    padding: 0px 10px 0px 10px;
-    border-radius: 22px;
-    float: right;
-}
-#mastNavBar li {
-    color: #fff;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 22px;
-    height: 35px;
-    line-height: 33px;
-    margin: 5px 0px 0px 0px;
-    padding: 0px 17px 0px 17px;
-    border-left: 1px solid #FFA35E;
-    float: right;
-    display: inline;
-}
-#mastNavBar li a {
-    text-decoration: none;
-    color: #fff;
-}
-.mastNavBarLast {
-    border-left: none                       !important;
 }
 
 .buttons button {

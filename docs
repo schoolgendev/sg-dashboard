@@ -1,4 +1,62 @@
+GIT & GITHUB
+- Git: an application running on your computer.
+ Send commands to Git using your editor or the command line.
+ You can do things like make a new repository, commit some code, etc.
+- GitHub: a server that stores user's Git repositories.
+- Really good resource:
+ https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud
+ (Atlassian makes BitBucket, a competitor to GitHub. The functionality is
+  basically the same however.)
+
+Getting started:
+- Use 'git init' to start a project from scratch.
+- Use 'git clone <https://remote-repository-URL>' to create a working
+ copy of a project, being stored on a remote repository.
+
+Both of these options will create a folder named .git in your repository.
+This is where all the repository information exists.
+
+At any time:
+- Use 'git status' to see the status of your repository.
+- This will typically show you:
+    - what branch you are on
+    - how your branch compares to a remote branch (e.g. the one you cloned from)
+    - Whether or not you have changes in the repository and
+    - Whether or not those changes have been staged
+
+Staging and Committing:
+- After making changes to a file in the repository, you can save the changes
+ (e.g. click 'Save' or Ctrl+S in an editor)
+- These changes are not yet added to the repository.
+- To prepare changes you wish to make, you must STAGE them.
+
+        STAGING PHASE
+- Stage a file by using 'git add <file-name-here>'.
+- To stage a change means to include that change in the next commit that you make.
+ A modified file that has NOT been staged will not be included in the next commit.
+ This way you can selectively commit files that are ready to be committed.
+- To discard changes that are not yet staged for a specific file,
+ use 'git checkout -- <file-name>'
+- To discard changes that are not yet staged for the entire repo,
+ use 'git checkout -- . '
+ The filename '.' refers to the current directory - basically you are calling
+ git checkout -- on the project (if you are on the root directory for the project).
+- To unstage a staged commit, use git reset HEAD <file-name-here>.
+
+        COMMIT PHASE
+- To commmit your changes, use 'git commit -m "insert commit message here" '
+- Commits are ATOMIC - if at some point along the way the commit fails,
+ the entire commit is rolled back.
+- Commit messages are supposed to be informative (but its entirely up to you what
+ goes into the commit message).
+
+
+
+
+
 SOLAR DASHBOARD
+
+PAGECONTROLLER.JS
 
 - sgComp holds the comparator objects
 - sgComp.e = energy measured objects
@@ -25,10 +83,10 @@ Comparators are in the format:
 
 The fields are:
 - obj: a name for the object. No spaces.
-- val: how much kWh this object requires.
- Append "MULTIPLY-" at the front of the name - for multiplicative operations
-(e.g. km driven by a train requires multiplying total kWh,
- compared to phone batteries charged, which requires dividing the total kWh)
+- val: how much kWh this object requires. Append "MULTIPLY-" at the
+front of the name for multiplicative operations (e.g. km driven by a
+train requires multiplying total kWh, compared to phone batteries
+charged, which requires dividing the total kWh)
 - bg: the background for the slider.
  Backgrounds have dimensions of 360px x 160px.
  Specify the background using a string "url('img/your-img-here.png')"
@@ -42,5 +100,17 @@ The fields are:
 - rText.down: holds the text below the number
  Use "" to not specify any of these texts.
 - tooltip: holds the text that appears on hovering over the slider.
+
+
+
+INDEX.HTML
+
+In the style tag, under the body selector, you can change the background
+image and the background color.
+ The color is displayed if the background doesn't load.
+ The background itself is being taken from the schoolgen website.
+ You can replace the background attribute with 'background-color: <color-hexcode-here>'
+
+
 
 
