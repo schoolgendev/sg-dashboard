@@ -173,3 +173,7 @@ FUTURE CHANGES
 - Automating data retrieval
 - Tilt/direction presentation
 - Put this into an iframe, host on a separate server
+
+OVERALL FUTURE WORK
+- add new segments (e.g. the power matrix)
+- add in grid data
