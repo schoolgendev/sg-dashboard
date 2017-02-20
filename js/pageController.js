@@ -530,7 +530,7 @@ $(document).ready(function () {
                         span: " days",
                         down: "at 110km/h!"
                     },
-                    tooltip: "A 3 car train travelling at max speed with with maximum passengers takes 36480 kWh per day"
+                    tooltip: "Based on Auckland's AMA electric train at maximum power"
                 }
             ],
             /* also returns an array of numbers corresponding to comparison objects,
@@ -578,7 +578,7 @@ $(document).ready(function () {
                 },
                 {
                     obj: "wg-car",
-                    val: 1650, //a 2009 Ford Taurus = ~1650 kg
+                    val: 1300, // mass in kg
                     bg: "url('img/car1-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
@@ -596,7 +596,7 @@ $(document).ready(function () {
                         span: " cars!",
                         down: ""
                     },
-                    tooltip: "Based off the weight of a 2009 Ford Taurus"
+                    tooltip: "Based off the weight of a 2016 Toyota Corolla"
                 },
                 {
                     obj: "wg-elephant",
@@ -618,11 +618,11 @@ $(document).ready(function () {
                         span: " elephants!",
                         down: ""
                     },
-                    tooltip: "One African Elephant weighs around 7.5 tons"
+                    tooltip: "One African Elephant weighs around 7.5 tonnes"
                 },
                 {
                     obj: "wg-blue-whale",
-                    val: 104500, //one blue whale = ~104.5 t
+                    val: 105000, //one blue whale = ~105 t
                     bg: "url('img/blue-whale-wg-bg.png')",
                     color: "#4F4F4F",
                     lText: {
@@ -640,7 +640,7 @@ $(document).ready(function () {
                         span: " Blue Whales!",
                         down: ""
                     },
-                    tooltip: "One blue whale weighs around 104.5 tons"
+                    tooltip: "One blue whale weighs around 105 tonnes"
                 },
                 {
                     obj: "wg-house",
@@ -662,7 +662,7 @@ $(document).ready(function () {
                         span: " houses!",
                         down: ""
                     },
-                    tooltip: "This is a single level, unfurnished house"
+                    tooltip: "Even a single level, unfurnished house is pretty heavy!"
                 },
                 //5 (zero indexed)
                 {
@@ -685,7 +685,7 @@ $(document).ready(function () {
                         span: " cars",
                         down: "off the road for a year!"
                     },
-                    tooltip: "One car emits 2000 kg of carbon a year"
+                    tooltip: "One car emits about 2000 kg of carbon a year (depends on model and driving)"
                 },
                 // 6
                 {
