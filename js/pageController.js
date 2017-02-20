@@ -33,7 +33,7 @@ $(document).ready(function () {
                         span: "",
                         down: "smartphones!"
                     },
-                    tooltip: "One smartphone takes 10 Watt-hours to fully charge."
+                    tooltip: "A smartphone battery need 10 Watt-hours of energy to fully charge."
                 },
                 // 1 tablet, 0.02
                 {
@@ -56,7 +56,7 @@ $(document).ready(function () {
                         span: "",
                         down: "tablets!"
                     },
-                    tooltip: "One tablet takes 20 Watt-hours to fully charge."
+                    tooltip: "A tablet battery needs 20 Watt-hours of energy to fully charge."
                 },
                 // 2 chromebook, 0.04 kwh
                 {
@@ -79,7 +79,7 @@ $(document).ready(function () {
                         span: "",
                         down: "Chromebooks!"
                     },
-                    tooltip: "One chromebook takes 40 Watt-hours to charge"
+                    tooltip: "One chromebook battery needs about 40 Watt-hours of energy to fully charge."
                 },
                 // 3 tdf cyc 40kmph, 0.230
                 {
@@ -102,7 +102,7 @@ $(document).ready(function () {
                         span: " ",
                         down: "e-bikes"
                     },
-                    tooltip: "An electric bike holds 400 Watt-hours and is extremely efficient"
+                    tooltip: "A typical electric bike battery stores around 400 Watt-hours of energy"
                 },
                 // 4 home batt enphase, 1.2 kwh
                 {
@@ -125,7 +125,7 @@ $(document).ready(function () {
                         span: "",
                         down: "Enphase Home Batteries"
                     },
-                    tooltip: "Based on a 1.2 kiloWatt-hour Enphase AC battery"
+                    tooltip: "Based on a 1.2 kilowatt-hour Enphase battery"
                 },
                 // 5 tnt, 1.2 per kg
                 {
@@ -149,7 +149,7 @@ $(document).ready(function () {
                         span: " kg",
                         down: "of TNT!"
                     },
-                    tooltip: "1 kg of TNT holds 1200 kiloWatt-hours of potential energy, which cannot be easily controlled"
+                    tooltip: "1kg of TNT stores 1.2 kilowatt-hours (4.3 MJ) of potential energy, which is released explosively!"
                 },
                 // 6 coal, 4kwh per kg
                 {
@@ -173,7 +173,7 @@ $(document).ready(function () {
                         span: " kg",
                         down: "of coal"
                     },
-                    tooltip: "1 kg of coal holds 4 kiloWatt-hours of potential energy"
+                    tooltip: "1kg of coal stores 4 kilowatt-hours of potential energy"
                 },
                 // 7 home batt panasonic, 0.8
                 {
@@ -195,14 +195,17 @@ $(document).ready(function () {
                         },
                         up: "Could recharge",
                         span: "",
-                        down: "8 kWh home batteries!"
+                        down: "Panasonic home batteries!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "Residential battery stores up to 8 kWh of electrical energy"
                 },
                 // 8 km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
+                // Above is incorrect: should have divided by val
+                // 1 km uses only 0.0057 kwh
+                // invert val to get correct answer ie 1/0.0057 = 175
                 {
                     obj: "MULTIPLY-km-driven-tdf-cyclist",
-                    val: 0.0057,
+                    val: 175,
                     bg: "url('img/cyclist1-wg-bg.png')",
                     color: "#4F4F4F",
                     precision: 2,
@@ -221,7 +224,7 @@ $(document).ready(function () {
                         span: " km",
                         down: ""
                     },
-                    tooltip: "Default title"
+                    tooltip: "Humans use chemical potential energy"
                 },
                 // 9 tdf cyclist, 21.2
                 {
@@ -245,7 +248,7 @@ $(document).ready(function () {
                         span: " ",
                         down: "Tour de France cyclists cycling the entire course"
                     },
-                    tooltip: "Default title"
+                    tooltip: "A distance of more than 3500 km, each rider uses a bit over 21 kWh of energy to do the course"
                 },
                 // object 10 - km driven tesla, 6.25 km per kwh
                 {
@@ -269,7 +272,7 @@ $(document).ready(function () {
                         span: " km",
                         down: ""
                     },
-                    tooltip: "Default title"
+                    tooltip: "Based on the Tesla Model S"
                 },
                 // 11 tesla batt charges, 90
                 {
@@ -293,7 +296,7 @@ $(document).ready(function () {
                         span: " times",
                         down: ""
                     },
-                    tooltip: "Based on the Tesla Model S"
+                    tooltip: "Based on the Tesla Model S (P85D model)"
                 },
                 // Train full power 1520 kW, 110km/h, 373 seated and standing passengers
                 // note: objects beginning with MULTIPLY must be multiplied
@@ -318,7 +321,7 @@ $(document).ready(function () {
                         span: " hours",
                         down: "at 110 km/h"
                     },
-                    tooltip: "Based on Auckland's electric trains"
+                    tooltip: "Based on Auckland's AMA electric train at maximum power"
                 },
                 // 13 TNT t, 1200
                 {
@@ -342,7 +345,7 @@ $(document).ready(function () {
                         span: " tonnes",
                         down: "of TNT!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "1 tonne of TNT stores 1.2 megawatt-hours (4.3 GJ) of potential energy - released explosively!"
                 },
                 // 14 nz houses, 600
                 {
@@ -366,7 +369,7 @@ $(document).ready(function () {
                         span: " houses",
                         down: "for a month!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "Electrical energy, not including energy from gas, wood etc."
                 },
                 // object 15 - oil barrels, 1.7k
                 /*{
@@ -407,7 +410,7 @@ $(document).ready(function () {
                         span: "",
                         down: "seconds"
                     },
-                    tooltip: "Default title"
+                    tooltip: "The whole of NZ uses HUGE amounts of energy every second - you would need a lot of solar panels for this!"
                 },
                 // 16 nz houses, 7k. Do not delete/comment out.
                 {
@@ -431,7 +434,7 @@ $(document).ready(function () {
                         span: " houses",
                         down: "in NZ for a year!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "Electrical energy, not including energy from gas, wood etc."
                 },
                 // 17 nz generation, 102k
                 {
@@ -455,7 +458,7 @@ $(document).ready(function () {
                         span: "",
                         down: "minutes!"
                     },
-                    tooltip: "Default title"
+                    tooltip: "The whole of NZ uses HUGE amounts of energy every second - you would need a lot of solar panels for this!"
                 },
                 // 18 wind turbine, 4k
                 {
@@ -479,7 +482,7 @@ $(document).ready(function () {
                         span: "",
                         down: "days!"
                     },
-                    tooltip: "A single Genesis Energy wind turbine produces 4100kWh on an average day"
+                    tooltip: "A single Genesis Energy wind turbine produces 4,100kWh on an average day"
                 },
                 // 19 wind turbine, 125k
                 {
@@ -503,7 +506,7 @@ $(document).ready(function () {
                         span: "",
                         down: "months!"
                     },
-                    tooltip: "A single Genesis Energy wind turbine produces 125000 kWh in an average month"
+                    tooltip: "A single Genesis Energy wind turbine produces 125,000 kWh in an average month"
                 },
                 // 20 - electric train for 39 hours
                 {
