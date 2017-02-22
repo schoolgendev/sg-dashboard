@@ -574,7 +574,7 @@ $(document).ready(function () {
                         span: " cows!",
                         down: ""
                     },
-                    tooltip: "Default title"
+                    tooltip: "Based on a 680 kg cow."
                 },
                 {
                     obj: "wg-car",
@@ -685,7 +685,7 @@ $(document).ready(function () {
                         span: " cars",
                         down: "off the road for a year!"
                     },
-                    tooltip: "One car emits about 2000 kg of carbon a year (depends on model and driving)"
+                    tooltip: "One car emits about 2000 kg of carbon dioxide gas a year (depends on model and driving)"
                 },
                 // 6
                 {
@@ -708,7 +708,7 @@ $(document).ready(function () {
                         span: "",
                         down: "kiwifruit"
                     },
-                    tooltip: "Default title"
+                    tooltip: "Based on a 100g (0.1 kg) kiwifruit"
                 },
                 // 7
                 {
@@ -731,7 +731,7 @@ $(document).ready(function () {
                         span: "",
                         down: "avocados"
                     },
-                    tooltip: "Default title"
+                    tooltip: "Based on a 215 gram (0.215 kg) avocado"
                 }
             ],
             threshLevel: function threshLevel(x) {
