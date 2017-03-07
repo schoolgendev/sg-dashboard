@@ -715,7 +715,7 @@ $(document).ready(function () {
                     obj: "wg-avocado",
                     val: 0.215,
                     bg: "url('img/Avocado.jpg')",
-                    color: "#4F4F4F",
+                    color: "#FFFFFF", //#4F4F4F was too close to jpg colour
                     lText: {
                         margin: {
                             top: "null",
