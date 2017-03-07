@@ -714,7 +714,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-avocado",
                     val: 0.215,
-                    bg: "url('img/avocado.jpg')",
+                    bg: "url('img/Avocado.jpg')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
