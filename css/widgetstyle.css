@@ -30,7 +30,7 @@
     min-width: 45%;
     padding: 2px;
     min-height: 50%;
-    text-align: left;
+    text-align: center;
 }
 
 /* big-num is used under the wg-left item
@@ -44,7 +44,7 @@
 }
 
 .small {
-    font-size: 50%;
+    font-size: 75%;
 }
 
 .slider-invis {
