@@ -39,7 +39,7 @@ $(document).ready(function () {
                 {
                     obj: "batt-tablet",
                     val: 0.02,
-                    bg: "url('img/tablet-wg-bg.png')",
+                    bg: "url('img/tablet-wg-bg.jpg')",
                     color: "#4F4F4F",
                     lText: {
                         margin: {
@@ -62,7 +62,7 @@ $(document).ready(function () {
                 {
                     obj: "batt-chromebook",
                     val: 0.04,
-                    bg: "url('img/laptop-wg-bg.png')",
+                    bg: "url('img/laptop-wg-bg.jpg')",
                     color: "white",
                     lText: {
                         margin: {
@@ -85,8 +85,8 @@ $(document).ready(function () {
                 {
                     obj: "ebikes",
                     val: 0.4,
-                    bg: "url('img/cyclist1-wg-bg.png')",
-                    color: "#4F4F4F",
+                    bg: "url('img/cyclist1-wg-bg.jpg')",
+                    color: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -108,8 +108,8 @@ $(document).ready(function () {
                 {
                     obj: "home-batt-enphase",
                     val: 1.2,
-                    bg: "url('img/enphase-wg-bg.png')",
-                    color: "#4F4F4F",
+                    bg: "url('img/enphase-wg-bg.jpg')",
+                    color: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -155,8 +155,8 @@ $(document).ready(function () {
                 {
                     obj: "coal-kg",
                     val: 4,
-                    bg: "url('img/coal-wg-bg.png')",
-                    color: "#4F4F4F",
+                    bg: "url('img/coal-wg-bg.jpg')",
+                    color: "#FFFFFF",
                     precision: 0,
                     lText: {
                         margin: {
@@ -179,8 +179,8 @@ $(document).ready(function () {
                 {
                     obj: "home-batt-panasonic",
                     val: 8.0,
-                    bg: "url('img/panason-wg-bg.png')",
-                    color: "#4F4F4F",
+                    bg: "url('img/enphase-wg-bg.jpg')",
+                    color: "#FFFFFF",
                     precision: 0,
                     lText: {
                         margin: {
@@ -207,7 +207,7 @@ $(document).ready(function () {
                     obj: "MULTIPLY-km-driven-tdf-cyclist",
                     val: 175,
                     bg: "url('img/cyclist1-wg-bg.png')",
-                    color: "#4F4F4F",
+                    color: "#FFFFFF",
                     precision: 2,
                     lText: {
                         margin: {
@@ -254,8 +254,8 @@ $(document).ready(function () {
                 {
                     obj: "MULTIPLY-km-driven-tesla",
                     val: 6.25,
-                    bg: "url('img/tesla1-wg-bg.png')",
-                    color: "#4F4F4F",
+                    bg: "url('img/tesla1-wg-bg.jpg')",
+                    color: "red",
                     precision: 0,
                    lText: {
                         margin: {
@@ -351,8 +351,8 @@ $(document).ready(function () {
                 {
                     obj: "nz-houses-month",
                     val: 583,
-                    bg: "url('img/house-wg-bg.png')",
-                    color: "#4F4F4F",
+                    bg: "url('img/house-wg-bg.jpg')",
+                    color: "red",
                     precision: 0,
                     lText: {
                         margin: {
@@ -691,8 +691,8 @@ $(document).ready(function () {
                 {
                     obj: "wg-kiwifruit",
                     val: 0.1,
-                    bg: "url('img/kiwifruit-wg-bg.png')",
-                    color: "#4F4F4F",
+                    bg: "url('img/kiwifruit-wg-bg.jpg')",
+                    color: "white",
                     lText: {
                         margin: {
                             top: "null",
@@ -715,7 +715,7 @@ $(document).ready(function () {
                     obj: "wg-avocado",
                     val: 0.215,
                     bg: "url('img/Avocado.jpg')",
-                    color: "#FFFFFF", //#4F4F4F was too close to jpg colour
+                    color: "white", //#4F4F4F was too close to jpg colour
                     lText: {
                         margin: {
                             top: "null",
