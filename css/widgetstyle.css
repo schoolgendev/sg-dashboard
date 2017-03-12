@@ -27,10 +27,12 @@
 .wg-left, .wg-right {
     background-color: rgba(245, 89, 6, 0.0);
     margin: 2px;
-    min-width: 45%;
     padding: 2px;
-    min-height: 50%;
     text-align: center;
+}
+
+.wg-left {
+    font-size: 14px;
 }
 
 /* big-num is used under the wg-left item
