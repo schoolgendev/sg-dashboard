@@ -2201,40 +2201,6 @@ $(document).ready(function () {
         }
     }
 
-
-    //FUTURE: finish the matrix controller
-    /* MatrixController makes and updates the solar power generation matrix. */
-  /*  function MatrixController() {
-        var margin = {
-            top: 10,
-            bottom: 10,
-            left: 10,
-            right: 10
-        };
-        var width = 980 - margin.left - margin.right;
-        var height = 300 - margin.top - margin.bottom;
-        var cellSize = 16;
-        // make sure to set the domain for color as well
-        var color = d3.scale.quantize().range(['#987200', '#9b7500', '#9f7800', '#a37a00', '#a67d00', '#aa8000', '#ae8301', '#b28601', '#b58801', '#b98b01', '#bd8e02', '#c09002', '#c49403', '#c79704', '#cb9a04', '#cf9c05', '#d39f06', '#d6a207', '#daa508', '#dea80a', '#e1ab0b', '#e5ae0d', '#e9b10e', '#ecb510', '#f0b711', '#f3bb13', '#f7bd15', '#fbc117', '#fec419', '#ffc82d', '#ffcd3e', '#ffd04e', '#ffd55d', '#ffd96c', '#ffdc7a', '#ffe089', '#ffe498', '#ffe8a5']);
-
-        this.update = function update() {
-            initializeMatrix();
-        }
-
-        function initializeMatrix() {
-            var svg = d3.select('#matrix').select("svg");
-            svg.attr("width", width)
-                .attr("height", height);
-
-            color.domain([d3.min(pc.stat.spec.kwhGen), d3.max(pc.stat.spec.kwhGen)]);
-
-            var boxes = svg.selectAll(".cell")
-                .data(pc.stat.spec.kwhGen)
-                .enter().append("rect")
-                .attr("width", cellSize).attr("height", cellSize)
-        }
-    }*/
-
     /* UTILITY METHODS*/
     /* bindButtons does what it says ;)
      */
