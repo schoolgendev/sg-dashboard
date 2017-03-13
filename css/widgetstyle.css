@@ -1,3 +1,9 @@
+/*
+    Use the @import tag to import fonts from google into stylesheets,
+    rather than using the standard html link tag.
+*/
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Open+Sans');
+
 .wg-slider {
     width: 360px;
     height: 160px;
@@ -5,24 +11,6 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
-/* slider item settings
- Widget container - is a flexbox
-*/
-
-.wg-container{
-    width: 312px;
-    height: 112px;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: stretch;
-    padding: 4px;
-}
-
-/* Widget items have a wg-left and a wg-right div
-
-*/
 
 .top-level {
     width: 360px;
@@ -33,19 +21,35 @@
     background-color: rgba(245, 89, 6, 0.0);
     text-align: center;
     float: right;
-    height: 35%;
-    width: 240px;
+
+    /*
+    * These height and width values affect the height and width of the
+    * areas that the widget text is in. Note that height affects the height of
+    * both the top and the bottom area, so I've left it as a percentage.
+    */
+    max-height: 20%;
+    width: 220px;
+    padding-right: 6px;
+    margin-bottom: 10px;
+    margin-top: 2px;
 }
 
+/*
+* Change these values/names to alter the upper widget text.
+* Will probably launch a refactor effort to change the names
+* to something sensible soon.
+*/
 .wg-left {
-    font-size: 14px;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.slider-invis {
-    opacity: 0;
+/* Change these values/names to alter the bottom widget text */
+.wg-right {
+    font-size: 22px;
+    font-family: 'Cabin Sketch', cursive;
 }
 
-.wg-left p, .wg-right p {
-    vertical-align: middle;
+.wg-right p {
+    margin-top: 10px;
 }
-

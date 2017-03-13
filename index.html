@@ -3,7 +3,6 @@
     <head>
         <title>Schoolgen Solar Dashboard</title>
         <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="css/flex-helper.css" />
         <link rel="stylesheet" type="text/css" href="css/chartstyle.css" />
         <link rel="stylesheet" type="text/css" href="css/widgetstyle.css" />
         <link rel="stylesheet" type="text/css" href="css/unslider.css" />
@@ -14,34 +13,96 @@
             html,
             body {
                 
-                font-family: Cabin Sketch, sans-serif;
+                font-family: Calibri, sans-serif;
                 margin: 0;
                 height: 100%;
             }
             body {
+                /* Change this background tag to change the overall background. */
                 background: #FFB100 url('http://www.schoolgen.co.nz/img/bg-body-yellow.jpg') top center no-repeat;
             }
-            /* slider backgrounds for box 2 and 3 */
+
+            /* Each of the slides in the slider for box 2 and 3 have
+                - a background
+                - a top text color
+                - a bottom text color.
+            */
             .solar-leader-hour{
+                /* This one sets the background for the slide. */
                 background-image: url('img/sl-hour.png');
             }
+            .solar-leader-hour .wg-left{
+                /* This one sets the top text color. */
+                color: #000000;
+            }
+            .solar-leader-hour .wg-right {
+                /* This one sets the bottom text color. */
+                color: #555555;
+            }
+            /*
+             * See the class names to be sure which slide
+             * each attribute set corresponds to.
+            */
+
             .solar-leader-week{
                 background-image: url('img/sl-week.png');
             }
+            .solar-leader-week .wg-left{
+                color: #000000;
+            }
+            .solar-leader-week .wg-right {
+                color: #555555;
+            }
+
             .solar-leader-year{
                 background-image: url('img/sl-year.png');
             }
+            .solar-leader-year .wg-left{
+                color: #000000;
+            }
+            .solar-leader-year .wg-right {
+                color: #555555;
+            }
+
             .record-day{
                 background-image: url('img/rl-day.png');
             }
+            .record-day .wg-left{
+                color: #000000;
+            }
+            .record-day .wg-right{
+                color: #555555;
+            }
+
             .record-lifetime-generation{
                 background-image: url('img/rl-gen.png');
             }
+            .record-lifetime-generation .wg-left{
+                color: #000000;
+            }
+            .record-lifetime-generation .wg-right{
+                color: #555555;
+            }
+
             .record-lifetime-co2{
                 background-image: url('img/rl-co2.png');
             }
+
+            .record-lifetime-co2 .wg-left{
+                color: #000000;
+            }
+            .record-lifetime-co2 .wg-right{
+                color: #555555;
+            }
+
             .record-lifetime-saved{
                 background-image: url('img/rl-saved.png');
+            }
+            .record-lifetime-saved .wg-left{
+                color: #000000;
+            }
+            .record-lifetime-saved .wg-right{
+                color: #555555;
             }
         </style>
     </head>
@@ -116,7 +177,7 @@
                                     </div>
                                     <br>
                                     <div id="p1-right" class="power wg-right">
-                                        <p>placeholder<br />
+                                        <p><br />
                                         <span class="placeholder"></span> </p>
                                     </div>
                                 </div>
@@ -129,7 +190,6 @@
                                         <p>Saved
                                         <span class="sum-co2"></span>
                                         of CO2!</p>
-                                        <p class="small" style="position: static"><br /></p>
                                     </div>
                                     <br>
                                     <div id="c1-right" class="carbon wg-right">
@@ -146,7 +206,6 @@
                                     <div id="p2-left" class="power wg-left">
                                         <p>Generated
                                         <span class="sum-kwhGen"></span> of energy!</p>
-                                        <p class="small" style="position: static"><br /></p>
                                     </div>
                                     <br>
                                     <div id="p2-right" class="power wg-right">
@@ -163,7 +222,6 @@
                                 <div id="p3" class="top-level">
                                     <div id="p3-left" class="power wg-left">
                                         <p>Generated <span class="sum-kwhGen"></span> of energy!</p>
-                                        <p class="small" style="position: static"><br /></p>
                                     </div>
                                     <br>
                                     <div id="p3-right" class="power wg-right">
@@ -178,7 +236,6 @@
                                     <div id="c2-left" class="carbon wg-left">
                                         <p>Saved
                                         <span class="sum-co2"></span> of CO2!</p>
-                                        <p class="small" style="position: static"><br /></p>
                                     </div>
                                     <br>
                                     <div id="c2-right" class="carbon wg-right">
@@ -193,7 +250,6 @@
                                     <div id="p4-left" class="power wg-left">
                                         <p>Generated
                                         <span class="sum-kwhGen"></span> of energy!</p>
-                                        <p class="small" style="position: static"><br /></p>
                                     </div>
                                     <br>
                                     <div id="p4-right" class="power wg-right">
@@ -211,7 +267,6 @@
                                     <div id="p5-left" class="power wg-left">
                                         <p>Generated
                                         <span class="sum-kwhGen"></span> of energy</p>
-                                        <p class="small" style="position: static"><br /></p>
                                     </div>
                                     <br>
                                     <div id="p5-right" class="power wg-right">
@@ -322,9 +377,8 @@
                             <li>
                                 <div class="top-level record-lifetime-co2">
                                     <div class="wg-left">
-                                        <p>Has saved
-                                        <span class="lt-CO2"></span>
-                                        of CO2 from polluting the air</p>
+                                        <p>Has saved <span class="lt-CO2"></span> of CO2<br>
+                                        from polluting the air</p>
                                     </div>
                                     <br>
                                     <div class="wg-right">
@@ -339,12 +393,12 @@
                                 <div class="top-level record-lifetime-saved">
                                     <div class="wg-left">
                                         <p>Has provided
-                                        <span class="lt-schools"></span>
-                                        withfree solar<br> technology</p>
+                                        <span class="lt-schools"></span><br>
+                                        with free solar technology</p>
                                     </div>
                                     <br>
                                     <div class="wg-right">
-                                        <p>Saving <span class="lt-money-saved"></span> each year<br> for Education!</p>
+                                        <p>Saving <span class="lt-money-saved"></span> each year for Education!</p>
                                     </div>
                                 </div>
                             </li>
