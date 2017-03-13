@@ -26,9 +26,9 @@
 
 .wg-left, .wg-right {
     background-color: rgba(245, 89, 6, 0.0);
-    margin: 2px;
-    padding: 2px;
     text-align: center;
+    float: right;
+    max-height: 35%;
 }
 
 .wg-left {
