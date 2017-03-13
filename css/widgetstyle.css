@@ -24,11 +24,16 @@
 
 */
 
+.top-level {
+    width: 360px;
+    height: 160px;
+}
+
 .wg-left, .wg-right {
     background-color: rgba(245, 89, 6, 0.0);
     text-align: right;
     float: right;
-    max-height: 35%;
+    height: 35%;
     width: 240px;
 }
 
