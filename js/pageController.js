@@ -1984,19 +1984,7 @@ $(document).ready(function () {
                 var nodeParent = document.getElementById(v);
 
                 var leftNode = document.getElementById(v + '-left');
-                console.log(currentSlideArray[i].data)
-                try {
-                    if (currentSlideArray[i].data.lText.margin){
-                        console.log("adding left margin");
-                        var marginObj = currentSlideArray[i].data.lText.margin;
-                        $(leftNode.childNodes).css({
-                            "margin-left": marginObj.left,
-                            "margin-top": marginObj.top
-                        });
-                    }
-                } catch (err){
-                    console.log(err.message);
-                }
+                console.log(currentSlideArray[i].data);
                 
                 var nodeToReplace = document.getElementById(v + '-right');
                 // check that nodeToReplace exists
@@ -2113,13 +2101,6 @@ $(document).ready(function () {
                 var rightHTMLString = compStringConcat(cObj.rText, cObj.obj);
                 // appends the p element to the right div
                 $rightDiv.append(rightHTMLString);
-                // updates the margins for the p element
-                if (cObj.rText.margin) {
-                    $($rightDiv[0].childNodes).css({
-                          "margin-left": cObj.rText.margin.left,
-                          "margin-top": cObj.rText.margin.top
-                    });
-                }
                 return $rightDiv;
             }
 

@@ -41,34 +41,9 @@
     font-size: 14px;
 }
 
-
-.small {
-    font-size: 75%;
-}
-
 .slider-invis {
     opacity: 0;
 }
-
-.wg-overlay {
-    width: 265px;
-    position: absolute;
-    margin-left: 0;
-    margin-top: 0;
-    left: 12.5%;
-    z-index: 90;
-    background-color: #f25724;
-    color: bisque;
-    padding: 8px;
-    border-radius: 0px 0px 12px 12px;
-}
-
-.wg-overlay p {
-    margin-top: 0px !important;
-    margin-bottom: 0px;
-    text-align: center;
-}
-
 .lt-gen p {
     margin-top: 40px;
 }
@@ -81,14 +56,3 @@
     vertical-align: middle;
 }
 
-#record-day-whole-programme {
-    font-size: 110%;
-    display: block;
-    margin: 0px;
-    padding: 0px;
-}
-
-.record-gen .hbox,
-.lt-gen .hbox {
-    min-height: 160px;
-}
