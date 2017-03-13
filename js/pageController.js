@@ -2135,10 +2135,8 @@ $(document).ready(function () {
 
             // returns a span element with the span text and the enclosing span elements
             function spanify(cObj, className) {
-                var r = "<span class='big'>" // span class="big"
-                r += "<span class='" + className + "'>"; //span class="xyz"
+                var r = " <span class='" + className + "'>"; //span class="xyz"
                 r += "</span> " + cObj.span; // insert your text here
-                r += "</span>"; //
                 return r;
             }
         }
