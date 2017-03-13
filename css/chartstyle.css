@@ -279,3 +279,8 @@
     min-height: 142px;
     display: inline-block;
 }
+
+.top-level {
+    width: 360px;
+    height: 120px;
+}
