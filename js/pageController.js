@@ -2126,8 +2126,7 @@ $(document).ready(function () {
             /* returns an HTML string including all the spans and line breaks.
             cObj is the text object, while className is the name of the span class*/
             function compStringConcat(textObject, className) {
-                var r = "";
-                r += "<p>" + textObject.up; // insert upper text, line break
+                var r = "<p>" + textObject.up; // insert upper text, line break
                 r += spanify(textObject, className); // insert middle text with spans
                 r += textObject.down + "</p>"; // insert bottom text with ending p tag
                 return r;
@@ -2136,7 +2135,7 @@ $(document).ready(function () {
             // returns a span element with the span text and the enclosing span elements
             function spanify(cObj, className) {
                 var r = " <span class='" + className + "'>"; //span class="xyz"
-                r += "</span> " + cObj.span; // insert your text here
+                r += "</span> " + cObj.span; + " " // insert your text here
                 return r;
             }
         }
