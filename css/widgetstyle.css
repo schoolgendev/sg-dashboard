@@ -31,7 +31,7 @@
 
 .wg-left, .wg-right {
     background-color: rgba(245, 89, 6, 0.0);
-    text-align: right;
+    text-align: center;
     float: right;
     height: 35%;
     width: 240px;
@@ -43,13 +43,6 @@
 
 .slider-invis {
     opacity: 0;
-}
-.lt-gen p {
-    margin-top: 40px;
-}
-
-.record-gen p {
-    margin-top: 40px;
 }
 
 .wg-left p, .wg-right p {
