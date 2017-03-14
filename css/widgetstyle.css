@@ -19,7 +19,7 @@
 
 .wg-left, .wg-right {
     background-color: rgba(245, 89, 6, 0.0);
-    text-align: center;
+    text-align: left;
     float: right;
 
     /*
@@ -46,8 +46,9 @@
 
 /* Change these values/names to alter the bottom widget text */
 .wg-right {
-    font-size: 22px;
+    font-size: 24px;
     font-family: 'Cabin Sketch', cursive;
+    font-weight: bold;
 }
 
 .wg-right p {
