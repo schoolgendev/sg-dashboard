@@ -17,8 +17,8 @@ $(document).ready(function () {
                     obj: "batt-phone",
                     val: 0.01,
                     bg: "url('img/phone-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#333333",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -41,8 +41,8 @@ $(document).ready(function () {
                     obj: "batt-tablet",
                     val: 0.02,
                     bg: "url('img/tablet-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -65,8 +65,8 @@ $(document).ready(function () {
                     obj: "batt-chromebook",
                     val: 0.04,
                     bg: "url('img/laptop-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "white",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -89,7 +89,7 @@ $(document).ready(function () {
                     obj: "ebikes",
                     val: 0.4,
                     bg: "url('img/cyclist1-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
+                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
@@ -113,7 +113,7 @@ $(document).ready(function () {
                     obj: "home-batt-enphase",
                     val: 1.2,
                     bg: "url('img/enphase-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
+                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
@@ -137,8 +137,8 @@ $(document).ready(function () {
                     obj: "TNT-kg",
                     val: 1.2,
                     bg: "url('img/tnt1-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#000000",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 0,
                     lText: {
                         margin: {
@@ -162,7 +162,7 @@ $(document).ready(function () {
                     obj: "coal-kg",
                     val: 4,
                     bg: "url('img/coal-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
+                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
                     lText: {
@@ -187,7 +187,7 @@ $(document).ready(function () {
                     obj: "home-batt-panasonic",
                     val: 8.0,
                     bg: "url('img/enphase-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
+                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
                     lText: {
@@ -215,7 +215,7 @@ $(document).ready(function () {
                     obj: "MULTIPLY-km-driven-tdf-cyclist",
                     val: 175,
                     bg: "url('img/cyclist1-wg-bg.png')",
-                    topcolor: "#AAAAAA",
+                   topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 2,
                     lText: {
@@ -240,8 +240,8 @@ $(document).ready(function () {
                     obj: "tdf-cyclist-total",
                     val: 21.2,
                     bg: "url('img/cyclist2-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 2,
                     lText: {
                         margin: {
@@ -265,8 +265,8 @@ $(document).ready(function () {
                     obj: "MULTIPLY-km-driven-tesla",
                     val: 6.25,
                     bg: "url('img/tesla1-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "red",
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 0,
                    lText: {
                         margin: {
@@ -290,8 +290,8 @@ $(document).ready(function () {
                     obj: "tesla-battery",
                     val: 90,
                     bg: "url('img/tesla2-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 0,
                     lText: {
                         margin: {
@@ -316,8 +316,8 @@ $(document).ready(function () {
                     obj: "hours-driven-train",
                     val: 1520,
                     bg: "url('img/train-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 0,
                     lText: {
                         margin: {
@@ -341,8 +341,8 @@ $(document).ready(function () {
                     obj: "TNT-tonne",
                     val: 1200,
                     bg: "url('img/tnt2-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#d3d3d3",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 0,
                    lText: {
                         margin: {
@@ -366,8 +366,8 @@ $(document).ready(function () {
                     obj: "nz-houses-month",
                     val: 583,
                     bg: "url('img/house-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "red",
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 0,
                     lText: {
                         margin: {
@@ -409,8 +409,8 @@ $(document).ready(function () {
                     obj: "nz-generation-seconds",
                     val: 1716,
                     bg: "url('img/nz-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 3,
                     lText: {
                         margin: {
@@ -434,8 +434,8 @@ $(document).ready(function () {
                     obj: "nz-houses-year",
                     val: 7000,
                     bg: "url('img/house-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 3,
                     lText: {
                         margin: {
@@ -459,8 +459,8 @@ $(document).ready(function () {
                     obj: "nz-generation-minutes",
                     val: 102986,
                     bg: "url('img/nz-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 3,
                     lText: {
                         margin: {
@@ -484,8 +484,8 @@ $(document).ready(function () {
                     obj: "ge-wind-turbine-days",
                     val: 4110,
                     bg: "url('img/windmill1-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 3,
                     lText: {
                         margin: {
@@ -509,8 +509,8 @@ $(document).ready(function () {
                     obj: "ge-wind-turbine-month",
                     val: 125000,
                     bg: "url('img/windmill2-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 3,
                     lText: {
                         margin: {
@@ -534,8 +534,8 @@ $(document).ready(function () {
                     obj: "days-driven-etrain",
                     val: 36480,
                     bg: "url('img/train-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#eeeeee",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     precision: 3,
                     lText: {
                         margin: {
@@ -580,8 +580,8 @@ $(document).ready(function () {
                     obj: "wg-cow",
                     val: 680,
                     bg: "url('img/cow-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "beige",
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -603,8 +603,8 @@ $(document).ready(function () {
                     obj: "wg-car",
                     val: 1300, // mass in kg
                     bg: "url('img/car1-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -626,8 +626,8 @@ $(document).ready(function () {
                     obj: "wg-elephant",
                     val: 7500, //one elephant = ~7.5 t
                     bg: "url('img/elephant-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -649,8 +649,8 @@ $(document).ready(function () {
                     obj: "wg-blue-whale",
                     val: 105000, //one blue whale = ~105 t
                     bg: "url('img/blue-whale-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -672,8 +672,8 @@ $(document).ready(function () {
                     obj: "wg-house",
                     val: 156000, //single level, unfurnished, 149 sq m = ~156 t
                     bg: "url('img/house2-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -696,8 +696,8 @@ $(document).ready(function () {
                     obj: "co2-car",
                     val: 2000,
                     bg: "url('img/car2-wg-bg.png')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "#4F4F4F",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -720,8 +720,8 @@ $(document).ready(function () {
                     obj: "wg-kiwifruit",
                     val: 0.1,
                     bg: "url('img/kiwifruit-wg-bg.jpg')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "white",
+                    topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
@@ -744,8 +744,8 @@ $(document).ready(function () {
                     obj: "wg-avocado",
                     val: 0.215,
                     bg: "url('img/Avocado.jpg')",
-                    topcolor: "#AAAAAA",
-                    bottomcolor: "white", //#4F4F4F was too close to jpg colour
+                   topcolor: "#fecf2d",
+                    bottomcolor: "#FFFFFF",
                     lText: {
                         margin: {
                             top: "null",
