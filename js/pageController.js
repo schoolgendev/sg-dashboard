@@ -88,7 +88,7 @@ $(document).ready(function () {
                 {
                     obj: "ebikes",
                     val: 0.4,
-                    bg: "url('img/cyclist1-wg-bg.jpg')",
+                    bg: "url('img/ebike-wg-bg.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -136,7 +136,7 @@ $(document).ready(function () {
                 {
                     obj: "TNT-kg",
                     val: 1.2,
-                    bg: "url('img/tnt1-wg-bg.png')",
+                    bg: "url('img/tnt-wg-bg.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -186,7 +186,7 @@ $(document).ready(function () {
                 {
                     obj: "home-batt-panasonic",
                     val: 8.0,
-                    bg: "url('img/enphase-wg-bg.jpg')",
+                    bg: "url('img/panasonic_homebatt.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -214,7 +214,7 @@ $(document).ready(function () {
                 {
                     obj: "MULTIPLY-km-driven-tdf-cyclist",
                     val: 175,
-                    bg: "url('img/cyclist1-wg-bg.png')",
+                    bg: "url('img/tour_cyclist.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 2,
@@ -229,7 +229,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equivalent to a Tour de France cyclist cycling",
+                        up: "Equivalent to a Tour de France cyclist biking",
                         span: " km",
                         down: ""
                     },
@@ -239,7 +239,7 @@ $(document).ready(function () {
                 {
                     obj: "tdf-cyclist-total",
                     val: 21.2,
-                    bg: "url('img/cyclist2-wg-bg.png')",
+                    bg: "url('img/tour_cyclist.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 2,
@@ -256,7 +256,7 @@ $(document).ready(function () {
                         },
                         up: "Equivalent to",
                         span: " ",
-                        down: "Tour de France cyclists cycling the entire course"
+                        down: "Tour de France cyclists racing the whole course"
                     },
                     tooltip: "A distance of more than 3500 km, each rider uses a bit over 21 kWh of energy to do the course"
                 },
@@ -264,7 +264,7 @@ $(document).ready(function () {
                 {
                     obj: "MULTIPLY-km-driven-tesla",
                     val: 6.25,
-                    bg: "url('img/tesla1-wg-bg.jpg')",
+                    bg: "url('img/tesla-ecar.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -289,7 +289,7 @@ $(document).ready(function () {
                 {
                     obj: "tesla-battery",
                     val: 90,
-                    bg: "url('img/tesla2-wg-bg.png')",
+                    bg: "url('img/tesla-ecar.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -315,7 +315,7 @@ $(document).ready(function () {
                 {
                     obj: "hours-driven-train",
                     val: 1520,
-                    bg: "url('img/train-wg-bg.png')",
+                    bg: "url('img/etrain.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -340,7 +340,7 @@ $(document).ready(function () {
                 {
                     obj: "TNT-tonne",
                     val: 1200,
-                    bg: "url('img/tnt2-wg-bg.png')",
+                    bg: "url('img/tnt-wg-bg.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -433,7 +433,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-houses-year",
                     val: 7000,
-                    bg: "url('img/house-wg-bg.png')",
+                    bg: "url('img/house-wg-bg.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 3,
@@ -483,7 +483,7 @@ $(document).ready(function () {
                 {
                     obj: "ge-wind-turbine-days",
                     val: 4110,
-                    bg: "url('img/windmill1-wg-bg.png')",
+                    bg: "url('img/wind-turbine.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 3,
@@ -508,7 +508,7 @@ $(document).ready(function () {
                 {
                     obj: "ge-wind-turbine-month",
                     val: 125000,
-                    bg: "url('img/windmill2-wg-bg.png')",
+                    bg: "url('img/wind-turbine.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 3,
@@ -533,7 +533,7 @@ $(document).ready(function () {
                 {
                     obj: "days-driven-etrain",
                     val: 36480,
-                    bg: "url('img/train-wg-bg.png')",
+                    bg: "url('img/etrain.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 3,
@@ -579,7 +579,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-cow",
                     val: 680,
-                    bg: "url('img/cow-wg-bg.png')",
+                    bg: "url('img/cow.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -602,7 +602,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-car",
                     val: 1300, // mass in kg
-                    bg: "url('img/car1-wg-bg.png')",
+                    bg: "url('img/normal-car.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -625,7 +625,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-elephant",
                     val: 7500, //one elephant = ~7.5 t
-                    bg: "url('img/elephant-wg-bg.png')",
+                    bg: "url('img/elephant.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -648,7 +648,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-blue-whale",
                     val: 105000, //one blue whale = ~105 t
-                    bg: "url('img/blue-whale-wg-bg.png')",
+                    bg: "url('img/blue-whale.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -671,7 +671,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-house",
                     val: 156000, //single level, unfurnished, 149 sq m = ~156 t
-                    bg: "url('img/house2-wg-bg.png')",
+                    bg: "url('img/house-wg-bg.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -695,7 +695,7 @@ $(document).ready(function () {
                 {
                     obj: "co2-car",
                     val: 2000,
-                    bg: "url('img/car2-wg-bg.png')",
+                    bg: "url('img/normal-car.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
