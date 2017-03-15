@@ -155,7 +155,7 @@ $(document).ready(function () {
                         span: " kg",
                         down: " of TNT!"
                     },
-                    tooltip: "1kg of TNT stores 1.2 kilowatt-hours (4.3 MJ) of potential energy, which is released explosively!"
+                    tooltip: "1kg of TNT stores 1.2 kilowatt-hours of energy, which is released explosively!"
                 },
                 // 6 coal, 4kwh per kg
                 {
@@ -180,13 +180,13 @@ $(document).ready(function () {
                         span: " kg",
                         down: "of coal"
                     },
-                    tooltip: "1kg of coal stores 4 kilowatt-hours of potential energy"
+                    tooltip: "1kg of coal stores 4 kilowatt-hours of energy"
                 },
                 // 7 home batt panasonic, 0.8
                 {
                     obj: "home-batt-panasonic",
                     val: 8.0,
-                    bg: "url('img/panasonic_homebatt.jpg')",
+                    bg: "url('img/panasonic-homebatt.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -205,7 +205,7 @@ $(document).ready(function () {
                         span: "",
                         down: "Panasonic home batteries!"
                     },
-                    tooltip: "Residential battery stores up to 8 kWh of electrical energy"
+                    tooltip: "Home battery stores up to 8 kilowatt-hours of electrical energy"
                 },
                 // 8 km driven tdf cyclist - 0.0057 km per kwh (5.7km per wh)
                 // Above is incorrect: should have divided by val
@@ -229,11 +229,11 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equivalent to a Tour de France cyclist biking",
+                        up: "Equivalent to 1 Tour de France cyclist biking",
                         span: " km",
                         down: ""
                     },
-                    tooltip: "Humans use chemical potential energy"
+                    tooltip: "Living things use chemical potential energy"
                 },
                 // 9 tdf cyclist, 21.2
                 {
@@ -254,9 +254,9 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equivalent to",
+                        up: "Similar to",
                         span: " ",
-                        down: "Tour de France cyclists racing the whole course"
+                        down: "cyclists racing the whole Tour de France"
                     },
                     tooltip: "A distance of more than 3500 km, each rider uses a bit over 21 kWh of energy to do the course"
                 },
@@ -330,7 +330,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "An e-train could travel for",
+                        up: "An e-train of 3 cars could travel for",
                         span: " hours",
                         down: "at 110 km/h"
                     },
@@ -359,7 +359,7 @@ $(document).ready(function () {
                         span: " tonnes",
                         down: "of TNT!"
                     },
-                    tooltip: "1 tonne of TNT stores 1.2 megawatt-hours (4.3 GJ) of potential energy - released explosively!"
+                    tooltip: "1 tonne of TNT stores 1.2 megawatt-hours of energy - released explosively!"
                 },
                 // 14 nz houses, 600
                 {
@@ -523,11 +523,11 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equals generation from one Genesis wind turbine for",
+                        up: "Equals generation from 1 Genesis wind turbine for",
                         span: "",
                         down: "months!"
                     },
-                    tooltip: "A single Genesis Energy wind turbine produces 125,000 kWh in an average month"
+                    tooltip: "One Genesis wind turbine produces 125,000 kWh in an average month"
                 },
                 // 20 - electric train for 39 hours
                 {
@@ -550,7 +550,7 @@ $(document).ready(function () {
                         },
                         up: "One Auckland e-train could travel for",
                         span: " days",
-                        down: "at 110km/h!"
+                        down: "at 110 km/h!"
                     },
                     tooltip: "Based on Auckland's AMA electric train at maximum power"
                 }
@@ -620,7 +620,7 @@ $(document).ready(function () {
                         span: " cars!",
                         down: ""
                     },
-                    tooltip: "Based off the weight of a 2016 Toyota Corolla"
+                    tooltip: "Compared to the weight of a 2016 Toyota Corolla"
                 },
                 {
                     obj: "wg-elephant",
@@ -666,7 +666,7 @@ $(document).ready(function () {
                         span: " Blue Whales!",
                         down: ""
                     },
-                    tooltip: "One blue whale weighs around 105 tonnes"
+                    tooltip: "Average Blue Whale weighs about 105 tonnes"
                 },
                 {
                     obj: "wg-house",
