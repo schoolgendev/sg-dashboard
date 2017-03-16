@@ -330,11 +330,11 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "An e-train of 3 cars could travel for",
+                        up: "Electric train travelling for",
                         span: " hours",
                         down: "at 110 km/h"
                     },
-                    tooltip: "Based on Auckland's AMA electric train at maximum power"
+                    tooltip: "Based on Auckland's AMA electric train (3 cars) at maximum power"
                 },
                 // 13 TNT t, 1200
                 {
@@ -548,11 +548,11 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "One Auckland e-train could travel for",
+                        up: "Electric train travelling for",
                         span: " days",
                         down: "at 110 km/h!"
                     },
-                    tooltip: "Based on Auckland's AMA electric train at maximum power"
+                    tooltip: "Based on Auckland's AMA electric train (3 cars) at maximum power"
                 }
             ],
             /* also returns an array of numbers corresponding to comparison objects,
@@ -1164,7 +1164,7 @@ $(document).ready(function () {
     }
 
     /* DataCompiler function constructor.
-    An object that compiles the xhr data into the given stat.
+    An object that compiles the data into the given stat.
     This data compiler object is specifically for the schoolgen programme.
     */
     function DataCompiler(stat) {
@@ -1911,7 +1911,7 @@ $(document).ready(function () {
                         }
                         else if (spanClassName === ".sum-co2" ) {
                             value /= 1000;
-                            unit = 't';
+                            unit = 'tonnes';
                         }
                     }
                     if ( spanClassName === ".lt-kwhGen" ){
@@ -1920,7 +1920,7 @@ $(document).ready(function () {
                     }
                     if (spanClassName === ".lt-CO2"){
                         value /= 1000;
-                        unit = 't';
+                        unit = 'tonnes';
                     }
                     var formatValue = d3.format(',')
                     value = formatValue(Math.round(value));
@@ -2195,8 +2195,8 @@ $(document).ready(function () {
         var currentDate = document.getElementById('currentDate');
         var energyTooltip = document.getElementById('energy-tooltip')
 
-        var kwhString = "1 kilowatt-hour is the unit of energy charged for in your electricity bill."
-        var mwhString = "1 megawatt-hour = 1000 kilowatt hours"
+        var kwhString = "1 kilowatt-hour is the unit of ENERGY on your electricity bill."
+        var mwhString = "1 Megawatt-hour = 1000 kilowatt-hours"
         this.update = function () {
             // set upper level text
             energyGen.textContent = util.cutKWHSum(pc.stat.spec.kwhSum);
