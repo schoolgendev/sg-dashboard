@@ -1810,7 +1810,7 @@ $(document).ready(function () {
                     //5
                     {
                         name: ".lt-money-saved",
-                        val: pc.stat.general.egco2.total.energy/0.20
+                        val: pc.stat.general.egco2.total.energy*0.20
                     },
                     //6
                     {
