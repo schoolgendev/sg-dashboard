@@ -186,7 +186,7 @@ $(document).ready(function () {
                 {
                     obj: "home-batt-panasonic",
                     val: 8.0,
-                    bg: "url('img/panasonic-homebatt.jpg')",
+                    bg: "url('img/home-batt.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -365,7 +365,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-houses-month",
                     val: 583,
-                    bg: "url('img/house-wg-bg.jpg')",
+                    bg: "url('img/house-dark-bg.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 0,
@@ -408,7 +408,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-generation-seconds",
                     val: 1716,
-                    bg: "url('img/nz-wg-bg.png')",
+                    bg: "url('img/nz-map.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 3,
@@ -433,7 +433,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-houses-year",
                     val: 7000,
-                    bg: "url('img/house-wg-bg.jpg')",
+                    bg: "url('img/nz-map.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 3,
@@ -458,7 +458,7 @@ $(document).ready(function () {
                 {
                     obj: "nz-generation-minutes",
                     val: 102986,
-                    bg: "url('img/nz-wg-bg.png')",
+                    bg: "url('img/nz-map.jpg')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     precision: 3,
@@ -671,7 +671,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-house",
                     val: 156000, //single level, unfurnished, 149 sq m = ~156 t
-                    bg: "url('img/house-wg-bg.jpg')",
+                    bg: "url('img/house-dark-bg.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
