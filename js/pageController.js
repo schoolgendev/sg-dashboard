@@ -112,7 +112,7 @@ $(document).ready(function () {
                 {
                     obj: "home-batt-enphase",
                     val: 1.2,
-                    bg: "url('img/enphase-wg-bg.jpg')",
+                    bg: "url('img/home-batt.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -1810,7 +1810,7 @@ $(document).ready(function () {
                     //5
                     {
                         name: ".lt-money-saved",
-                        val: "$100,000"
+                        val: "100,000"
                     },
                     //6
                     {
