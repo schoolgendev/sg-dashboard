@@ -27,7 +27,7 @@
     * areas that the widget text is in. Note that height affects the height of
     * both the top and the bottom area, so I've left it as a percentage.
     */
-    max-height: 0%;
+    max-height: 20%;
     width: 220px;
     padding-right: 6px;
     margin-bottom: 10px;
