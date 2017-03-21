@@ -16,7 +16,7 @@ $(document).ready(function () {
                 {
                     obj: "batt-phone",
                     val: 0.01,
-                    bg: "url('img/phone-wg-bg.png')",
+                    bg: "url('img/smart-phone.jpg')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -602,7 +602,7 @@ $(document).ready(function () {
                 {
                     obj: "wg-car",
                     val: 1300, // mass in kg
-                    bg: "url('img/normal-car.jpg')",
+                    bg: "url('img/normal-car2.png')",
                    topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
@@ -695,7 +695,7 @@ $(document).ready(function () {
                 {
                     obj: "co2-car",
                     val: 2000,
-                    bg: "url('img/normal-car.jpg')",
+                    bg: "url('img/normal-car2.png')",
                     topcolor: "#fecf2d",
                     bottomcolor: "#FFFFFF",
                     lText: {
