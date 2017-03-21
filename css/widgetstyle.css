@@ -5,16 +5,16 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Open+Sans');
 
 .wg-slider {
-    width: 450px;
-    height: 200px;
+    width: 360px;
+    height: 160px;
     background-color: #EAB721;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
 .top-level {
-    width: 450px;
-    height: 200px;
+    width: 360px;
+    height: 160px;
 }
 
 .wg-left, .wg-right {
