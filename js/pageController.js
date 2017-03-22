@@ -151,7 +151,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Same as exploding",
+                        up: "Energy in",
                         span: " kg",
                         down: " of TNT!"
                     },
@@ -176,9 +176,9 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Same as burning",
+                        up: "Heat from",
                         span: " kg",
-                        down: "of coal"
+                        down: "of burning coal"
                     },
                     tooltip: "1kg of coal stores 4 kilowatt-hours of energy"
                 },
