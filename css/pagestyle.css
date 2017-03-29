@@ -10,7 +10,7 @@
 }
 
 .container {
-    background-color: white;
+    background-color: #f58025;
     width: 980px;
     padding: 10px;
 }
@@ -19,7 +19,7 @@
     padding: 12px;
     margin: 10px 10px;
     display: inline-block;
-    background-color: #fbf5e2;
+    background-color: #ffffff;
 }
 
 #page {
