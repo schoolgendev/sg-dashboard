@@ -254,11 +254,11 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Similar to",
+                        up: "Energy required for",
                         span: " ",
-                        down: "cyclists racing the whole Tour de France"
+                        down: "cyclists to race the whole Tour de France"
                     },
-                    tooltip: "A distance of more than 3500 km, each rider uses a bit over 21 kWh of energy to do the course"
+                    tooltip: "A distance of more than 3500 km, each rider uses a bit over 21 kWh of food energy to do the course"
                 },
                 // object 10 - km driven tesla, 6.25 km per kwh
                 {
@@ -423,7 +423,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Run all of NZ electricity grid for",
+                        up: "Run all of NZ's electricity grid for",
                         span: "",
                         down: "seconds"
                     },
@@ -593,7 +593,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equals the mass of",
+                        up: "Gas equals the mass of",
                         span: " cows!",
                         down: ""
                     },
@@ -616,7 +616,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equals the mass of",
+                        up: "Gas equals the mass of",
                         span: " cars!",
                         down: ""
                     },
@@ -639,7 +639,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equals the mass of",
+                        up: "Gas equals the mass of",
                         span: " elephants!",
                         down: ""
                     },
@@ -662,7 +662,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equals the mass of",
+                        up: "Gas equals the mass of",
                         span: " Blue Whales!",
                         down: ""
                     },
@@ -685,7 +685,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equals the mass of",
+                        up: "Gas equals the mass of",
                         span: " houses!",
                         down: ""
                     },
@@ -733,7 +733,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Weighs as much as",
+                        up: "Gas equals the mass of",
                         span: "",
                         down: "kiwifruit"
                     },
@@ -757,7 +757,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Weighs as much as",
+                        up: "Gas equals the mass of",
                         span: "",
                         down: "avocados"
                     },
