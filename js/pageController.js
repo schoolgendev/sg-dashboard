@@ -229,7 +229,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equivalent to 1 Tour de France cyclist biking",
+                        up: "Energy used by 1 Tour de France cyclist going",
                         span: " km",
                         down: ""
                     },
@@ -254,9 +254,9 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Energy required for",
+                        up: "Energy used by",
                         span: " ",
-                        down: "cyclists to race the whole Tour de France"
+                        down: "cyclists racing the whole Tour de France"
                     },
                     tooltip: "A distance of more than 3500 km, each rider uses a bit over 21 kWh of food energy to do the course"
                 },
