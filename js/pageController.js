@@ -30,7 +30,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could recharge",
+                        up: "Recharge",
                         span: "",
                         down: "smartphones!"
                     },
@@ -54,7 +54,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could recharge",
+                        up: "Recharge",
                         span: "",
                         down: "tablets!"
                     },
@@ -78,7 +78,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could recharge",
+                        up: "Recharge",
                         span: "",
                         down: "Chromebooks!"
                     },
@@ -102,7 +102,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could recharge",
+                        up: "Recharge",
                         span: " ",
                         down: "e-bikes"
                     },
@@ -126,7 +126,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px",
                         },
-                        up: "Could recharge",
+                        up: "Recharge",
                         span: "",
                         down: "Enphase Home Batteries"
                     },
@@ -201,7 +201,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could recharge",
+                        up: "Recharge",
                         span: "",
                         down: "Panasonic home batteries!"
                     },
@@ -279,7 +279,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could drive an electric car",
+                        up: "Drive an electric car",
                         span: " km",
                         down: ""
                     },
@@ -304,7 +304,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could fully charge a Tesla electric car",
+                        up: "Recharge a Tesla electric car",
                         span: " times",
                         down: ""
                     },
@@ -330,7 +330,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Electric train travelling for",
+                        up: "Travel on an Electric train for",
                         span: " hours",
                         down: "at 110 km/h"
                     },
@@ -355,7 +355,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Same as exploding",
+                        up: "Energy in ",
                         span: " tonnes",
                         down: "of TNT!"
                     },
@@ -423,7 +423,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could power all of NZ for",
+                        up: "Run all of NZ electricity grid for",
                         span: "",
                         down: "seconds"
                     },
@@ -448,7 +448,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could power",
+                        up: "Enough electricity to run",
                         span: " houses",
                         down: "in NZ for a year!"
                     },
@@ -473,9 +473,9 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Could power all of NZ for",
+                        up: "Run all of NZ electricity grid for",
                         span: "",
-                        down: "minutes!"
+                        down: "minutes"
                     },
                     tooltip: "The whole of NZ uses HUGE amounts of energy every second - you would need a lot of solar panels for this!"
                 },
@@ -498,7 +498,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equals generation from one Genesis wind turbine for",
+                        up: "Generation from one Genesis wind turbine for",
                         span: "",
                         down: "days!"
                     },
@@ -523,7 +523,7 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Equals generation from 1 Genesis wind turbine for",
+                        up: "Generation from 1 Genesis wind turbine for",
                         span: "",
                         down: "months!"
                     },
@@ -548,11 +548,11 @@ $(document).ready(function () {
                             top: "20px",
                             right: "20px"
                         },
-                        up: "Electric train travelling for",
+                        up: "Travel on an Electric train for",
                         span: " days",
                         down: "at 110 km/h!"
                     },
-                    tooltip: "Based on Auckland's AMA electric train (3 cars) at maximum power"
+                    tooltip: "Based on a full Auckland's AMA electric train (3 cars) at maximum power"
                 }
             ],
             /* also returns an array of numbers corresponding to comparison objects,
