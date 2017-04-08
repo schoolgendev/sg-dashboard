@@ -561,7 +561,7 @@ $(document).ready(function () {
                 var slideIndexArray = [];
                 sgComp.e.objects.forEach(function (v, i, a) {
                     var widgetNumber;
-                    if (v.obj.includes('MULTIPLY')){
+                    if (v.obj.indexOf('MULTIPLY') >= 0){
                         widgetNumber = x * v.val;
                     } else {
                         widgetNumber = x / v.val;
@@ -1611,11 +1611,11 @@ $(document).ready(function () {
                     if (pc.stat.currentTimeDivs === TimePeriod.HOUR || pc.stat.currentTimeDivs === TimePeriod.DAY){
                         ttText = d.kwh + " kWh";
                     } else {
-                        ttText = Math.trunc(d.kwh/1000) + " MWh";
+                        ttText = Math.floor(d.kwh/1000) + " MWh";
                     }
                     ttDiv.html("<strong>" + formatDate(d.time) + "</strong><hr><br>" +
                             ttText)
-                        .style("left", Math.trunc(chartScale.x(parseDate(d.time))) + "px")
+                        .style("left", Math.floor(chartScale.x(parseDate(d.time))) + "px")
                         .style("top", height + margin.bottom + 4 + "px");
                 }
 
@@ -1779,9 +1779,14 @@ $(document).ready(function () {
 
             function replaceAllSpans() {
                 //fixed class names.
-                var houseEnergyValue = sgComp.e.objects.find(function (elem) { return elem.obj === 'nz-houses-year' }).val;
-                var carCO2Value = sgComp.w.objects.find(function (elem) { return elem.obj === 'co2-car' }).val;
+                var houseEnergyValue = $.grep(sgComp.e.objects, function(elem){
+                    return elem.obj === 'nz-houses-year'
+                })[0].val;
+                var carCO2Value = $.grep(sgComp.w.objects, function(elem){
+                    return elem.obj === 'co2-car'
+                })[0].val;
                 var fcn = [
+                    /* needs desperate refactoring */
                     //0
                     {
                         name: ".sum-kwhGen",
@@ -1870,11 +1875,11 @@ $(document).ready(function () {
 
                 // kwh sliders
                 [0, 2, 7, 9, 11, 13].forEach(function (x) {
-                    replaceNumericalSpan(Number(Math.trunc(fcn[x].val)), 'kWh', fcn[x].name);
+                    replaceNumericalSpan(Number(Math.floor(fcn[x].val)), 'kWh', fcn[x].name);
                 });
                 // co2 slider divs
                 [1, 3].forEach(function (x) {
-                    replaceNumericalSpan(Number(Math.trunc(fcn[x].val)), 'kg', fcn[x].name);
+                    replaceNumericalSpan(Number(Math.floor(fcn[x].val)), 'kg', fcn[x].name);
                 });
                 replaceSpan(fcn[4].val, 'schools', fcn[4].name, true);
                 replaceSpan(fcn[5].val, '$', fcn[5].name, true, true);
@@ -1995,7 +2000,7 @@ $(document).ready(function () {
                 // shuffle randArray
                 for (var i = 0; i < randArray.length; i++) {
                     // select random number from i to length
-                    let z = Math.trunc(i + Math.random() * (randArray.length - i));
+                    let z = Math.floor(i + Math.random() * (randArray.length - i));
                     // swap with i
                     util.swap(randArray, z, i);
                 }
