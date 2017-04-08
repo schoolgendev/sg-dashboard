@@ -566,7 +566,7 @@ $(document).ready(function () {
                     } else {
                         widgetNumber = x / v.val;
                     }
-                    if (widgetNumber > 10 && widgetNumber < 25000){
+                    if (widgetNumber > 10 && widgetNumber < 2500000){
                         slideIndexArray.push(i);
                     }
                 });
